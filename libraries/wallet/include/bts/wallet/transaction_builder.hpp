@@ -264,7 +264,7 @@ namespace bts { namespace wallet {
 
          return balances;
       }
-      void pay_fees();
+      void pay_fee();
       bool withdraw_fee();
    };
 
