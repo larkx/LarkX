@@ -89,7 +89,7 @@
  * Initial shares read from the genesis block are scaled to this number. It is divided
  * by 100 so that new shares may be issued without exceeding BTS_BLOCKCHAIN_MAX_SHARES
  */
-#define BTS_BLOCKCHAIN_INITIAL_SHARES                       (BTS_BLOCKCHAIN_MAX_SHARES/5)
+//#define BTS_BLOCKCHAIN_INITIAL_SHARES                       (BTS_BLOCKCHAIN_MAX_SHARES/5)
 
 /**
  *  The number of blocks expected per hour based upon the BTS_BLOCKCHAIN_BLOCK_INTERVAL_SEC

@@ -257,9 +257,7 @@ namespace bts { namespace blockchain {
          {
             ++n;
 
-            fc::uint128 initial( int64_t(item.second/1000) );
-            initial *= fc::uint128(int64_t(BTS_BLOCKCHAIN_INITIAL_SHARES));
-            initial /= total_unscaled;
+            fc::uint128 initial( int64_t(item.second) );
 
             const auto addr = item.first;
             balance_record initial_balance( addr,
