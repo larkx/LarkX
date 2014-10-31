@@ -3073,13 +3073,20 @@ config load_config( const fc::path& datadir, bool enable_ulog )
       }
     }
 
+    std::vector<fc::ip::endpoint> client::string_to_endpoints( const string& endpoint_string )
+    {
+        auto pos = endpoint_string.find(':');
+        uint16_t port = boost::lexical_cast<uint16_t>( endpoint_string.substr( pos+1, endpoint_string.size() ) );
+        return fc::resolve(endpoint_string.substr(0, pos), port);
+    }
+
     void client::add_node( const string& remote_endpoint )
     {
-      fc::ip::endpoint endpoint;
+      std::vector<fc::ip::endpoint> endpoints;
       fc::oexception string_to_endpoint_error;
       try
       {
-        endpoint = string_to_endpoint(remote_endpoint);
+        endpoints = string_to_endpoints(remote_endpoint);
       }
       catch (const fc::exception& e)
       {
@@ -3092,13 +3099,15 @@ config load_config( const fc::path& datadir, bool enable_ulog )
         return;
       }
 
-      try
-      {
-        ulog("Adding peer ${peer} to peer database", ("peer", endpoint));
-        my->_p2p_node->add_node(endpoint);
-      }
-      catch (const bts::net::already_connected_to_requested_peer&)
-      {
+      for( auto endpoint = endpoints.begin(); endpoint != endpoints.end(); ++endpoint ) {
+        try
+        {
+          ulog("Adding peer ${peer} to peer database", ("peer", *endpoint));
+          my->_p2p_node->add_node(*endpoint);
+        }
+        catch (const bts::net::already_connected_to_requested_peer&)
+        {
+        }
       }
     }
     void client::connect_to_peer(const string& remote_endpoint)

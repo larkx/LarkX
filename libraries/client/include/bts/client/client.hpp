@@ -81,6 +81,14 @@ namespace bts { namespace client {
           delegate_server( fc::ip::endpoint::from_string("0.0.0.0:0") ),
           default_delegate_peers( vector<string>({"178.62.50.61:9988"}) )
           {
+#ifdef BTS_TEST_NETWORK
+              uint32_t port = BTS_NET_TEST_P2P_PORT + BTS_TEST_NETWORK_VERSION;
+#else
+              uint32_t port = BTS_NET_DEFAULT_P2P_PORT;
+#endif
+              for(auto default_peer = default_peers.begin(); default_peer != default_peers.end(); ++default_peer) {
+                *default_peer += fc::to_string( port );
+              }
               logging = fc::logging_config::default_config();
           }
 
@@ -164,6 +172,7 @@ namespace bts { namespace client {
 
        private:
          unique_ptr<detail::client_impl> my;
+         std::vector<fc::ip::endpoint> string_to_endpoints( const string& remote_endpoint );
     };
 
     typedef shared_ptr<client> client_ptr;
