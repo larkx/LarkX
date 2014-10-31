@@ -5,12 +5,12 @@
 /* Comment out this line for a non-test network */
 //#define BTS_TEST_NETWORK
 
-#define BTS_TEST_NETWORK_VERSION                            39
+#define BTS_TEST_NETWORK_VERSION                            1
 
 /** @file bts/blockchain/config.hpp
  *  @brief Defines global constants that determine blockchain behavior
  */
-#define BTS_BLOCKCHAIN_VERSION                              109
+#define BTS_BLOCKCHAIN_VERSION                              1
 #define BTS_BLOCKCHAIN_DATABASE_VERSION                     152
 
 /**
@@ -19,18 +19,19 @@
  *
  *  Changing these parameters will result in a hard fork.
  */
-#define BTS_ADDRESS_PREFIX                                  "BTSX"
-#define BTS_BLOCKCHAIN_SYMBOL                               "BTSX"
-#define BTS_BLOCKCHAIN_NAME                                 "BitShares X"
-#define BTS_BLOCKCHAIN_DESCRIPTION                          "Decentralized Autonomous Exchange"
-#define BTS_BLOCKCHAIN_PRECISION                            100000
+#define BTS_ADDRESS_PREFIX                                  "PTS"
+#define BTS_BLOCKCHAIN_SYMBOL                               "PTS"
+#define BTS_BLOCKCHAIN_NAME                                 "BitShares PTS"
+#define BTS_BLOCKCHAIN_DESCRIPTION                          "PTS P2P Currency"
+#define BTS_BLOCKCHAIN_PRECISION                            100000000
 #define BTS_BLOCKCHAIN_MAX_TRANSACTION_EXPIRATION_SEC       (60*60*24*2)
 #define BTS_BLOCKCHAIN_MIN_YIELD_PERIOD_SEC                 (60*60*24) // 24 hours
 
 #define BTS_BLOCKCHAIN_MIN_BURN_FEE                         BTS_BLOCKCHAIN_PRECISION * 1 // 1 XTS
-#define BTS_BLOCKCHAIN_DEFAULT_RELAY_FEE                    10000 // XTS
-#define BTS_BLOCKCHAIN_MINIMUM_SHORT_ORDER_SIZE             (BTS_BLOCKCHAIN_PRECISION*100)
-#define BTS_BLOCKCHAIN_MAX_SHORT_PERIOD_SEC                 (30*24*60*60) // 30 days * 24 hours * 60 minutes * 60 seconds = 1 month
+#define BTS_BLOCKCHAIN_DEFAULT_RELAY_FEE                    100000 // XTS
+#define BTS_BLOCKCHAIN_MINIMUM_SHORT_ORDER_SIZE             (BTS_BLOCKCHAIN_PRECISION*1000000)
+//#define BTS_BLOCKCHAIN_MAX_SHORT_PERIOD_SEC                 (30*24*60*60) // 30 days * 24 hours * 60 minutes * 60 seconds = 1 month
+#define BTS_BLOCKCHAIN_MAX_SHORT_PERIOD_SEC                 (2*60*60) // 2 hours for test network
 
 /**
  * The number of delegates that the blockchain is designed to support
@@ -54,7 +55,7 @@
 /**
  * Defines the number of seconds that should elapse between blocks
  */
-#define BTS_BLOCKCHAIN_BLOCK_INTERVAL_SEC                   int64_t(10)
+#define BTS_BLOCKCHAIN_BLOCK_INTERVAL_SEC                   int64_t(60)
 
 /**
  *  The maximum size of the raw data contained in the blockchain, this size is
@@ -69,7 +70,7 @@
 #define BTS_BLOCKCHAIN_MAX_SIZE                             (1024*1024*1024*int64_t(100)) // 100 GB
 #define BTS_BLOCKCHAIN_MIN_NAME_SIZE                        1
 #define BTS_BLOCKCHAIN_MAX_NAME_SIZE                        63
-#define BTS_BLOCKCHAIN_MAX_NAME_DATA_SIZE                   (1024*64)
+#define BTS_BLOCKCHAIN_MAX_NAME_DATA_SIZE                   (1024*8)
 #define BTS_BLOCKCHAIN_MAX_MEMO_SIZE                        19 // bytes
 #define BTS_BLOCKCHAIN_MAX_SYMBOL_SIZE                      5 // characters
 #define BTS_BLOCKCHAIN_MIN_SYMBOL_SIZE                      3 // characters
@@ -106,7 +107,7 @@
 #define BTS_BLOCKCHAIN_BLOCKS_PER_YEAR                      (BTS_BLOCKCHAIN_BLOCKS_PER_DAY*int64_t(365))
 
 #define BTS_BLOCKCHAIN_AVERAGE_TRX_SIZE                     512 // just a random assumption used to calibrate TRX per SEC
-#define BTS_BLOCKCHAIN_MAX_TRX_PER_SECOND                   1  // (10)
+#define BTS_BLOCKCHAIN_MAX_TRX_PER_SECOND                   5  // (10)
 #define BTS_BLOCKCHAIN_MAX_PENDING_QUEUE_SIZE               10 // (BTS_BLOCKCHAIN_MAX_TRX_PER_SECOND * BTS_BLOCKCHAIN_BLOCK_INTERVAL_SEC)
 
 /** defines the maximum block size allowed, 2 MB per hour */
