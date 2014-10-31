@@ -237,10 +237,11 @@ int main(int argc, char** argv)
   fc::path data_dir = fc::temp_directory_path() / "map_bts_network";
   fc::create_directories(data_dir);
 
-  uint16_t port = opts[PARAM_PORT].as<uint16_t>();
-
-  for (const std::string seeder : opts[PARAM_SEEDER].as<std::vector<std::string>>()) {
-    std::vector<fc::ip::endpoint> endpoints = fc::resolve(seeder, port);
+  bts::client::config default_client_config;
+  for (const std::string default_peer : default_client_config.default_peers) {
+    auto pos = default_peer.find(':');
+    uint16_t port = boost::lexical_cast<uint16_t>( default_peer.substr( pos+1, default_peer.size() ) );
+    std::vector<fc::ip::endpoint> endpoints = fc::resolve(default_peer.substr(0, pos), port);
     for( auto endpoint = endpoints.begin(); endpoint != endpoints.end(); ++endpoint ) {
       nodes_to_visit.push(*endpoint);
     }

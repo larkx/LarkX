@@ -1686,72 +1686,51 @@ fc::path client::get_data_dir()const
    return my->_data_dir;
 }
 
-/* static */ fc::ip::endpoint client::string_to_endpoint(const std::string& remote_endpoint)
+static const std::vector<fc::ip::endpoint> string_to_endpoints( const string& endpoint_string )
 {
-   try
-   {
-      ASSERT_TASK_NOT_PREEMPTED(); // make sure no cancel gets swallowed by catch(...)
-      // first, try and parse the endpoint as a numeric_ipv4_address:port that doesn't need DNS lookup
-      return fc::ip::endpoint::from_string(remote_endpoint);
-   }
-   catch (...)
-   {
-   }
-
-   // couldn't parse as a numeric ip address, try resolving as a DNS name.  This can yield, so don't
-   // do it in the catch block above
-   string::size_type colon_pos = remote_endpoint.find(':');
-   try
-   {
-      uint16_t port = boost::lexical_cast<uint16_t>( remote_endpoint.substr( colon_pos + 1, remote_endpoint.size() ) );
-
-      string hostname = remote_endpoint.substr( 0, colon_pos );
-      std::vector<fc::ip::endpoint> endpoints = fc::resolve(hostname, port);
-      if ( endpoints.empty() )
-         FC_THROW_EXCEPTION(fc::unknown_host_exception, "The host name can not be resolved: ${hostname}", ("hostname", hostname));
-      return endpoints.back();
-   }
-   catch (const boost::bad_lexical_cast&)
-   {
-      FC_THROW("Bad port: ${port}", ("port", remote_endpoint.substr( colon_pos + 1, remote_endpoint.size() )));
-   }
+    auto pos = endpoint_string.find(':');
+    uint16_t port = boost::lexical_cast<uint16_t>( endpoint_string.substr( pos+1, endpoint_string.size() ) );
+    return fc::resolve(endpoint_string.substr(0, pos), port);
 }
 
 void client::add_node( const string& remote_endpoint )
 {
-   fc::ip::endpoint endpoint;
-   fc::oexception string_to_endpoint_error;
-   try
-   {
-      endpoint = string_to_endpoint(remote_endpoint);
-   }
-   catch (const fc::exception& e)
-   {
-      string_to_endpoint_error = e;
-   }
-   if (string_to_endpoint_error)
-   {
-      ulog("Unable to add peer ${remote_endpoint}: ${error}",
-           ("remote_endpoint", remote_endpoint)("error", string_to_endpoint_error->to_string()));
-      return;
-   }
+  std::vector<fc::ip::endpoint> endpoints;
+  fc::oexception string_to_endpoint_error;
+  try
+  {
+    endpoints = string_to_endpoints(remote_endpoint);
+  }
+  catch (const fc::exception& e)
+  {
+    string_to_endpoint_error = e;
+  }
+  if (string_to_endpoint_error)
+  {
+    ulog("Unable to add peer ${remote_endpoint}: ${error}",
+         ("remote_endpoint", remote_endpoint)("error", string_to_endpoint_error->to_string()));
+    return;
+  }
 
-   try
-   {
-      ulog("Adding peer ${peer} to peer database", ("peer", endpoint));
-      my->_p2p_node->add_node(endpoint);
-   }
-   catch (const bts::net::already_connected_to_requested_peer&)
-   {
-   }
+  for( auto endpoint = endpoints.begin(); endpoint != endpoints.end(); ++endpoint )
+  {
+    try
+    {
+      ulog("Adding peer ${peer} to peer database", ("peer", *endpoint));
+      my->_p2p_node->add_node(*endpoint);
+    }
+    catch (const bts::net::already_connected_to_requested_peer&)
+    {
+    }
+  }
 }
 void client::connect_to_peer(const string& remote_endpoint)
 {
-   fc::ip::endpoint endpoint;
+   std::vector<fc::ip::endpoint> endpoints;
    fc::oexception string_to_endpoint_error;
    try
    {
-      endpoint = string_to_endpoint(remote_endpoint);
+      endpoints = string_to_endpoints(remote_endpoint);
    }
    catch (const fc::exception& e)
    {
@@ -1764,13 +1743,16 @@ void client::connect_to_peer(const string& remote_endpoint)
       return;
    }
 
-   try
+   for( auto endpoint = endpoints.begin(); endpoint != endpoints.end(); ++endpoint )
    {
-      ulog("Attempting to connect to peer ${peer}", ("peer", endpoint));
-      my->_p2p_node->connect_to(endpoint);
-   }
-   catch (const bts::net::already_connected_to_requested_peer&)
-   {
+      try
+      {
+         ulog("Attempting to connect to peer ${peer}", ("peer", *endpoint));
+         my->_p2p_node->connect_to(*endpoint);
+      }
+      catch (const bts::net::already_connected_to_requested_peer&)
+      {
+      }
    }
 }
 
