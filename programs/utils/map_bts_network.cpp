@@ -13,6 +13,12 @@
 #include <bts/net/peer_connection.hpp>
 #include <bts/client/client.hpp>
 
+#include <boost/program_options/options_description.hpp>
+
+#define PARAM_GENESIS   "genesis"
+#define PARAM_PORT      "port"
+#define PARAM_SEEDER    "seeder"
+
 class peer_probe : public bts::net::peer_connection_delegate
 {
 public:
@@ -171,8 +177,59 @@ public:
   }
 };
 
+static boost::program_options::variables_map parse_command_line(int argc, char **argv) {
+boost::program_options::options_description desc("Allowed options");
+
+    desc.add_options()
+    ("help", "Show usage information")
+    (PARAM_GENESIS, boost::program_options::value<std::string>(),
+            "Genesis file (JSON)")
+    (PARAM_PORT, boost::program_options::value<uint16_t>(),
+            "Default network port number")
+    (PARAM_SEEDER, boost::program_options::value<std::vector<std::string>>(),
+            "Seed node address or hostname");
+
+    boost::program_options::positional_options_description p;
+    p.add(PARAM_SEEDER, -1);
+
+    boost::program_options::variables_map vm;
+    boost::program_options::store(boost::program_options::command_line_parser(argc, argv)
+                                        .options(desc).positional(p).run(), vm);
+    boost::program_options::notify(vm);
+
+    if (vm.count("help")) {
+        std::cout << desc << std::endl;
+        exit(0);
+    }
+
+    return vm;
+}
+
+static void validate_options(boost::program_options::variables_map &opts) {
+  int error = 0;
+
+  if (!opts.count(PARAM_GENESIS)) {
+      std::cerr << "No genesis block specified!" << std::endl;
+      error++;
+  }
+  if (!opts.count(PARAM_PORT)) {
+      std::cerr << "No port number specified!" << std::endl;
+      error++;
+  }
+  if (!opts.count(PARAM_SEEDER)) {
+      std::cerr << "No seeder specified!" << std::endl;
+      error++;
+  }
+
+  if (error) { exit(1); }
+}
+
 int main(int argc, char** argv)
 {
+  boost::program_options::variables_map opts = parse_command_line(argc, argv);
+
+  validate_options(opts);
+
   std::queue<fc::ip::endpoint> nodes_to_visit;
   std::set<fc::ip::endpoint> nodes_to_visit_set;
   std::set<fc::ip::endpoint> nodes_already_visited;
@@ -180,11 +237,10 @@ int main(int argc, char** argv)
   fc::path data_dir = fc::temp_directory_path() / "map_bts_network";
   fc::create_directories(data_dir);
 
-  bts::client::config default_client_config;
-  for (const std::string default_peer : default_client_config.default_peers) {
-    auto pos = default_peer.find(':');
-    uint16_t port = boost::lexical_cast<uint16_t>( default_peer.substr( pos+1, default_peer.size() ) );
-    std::vector<fc::ip::endpoint> endpoints = fc::resolve(default_peer.substr(0, pos), port);
+  uint16_t port = opts[PARAM_PORT].as<uint16_t>();
+
+  for (const std::string seeder : opts[PARAM_SEEDER].as<std::vector<std::string>>()) {
+    std::vector<fc::ip::endpoint> endpoints = fc::resolve(seeder, port);
     for( auto endpoint = endpoints.begin(); endpoint != endpoints.end(); ++endpoint ) {
       nodes_to_visit.push(*endpoint);
     }
@@ -193,7 +249,7 @@ int main(int argc, char** argv)
 
   fc::ecc::private_key my_node_id = fc::ecc::private_key::generate();
   bts::blockchain::chain_database_ptr chain_db = std::make_shared<bts::blockchain::chain_database>();
-  chain_db->open(data_dir / "chain", fc::optional<fc::path>("C:/Users/Administrator/AppData/Local/Temp/map_bts_network/genesis.json"));
+  chain_db->open(data_dir / "chain", fc::optional<fc::path>(opts[PARAM_GENESIS].as<std::string>()));
 
   std::map<bts::net::node_id_t, bts::net::address_info> address_info_by_node_id;
   std::map<bts::net::node_id_t, std::vector<bts::net::address_info> > connections_by_node_id;
