@@ -5,7 +5,7 @@
 /* Comment out this line for a non-test network */
 //#define BTS_TEST_NETWORK
 
-#define BTS_TEST_NETWORK_VERSION                            1
+#define BTS_TEST_NETWORK_VERSION                            2
 
 /** @file bts/blockchain/config.hpp
  *  @brief Defines global constants that determine blockchain behavior
@@ -55,7 +55,7 @@
 /**
  * Defines the number of seconds that should elapse between blocks
  */
-#define BTS_BLOCKCHAIN_BLOCK_INTERVAL_SEC                   int64_t(60)
+#define BTS_BLOCKCHAIN_BLOCK_INTERVAL_SEC                   int64_t(10)
 
 /**
  *  The maximum size of the raw data contained in the blockchain, this size is
