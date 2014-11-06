@@ -339,9 +339,9 @@ void bts_client_launcher_fixture::create_delegates_and_genesis_block()
     initial_shares_requested += client_processes[i].initial_balance;
   }
 
-  double scale_factor = BTS_BLOCKCHAIN_INITIAL_SHARES / (double)initial_shares_requested;
-  for (unsigned i = 0; i < client_processes.size(); ++i)
-    client_processes[i].initial_balance *= (int64_t)scale_factor;
+//  double scale_factor = BTS_BLOCKCHAIN_INITIAL_SHARES / (double)initial_shares_requested;
+//  for (unsigned i = 0; i < client_processes.size(); ++i)
+//    client_processes[i].initial_balance *= (int64_t)scale_factor;
 
   for (unsigned i = 0; i < BTS_BLOCKCHAIN_NUM_DELEGATES; ++i)
   {

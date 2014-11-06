@@ -67,6 +67,8 @@ void produce_block( T my_client )
    FC_ASSERT( head_num+1 == my_client->get_chain()->get_head_block_num() );
 }
 
+#define BTS_BLOCKCHAIN_INITIAL_SHARES (BTS_BLOCKCHAIN_MAX_SHARES/5) // just for testing
+
 struct WFixture
 {
    WFixture()
@@ -91,7 +93,8 @@ struct WFixture
          delegate_account.delegate_pay_rate = 100;
          
          config.names.push_back(delegate_account);
-         config.balances.push_back( std::make_pair( pts_address(fc::ecc::public_key_data(delegate_account.owner)), BTS_BLOCKCHAIN_INITIAL_SHARES/BTS_BLOCKCHAIN_NUM_DELEGATES) );
+         config.balances.push_back( std::make_pair( pts_address(fc::ecc::public_key_data(delegate_account.owner)),
+                                                    BTS_BLOCKCHAIN_INITIAL_SHARES/BTS_BLOCKCHAIN_NUM_DELEGATES) );
       }
 
       fc::json::save_to_file( config, clienta_dir.path() / "genesis.json" );

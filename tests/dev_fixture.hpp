@@ -32,6 +32,8 @@ using namespace bts::utilities;
 using namespace bts::client;
 using namespace bts::cli;
 
+#define BTS_BLOCKCHAIN_INITIAL_SHARES (BTS_BLOCKCHAIN_MAX_SHARES/5) // just for testing
+
 struct chain_fixture
 {
    chain_fixture()

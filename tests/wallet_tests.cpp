@@ -22,6 +22,8 @@
 #include <fstream>
 
 
+#define BTS_BLOCKCHAIN_INITIAL_SHARES (BTS_BLOCKCHAIN_MAX_SHARES/5) // just for testing
+
 using namespace bts::blockchain;
 using namespace bts::wallet;
 using namespace bts::utilities;
@@ -94,7 +96,8 @@ BOOST_AUTO_TEST_CASE( master_test )
       delegate_account.delegate_pay_rate = 100;
 
       config.names.push_back(delegate_account);
-      config.balances.push_back( std::make_pair( pts_address(fc::ecc::public_key_data(delegate_account.owner)), BTS_BLOCKCHAIN_INITIAL_SHARES/BTS_BLOCKCHAIN_NUM_DELEGATES) );
+      config.balances.push_back( std::make_pair( pts_address(fc::ecc::public_key_data(delegate_account.owner)),
+                                                 BTS_BLOCKCHAIN_INITIAL_SHARES/BTS_BLOCKCHAIN_NUM_DELEGATES) );
    }
 
    fc::temp_directory clienta_dir;
@@ -169,7 +172,7 @@ BOOST_AUTO_TEST_CASE( master_test )
    wlog( "------------------  CLIENT B  -----------------------------------" );
    std::cerr << clientb->execute_command_line( "wallet_list_receive_accounts" );
    wlog( "------------------  CLIENT A  -----------------------------------" );
-   std::cerr << clienta->execute_command_line( "wallet_transfer 33 XTS delegate31 b-account first-memo" ) << "\n";
+   std::cerr << clienta->execute_command_line( "wallet_transfer 33 PTS delegate31 b-account first-memo" ) << "\n";
    std::cerr << clienta->execute_command_line( "wallet_account_transaction_history delegate31" ) << "\n";
    std::cerr << clienta->execute_command_line( "wallet_account_transaction_history b-account" ) << "\n";
    wlog( "------------------  CLIENT B  -----------------------------------" );
@@ -181,7 +184,7 @@ BOOST_AUTO_TEST_CASE( master_test )
    wlog( "------------------  CLIENT B  -----------------------------------" );
    std::cerr << clientb->execute_command_line( "wallet_account_transaction_history b-account" ) << "\n";
    std::cerr << clientb->execute_command_line( "wallet_account_create c-account" ) << "\n";
-   std::cerr << clientb->execute_command_line( "wallet_transfer 10 XTS b-account c-account to-me" ) << "\n";
+   std::cerr << clientb->execute_command_line( "wallet_transfer 10 PTS b-account c-account to-me" ) << "\n";
    std::cerr << clientb->execute_command_line( "wallet_account_transaction_history b-account" ) << "\n";
    std::cerr << clientb->execute_command_line( "wallet_account_transaction_history c-account" ) << "\n";
    produce_block( clientb );
@@ -190,8 +193,8 @@ BOOST_AUTO_TEST_CASE( master_test )
    std::cerr << clientb->execute_command_line( "wallet_set_delegate_trust_level b-account 1" ) << "\n";
    std::cerr << clientb->execute_command_line( "wallet_list_receive_accounts" ) << "\n";
    std::cerr << clientb->execute_command_line( "balance" ) << "\n";
-   std::cerr << clientb->execute_command_line( "wallet_transfer 100000 XTS delegate32 c-account to-me" ) << "\n";
-   std::cerr << clientb->execute_command_line( "wallet_transfer 100000 XTS delegate30 c-account to-me" ) << "\n";
+   std::cerr << clientb->execute_command_line( "wallet_transfer 100000 PTS delegate32 c-account to-me" ) << "\n";
+   std::cerr << clientb->execute_command_line( "wallet_transfer 100000 PTS delegate30 c-account to-me" ) << "\n";
    wlog( "------------------  CLIENT A  -----------------------------------" );
    std::cerr << clienta->execute_command_line( "wallet_set_delegate_trust_level b-account 1" ) << "\n";
    // TODO: this should throw an exception from the wallet regarding delegate_vote_limit, but it produces
@@ -200,7 +203,7 @@ BOOST_AUTO_TEST_CASE( master_test )
    // the transaction history needs to show the transaction as an 'error' rather than 'pending' and
    // properly display the reason for the user.
    // TODO: provide a way to cancel transactions that are pending.
-   std::cerr << clienta->execute_command_line( "wallet_transfer 100000 XTS delegate31 b-account to-b" ) << "\n";
+   std::cerr << clienta->execute_command_line( "wallet_transfer 100000 PTS delegate31 b-account to-b" ) << "\n";
    wlog( "------------------  CLIENT B  -----------------------------------" );
    produce_block( clientb );
    std::cerr << clientb->execute_command_line( "balance" ) << "\n";
@@ -224,25 +227,25 @@ BOOST_AUTO_TEST_CASE( master_test )
    std::cerr << clienta->execute_command_line( "wallet_account_transaction_history delegate31" ) << "\n";
    wlog( "------------------  CLIENT B  -----------------------------------" );
    std::cerr << clientb->execute_command_line( "balance" ) << "\n";
-   std::cerr << clientb->execute_command_line( "bid c-account 120 XTS 4.50 USD" ) << "\n";
-   std::cerr << clientb->execute_command_line( "bid c-account 40 XTS 2.50 USD" ) << "\n";
+//   std::cerr << clientb->execute_command_line( "bid c-account 120 XTS 4.50 USD" ) << "\n";
+//   std::cerr << clientb->execute_command_line( "bid c-account 40 XTS 2.50 USD" ) << "\n";
    produce_block( clientb );
    std::cerr << clientb->execute_command_line( "wallet_account_transaction_history c-account" ) << "\n";
    std::cerr << clientb->execute_command_line( "balance" ) << "\n";
-   std::cerr << clientb->execute_command_line( "blockchain_market_list_bids USD XTS" ) << "\n";
-   std::cerr << clientb->execute_command_line( "wallet_market_order_list USD XTS" ) << "\n";
-   auto result = clientb->wallet_market_order_list( "USD", "XTS" );
-   std::cerr << clientb->execute_command_line( "wallet_market_cancel_order " + string( result.begin()->first ) ) << "\n";
+//   std::cerr << clientb->execute_command_line( "blockchain_market_list_bids USD XTS" ) << "\n";
+//   std::cerr << clientb->execute_command_line( "wallet_market_order_list USD XTS" ) << "\n";
+//   auto result = clientb->wallet_market_order_list( "USD", "XTS" );
+//   std::cerr << clientb->execute_command_line( "wallet_market_cancel_order " + string( result.begin()->first ) ) << "\n";
    produce_block( clientb );
-   std::cerr << clientb->execute_command_line( "wallet_market_order_list USD XTS" ) << "\n";
-   std::cerr << clientb->execute_command_line( "blockchain_market_list_bids USD XTS" ) << "\n";
+//   std::cerr << clientb->execute_command_line( "wallet_market_order_list USD XTS" ) << "\n";
+//   std::cerr << clientb->execute_command_line( "blockchain_market_list_bids USD XTS" ) << "\n";
    std::cerr << clientb->execute_command_line( "wallet_account_transaction_history" ) << "\n";
    std::cerr << clientb->execute_command_line( "balance" ) << "\n";
-   result = clientb->wallet_market_order_list( "USD", "XTS" );
-   std::cerr << clientb->execute_command_line( "wallet_market_cancel_order " + string( result.begin()->first ) ) << "\n";
+//   result = clientb->wallet_market_order_list( "USD", "XTS" );
+//   std::cerr << clientb->execute_command_line( "wallet_market_cancel_order " + string( result.begin()->first ) ) << "\n";
    produce_block( clientb );
-   std::cerr << clientb->execute_command_line( "wallet_market_order_list USD XTS" ) << "\n";
-   std::cerr << clientb->execute_command_line( "blockchain_market_list_bids USD XTS" ) << "\n";
+//   std::cerr << clientb->execute_command_line( "wallet_market_order_list USD XTS" ) << "\n";
+//   std::cerr << clientb->execute_command_line( "blockchain_market_list_bids USD XTS" ) << "\n";
    std::cerr << clientb->execute_command_line( "wallet_account_transaction_history" ) << "\n";
    std::cerr << clientb->execute_command_line( "balance" ) << "\n";
    // THis is an invalid order
@@ -466,7 +469,8 @@ void create_genesis_block(fc::path genesis_json_file)
       delegate_account.delegate_pay_rate = 100;
 
       config.names.push_back(delegate_account);
-      config.balances.push_back( std::make_pair( pts_address(fc::ecc::public_key_data(delegate_account.owner)), BTS_BLOCKCHAIN_INITIAL_SHARES/BTS_BLOCKCHAIN_NUM_DELEGATES) );
+      config.balances.push_back( std::make_pair( pts_address(fc::ecc::public_key_data(delegate_account.owner)),
+                                                 BTS_BLOCKCHAIN_INITIAL_SHARES/BTS_BLOCKCHAIN_NUM_DELEGATES) );
 
       //output public/private key pair for each delegate to a file
       string wif_key = bts::utilities::key_to_wif( delegate_private_key );
