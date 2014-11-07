@@ -1,6 +1,7 @@
 #include <bts/blockchain/account_operations.hpp>
 #include <bts/blockchain/chain_interface.hpp>
 #include <bts/blockchain/exceptions.hpp>
+#include <bts/blockchain/pts_config.hpp>
 #include <bts/blockchain/transaction_evaluation_state.hpp>
 #include <fc/time.hpp>
 
@@ -26,6 +27,16 @@ namespace bts { namespace blockchain {
 
       if( !blockchain::is_valid_account_name( this->name ) )
          FC_CAPTURE_AND_THROW( invalid_account_name, (name) );
+
+      if ( this->name.size() < PTS_INITIAL_MIN_LENGTH )
+          FC_ASSERT(!"Account names shorter than 5 characters cannot be registered at this time.");
+
+
+      eval_state.required_fees += asset( PTS_EXTRA_FEE_1, 0 );
+
+
+      if( banned_names.find( this->name ) != banned_names.end() )
+          FC_ASSERT(!"This account name is a reserved word. Operation failed.");
 
       auto current_account = eval_state._current_state->get_account_record( this->name );
       if( current_account ) FC_CAPTURE_AND_THROW( account_already_registered, (name) );

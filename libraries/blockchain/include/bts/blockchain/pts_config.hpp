@@ -1,0 +1,2 @@
+#define PTS_INITIAL_MIN_LENGTH (5)
+#define PTS_EXTRA_FEE_1 (10000000)

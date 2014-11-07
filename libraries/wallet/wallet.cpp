@@ -4,6 +4,7 @@
 #include <bts/wallet/wallet_impl.hpp>
 
 #include <bts/blockchain/time.hpp>
+#include <bts/blockchain/pts_config.hpp>
 
 #include <bts/cli/pretty.hpp>
 #include <bts/utilities/git_revision.hpp>
@@ -2815,7 +2816,12 @@ namespace detail {
         }
       }
 
-      auto required_fees = get_transaction_fee();
+      //auto required_fees = get_transaction_fee();
+
+      // added extra registration fees
+      auto required_fees = asset(0, 0);
+      required_fees += asset( PTS_EXTRA_FEE_1, 0 );
+
 
       bool as_delegate = false;
       if( delegate_pay_rate <= 100  )

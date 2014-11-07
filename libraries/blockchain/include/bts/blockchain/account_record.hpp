@@ -8,6 +8,8 @@
 
 namespace bts { namespace blockchain {
 
+   extern std::set<string>  banned_names;
+
    enum account_type
    {
       titan_account    = 0,

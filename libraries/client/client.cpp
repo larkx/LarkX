@@ -392,7 +392,7 @@ fc::path get_data_dir(const program_options::variables_map& option_variables)
 #endif
 
 #ifdef BTS_TEST_NETWORK
-     dir_name += "-Test" + std::to_string( BTS_TEST_NETWORK_VERSION );
+     dir_name = "DevChain-" + std::to_string( BTS_TEST_NETWORK_VERSION );
 #endif
 
      datadir = fc::app_path() / dir_name;
