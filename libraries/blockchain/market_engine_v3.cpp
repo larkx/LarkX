@@ -1,6 +1,6 @@
 #include <bts/blockchain/market_engine_v3.hpp>
 
-#define BTS_BLOCKCHAIN_MARKET_DEPTH_REQUIREMENT_V3             (BTS_BLOCKCHAIN_INITIAL_SHARES/4000)
+#define BTS_BLOCKCHAIN_MARKET_DEPTH_REQUIREMENT_V3             (uint64_t(2000000)*BTS_BLOCKCHAIN_PRECISION)
 
 namespace bts { namespace blockchain { namespace detail {
 
