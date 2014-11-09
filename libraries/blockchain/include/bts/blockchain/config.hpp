@@ -5,7 +5,7 @@
 /* Comment out this line for a non-test network */
 //#define BTS_TEST_NETWORK
 
-#define BTS_TEST_NETWORK_VERSION                            2
+#define BTS_TEST_NETWORK_VERSION                            3
 
 /** @file bts/blockchain/config.hpp
  *  @brief Defines global constants that determine blockchain behavior
@@ -23,7 +23,7 @@
 #define BTS_BLOCKCHAIN_SYMBOL                               "PTS"
 #define BTS_BLOCKCHAIN_NAME                                 "BitShares PTS"
 #define BTS_BLOCKCHAIN_DESCRIPTION                          "PTS P2P Currency"
-#define BTS_BLOCKCHAIN_PRECISION                            100000000
+#define BTS_BLOCKCHAIN_PRECISION                            (uint64_t(100000000))
 #define BTS_BLOCKCHAIN_MAX_TRANSACTION_EXPIRATION_SEC       (60*60*24*2)
 #define BTS_BLOCKCHAIN_MIN_YIELD_PERIOD_SEC                 (60*60*24) // 24 hours
 
