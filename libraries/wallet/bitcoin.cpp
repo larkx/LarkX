@@ -18,7 +18,7 @@ uint32_t wallet::import_bitcoin_wallet(
         const string& account_name
         )
 { try {
-   if( !blockchain::is_valid_account_name( account_name ) )
+   if( !my->_blockchain->is_valid_account_name( account_name ) )
        FC_THROW_EXCEPTION( invalid_name, "Invalid account name!", ("account_name",account_name) );
 
    FC_ASSERT( is_open() );
@@ -40,7 +40,7 @@ uint32_t wallet::import_multibit_wallet(
         const string& account_name
         )
 { try {
-   if( !blockchain::is_valid_account_name( account_name ) )
+   if( !my->_blockchain->is_valid_account_name( account_name ) )
        FC_THROW_EXCEPTION( invalid_name, "Invalid account name!", ("account_name",account_name) );
 
    FC_ASSERT( is_open() );
@@ -63,7 +63,7 @@ uint32_t wallet::import_electrum_wallet(
         const string& account_name
         )
 { try {
-   if( !blockchain::is_valid_account_name( account_name ) )
+   if( !my->_blockchain->is_valid_account_name( account_name ) )
        FC_THROW_EXCEPTION( invalid_name, "Invalid account name!", ("account_name",account_name) );
 
    FC_ASSERT( is_open() );
@@ -86,7 +86,7 @@ uint32_t wallet::import_armory_wallet(
         const string& account_name
         )
 { try {
-   if( !blockchain::is_valid_account_name( account_name ) )
+   if( !my->_blockchain->is_valid_account_name( account_name ) )
        FC_THROW_EXCEPTION( invalid_name, "Invalid account name!", ("account_name",account_name) );
 
    FC_ASSERT( is_open() );
@@ -109,7 +109,7 @@ void wallet::import_keyhotee( const std::string& firstname,
                              const std::string& brainkey,
                              const std::string& keyhoteeid )
 { try {
-  if( !blockchain::is_valid_account_name( fc::to_lower( keyhoteeid ) ) )
+  if( !my->_blockchain->is_valid_account_name( fc::to_lower( keyhoteeid ) ) )
       FC_THROW_EXCEPTION( invalid_name, "Invalid Keyhotee name!", ("keyhoteeid",keyhoteeid) );
 
     FC_ASSERT( is_open() );
