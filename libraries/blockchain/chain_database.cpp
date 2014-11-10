@@ -640,14 +640,14 @@ namespace bts { namespace blockchain {
 
             auto pending_base_record = pending_state->get_asset_record( asset_id_type( 0 ) );
             FC_ASSERT( pending_base_record.valid() );
-            if( pending_state->get_head_block_num() >= BTSX_SUPPLY_FORK_1_BLOCK_NUM )
-            {
+//            if( pending_state->get_head_block_num() >= BTSX_SUPPLY_FORK_1_BLOCK_NUM )
+//            {
                 pending_base_record->collected_fees -= max_available_paycheck;
-            }
-            else
-            {
-                pending_base_record->collected_fees -= accepted_paycheck;
-            }
+//            }
+//            else
+//            {
+//                pending_base_record->collected_fees -= accepted_paycheck;
+//            }
             pending_state->store_asset_record( *pending_base_record );
 
             delegate_record->delegate_info->pay_balance += accepted_paycheck;
@@ -835,96 +835,96 @@ namespace bts { namespace blockchain {
       { try {
         vector<market_transaction> market_transactions;
 
-        const auto pending_block_num = pending_state->get_head_block_num();
-        if( pending_block_num == BTSX_MARKET_FORK_8_BLOCK_NUM )
-        {
-           market_engine_v4 engine( pending_state, *this );
-           engine.cancel_all_shorts( self->get_block_header( BTSX_MARKET_FORK_7_BLOCK_NUM ).timestamp );
-           market_transactions.insert( market_transactions.end(), engine._market_transactions.begin(), engine._market_transactions.end() );
-        }
-        else if( pending_block_num == BTSX_MARKET_FORK_11_BLOCK_NUM )
-        {
-           market_engine_v6 engine( pending_state, *this );
-           engine.cancel_all_shorts();
-           market_transactions.insert( market_transactions.end(), engine._market_transactions.begin(), engine._market_transactions.end() );
-        }
+//        const auto pending_block_num = pending_state->get_head_block_num();
+//        if( pending_block_num == BTSX_MARKET_FORK_8_BLOCK_NUM )
+//        {
+//           market_engine_v4 engine( pending_state, *this );
+//           engine.cancel_all_shorts( self->get_block_header( BTSX_MARKET_FORK_7_BLOCK_NUM ).timestamp );
+//           market_transactions.insert( market_transactions.end(), engine._market_transactions.begin(), engine._market_transactions.end() );
+//        }
+//        else if( pending_block_num == BTSX_MARKET_FORK_11_BLOCK_NUM )
+//        {
+//           market_engine_v6 engine( pending_state, *this );
+//           engine.cancel_all_shorts();
+//           market_transactions.insert( market_transactions.end(), engine._market_transactions.begin(), engine._market_transactions.end() );
+//        }
 
         const auto dirty_markets = self->get_dirty_markets();
         for( const auto& market_pair : dirty_markets )
         {
            FC_ASSERT( market_pair.first > market_pair.second );
-           if( pending_block_num > BTSX_MARKET_FORK_11_BLOCK_NUM )
-           {
+//           if( pending_block_num > BTSX_MARKET_FORK_11_BLOCK_NUM )
+//           {
               market_engine engine( pending_state, *this );
               if( engine.execute( market_pair.first, market_pair.second, timestamp ) )
               {
                  market_transactions.insert( market_transactions.end(), engine._market_transactions.begin(), engine._market_transactions.end() );
               }
-           }
-           else if( pending_block_num == BTSX_MARKET_FORK_11_BLOCK_NUM )
-           {
-               // Cancel all shorts before BTSX_MARKET_FORK_11_BLOCK_NUM -- see above
-           }
-           else if( pending_block_num >= BTSX_MARKET_FORK_10_BLOCK_NUM )
-           {
-              market_engine_v6 engine( pending_state, *this );
-              if( engine.execute( market_pair.first, market_pair.second, timestamp ) )
-              {
-                 market_transactions.insert( market_transactions.end(), engine._market_transactions.begin(), engine._market_transactions.end() );
-              }
-           }
-           else if( pending_block_num > BTSX_MARKET_FORK_8_BLOCK_NUM )
-           {
-              market_engine_v5 engine( pending_state, *this );
-              if( engine.execute( market_pair.first, market_pair.second, timestamp ) )
-              {
-                 market_transactions.insert( market_transactions.end(), engine._market_transactions.begin(), engine._market_transactions.end() );
-              }
-           }
-           else if( pending_block_num == BTSX_MARKET_FORK_8_BLOCK_NUM )
-           {
-               // Cancel all shorts before BTSX_MARKET_FORK_7_BLOCK_NUM -- see above
-           }
-           else if( pending_block_num > BTSX_MARKET_FORK_7_BLOCK_NUM )
-           {
-              market_engine_v4 engine( pending_state, *this );
-              if( engine.execute( market_pair.first, market_pair.second, timestamp ) )
-              {
-                 market_transactions.insert( market_transactions.end(), engine._market_transactions.begin(), engine._market_transactions.end() );
-              }
-           }
-           else if( pending_block_num == BTSX_MARKET_FORK_7_BLOCK_NUM )
-           {
-               // Should have canceled all shorts but we missed it
-           }
-           else if( pending_block_num >= BTSX_MARKET_FORK_6_BLOCK_NUM )
-           {
-              market_engine_v3 engine( pending_state, *this );
-              if( engine.execute( market_pair.first, market_pair.second, timestamp ) )
-              {
-                 market_transactions.insert( market_transactions.end(), engine._market_transactions.begin(), engine._market_transactions.end() );
-              }
-           }
-           else if( pending_block_num >= BTSX_MARKET_FORK_1_BLOCK_NUM )
-           {
-              market_engine_v2 engine( pending_state, *this );
-              if( engine.execute( market_pair.first, market_pair.second, timestamp ) )
-              {
-                 market_transactions.insert( market_transactions.end(), engine._market_transactions.begin(), engine._market_transactions.end() );
-              }
-           }
-           else
-           {
-              market_engine_v1 engine( pending_state, *this );
-              if( engine.execute( market_pair.first, market_pair.second, timestamp ) )
-              {
-                 market_transactions.insert( market_transactions.end(), engine._market_transactions.begin(), engine._market_transactions.end() );
-              }
-           }
+//           }
+//           else if( pending_block_num == BTSX_MARKET_FORK_11_BLOCK_NUM )
+//           {
+//               // Cancel all shorts before BTSX_MARKET_FORK_11_BLOCK_NUM -- see above
+//           }
+//           else if( pending_block_num >= BTSX_MARKET_FORK_10_BLOCK_NUM )
+//           {
+//              market_engine_v6 engine( pending_state, *this );
+//              if( engine.execute( market_pair.first, market_pair.second, timestamp ) )
+//              {
+//                 market_transactions.insert( market_transactions.end(), engine._market_transactions.begin(), engine._market_transactions.end() );
+//              }
+//           }
+//           else if( pending_block_num > BTSX_MARKET_FORK_8_BLOCK_NUM )
+//           {
+//              market_engine_v5 engine( pending_state, *this );
+//              if( engine.execute( market_pair.first, market_pair.second, timestamp ) )
+//              {
+//                 market_transactions.insert( market_transactions.end(), engine._market_transactions.begin(), engine._market_transactions.end() );
+//              }
+//           }
+//           else if( pending_block_num == BTSX_MARKET_FORK_8_BLOCK_NUM )
+//           {
+//               // Cancel all shorts before BTSX_MARKET_FORK_7_BLOCK_NUM -- see above
+//           }
+//           else if( pending_block_num > BTSX_MARKET_FORK_7_BLOCK_NUM )
+//           {
+//              market_engine_v4 engine( pending_state, *this );
+//              if( engine.execute( market_pair.first, market_pair.second, timestamp ) )
+//              {
+//                 market_transactions.insert( market_transactions.end(), engine._market_transactions.begin(), engine._market_transactions.end() );
+//              }
+//           }
+//           else if( pending_block_num == BTSX_MARKET_FORK_7_BLOCK_NUM )
+//           {
+//               // Should have canceled all shorts but we missed it
+//           }
+//           else if( pending_block_num >= BTSX_MARKET_FORK_6_BLOCK_NUM )
+//           {
+//              market_engine_v3 engine( pending_state, *this );
+//              if( engine.execute( market_pair.first, market_pair.second, timestamp ) )
+//              {
+//                 market_transactions.insert( market_transactions.end(), engine._market_transactions.begin(), engine._market_transactions.end() );
+//              }
+//           }
+//           else if( pending_block_num >= BTSX_MARKET_FORK_1_BLOCK_NUM )
+//           {
+//              market_engine_v2 engine( pending_state, *this );
+//              if( engine.execute( market_pair.first, market_pair.second, timestamp ) )
+//              {
+//                 market_transactions.insert( market_transactions.end(), engine._market_transactions.begin(), engine._market_transactions.end() );
+//              }
+//           }
+//           else
+//           {
+//              market_engine_v1 engine( pending_state, *this );
+//              if( engine.execute( market_pair.first, market_pair.second, timestamp ) )
+//              {
+//                 market_transactions.insert( market_transactions.end(), engine._market_transactions.begin(), engine._market_transactions.end() );
+//              }
+//           }
         }
 
-        if( pending_block_num < BTSX_MARKET_FORK_2_BLOCK_NUM )
-            pending_state->set_dirty_markets( pending_state->_dirty_markets );
+//        if( pending_block_num < BTSX_MARKET_FORK_2_BLOCK_NUM )
+//            pending_state->set_dirty_markets( pending_state->_dirty_markets );
 
         pending_state->set_market_transactions( std::move( market_transactions ) );
       } FC_CAPTURE_AND_RETHROW() }
@@ -969,12 +969,12 @@ namespace bts { namespace blockchain {
 
             pay_delegate( block_id, pending_state, block_signee );
 
-            if( block_data.block_num < BTSX_MARKET_FORK_2_BLOCK_NUM )
-                apply_transactions( block_data, pending_state );
+//            if( block_data.block_num < BTSX_MARKET_FORK_2_BLOCK_NUM )
+//                apply_transactions( block_data, pending_state );
 
             execute_markets( block_data.timestamp, pending_state );
 
-            if( block_data.block_num >= BTSX_MARKET_FORK_2_BLOCK_NUM )
+//            if( block_data.block_num >= BTSX_MARKET_FORK_2_BLOCK_NUM )
                 apply_transactions( block_data, pending_state );
 
             update_active_delegate_list( block_data, pending_state );
@@ -998,42 +998,42 @@ namespace bts { namespace blockchain {
 
             // self->sanity_check();
 
-            if( block_data.block_num == BTSX_SUPPLY_FORK_1_BLOCK_NUM )
-            {
-                auto base_asset_record = self->get_asset_record( asset_id_type( 0 ) );
-                FC_ASSERT( base_asset_record.valid() );
-                base_asset_record->current_share_supply = self->calculate_supply( asset_id_type( 0 ) ).amount;
-                self->store_asset_record( *base_asset_record );
-            }
-            else if( block_data.block_num == BTSX_SUPPLY_FORK_2_BLOCK_NUM || block_data.block_num == BTSX_MARKET_FORK_11_BLOCK_NUM )
-            {
-                vector<asset_record> records;
-                records.reserve( 41 );
-
-                for( auto itr = _asset_db.begin(); itr.valid(); ++itr )
-                    records.push_back( itr.value() );
-
-                for( auto& record : records )
-                {
-                    asset supply = self->calculate_supply( record.id );
-                    share_type fees = record.collected_fees;
-
-                    if( record.is_market_issued() )
-                    {
-                        asset debt = self->calculate_debt( record.id );
-                        if( supply != debt )
-                        {
-                            const share_type difference = debt.amount - supply.amount;
-                            supply.amount += difference;
-                            fees += difference;
-                        }
-                    }
-
-                    record.current_share_supply = supply.amount;
-                    record.collected_fees = fees;
-                    self->store_asset_record( record );
-                }
-            }
+//            if( block_data.block_num == BTSX_SUPPLY_FORK_1_BLOCK_NUM )
+//            {
+//                auto base_asset_record = self->get_asset_record( asset_id_type( 0 ) );
+//                FC_ASSERT( base_asset_record.valid() );
+//                base_asset_record->current_share_supply = self->calculate_supply( asset_id_type( 0 ) ).amount;
+//                self->store_asset_record( *base_asset_record );
+//            }
+//            else if( block_data.block_num == BTSX_SUPPLY_FORK_2_BLOCK_NUM || block_data.block_num == BTSX_MARKET_FORK_11_BLOCK_NUM )
+//            {
+//                vector<asset_record> records;
+//                records.reserve( 41 );
+//
+//                for( auto itr = _asset_db.begin(); itr.valid(); ++itr )
+//                    records.push_back( itr.value() );
+//
+//                for( auto& record : records )
+//                {
+//                    asset supply = self->calculate_supply( record.id );
+//                    share_type fees = record.collected_fees;
+//
+//                    if( record.is_market_issued() )
+//                    {
+//                        asset debt = self->calculate_debt( record.id );
+//                        if( supply != debt )
+//                        {
+//                            const share_type difference = debt.amount - supply.amount;
+//                            supply.amount += difference;
+//                            fees += difference;
+//                        }
+//                    }
+//
+//                    record.current_share_supply = supply.amount;
+//                    record.collected_fees = fees;
+//                    self->store_asset_record( record );
+//                }
+//            }
          }
          catch ( const fc::exception& e )
          {
@@ -1922,7 +1922,7 @@ namespace bts { namespace blockchain {
       auto start_time = time_point::now();
 
       pending_chain_state_ptr pending_state = std::make_shared<pending_chain_state>( shared_from_this() );
-      if( pending_state->get_head_block_num() >= BTSX_MARKET_FORK_2_BLOCK_NUM )
+//      if( pending_state->get_head_block_num() >= BTSX_MARKET_FORK_2_BLOCK_NUM )
          my->execute_markets( timestamp, pending_state );
       auto pending_trx = get_pending_transactions();
 

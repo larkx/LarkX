@@ -101,13 +101,13 @@ namespace bts { namespace blockchain { namespace detail {
                    max_short_bid = market_stat->maximum_bid();
                    min_cover_ask = market_stat->minimum_ask();
 
-                   if( pending_block_num >= BTSX_MARKET_FORK_4_BLOCK_NUM )
-                   {
+//                   if( pending_block_num >= BTSX_MARKET_FORK_4_BLOCK_NUM )
+//                   {
                       if( median_price )
                          max_short_bid = *median_price;
                       else
                          max_short_bid = market_stat->center_price;
-                   }
+//                   }
                 }
                 else // we only liquidate fees collected for user issued assets
                 {
@@ -116,8 +116,8 @@ namespace bts { namespace blockchain { namespace detail {
                   get_next_bid(); // this is necessary for get_next_ask to work with collateral
                   while( get_next_ask() )
                   {
-                     assert(_pending_state->get_head_block_num() < BTSX_MARKET_FORK_4_BLOCK_NUM || _current_ask);
-                     if (_pending_state->get_head_block_num() >= BTSX_MARKET_FORK_4_BLOCK_NUM && !_current_ask)
+                     assert(/*_pending_state->get_head_block_num() < BTSX_MARKET_FORK_4_BLOCK_NUM ||*/ _current_ask);
+                     if (/*_pending_state->get_head_block_num() >= BTSX_MARKET_FORK_4_BLOCK_NUM &&*/ !_current_ask)
                        FC_THROW_EXCEPTION(evaluation_error, "no current_ask"); // should never happen, but if it does, don't swap in the backup ask
                      save_and_restore_ask current_ask_swapper(_current_ask, _current_ask_backup);
 
@@ -172,8 +172,8 @@ namespace bts { namespace blockchain { namespace detail {
              bool order_did_execute = false;
              while( get_next_bid() && get_next_ask() )
              {
-                assert(_pending_state->get_head_block_num() < BTSX_MARKET_FORK_4_BLOCK_NUM || _current_ask);
-                if (_pending_state->get_head_block_num() >= BTSX_MARKET_FORK_4_BLOCK_NUM && !_current_ask)
+                assert(/*_pending_state->get_head_block_num() < BTSX_MARKET_FORK_4_BLOCK_NUM ||*/ _current_ask);
+                if (/*_pending_state->get_head_block_num() >= BTSX_MARKET_FORK_4_BLOCK_NUM &&*/ !_current_ask)
                   FC_THROW_EXCEPTION(evaluation_error, "no current_ask"); // should never happen, but if it does, don't swap in the backup ask
                 save_and_restore_ask current_ask_swapper(_current_ask, _current_ask_backup);
 
@@ -208,20 +208,20 @@ namespace bts { namespace blockchain { namespace detail {
                    if( mtrx.ask_price < mtrx.bid_price ) // the call price has not been reached
                       break;
 
-                   if( pending_block_num < BTSX_MARKET_FORK_4_BLOCK_NUM )
-                   {
-                      // in the event that there is a margin call, we must accept the
-                      // bid price assuming the bid price is reasonable
-                      if( mtrx.bid_price < min_cover_ask )
-                      {
-                         //wlog( "skipping cover ${x} < min_cover_ask ${b}", ("x",_current_ask->get_price())("b", min_cover_ask)  );
-                         reset_current_ask();
-                         continue;
-                      }
-                   }
+//                   if( pending_block_num < BTSX_MARKET_FORK_4_BLOCK_NUM )
+//                   {
+//                      // in the event that there is a margin call, we must accept the
+//                      // bid price assuming the bid price is reasonable
+//                      if( mtrx.bid_price < min_cover_ask )
+//                      {
+//                         //wlog( "skipping cover ${x} < min_cover_ask ${b}", ("x",_current_ask->get_price())("b", min_cover_ask)  );
+//                         reset_current_ask();
+//                         continue;
+//                      }
+//                   }
 
-                   if( pending_block_num >= BTSX_MARKET_FORK_5_BLOCK_NUM )
-                   {
+//                   if( pending_block_num >= BTSX_MARKET_FORK_5_BLOCK_NUM )
+//                   {
                        /**
                         *  Don't allow shorts to be executed if they are too far over priced or they will be
                         *  immediately under collateralized.
@@ -244,17 +244,17 @@ namespace bts { namespace blockchain { namespace detail {
                           reset_current_ask();
                           continue;
                        }
-                   }
-                   else
-                   {
-                       if( mtrx.bid_price > max_short_bid )
-                       {
-                          //wlog( "skipping short ${x} < max_short_bid ${b}", ("x",mtrx.bid_price)("b", max_short_bid)  );
-                          // TODO: cancel the short order...
-                          _current_bid.reset();
-                          continue;
-                       }
-                   }
+//                   }
+//                   else
+//                   {
+//                       if( mtrx.bid_price > max_short_bid )
+//                       {
+//                          //wlog( "skipping short ${x} < max_short_bid ${b}", ("x",mtrx.bid_price)("b", max_short_bid)  );
+//                          // TODO: cancel the short order...
+//                          _current_bid.reset();
+//                          continue;
+//                       }
+//                   }
                    mtrx.ask_price = mtrx.bid_price;
 
                    // we want to sell enough XTS to cover our balance.
@@ -309,8 +309,8 @@ namespace bts { namespace blockchain { namespace detail {
                    if( mtrx.ask_price < mtrx.bid_price )
                       break; // the call price has not been reached
 
-                   if( pending_block_num >= BTSX_MARKET_FORK_5_BLOCK_NUM )
-                   {
+//                   if( pending_block_num >= BTSX_MARKET_FORK_5_BLOCK_NUM )
+//                   {
                        /**
                         *  Don't allow margin calls to be executed too far below
                         *  the minimum ask, this could lead to an attack where someone
@@ -323,31 +323,31 @@ namespace bts { namespace blockchain { namespace detail {
                           reset_current_ask();
                           continue;
                        }
-                   }
+//                   }
 
                    mtrx.ask_price = mtrx.bid_price;
 
-                   if( pending_block_num < BTSX_MARKET_FORK_4_BLOCK_NUM )
-                   {
-                      // in the event that there is a margin call, we must accept the
-                      // bid price assuming the bid price is reasonable
-                      if( mtrx.bid_price < min_cover_ask )
-                      {
-                         wlog( "skipping cover ${x} < min_cover_ask ${b}", ("x",_current_ask->get_price())("b", min_cover_ask)  );
-                         reset_current_ask();
-                         continue;
-                      }
-                   }
+//                   if( pending_block_num < BTSX_MARKET_FORK_4_BLOCK_NUM )
+//                   {
+//                      // in the event that there is a margin call, we must accept the
+//                      // bid price assuming the bid price is reasonable
+//                      if( mtrx.bid_price < min_cover_ask )
+//                      {
+//                         wlog( "skipping cover ${x} < min_cover_ask ${b}", ("x",_current_ask->get_price())("b", min_cover_ask)  );
+//                         reset_current_ask();
+//                         continue;
+//                      }
+//                   }
 
                    auto max_usd_purchase = asset(*_current_ask->collateral,0) * mtrx.bid_price;
                    auto usd_exchanged = std::min( current_bid_balance, max_usd_purchase );
 
-                   if( pending_block_num >= BTSX_MARKET_FORK_3_BLOCK_NUM )
-                   {
+//                   if( pending_block_num >= BTSX_MARKET_FORK_3_BLOCK_NUM )
+//                   {
                       const auto required_usd_purchase = _current_ask->get_balance();
                       if( required_usd_purchase < usd_exchanged )
                          usd_exchanged = required_usd_purchase;
-                   }
+//                   }
 
                    mtrx.bid_paid     = usd_exchanged;
                    mtrx.ask_received = usd_exchanged;
@@ -371,8 +371,8 @@ namespace bts { namespace blockchain { namespace detail {
                    if( mtrx.bid_price < mtrx.ask_price ) break;
                    FC_ASSERT( quote_asset->is_market_issued() && base_id == 0 );
 
-                   if( pending_block_num >= BTSX_MARKET_FORK_5_BLOCK_NUM )
-                   {
+//                   if( pending_block_num >= BTSX_MARKET_FORK_5_BLOCK_NUM )
+//                   {
                        /**
                         *  If the ask is less than the "max short bid" then that means the
                         *  ask (those with XTS wanting to buy USD) are willing to accept
@@ -399,17 +399,17 @@ namespace bts { namespace blockchain { namespace detail {
                           _current_bid.reset();
                           continue;
                        }
-                   }
-                   else
-                   {
-                       if( mtrx.bid_price > max_short_bid )
-                       {
-                          // wlog( "skipping short ${x} < max_short_bid ${b}", ("x",mtrx.bid_price)("b", max_short_bid)  );
-                          // TODO: cancel the short order...
-                          _current_bid.reset();
-                          continue;
-                       }
-                   }
+//                   }
+//                   else
+//                   {
+//                       if( mtrx.bid_price > max_short_bid )
+//                       {
+//                          // wlog( "skipping short ${x} < max_short_bid ${b}", ("x",mtrx.bid_price)("b", max_short_bid)  );
+//                          // TODO: cancel the short order...
+//                          _current_bid.reset();
+//                          continue;
+//                       }
+//                   }
 
                    auto quantity_xts   = std::min( bid_quantity_xts, ask_quantity_xts );
 
@@ -485,12 +485,12 @@ namespace bts { namespace blockchain { namespace detail {
 
              market_stat->last_error.reset();
 
-             if( pending_block_num >= BTSX_MARKET_FORK_3_BLOCK_NUM )
+//             if( pending_block_num >= BTSX_MARKET_FORK_3_BLOCK_NUM )
                  order_did_execute |= (pending_block_num % 6) == 0;
 
              if( _current_bid && _current_ask && order_did_execute )
              {
-                if( median_price && pending_block_num >= BTSX_MARKET_FORK_5_BLOCK_NUM )
+                if( median_price /*&& pending_block_num >= BTSX_MARKET_FORK_5_BLOCK_NUM*/ )
                 {
                    market_stat->center_price = *median_price;
                 }
@@ -499,8 +499,8 @@ namespace bts { namespace blockchain { namespace detail {
                    // after the market is running solid we can use this metric...
                    market_stat->center_price.ratio *= (BTS_BLOCKCHAIN_BLOCKS_PER_HOUR-1);
 
-                   if( pending_block_num >= BTSX_MARKET_FORK_4_BLOCK_NUM )
-                   {
+//                   if( pending_block_num >= BTSX_MARKET_FORK_4_BLOCK_NUM )
+//                   {
                       const auto max_bid = market_stat->maximum_bid();
 
                       // limit the maximum movement rate of the price.
@@ -517,31 +517,31 @@ namespace bts { namespace blockchain { namespace detail {
                          market_stat->center_price.ratio += max_bid.ratio;
                       else
                          market_stat->center_price.ratio += _current_ask->get_price().ratio;
-                   }
-                   else
-                   {
-                      // limit the maximum movement rate of the price.
-                      if( _current_bid->get_price() < min_cover_ask )
-                         market_stat->center_price.ratio += min_cover_ask.ratio;
-                      else if( _current_bid->get_price() > max_short_bid )
-                         market_stat->center_price.ratio += max_short_bid.ratio;
-                      else
-                         market_stat->center_price.ratio += _current_bid->get_price().ratio;
-
-                      if( _current_ask->get_price() < min_cover_ask )
-                         market_stat->center_price.ratio += min_cover_ask.ratio;
-                      else if( _current_ask->get_price() > max_short_bid )
-                         market_stat->center_price.ratio += max_short_bid.ratio;
-                      else
-                         market_stat->center_price.ratio += _current_ask->get_price().ratio;
-                   }
+//                   }
+//                   else
+//                   {
+//                      // limit the maximum movement rate of the price.
+//                      if( _current_bid->get_price() < min_cover_ask )
+//                         market_stat->center_price.ratio += min_cover_ask.ratio;
+//                      else if( _current_bid->get_price() > max_short_bid )
+//                         market_stat->center_price.ratio += max_short_bid.ratio;
+//                      else
+//                         market_stat->center_price.ratio += _current_bid->get_price().ratio;
+//
+//                      if( _current_ask->get_price() < min_cover_ask )
+//                         market_stat->center_price.ratio += min_cover_ask.ratio;
+//                      else if( _current_ask->get_price() > max_short_bid )
+//                         market_stat->center_price.ratio += max_short_bid.ratio;
+//                      else
+//                         market_stat->center_price.ratio += _current_ask->get_price().ratio;
+//                   }
 
                    market_stat->center_price.ratio /= (BTS_BLOCKCHAIN_BLOCKS_PER_HOUR+1);
                 }
              }
 
-             if( pending_block_num >= BTSX_MARKET_FORK_5_BLOCK_NUM )
-             {
+//             if( pending_block_num >= BTSX_MARKET_FORK_5_BLOCK_NUM )
+//             {
                  if( quote_asset->is_market_issued() && base_id == 0 )
                  {
                      if( market_stat->ask_depth < 500000000000ll
@@ -552,33 +552,33 @@ namespace bts { namespace blockchain { namespace detail {
                        FC_CAPTURE_AND_THROW( insufficient_depth, (reason)(market_stat) );
                      }
                  }
-             }
-             else
-             {
-                 if( quote_asset->is_market_issued() )
-                 {
-                     if( pending_block_num >= BTSX_MARKET_FORK_3_BLOCK_NUM )
-                     {
-                        if( market_stat->ask_depth < 1000000000000ll
-                            || market_stat->bid_depth < 1000000000000ll )
-                        {
-                           _market_transactions.clear(); // nothing should have executed
-                          std::string reason = "After executing orders there was insufficient depth remaining";
-                          FC_CAPTURE_AND_THROW( insufficient_depth, (reason)(market_stat) );
-                        }
-                     }
-                     else
-                     {
-                        if( market_stat->ask_depth < 2000000000000ll
-                            || market_stat->bid_depth < 2000000000000ll )
-                        {
-                           _market_transactions.clear(); // nothing should have executed
-                          std::string reason = "After executing orders there was insufficient depth remaining";
-                          FC_CAPTURE_AND_THROW( insufficient_depth, (reason)(market_stat) );
-                        }
-                     }
-                 }
-             }
+//             }
+//             else
+//             {
+//                 if( quote_asset->is_market_issued() )
+//                 {
+//                     if( pending_block_num >= BTSX_MARKET_FORK_3_BLOCK_NUM )
+//                     {
+//                        if( market_stat->ask_depth < 1000000000000ll
+//                            || market_stat->bid_depth < 1000000000000ll )
+//                        {
+//                           _market_transactions.clear(); // nothing should have executed
+//                          std::string reason = "After executing orders there was insufficient depth remaining";
+//                          FC_CAPTURE_AND_THROW( insufficient_depth, (reason)(market_stat) );
+//                        }
+//                     }
+//                     else
+//                     {
+//                        if( market_stat->ask_depth < 2000000000000ll
+//                            || market_stat->bid_depth < 2000000000000ll )
+//                        {
+//                           _market_transactions.clear(); // nothing should have executed
+//                          std::string reason = "After executing orders there was insufficient depth remaining";
+//                          FC_CAPTURE_AND_THROW( insufficient_depth, (reason)(market_stat) );
+//                        }
+//                     }
+//                 }
+//             }
              _pending_state->store_market_status( *market_stat );
 
              update_market_history( trading_volume, opening_price, closing_price, timestamp );
@@ -894,10 +894,10 @@ namespace bts { namespace blockchain { namespace detail {
             }
             ++_ask_itr;
 
-            if( _pending_state->get_head_block_num() >= BTSX_MARKET_FORK_4_BLOCK_NUM )
+//            if( _pending_state->get_head_block_num() >= BTSX_MARKET_FORK_4_BLOCK_NUM )
                return _current_ask.valid();
 
-            return true;
+//            return true;
          }
          return _current_ask.valid();
       } FC_CAPTURE_AND_RETHROW() }
@@ -914,8 +914,8 @@ namespace bts { namespace blockchain { namespace detail {
       {
              if( trading_volume.amount > 0 && get_next_bid() && get_next_ask() )
              {
-               assert(_pending_state->get_head_block_num() < BTSX_MARKET_FORK_4_BLOCK_NUM || _current_ask);
-               if (_pending_state->get_head_block_num() >= BTSX_MARKET_FORK_4_BLOCK_NUM && !_current_ask)
+               assert(/*_pending_state->get_head_block_num() < BTSX_MARKET_FORK_4_BLOCK_NUM ||*/ _current_ask);
+               if (/*_pending_state->get_head_block_num() >= BTSX_MARKET_FORK_4_BLOCK_NUM &&*/ !_current_ask)
                  FC_THROW_EXCEPTION(evaluation_error, "no current_ask"); // should never happen, but if it does, don't swap in the backup ask
                save_and_restore_ask current_ask_swapper(_current_ask, _current_ask_backup);
 
@@ -984,8 +984,8 @@ namespace bts { namespace blockchain { namespace detail {
       {
         if (_current_ask)
         {
-          if (_pending_state->get_head_block_num() < BTSX_MARKET_FORK_4_BLOCK_NUM)
-            _current_ask_backup = _current_ask;
+//          if (_pending_state->get_head_block_num() < BTSX_MARKET_FORK_4_BLOCK_NUM)
+//            _current_ask_backup = _current_ask;
           _current_ask.reset();
         }
          /* does not reset _current_ask_backup */

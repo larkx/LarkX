@@ -89,11 +89,11 @@ namespace bts { namespace blockchain {
       if( this->slate.supported_delegates.size() > BTS_BLOCKCHAIN_MAX_SLATE_SIZE )
          FC_CAPTURE_AND_THROW( too_may_delegates_in_slate, (slate.supported_delegates.size()) );
 
-      if( eval_state._current_state->get_head_block_num() < BTSX_MARKET_FORK_11_BLOCK_NUM )
-      {
-          if( this->slate.supported_delegates.size() > BTS_BLOCKCHAIN_NUM_DELEGATES )
-             FC_CAPTURE_AND_THROW( too_may_delegates_in_slate, (slate.supported_delegates.size()) );
-      }
+//      if( eval_state._current_state->get_head_block_num() < BTSX_MARKET_FORK_11_BLOCK_NUM )
+//      {
+//          if( this->slate.supported_delegates.size() > BTS_BLOCKCHAIN_NUM_DELEGATES )
+//             FC_CAPTURE_AND_THROW( too_may_delegates_in_slate, (slate.supported_delegates.size()) );
+//      }
 
       auto current_slate = eval_state._current_state->get_delegate_slate( slate_id );
       if( NOT current_slate )
@@ -112,11 +112,11 @@ namespace bts { namespace blockchain {
     */
    void deposit_operation::evaluate( transaction_evaluation_state& eval_state )
    { try {
-       if( eval_state._current_state->get_head_block_num() < BTSX_YIELD_FORK_1_BLOCK_NUM )
-       {
-          evaluate_v1( eval_state );
-          return;
-       }
+//       if( eval_state._current_state->get_head_block_num() < BTSX_YIELD_FORK_1_BLOCK_NUM )
+//       {
+//          evaluate_v1( eval_state );
+//          return;
+//       }
 
        if( this->amount <= 0 )
           FC_CAPTURE_AND_THROW( negative_deposit, (amount) );
@@ -158,16 +158,16 @@ namespace bts { namespace blockchain {
     */
    void withdraw_operation::evaluate( transaction_evaluation_state& eval_state )
    { try {
-      if( eval_state._current_state->get_head_block_num() < BTSX_YIELD_FORK_1_BLOCK_NUM )
-      {
-         evaluate_v1( eval_state );
-         return;
-      }
-      else if( eval_state._current_state->get_head_block_num() < BTSX_YIELD_FORK_2_BLOCK_NUM )
-      {
-         evaluate_v2( eval_state );
-         return;
-      }
+//      if( eval_state._current_state->get_head_block_num() < BTSX_YIELD_FORK_1_BLOCK_NUM )
+//      {
+//         evaluate_v1( eval_state );
+//         return;
+//      }
+//      else if( eval_state._current_state->get_head_block_num() < BTSX_YIELD_FORK_2_BLOCK_NUM )
+//      {
+//         evaluate_v2( eval_state );
+//         return;
+//      }
 
        if( this->amount <= 0 )
           FC_CAPTURE_AND_THROW( negative_deposit, (amount) );
@@ -300,13 +300,13 @@ namespace bts { namespace blockchain {
                                                                asset_rec->collected_fees,
                                                                asset_rec->current_share_supply );
 
-         if( eval_state._current_state->get_head_block_num() < BTSX_MARKET_FORK_11_BLOCK_NUM )
-         {
-            yield = current_balance_record->calculate_yield_v1( eval_state._current_state->now(),
-                                                                current_balance_record->balance,
-                                                                asset_rec->collected_fees,
-                                                                asset_rec->current_share_supply );
-         }
+//         if( eval_state._current_state->get_head_block_num() < BTSX_MARKET_FORK_11_BLOCK_NUM )
+//         {
+//            yield = current_balance_record->calculate_yield_v1( eval_state._current_state->now(),
+//                                                                current_balance_record->balance,
+//                                                                asset_rec->collected_fees,
+//                                                                asset_rec->current_share_supply );
+//         }
 
          if( yield.amount > 0 )
          {
@@ -458,13 +458,13 @@ namespace bts { namespace blockchain {
                                                                asset_rec->collected_fees,
                                                                asset_rec->current_share_supply );
 
-         if( eval_state._current_state->get_head_block_num() < BTSX_MARKET_FORK_11_BLOCK_NUM )
-         {
-            yield = current_balance_record->calculate_yield_v1( eval_state._current_state->now(),
-                                                                current_balance_record->balance,
-                                                                asset_rec->collected_fees,
-                                                                asset_rec->current_share_supply );
-         }
+//         if( eval_state._current_state->get_head_block_num() < BTSX_MARKET_FORK_11_BLOCK_NUM )
+//         {
+//            yield = current_balance_record->calculate_yield_v1( eval_state._current_state->now(),
+//                                                                current_balance_record->balance,
+//                                                                asset_rec->collected_fees,
+//                                                                asset_rec->current_share_supply );
+//         }
 
          if( yield.amount > 0 )
          {

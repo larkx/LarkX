@@ -146,11 +146,11 @@ namespace bts { namespace blockchain {
       try {
         if( _current_state->now() >= trx_arg.expiration )
         {
-           if( _current_state->now() > trx_arg.expiration || _current_state->get_head_block_num() >= BTSX_MARKET_FORK_11_BLOCK_NUM )
-           {
+//           if( _current_state->now() > trx_arg.expiration || _current_state->get_head_block_num() >= BTSX_MARKET_FORK_11_BLOCK_NUM )
+//           {
                const auto expired_by_sec = (_current_state->now() - trx_arg.expiration).to_seconds();
                FC_CAPTURE_AND_THROW( expired_transaction, (trx_arg)(_current_state->now())(expired_by_sec) );
-           }
+//           }
         }
         if( (_current_state->now() + BTS_BLOCKCHAIN_MAX_TRANSACTION_EXPIRATION_SEC) < trx_arg.expiration )
            FC_CAPTURE_AND_THROW( invalid_transaction_expiration, (trx_arg)(_current_state->now()) );
@@ -225,10 +225,7 @@ namespace bts { namespace blockchain {
     */
    void transaction_evaluation_state::sub_balance( const balance_id_type& balance_id, const asset& amount )
    { try {
-#ifndef WIN32
-#warning [SOFTFORK] This check can be removed after BTSX_MARKET_FORK_12_BLOCK_NUM has passed
-#endif
-      if( balance_id != balance_id_type() || _current_state->get_head_block_num() < BTSX_MARKET_FORK_12_BLOCK_NUM )
+      if( balance_id != balance_id_type() /*|| _current_state->get_head_block_num() < BTSX_MARKET_FORK_12_BLOCK_NUM */)
       {
          auto provided_deposit_itr = provided_deposits.find( balance_id );
          if( provided_deposit_itr == provided_deposits.end() )
