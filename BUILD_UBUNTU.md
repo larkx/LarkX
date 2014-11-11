@@ -2,8 +2,8 @@ These instructions worked on a fresh Ubuntu 14.04 LTS image.
 
     sudo apt-get update
     sudo apt-get install cmake git libreadline-dev uuid-dev g++ libdb++-dev libdb-dev zip libssl-dev openssl build-essential python-dev autotools-dev libicu-dev libbz2-dev libboost-dev libboost-all-dev
-    git clone https://github.com/dacsunlimited/bitsharesx.git
-    cd bitsharesx
+    git clone https://github.com/pmconrad/PTS.git
+    cd PTS
     git submodule init
     git submodule update
     cmake .
@@ -12,7 +12,7 @@ These instructions worked on a fresh Ubuntu 14.04 LTS image.
 For the Qt Wallet, some extra steps are required:
 
 	sudo apt-get install npm qt5-default libqt5webkit5-dev qttools5-dev qttools5-dev-tools nodejs-legacy
-	cd bitsharesx
+	cd PTS
 	cmake -DINCLUDE_QT_WALLET=ON .
 	cd programs/web_wallet
 	sudo npm install -g lineman

@@ -94,7 +94,7 @@
       },
       {
         "method_name": "wallet_import_bitcoin",
-        "description": "Imports a Bitcoin Core or BitShares PTS wallet",
+        "description": "Imports a Bitcoin Core or old PTS wallet",
         "return_type": "uint32_t",
         "parameters" : [
            {
@@ -1527,7 +1527,7 @@
       },
       {
          "method_name" : "wallet_login_start",
-         "description" : "Initiates the login procedure by providing a BitShares Login URL",
+         "description" : "Initiates the login procedure by providing a PTS Login URL",
          "return_type" : "string",
          "parameters"  : [
             {

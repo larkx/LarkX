@@ -1,7 +1,7 @@
-BitShares Toolkit Coding Standards
---------------------------
+PTS Coding Standards
+--------------------
 
-BitShares Toolkit is a set C++ libraries that follow conventions similar to boost or the standard template library.
+PTS C++ application that follow conventions similar to boost or the standard template library.
 
   1) All text should be lowercase with the exception of MACROS and pre-processor defines.
 
@@ -26,7 +26,7 @@ BitShares Toolkit is a set C++ libraries that follow conventions similar to boos
 
       } } // a::b
 
-   4) All virtual methods should inlcude the 'virtual' keyword even in derived classes.
+   4) All virtual methods should include the 'virtual' keyword even in derived classes.
 
    5) Braces should use the following convention:
 

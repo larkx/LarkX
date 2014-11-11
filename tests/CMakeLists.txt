@@ -70,7 +70,7 @@ include_directories( ${CMAKE_SOURCE_DIR}/libraries/client/include )
 
 if( WIN32 )
     set( DB_VERSION 60 )
-    message( STATUS "Configuring Bitshares on WIN32")
+    message( STATUS "Configuring PTS on WIN32")
     set( ZLIB_LIBRARIES "" )
     set( LEVEL_DB_DIR vendor/leveldb-win )
 
@@ -111,13 +111,13 @@ target_link_libraries( deterministic_signature_test deterministic_openssl_rand f
 include_directories( ${CMAKE_SOURCE_DIR}/libraries/rpc/include )
 
 if( false )
-add_executable( bitshares_client_tests bitshares_client_tests.cpp )
+add_executable( pts_client_tests pts_client_tests.cpp )
 if( WIN32 )
-#   target_compile_definitions(bitshares_client_tests PUBLIC BOOST_ALL_NO_LIB BOOST_ALL_DYN_LINK)
+#   target_compile_definitions(pts_client_tests PUBLIC BOOST_ALL_NO_LIB BOOST_ALL_DYN_LINK)
 set( RPCRT4 Rpcrt4 )
 endif (WIN32)
-target_link_libraries( bitshares_client_tests bts_client bts_rpc bts_net bts_wallet bts_blockchain fc )
-add_dependencies(bitshares_client_tests bitshares_client)
+target_link_libraries( pts_client_tests bts_client bts_rpc bts_net bts_wallet bts_blockchain fc )
+add_dependencies(pts_client_tests pts_client)
 endif (false )
 
 #add_executable( recover recover.cpp )

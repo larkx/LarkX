@@ -1,5 +1,5 @@
-# Defines BitShares library target.
-project( BitShares )
+# Defines PTS library target.
+project( PTS )
 cmake_minimum_required( VERSION 2.8.12 )
 
 # http://stackoverflow.com/a/18369825
@@ -63,7 +63,7 @@ ENDIF()
 
 
 if( WIN32 )
-    message( STATUS "Configuring BitShares on WIN32")
+    message( STATUS "Configuring PTS on WIN32")
     set( DB_VERSION 60 )
     set( BDB_STATIC_LIBS 1 )
 
@@ -126,11 +126,11 @@ else( WIN32 )
 
     if( APPLE )
         # Apple Specific Options Here
-        message( STATUS "Configuring BitShares on OS X" )
+        message( STATUS "Configuring PTS on OS X" )
         set( CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -std=c++11 -stdlib=libc++ -Wall" )
     else( APPLE )
         # Linux Specific Options Here
-        message( STATUS "Configuring BitShares on Linux" )
+        message( STATUS "Configuring PTS on Linux" )
         set( CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -std=c++11 -Wall" )
         set( rt_library rt )
         set( pthread_library pthread)
@@ -198,31 +198,32 @@ set(CPACK_OUTPUT_FILE_PREFIX ${CMAKE_BINARY_DIR}/packages)
 set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/install)
 
 SET(CPACK_PACKAGE_DIRECTORY "${CMAKE_INSTALL_PREFIX}")
-set(CPACK_PACKAGE_NAME "bitshares")
-set(CPACK_PACKAGE_VENDOR "Invictus Innovations, Inc.")
+set(CPACK_PACKAGE_NAME "PTS")
+set(CPACK_PACKAGE_VENDOR "The PTS Project")
 set(CPACK_PACKAGE_VERSION_MAJOR "${VERSION_MAJOR}")
 set(CPACK_PACKAGE_VERSION_MINOR "${VERSION_MINOR}")
 set(CPACK_PACKAGE_VERSION_PATCH "${VERSION_PATCH}")
 set(CPACK_PACKAGE_VERSION "${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH}")
-set(CPACK_PACKAGE_DESCRIPTION "A client for the BitShares BTSX network")
-set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "A client for the BitShares BTSX network")
+set(CPACK_PACKAGE_DESCRIPTION "A client for the PTS P2P currency network")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "A client for the PTS P2P currency network")
 set(CPACK_PACKAGE_EXECUTABLES "Keyhotee;Keyhotee")
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE.md")
-set(CPACK_PACKAGE_INSTALL_DIRECTORY "BitShares ${CPACK_PACKAGE_VERSION}")
+set(CPACK_PACKAGE_INSTALL_DIRECTORY "PTS ${CPACK_PACKAGE_VERSION}")
 
 if(WIN32)
  SET(CPACK_GENERATOR "ZIP;NSIS")
- set(CPACK_PACKAGE_NAME "BitShares") # override above
- set(CPACK_NSIS_CONTACT "contact.us@invictus-innovations.com")
+ set(CPACK_PACKAGE_NAME "PTS") # override above
+ set(CPACK_NSIS_CONTACT "http://pts.cubeconnex.com/")
  set(CPACK_NSIS_EXECUTABLES_DIRECTORY .)
- set(CPACK_NSIS_PACKAGE_NAME "BitShares BTSX v${CPACK_PACKAGE_VERSION}")
+ set(CPACK_NSIS_PACKAGE_NAME "PTS v${CPACK_PACKAGE_VERSION}")
  set(CPACK_NSIS_DISPLAY_NAME "${CPACK_NSIS_PACKAGE_NAME}")
- set(CPACK_NSIS_URL_INFO_ABOUT "http://bitshares.org")
- set(CPACK_NSIS_HELP_LINK "https://bitsharestalk.org/index.php?board=3.0")
+ set(CPACK_NSIS_URL_INFO_ABOUT "http://pts.cubeconnex.com/")
+ set(CPACK_NSIS_HELP_LINK "http://pts.cubeconnex.com/")
  set(CPACK_NSIS_MENU_LINKS
-     "https://bitsharestalk.org/index.php?board=3.0" "BitShares TestNet Development Forum"
-     "http://bitshares.org" "Invictus Innovations Website")
- set(CPACK_NSIS_DEFINES "  !define MUI_STARTMENUPAGE_DEFAULTFOLDER \\\"BitShares\\\"")
+     "http://pts.cubeconnex.com/" "PTS Development Forum"
+#     "http://bitshares.org" "Invictus Innovations Website"
+    )
+ set(CPACK_NSIS_DEFINES "  !define MUI_STARTMENUPAGE_DEFAULTFOLDER \\\"PTS\\\"")
  # it seems like windows zip files usually don't have a single directory inside them, unix tgz frequently do
  SET(CPACK_INCLUDE_TOPLEVEL_DIRECTORY 0)
 
@@ -231,7 +232,7 @@ endif(WIN32)
 
 if(APPLE)
   set(CPACK_GENERATOR "DragNDrop")
-  set(CPACK_PACKAGE_VENDOR "www.bitshares.org")
+  set(CPACK_PACKAGE_VENDOR "pts.cubeconnex.com")
 endif()
 
 if(LINUX)

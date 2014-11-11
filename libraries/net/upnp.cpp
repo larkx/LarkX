@@ -6,7 +6,9 @@ extern "C" {
 #include <miniupnpc/upnperrors.h>
 }
 
+#include <bts/blockchain/config.hpp>
 #include <bts/net/upnp.hpp>
+#include <bts/utilities/git_revision.hpp>
 #include <fc/log/logger.hpp>
 #include <fc/thread/thread.hpp>
 
@@ -112,7 +114,7 @@ void upnp_service::map_port( uint16_t local_port )
                }
            }
        
-           std::string strDesc = "BitShares 0.0"; // TODO  + FormatFullVersion();
+           std::string strDesc = BTS_BLOCKCHAIN_NAME + " " + bts::utilities::git_revision_description;
        
      //      try 
            {

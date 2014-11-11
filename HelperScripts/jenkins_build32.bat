@@ -1,6 +1,6 @@
 echo Available processor count: %NUMBER_OF_PROCESSORS%
 echo Starting build # %BUILD_NUMBER%
-cd bitsharesx
+cd PTS
 rem git reset --hard
 rem git pull
 rem reset and pull not needed because we assume
@@ -9,7 +9,7 @@ git submodule init || exit /b 21
 git submodule update || exit /b 22
 
 cd %WORKSPACE%
-cd bitsharesx/vendor
+cd PTS/vendor
 if exist leveldb-win (
     pushd leveldb-win
     git reset --hard || exit /b 23
@@ -19,7 +19,7 @@ if exist leveldb-win (
 )
 
 cd %WORKSPACE%
-call bitsharesx/setenv.bat || exit /b 26
+call PTS/setenv.bat || exit /b 26
 
 call npm install grunt
 call npm install lineman -g --prefix=%NPM_INSTALL_PREFIX%
@@ -31,6 +31,6 @@ if exist build (
 )
 mkdir build
 cd build
-cmake -DINCLUDE_QT_WALLET=TRUE -DINCLUDE_CRASHRPT=TRUE -G "Visual Studio 12" -T "v120_xp" ../bitsharesx || exit /b 28
-msbuild.exe /M:%NUMBER_OF_PROCESSORS% /p:Configuration=RelWithDebInfo /p:Platform=Win32 /target:BitSharesX:rebuild /v:diag BitShares.sln || exit /b 30
-msbuild.exe /M:%NUMBER_OF_PROCESSORS% /p:Configuration=RelWithDebInfo /p:Platform=Win32 /target:bitshares_client:rebuild /v:diag BitShares.sln || exit /b 30
+cmake -DINCLUDE_QT_WALLET=TRUE -DINCLUDE_CRASHRPT=TRUE -G "Visual Studio 12" -T "v120_xp" ../PTS || exit /b 28
+msbuild.exe /M:%NUMBER_OF_PROCESSORS% /p:Configuration=RelWithDebInfo /p:Platform=Win32 /target:BitSharesX:rebuild /v:diag PTS.sln || exit /b 30
+msbuild.exe /M:%NUMBER_OF_PROCESSORS% /p:Configuration=RelWithDebInfo /p:Platform=Win32 /target:pts_client:rebuild /v:diag PTS.sln || exit /b 30

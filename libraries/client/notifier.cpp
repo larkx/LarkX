@@ -27,7 +27,7 @@ namespace bts { namespace client {
       uint32_t _missed_block_count_threshold;
 
       bts_gntp_notifier_impl(const std::string& host_to_notify = "127.0.0.1", uint16_t port = 23053,
-                             const std::string& bts_instance_identifier = "BitShares",
+                             const std::string& bts_instance_identifier = BTS_BLOCKCHAIN_NAME,
                              const fc::optional<std::string>& password = fc::optional<std::string>());
       void register_notification_types();
     };
@@ -80,7 +80,7 @@ namespace bts { namespace client {
                                        const fc::optional<std::string>& password /* = fc::optional<std::string>() */) : 
     my(new detail::bts_gntp_notifier_impl(host_to_notify, port, bts_instance_identifier, password))
   {
-    my->_notifier.set_application_name("BitShares");
+    my->_notifier.set_application_name(BTS_BLOCKCHAIN_NAME);
     my->_notifier.set_application_icon(my->_bitshares_icon);
     my->register_notification_types();
   }

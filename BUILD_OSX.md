@@ -1,5 +1,5 @@
-Building BitShares Toolkit on OS X 10.9
-===============================
+Building PTS on OS X 10.9
+=========================
 
 0) Install X Code by following these instructions https://guide.macports.org/chunked/installing.xcode.html
 
@@ -46,10 +46,10 @@ Building BitShares Toolkit on OS X 10.9
     make
     sudo make install
 
-7) Build BitShares Toolkit with CMake
+7) Build PTS client with CMake
 
-    git clone https://github.com/BitShares/bitshares_toolkit.git
-    cd bitshares_toolkit
+    git clone https://github.com/pmconrad/PTS.git
+    cd PTS
     git submodule init
     git submodule update
     cmake -DCMAKE_PREFIX_PATH=/usr/local/ssl .

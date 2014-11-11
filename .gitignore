@@ -29,7 +29,7 @@ libraries/rpc_stubs
 libraries/utilities/git_revision.cpp
 libraries/wallet/include/bts/wallet/url.hpp
 
-programs/client/bitshares_client
+programs/client/pts_client
 
 programs/utils/btc_wallet_dump
 programs/utils/bts_create_genesis
@@ -45,7 +45,7 @@ programs/utils/pack_web
 programs/utils/Genesis/private.csv
 
 tests/bitcoin/wallet_import_tests
-tests/bitshares_client_tests
+tests/pts_client_tests
 tests/chain_database_tests
 tests/client_node
 tests/client_rpc_tests/client_rpc_tests

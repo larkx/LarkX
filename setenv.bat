@@ -1,6 +1,6 @@
 @echo off
 set BITSHARES_ROOT=%~dp0..\
-echo Using %BITSHARES_ROOT% as Bitshares root directory
+echo Using %BITSHARES_ROOT% as PTS root directory
 
 set OPENSSL_ROOT=%BITSHARES_ROOT%\OpenSSL
 set OPENSSL_ROOT_DIR=%OPENSSL_ROOT%
