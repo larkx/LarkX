@@ -7,10 +7,6 @@
 
 namespace bts { namespace blockchain {
 
-   #include "market_operations_v3.cpp"
-   #include "market_operations_v2.cpp"
-   #include "market_operations_v1.cpp"
-
    /**
     *  If the amount is negative then it will withdraw/cancel the bid assuming
     *  it is signed by the owner and there is sufficient funds.
@@ -68,12 +64,6 @@ namespace bts { namespace blockchain {
     */
    void ask_operation::evaluate( transaction_evaluation_state& eval_state )
    { try {
-//      if( eval_state._current_state->get_head_block_num() < BTSX_MARKET_FORK_11_BLOCK_NUM )
-//      {
-//         evaluate_v1( eval_state );
-//         return;
-//      }
-
       if( this->ask_index.order_price == price() )
          FC_CAPTURE_AND_THROW( zero_price, (ask_index.order_price) );
 
@@ -117,12 +107,6 @@ namespace bts { namespace blockchain {
 
    void short_operation::evaluate( transaction_evaluation_state& eval_state )
    {
-//      if( eval_state._current_state->get_head_block_num() < BTSX_MARKET_FORK_11_BLOCK_NUM )
-//      {
-//         evaluate_v1( eval_state );
-//         return;
-//      }
-
       auto owner = this->short_index.owner;
       FC_ASSERT( short_index.order_price.ratio < fc::uint128( 10, 0 ), "Interest rate must be less than 1000% APR" );
       FC_ASSERT( short_index.order_price.quote_asset_id > short_index.order_price.base_asset_id,
@@ -179,22 +163,6 @@ namespace bts { namespace blockchain {
    */
    void cover_operation::evaluate( transaction_evaluation_state& eval_state )
    {
-//      if( eval_state._current_state->get_head_block_num() < BTSX_MARKET_FORK_7_BLOCK_NUM )
-//      {
-//         evaluate_v1( eval_state );
-//         return;
-//      }
-//      else if( eval_state._current_state->get_head_block_num() < BTSX_SUPPLY_FORK_2_BLOCK_NUM )
-//      {
-//         evaluate_v2( eval_state );
-//         return;
-//      }
-//      else if( eval_state._current_state->get_head_block_num() < BTSX_MARKET_FORK_11_BLOCK_NUM )
-//      {
-//         evaluate_v3( eval_state );
-//         return;
-//      }
-
       if( this->cover_index.order_price == price() )
          FC_CAPTURE_AND_THROW( zero_price, (cover_index.order_price) );
 
@@ -292,12 +260,6 @@ namespace bts { namespace blockchain {
 
    void add_collateral_operation::evaluate( transaction_evaluation_state& eval_state )
    {
-//      if( eval_state._current_state->get_head_block_num() < BTSX_MARKET_FORK_11_BLOCK_NUM )
-//      {
-//         evaluate_v1( eval_state );
-//         return;
-//      }
-
       if( this->cover_index.order_price == price() )
          FC_CAPTURE_AND_THROW( zero_price, (cover_index.order_price) );
 

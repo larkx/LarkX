@@ -35,7 +35,7 @@ namespace bts { namespace blockchain {
       issue_asset_op_type           = 8,
 
       /** delegate operations */
-      fire_delegate_op_type         = 9,
+//      fire_delegate_op_type         = 9,
 
       /** proposal operations */
       submit_proposal_op_type       = 10,
@@ -44,7 +44,6 @@ namespace bts { namespace blockchain {
       /** market operations */
       bid_op_type                   = 12,
       ask_op_type                   = 13,
-      short_op_type                 = 14, /* Deprecated */
       cover_op_type                 = 15,
       add_collateral_op_type        = 16,
       remove_collateral_op_type     = 17,
@@ -124,7 +123,6 @@ FC_REFLECT_ENUM( bts::blockchain::operation_type_enum,
                  (vote_proposal_op_type)
                  (bid_op_type)
                  (ask_op_type)
-                 (short_op_type)
                  (cover_op_type)
                  (add_collateral_op_type)
                  (remove_collateral_op_type)
@@ -133,7 +131,7 @@ FC_REFLECT_ENUM( bts::blockchain::operation_type_enum,
                  (burn_op_type)
                  (link_account_op_type)
                  (withdraw_all_op_type)
-
+                 (release_escrow_op_type)
                  (short_op_v2_type)
                  )
 

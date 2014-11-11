@@ -42,7 +42,7 @@ namespace bts { namespace blockchain {
    };
    typedef uint32_t chain_property_type;
 
-   const static short MAX_RECENT_OPERATIONS = 20;
+   const static uint32_t MAX_RECENT_OPERATIONS = 20;
 
    /**
     *  @class chain_interface

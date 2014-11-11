@@ -5,8 +5,6 @@
 
 namespace bts { namespace blockchain {
    
-   #include "market_operations_v1.hpp"
-
    struct bid_operation
    {
         static const operation_type_enum type;
@@ -30,7 +28,6 @@ namespace bts { namespace blockchain {
         market_index_key  ask_index;
 
         void evaluate( transaction_evaluation_state& eval_state );
-        void evaluate_v1( transaction_evaluation_state& eval_state );
    };
 
    struct short_operation
@@ -45,7 +42,6 @@ namespace bts { namespace blockchain {
         optional<price>  short_price_limit;
 
         void evaluate( transaction_evaluation_state& eval_state );
-        void evaluate_v1( transaction_evaluation_state& eval_state );
    };
 
    struct cover_operation
@@ -61,9 +57,6 @@ namespace bts { namespace blockchain {
         fc::optional<price> new_cover_price;
 
         void evaluate( transaction_evaluation_state& eval_state );
-        void evaluate_v3( transaction_evaluation_state& eval_state );
-        void evaluate_v2( transaction_evaluation_state& eval_state );
-        void evaluate_v1( transaction_evaluation_state& eval_state );
    };
 
    struct add_collateral_operation
@@ -77,7 +70,6 @@ namespace bts { namespace blockchain {
         market_index_key cover_index;
 
         void evaluate( transaction_evaluation_state& eval_state );
-        void evaluate_v1( transaction_evaluation_state& eval_state );
    };
 
    struct remove_collateral_operation
@@ -99,5 +91,3 @@ FC_REFLECT( bts::blockchain::short_operation, (amount)(short_index)(short_price_
 FC_REFLECT( bts::blockchain::cover_operation, (amount)(cover_index)(new_cover_price) )
 FC_REFLECT( bts::blockchain::add_collateral_operation, (amount)(cover_index))
 FC_REFLECT( bts::blockchain::remove_collateral_operation, (amount)(owner))
-
-FC_REFLECT( bts::blockchain::short_operation_v1, (amount)(short_index) )

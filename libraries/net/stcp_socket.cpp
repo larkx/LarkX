@@ -131,7 +131,7 @@ size_t stcp_socket::writesome( const char* buffer, size_t len )
      */
     uint32_t ciphertext_len = _send_aes.encode( buffer, len, _write_buffer.get() );
     assert(ciphertext_len == len);
-    _sock.write( _write_buffer, len );
+    _sock.write( _write_buffer, ciphertext_len );
     return len;
 } FC_RETHROW_EXCEPTIONS( warn, "", ("len",len) ) }
 

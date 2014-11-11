@@ -353,7 +353,7 @@ namespace detail {
                }
                if( present )
                {
-                   const auto start = 1;
+                   const uint32_t start = 1;
                    const auto end = _blockchain->get_head_block_num();
 
                    /* Upgrade market order virtual transaction indexes */
@@ -2065,14 +2065,14 @@ namespace detail {
       }
 
       auto next_child_idx = my->_wallet_db.get_property( next_child_key_index );
-      int32_t next_child_index = 0;
+      uint32_t next_child_index = 0;
       if( next_child_idx.is_null() )
       {
          next_child_index = 1;
       }
       else
       {
-         next_child_index = next_child_idx.as<int32_t>();
+         next_child_index = next_child_idx.as<uint32_t>();
       }
       if( next_child_index < count )
          my->_wallet_db.set_property( property_enum::next_child_key_index, count );

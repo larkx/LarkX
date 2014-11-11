@@ -270,9 +270,6 @@ namespace bts { namespace blockchain {
               case ask_op_type:
                   if( op.as<ask_operation>().amount < 0 ) return true;
                   break;
-              case short_op_type:
-                  if( op.as<short_operation_v1>().amount < 0 ) return true;
-                  break;
               case short_op_v2_type:
                   if( op.as<short_operation>().amount < 0 ) return true;
                   break;

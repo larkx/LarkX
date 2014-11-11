@@ -118,9 +118,9 @@ namespace bts { namespace net {
     void message_oriented_connection_impl::read_loop()
     {
       VERIFY_CORRECT_THREAD();
-      const int BUFFER_SIZE = 16;
-      const int LEFTOVER = BUFFER_SIZE - sizeof(message_header);
+      const unsigned int BUFFER_SIZE = 16;
       static_assert(BUFFER_SIZE >= sizeof(message_header), "insufficient buffer");
+      const int LEFTOVER = BUFFER_SIZE - sizeof(message_header);
 
       _connected_time = fc::time_point::now();
 

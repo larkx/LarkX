@@ -15,7 +15,7 @@ namespace bts { namespace blockchain {
 
       std::string subname(str);
       std::string supername;
-      int dot = str.find('.');
+      auto dot = str.find('.');
       if( dot != std::string::npos )
       {
         subname = str.substr(0, dot);
@@ -175,9 +175,9 @@ namespace bts { namespace blockchain {
       if( fraction_string.empty() || fraction <= 0 )
          return asset(whole, record->id);
 
-      while( fraction < record->precision )
+      while( uint64_t(fraction) < record->precision ) // fraction > 0 (see above)
          fraction *= 10;
-      while( fraction > record->precision )
+      while( uint64_t(fraction) > record->precision ) // fraction > 0 (see above)
          fraction /= 10;
       while( fraction_string.size() && fraction_string[0] == '0')
       {

@@ -362,13 +362,6 @@ wallet_transaction_record wallet_impl::scan_transaction(
                     has_withdrawal |= scan_short( short_op, *transaction_record, total_fee );
                 break;
             }
-            case short_op_type:
-            {
-                const auto short_op = op.as<short_operation_v1>();
-                if( short_op.amount < 0 )
-                    has_withdrawal |= scan_short_v1( short_op, *transaction_record, total_fee );
-                break;
-            }
             default:
                 break;
         }
@@ -406,13 +399,6 @@ wallet_transaction_record wallet_impl::scan_transaction(
                 const auto short_op = op.as<short_operation>();
                 if( short_op.amount >= 0 )
                     has_deposit |= scan_short( short_op, *transaction_record, total_fee );
-                break;
-            }
-            case short_op_type:
-            {
-                const auto short_op = op.as<short_operation_v1>();
-                if( short_op.amount >= 0 )
-                    has_deposit |= scan_short_v1( short_op, *transaction_record, total_fee );
                 break;
             }
             case burn_op_type:
@@ -942,60 +928,6 @@ bool wallet_impl::scan_short( const short_operation& op, wallet_transaction_reco
     return false;
 } FC_CAPTURE_AND_RETHROW( (op) ) }
 
-bool wallet_impl::scan_short_v1( const short_operation_v1& op, wallet_transaction_record& trx_rec, asset& total_fee )
-{ try {
-    const auto amount = op.get_amount();
-    if( amount.asset_id == total_fee.asset_id )
-        total_fee -= amount;
-
-    auto okey_rec = _wallet_db.lookup_key( op.short_index.owner );
-    if( okey_rec.valid() && okey_rec->has_private_key() )
-    {
-       /* Restore key label */
-       const market_order order( short_order, op.short_index, op.amount );
-       okey_rec->memo = order.get_small_id();
-       _wallet_db.store_key( *okey_rec );
-
-       for( auto& entry : trx_rec.ledger_entries )
-       {
-           if( amount.amount >= 0 )
-           {
-               if( !entry.to_account.valid() )
-               {
-                   entry.to_account = okey_rec->public_key;
-                   entry.amount = amount;
-                   //entry.memo =
-                   break;
-               }
-               else if( *entry.to_account == okey_rec->public_key )
-               {
-                   entry.amount = amount;
-                   break;
-               }
-           }
-           else /* Cancel order */
-           {
-               if( !entry.from_account.valid() )
-               {
-                   entry.from_account = okey_rec->public_key;
-                   entry.amount = amount;
-                   entry.memo = "cancel " + *okey_rec->memo;
-                   break;
-               }
-               else if( *entry.from_account == okey_rec->public_key )
-               {
-                   entry.amount = amount;
-                   entry.memo = "cancel " + *okey_rec->memo;
-                   break;
-               }
-           }
-       }
-
-       return true;
-    }
-    return false;
-} FC_CAPTURE_AND_RETHROW( (op) ) }
-
 bool wallet_impl::scan_burn( const burn_operation& op, wallet_transaction_record& trx_rec, asset& total_fee )
 {
     if( op.amount.asset_id == total_fee.asset_id )
@@ -1258,7 +1190,7 @@ vector<wallet_transaction_record> wallet::get_transaction_history( const string&
                                                                    const string& asset_symbol )const
 { try {
    FC_ASSERT( is_open() );
-   if( end_block_num != -1 ) FC_ASSERT( start_block_num <= end_block_num );
+   if( end_block_num != uint32_t(-1) ) FC_ASSERT( start_block_num <= end_block_num );
 
    vector<wallet_transaction_record> history_records;
    const auto& transactions = my->_wallet_db.get_transactions();
@@ -1281,7 +1213,7 @@ vector<wallet_transaction_record> wallet::get_transaction_history( const string&
        const auto& tx_record = item.second;
 
        if( tx_record.block_num < start_block_num ) continue;
-       if( end_block_num != -1 && tx_record.block_num > end_block_num ) continue;
+       if( end_block_num != uint32_t(-1) && tx_record.block_num > end_block_num ) continue;
        if( tx_record.ledger_entries.empty() ) continue; /* TODO: Temporary */
 
        if( !account_name.empty() )

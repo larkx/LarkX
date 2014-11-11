@@ -400,9 +400,6 @@ void wallet_impl::scan_transaction_experimental( const transaction_evaluation_st
             case ask_op_type:
                 my_transaction |= scan_ask( op.as<ask_operation>() );
                 break;
-            case short_op_type:
-                // TODO
-                break;
             case cover_op_type:
                 // TODO
                 break;

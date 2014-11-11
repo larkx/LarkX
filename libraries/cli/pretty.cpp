@@ -609,7 +609,7 @@ string pretty_experimental_transaction_list( const set<pretty_transaction_experi
 
     for( const auto& transaction : transactions )
     {
-        auto line_count = 0;
+        uint32_t line_count = 0;
 
         while( line_count < transaction.inputs.size()
                || line_count < transaction.outputs.size()

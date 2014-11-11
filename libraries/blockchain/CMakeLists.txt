@@ -55,7 +55,6 @@ add_library( bts_blockchain
              market_operations.cpp
 #proposal_operations.cpp
              feed_operations.cpp
-#fire_operation.cpp
              asset.cpp
              transaction.cpp
              time.cpp
@@ -66,12 +65,6 @@ add_library( bts_blockchain
              market_records.cpp
              chain_interface.cpp
              pending_chain_state.cpp
-             market_engine_v1.cpp
-             market_engine_v2.cpp
-             market_engine_v3.cpp
-             market_engine_v4.cpp
-             market_engine_v5.cpp
-             market_engine_v6.cpp
              market_engine.cpp
              chain_database.cpp
              fork_blocks.cpp

@@ -200,7 +200,7 @@ namespace bts { namespace wallet {
 
        map<uint16_t, string>                        operation_notes;
 
-       bool is_confirmed()const { return block_num != -1; }
+       bool is_confirmed()const { return block_num != uint32_t(-1); }
        bool is_virtual()const   { return !transaction_id.valid(); }
 
        friend bool operator < ( const transaction_ledger_entry& a, const transaction_ledger_entry& b )
@@ -417,7 +417,7 @@ namespace bts { namespace wallet {
        template<typename RecordType>
        RecordType generic_wallet_record::as()const
        {
-          FC_ASSERT( (wallet_record_type_enum)type == RecordType::type, "",
+          FC_ASSERT( (wallet_record_type_enum)type == (wallet_record_type_enum)RecordType::type, "",
                      ("type",type)
                      ("WithdrawType",(wallet_record_type_enum)RecordType::type) );
 

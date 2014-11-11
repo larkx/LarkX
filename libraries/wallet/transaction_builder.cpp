@@ -277,8 +277,8 @@ transaction_builder& transaction_builder::submit_short(const wallet_account_reco
 { try {
    validate_market(interest_rate.quote_asset_id, interest_rate.base_asset_id);
    FC_ASSERT(!price_limit ||
-             interest_rate.quote_asset_id == price_limit->quote_asset_id &&
-             interest_rate.base_asset_id == price_limit->base_asset_id,
+             (interest_rate.quote_asset_id == price_limit->quote_asset_id &&
+              interest_rate.base_asset_id == price_limit->base_asset_id),
              "Interest rate ${rate} and price limit ${limit} do not have compatible units.",
              ("rate", interest_rate)("limit", price_limit));
 

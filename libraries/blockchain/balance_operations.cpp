@@ -6,9 +6,6 @@
 
 namespace bts { namespace blockchain {
 
-   #include "balance_operations_v2.cpp"
-   #include "balance_operations_v1.cpp"
-
    asset balance_record::calculate_yield( fc::time_point_sec now, share_type amount, share_type yield_pool, share_type share_supply )const
    {
       if( amount <= 0 )       return asset(0,condition.asset_id);
@@ -58,7 +55,8 @@ namespace bts { namespace blockchain {
             yield /= 1000000;
             auto yield_amount = yield.to_uint64();
 
-            if( yield_amount > 0 && yield_amount < yield_pool )
+            assert(yield_pool > 0); // see above
+            if( yield_amount > 0 && yield_amount < uint64_t(yield_pool) )
             {
                return asset( yield_amount, condition.asset_id );
             }
@@ -112,12 +110,6 @@ namespace bts { namespace blockchain {
     */
    void deposit_operation::evaluate( transaction_evaluation_state& eval_state )
    { try {
-//       if( eval_state._current_state->get_head_block_num() < BTSX_YIELD_FORK_1_BLOCK_NUM )
-//       {
-//          evaluate_v1( eval_state );
-//          return;
-//       }
-
        if( this->amount <= 0 )
           FC_CAPTURE_AND_THROW( negative_deposit, (amount) );
 
@@ -158,19 +150,8 @@ namespace bts { namespace blockchain {
     */
    void withdraw_operation::evaluate( transaction_evaluation_state& eval_state )
    { try {
-//      if( eval_state._current_state->get_head_block_num() < BTSX_YIELD_FORK_1_BLOCK_NUM )
-//      {
-//         evaluate_v1( eval_state );
-//         return;
-//      }
-//      else if( eval_state._current_state->get_head_block_num() < BTSX_YIELD_FORK_2_BLOCK_NUM )
-//      {
-//         evaluate_v2( eval_state );
-//         return;
-//      }
-
-       if( this->amount <= 0 )
-          FC_CAPTURE_AND_THROW( negative_deposit, (amount) );
+      if( this->amount <= 0 )
+         FC_CAPTURE_AND_THROW( negative_deposit, (amount) );
 
       obalance_record current_balance_record = eval_state._current_state->get_balance_record( this->balance_id );
 
@@ -299,15 +280,6 @@ namespace bts { namespace blockchain {
                                                                current_balance_record->balance,
                                                                asset_rec->collected_fees,
                                                                asset_rec->current_share_supply );
-
-//         if( eval_state._current_state->get_head_block_num() < BTSX_MARKET_FORK_11_BLOCK_NUM )
-//         {
-//            yield = current_balance_record->calculate_yield_v1( eval_state._current_state->now(),
-//                                                                current_balance_record->balance,
-//                                                                asset_rec->collected_fees,
-//                                                                asset_rec->current_share_supply );
-//         }
-
          if( yield.amount > 0 )
          {
             asset_rec->collected_fees       -= yield.amount;
@@ -457,15 +429,6 @@ namespace bts { namespace blockchain {
                                                                current_balance_record->balance,
                                                                asset_rec->collected_fees,
                                                                asset_rec->current_share_supply );
-
-//         if( eval_state._current_state->get_head_block_num() < BTSX_MARKET_FORK_11_BLOCK_NUM )
-//         {
-//            yield = current_balance_record->calculate_yield_v1( eval_state._current_state->now(),
-//                                                                current_balance_record->balance,
-//                                                                asset_rec->collected_fees,
-//                                                                asset_rec->current_share_supply );
-//         }
-
          if( yield.amount > 0 )
          {
             asset_rec->collected_fees       -= yield.amount;

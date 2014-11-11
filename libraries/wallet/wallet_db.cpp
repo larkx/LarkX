@@ -531,11 +531,11 @@ namespace bts { namespace wallet {
    vector<wallet_balance_record> wallet_db::get_all_balances( const string& account_name, uint32_t limit )
    {
        auto ret = vector<wallet_balance_record>();
-       auto count = 0;
+       uint32_t count = 0;
        ulog("Balances.size(): ${size}", ("size", balances.size()));
        for( auto item : balances )
        {
-           if (count == limit && limit != -1)
+           if (count == limit && limit != uint32_t(-1))
                break;
            auto okey = lookup_key(item.second.owner());
            FC_ASSERT(okey.valid(), "expect a key record to exist at this point");

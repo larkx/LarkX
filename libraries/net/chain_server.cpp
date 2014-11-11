@@ -20,8 +20,8 @@ namespace bts { namespace net {
             std::set<fc::thread*> _idle_threads;
             std::set<fc::thread*> _busy_threads;
 
-            const int _target_thread_count;
-            const int _max_thread_count;
+            const unsigned int _target_thread_count;
+            const unsigned int _max_thread_count;
 
             chain_server_impl(std::shared_ptr<bts::blockchain::chain_database> chain_ptr, uint16_t port)
               : _chain_db(chain_ptr),

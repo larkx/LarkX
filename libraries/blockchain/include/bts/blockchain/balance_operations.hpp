@@ -43,8 +43,6 @@ namespace bts { namespace blockchain {
        std::vector<char>  claim_input_data;
 
        void evaluate( transaction_evaluation_state& eval_state );
-       void evaluate_v2( transaction_evaluation_state& eval_state );
-       void evaluate_v1( transaction_evaluation_state& eval_state );
    };
 
    /** withdraws all funds including any yield 
@@ -91,7 +89,6 @@ namespace bts { namespace blockchain {
        withdraw_condition               condition;
 
        void evaluate( transaction_evaluation_state& eval_state );
-       void evaluate_v1( transaction_evaluation_state& eval_state );
    };
 
    /**
