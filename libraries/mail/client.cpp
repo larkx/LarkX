@@ -297,7 +297,7 @@ public:
                     continue;
                 auto endpoint = server_account->public_data.as<variant_object>()["mail_server_endpoint"]
                                                            .as<ip::endpoint>();
-                servers.emplace(std::move(server_name), std::move(endpoint));
+                servers.insert(make_pair(std::move(server_name), std::move(endpoint)));
             }
         } catch (fc::exception& e) {
             elog("Error while getting mail servers for ${r}: ${e}", ("r", recipient)("e", e.to_detail_string()));
