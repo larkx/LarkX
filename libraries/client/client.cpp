@@ -75,7 +75,7 @@ using std::string;
 
 namespace bts { namespace client {
 
-const string BTS_MESSAGE_MAGIC = BTS_BLOCKCHAIN_NAME + " Signed Message:\n";
+const string BTS_MESSAGE_MAGIC = string(BTS_BLOCKCHAIN_NAME) + " Signed Message:\n";
 
 void print_banner();
 fc::logging_config create_default_logging_config( const fc::path&, bool enable_ulog );

@@ -114,7 +114,8 @@ void upnp_service::map_port( uint16_t local_port )
                }
            }
        
-           std::string strDesc = BTS_BLOCKCHAIN_NAME + " " + bts::utilities::git_revision_description;
+           std::string strDesc = std::string(BTS_BLOCKCHAIN_NAME) + " "
+                                 + bts::utilities::git_revision_description;
        
      //      try 
            {
