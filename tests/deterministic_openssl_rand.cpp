@@ -50,4 +50,5 @@ void set_random_seed_for_testing(const fc::sha512& new_seed)
 {
   RAND_set_rand_method(RAND_stdlib());
   seed = new_seed;
+  srand(seed._hash[0]);
 }

@@ -1,55 +1,55 @@
-default (unlocked) >>> wallet_account_create test
-"XTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp"
-default (unlocked) >>> wallet_transfer 100 XTS delegate0 test
+default (unlocked) >>> wallet_account_create tests
+"PTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp"
+default (unlocked) >>> wallet_transfer 100 PTS delegate0 tests
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID      
 ======================================================================================================================================================================
-<d-ign></d-ign>PENDING   delegate0           test                100.00000 XTS                                                       0.50000 XTS         <d-ign></d-ign>
+<d-ign></d-ign>PENDING   delegate0           tests               100.00000000 PTS                                                    0.05000000 PTS      <d-ign></d-ign>
 default (unlocked) >>> debug_advance_time 1 blocks
 OK
 default (unlocked) >>> debug_wait 5
 OK
-default (unlocked) >>> wallet_account_balance test
+default (unlocked) >>> wallet_account_balance tests
 ACCOUNT                         BALANCE                     
 ============================================================
-test                            100.00000 XTS               
-default (unlocked) >>> blockchain_get_account test
+tests                           100.00000000 PTS            
+default (unlocked) >>> blockchain_get_account tests
 No account found.
-default (unlocked) >>> wallet_account_register test test
+default (unlocked) >>> wallet_account_register tests tests
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID      
 ======================================================================================================================================================================
-<d-ign></d-ign>PENDING   test                test                0.00000 XTS             register test                               0.50000 XTS         <d-ign></d-ign>
+<d-ign></d-ign>PENDING   tests               tests               0.00000000 PTS          register tests                              0.10000000 PTS      <d-ign></d-ign>
 default (unlocked) >>> debug_advance_time 1 blocks
 OK
 default (unlocked) >>> debug_wait 2
 OK
-default (unlocked) >>> blockchain_get_account test
-Name: test
+default (unlocked) >>> blockchain_get_account tests
+Name: tests
 Registered: <d-ign></d-ign>
 Last Updated: <d-ign></d-ign>
-Owner Key: XTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp
+Owner Key: PTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp
 Active Key History:
-- XTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp, last used <d-ign></d-ign>
+- PTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp, last used <d-ign></d-ign>
 Not a delegate.
-default (unlocked) >>> wallet_account_update_registration test test null 100
+default (unlocked) >>> wallet_account_update_registration tests tests null 100
  TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID      
 ========================================================================================================================================================================
-|<d-ign>     </d-ign>PENDING   test                test                0.10100 XTS             Fee to promote test to a delegate           0.50000 XTS         <d-ign></d-ign>|
-|                              test                test                0.00000 XTS             Update test's public data                                               |
+|<d-ign></d-ign>PENDING   tests               tests               0.00000883 PTS          Fee to promote tests to a delegate          0.05000000 PTS      <d-ign></d-ign>|
+|                              tests               tests               0.00000000 PTS          Update tests's public data                                              |
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 default (unlocked) >>> debug_advance_time 1 blocks
 OK
 default (unlocked) >>> debug_wait 2
 OK
-default (unlocked) >>> blockchain_get_account test
-Name: test
+default (unlocked) >>> blockchain_get_account tests
+Name: tests
 Registered: <d-ign></d-ign>
 Last Updated: <d-ign></d-ign>
-Owner Key: XTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp
+Owner Key: PTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp
 Active Key History:
-- XTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp, last used <d-ign></d-ign>
+- PTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp, last used <d-ign></d-ign>
 
 ID    NAME (* next in line)           APPROVAL       PRODUCED MISSED   RELIABILITY   PAY RATE PAY BALANCE         LAST BLOCK  VERSION     
 ==========================================================================================================================================
-102   test                            0.00000000 %   0        0        N/A           0.00100 XTS0.00000 XTS         NONE                    
+102   tests                           0.00000000 %   0        0        N/A           100 %    0.00000000 PTS      NONE                    
 
 default (unlocked) >>> quit

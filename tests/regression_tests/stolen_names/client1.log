@@ -1,5 +1,5 @@
 default (unlocked) >>> wallet_account_create thief
-"XTS5kmVHDwLN9zsxa18jKFrLn6yPJkBsxJJHmFeRygEpUaBWCqcb4"
+"PTS6mBbqxv7oSqbcKW2xCaWxpGaR4SS1yk2VTkaQtAXGDmqV9raea"
 default (unlocked) >>> debug_wait_for_block_by_number 1
 OK
 default (unlocked) >>> debug_wait_for_block_by_number 2
@@ -8,9 +8,9 @@ default (unlocked) >>> blockchain_get_account thief
 Name: thief
 Registered: <d-ign></d-ign>
 Last Updated: <d-ign></d-ign>
-Owner Key: XTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp
+Owner Key: PTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp
 Active Key History:
-- XTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp, last used <d-ign></d-ign>
+- PTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp, last used <d-ign></d-ign>
 Not a delegate.
 default (unlocked) >>> wallet_rename_account thief thieved
 OK

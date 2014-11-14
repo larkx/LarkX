@@ -10,7 +10,7 @@ wallet (unlocked) >>> wallet_get_info
   "transaction_scanning_enabled": false,
   "last_scanned_block_num": null,
   "last_scanned_block_timestamp": null,
-  "transaction_fee": "0.50000 XTS",
+  "transaction_fee": "0.05000000 PTS",
   "transaction_expiration_secs": 3600,
   "unlocked": true,
   "unlocked_until": "<d-ign></d-ign>",
@@ -21,17 +21,17 @@ wallet (unlocked) >>> wallet_get_info
 wallet (unlocked) >>> wallet_set_automatic_backups false
 false
 wallet (unlocked) >>> wallet_account_create testaccount
-"XTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp"
+"PTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp"
 wallet (unlocked) >>> wallet_account_balance testaccount
 No balances found.
 wallet (unlocked) >>> wallet_list_my_accounts 
 NAME (* delegate)                  KEY                                                             REGISTERED            FAVORITE       APPROVAL       BLOCK PRODUCTION ENABLED 
-testaccount                        XTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp           NO                    NO             0              N/A                      
+testaccount                        PTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp           NO                    NO             0              N/A                      
 wallet (unlocked) >>> wallet_account_list_public_keys testaccount
 [{
     "hex": "03881b007b922bd8e69e525ac5568b1e71bd17aafc592c74903c8919e8d0f6249d",
-    "native_pubkey": "XTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp",
-    "native_address": "XTS8k4PT5hKqNY9VSS3tqR3yL3JQ3sYSxUCa",
+    "native_pubkey": "PTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp",
+    "native_address": "PTS8k4PT5hKqNY9VSS3tqR3yL3JQ3sYSxUCa",
     "pts_normal_address": "PhPkbA7ELsiH58RvLbYZCWs5D9Ae7hKvHi",
     "pts_compressed_address": "PZs8yvKN37HWR7wDDjfaEhVCzmUQrirzvU",
     "btc_normal_address": "1ATyT5R6ammDGrd4y6ti3Vd1xtjpH3gB8L",
@@ -43,8 +43,8 @@ OK
 wallet (unlocked) >>> wallet_account_list_public_keys myaccount
 [{
     "hex": "03881b007b922bd8e69e525ac5568b1e71bd17aafc592c74903c8919e8d0f6249d",
-    "native_pubkey": "XTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp",
-    "native_address": "XTS8k4PT5hKqNY9VSS3tqR3yL3JQ3sYSxUCa",
+    "native_pubkey": "PTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp",
+    "native_address": "PTS8k4PT5hKqNY9VSS3tqR3yL3JQ3sYSxUCa",
     "pts_normal_address": "PhPkbA7ELsiH58RvLbYZCWs5D9Ae7hKvHi",
     "pts_compressed_address": "PZs8yvKN37HWR7wDDjfaEhVCzmUQrirzvU",
     "btc_normal_address": "1ATyT5R6ammDGrd4y6ti3Vd1xtjpH3gB8L",
@@ -53,39 +53,39 @@ wallet (unlocked) >>> wallet_account_list_public_keys myaccount
 ]
 wallet (unlocked) >>> wallet_list_my_accounts
 NAME (* delegate)                  KEY                                                             REGISTERED            FAVORITE       APPROVAL       BLOCK PRODUCTION ENABLED 
-myaccount                          XTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp           NO                    NO             0              N/A                      
+myaccount                          PTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp           NO                    NO             0              N/A                      
 wallet (unlocked) >>> wallet_account_transaction_history myaccount
 No transactions found.
 wallet (unlocked) >>> wallet_account_update_private_data myaccount "1234 test private data"
 OK
-wallet (unlocked) >>> wallet_dump_private_key XTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp
+wallet (unlocked) >>> wallet_dump_private_key PTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp
 "5KkUwBTCSpCKvzvkxjM1fS8Syf5Y9chybQcTVgtB3r9iURjdhiF"
 wallet (unlocked) >>> wallet_change_passphrase 87654321
 OK
 wallet (unlocked) >>> wallet_get_name 
 "wallet"
 wallet (unlocked) >>> wallet_set_priority_fee 99999
-99,999.00000 XTS
+99,999.00000000 PTS
 wallet (unlocked) >>> wallet_account_set_favorite myaccount
 OK
 wallet (unlocked) >>> wallet_list_favorite_accounts 
 NAME (* delegate)                  KEY                                                             REGISTERED            FAVORITE       APPROVAL       
-myaccount                          XTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp           NO                    YES            0         
+myaccount                          PTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp           NO                    YES            0         
 wallet (unlocked) >>> wallet_account_set_favorite myaccount false
 OK
 wallet (unlocked) >>> wallet_list_favorite_accounts 
 NAME (* delegate)                  KEY                                                             REGISTERED            FAVORITE       APPROVAL       
-wallet (unlocked) >>> wallet_add_contact_account test XTS5nkoz8qNcLPF8w7xSpnf6CCFcgioGMDqsvw7G7hgEvMAxL6fCc
+wallet (unlocked) >>> wallet_add_contact_account test PTS5nkoz8qNcLPF8w7xSpnf6CCFcgioGMDqsvw7G7hgEvMAxL6fCc
 OK
 wallet (unlocked) >>> wallet_list_accounts
 NAME (* delegate)                  KEY                                                             REGISTERED            FAVORITE       APPROVAL       
-myaccount                          XTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp           NO                    NO             0         
-test                               XTS5nkoz8qNcLPF8w7xSpnf6CCFcgioGMDqsvw7G7hgEvMAxL6fCc           NO                    NO             0         
+myaccount                          PTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp           NO                    NO             0         
+test                               PTS5nkoz8qNcLPF8w7xSpnf6CCFcgioGMDqsvw7G7hgEvMAxL6fCc           NO                    NO             0         
 wallet (unlocked) >>> wallet_remove_contact_account test
 OK
 wallet (unlocked) >>> wallet_list_accounts
 NAME (* delegate)                  KEY                                                             REGISTERED            FAVORITE       APPROVAL       
-myaccount                          XTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp           NO                    NO             0         
+myaccount                          PTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp           NO                    NO             0         
 wallet (unlocked) >>> wallet_set_setting t1 123456
 OK
 wallet (unlocked) >>> wallet_lock
@@ -102,7 +102,7 @@ wallet (unlocked) >>> wallet_get_info
   "transaction_scanning_enabled": true,
   "last_scanned_block_num": null,
   "last_scanned_block_timestamp": null,
-  "transaction_fee": "99,999.00000 XTS",
+  "transaction_fee": "99,999.00000000 PTS",
   "transaction_expiration_secs": 3600,
   "unlocked": true,
   "unlocked_until": "<d-ign></d-ign>",

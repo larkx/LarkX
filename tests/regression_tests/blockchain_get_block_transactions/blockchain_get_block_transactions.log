@@ -1,9 +1,9 @@
 default (unlocked) >>> wallet_account_create test
-"XTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp"
-default (unlocked) >>> wallet_transfer 100 XTS delegate0 test
+"PTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp"
+default (unlocked) >>> wallet_transfer 100 PTS delegate0 test
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID      
 ======================================================================================================================================================================
-<d-ign></d-ign>PENDING   delegate0           test                100.00000 XTS                                                       0.50000 XTS         <d-ign></d-ign>
+<d-ign></d-ign>PENDING   delegate0           test                100.00000000 PTS                                                    0.05000000 PTS      <d-ign></d-ign>
 default (unlocked) >>> debug_advance_time 1 blocks
 OK
 default (unlocked) >>> debug_wait_for_block_by_number 2
@@ -20,22 +20,22 @@ Returns:
   blockchain_transaction_record_map
 default (unlocked) >>> blockchain_get_block_transactions 2
 [[
-    "f37f4850a656adf3f1edc67e5e5866c805e88a67",{
+    "dd535d2530b940c3549e2d9d3247cdaefd88575a",{
       "trx": {
         "expiration": "20140620T154030",
         "delegate_slate_id": null,
         "operations": [{
             "type": "deposit_op_type",
             "data": {
-              "amount": 10000000,
+              "amount": 10000000000,
               "condition": {
                 "asset_id": 0,
                 "delegate_slate_id": 0,
                 "type": "withdraw_signature_type",
                 "data": {
-                  "owner": "XTSJrw3cmH7t5r13yGxdBFNwpdLdem7QjUMz",
+                  "owner": "PTSJrw3cmH7t5r13yGxdBFNwpdLdem7QjUMz",
                   "memo": {
-                    "one_time_key": "XTS8my3ctcuLgAhGP4TVoKe6twNcSqJQBrjCcY4qHsL7CR2utUL41",
+                    "one_time_key": "PTS8my3ctcuLgAhGP4TVoKe6twNcSqJQBrjCcY4qHsL7CR2utUL41",
                     "encrypted_memo_data": "c1948b9f8d5c4340c1a4eb402282f3f61dd24f94d91ae4aa9a6dd83015c1ab9da63bb5bab2d379bdeefa76e6621c58eaed3f4db836a9a47c0eabe72330a6f58c"
                   }
                 }
@@ -44,42 +44,42 @@ default (unlocked) >>> blockchain_get_block_transactions 2
           },{
             "type": "withdraw_op_type",
             "data": {
-              "balance_id": "XTS6GvhLUV93rQZLJSstvyhMeoU9cnZ578kz",
-              "amount": 10050000,
+              "balance_id": "PTS6GvhLUV93rQZLJSstvyhMeoU9cnZ578kz",
+              "amount": 10005000000,
               "claim_input_data": ""
             }
           }
         ],
         "signatures": [
-          "208513ec7641898a4a37e0bfe8617a37bef25351eada00e9d0c04e79869bd335f62d31e437775037ce64d128228111c113441262ce4d66b4c13fbe41fa5135838c"
+          "208513ec7641898a4a37e0bfe8617a37bef25351eada00e9d0c04e79869bd335f66a28d0cd26f645f684e7697d31fbe055d2a6c1a5541e8d4c49d641837e4f9dca"
         ]
       },
       "signed_keys": [
-        "XTSDG4CLPoePEPHaRaDszT4ix8gA1ghTb6FF",
-        "XTSEbFjCRUUsoN3FUJTeBbWX7SZx1bMrFzUH",
-        "XTSF4Bjx9KdtUChuTn8wL9T6aBFrLBq6wyDJ",
-        "XTSA5wQqHYd93W65JzCZ1wtmBq9DbtTRyqD",
-        "XTSPcpRoTjhdb9KBYXmsFB3nfe2BYiZV88Be"
+        "PTSDG4CLPoePEPHaRaDszT4ix8gA1ghTb6FF",
+        "PTSEbFjCRUUsoN3FUJTeBbWX7SZx1bMrFzUH",
+        "PTSF4Bjx9KdtUChuTn8wL9T6aBFrLBq6wyDJ",
+        "PTSA5wQqHYd93W65JzCZ1wtmBq9DbtTRyqD",
+        "PTSPcpRoTjhdb9KBYXmsFB3nfe2BYiZV88Be"
       ],
       "validation_error": null,
       "required_deposits": [],
       "provided_deposits": [[
-          "XTSDMpTghf6pUxcFXFJNcaXBXPJcAfapTqM6",{
-            "amount": 10000000,
+          "PTSDMpTghf6pUxcFXFJNcaXBXPJcAfapTqM6",{
+            "amount": 10000000000,
             "asset_id": 0
           }
         ]
       ],
       "deposits": [[
           0,{
-            "amount": 10000000,
+            "amount": 10000000000,
             "asset_id": 0
           }
         ]
       ],
       "withdraws": [[
           0,{
-            "amount": 10050000,
+            "amount": 10005000000,
             "asset_id": 0
           }
         ]
@@ -87,12 +87,12 @@ default (unlocked) >>> blockchain_get_block_transactions 2
       "yield": [],
       "deltas": [[
           0,{
-            "amount": 10000000,
+            "amount": 10000000000,
             "asset_id": 0
           }
         ],[
           1,{
-            "amount": -10050000,
+            "amount": -10005000000,
             "asset_id": 0
           }
         ]
@@ -107,7 +107,7 @@ default (unlocked) >>> blockchain_get_block_transactions 2
       },
       "balance": [[
           0,
-          50000
+          5000000
         ]
       ],
       "net_delegate_votes": [],

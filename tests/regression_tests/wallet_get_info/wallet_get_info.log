@@ -18,7 +18,7 @@ default (unlocked) >>> wallet_get_info
   "transaction_scanning_enabled": false,
   "last_scanned_block_num": null,
   "last_scanned_block_timestamp": null,
-  "transaction_fee": "0.50000 XTS",
+  "transaction_fee": "0.05000000 PTS",
   "transaction_expiration_secs": 3600,
   "unlocked": true,
   "unlocked_until": "<d-ign></d-ign>",
