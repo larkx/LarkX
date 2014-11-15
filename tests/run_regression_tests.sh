@@ -7,9 +7,9 @@ ulimit -n 100000
 rm -f regression_tests/wallet_backup/wallet_backup.json regression_tests/blockchain_export_fork_graph/*.gv
 
 for regression_test in `ls regression_tests | grep -v "^\\_"`; do
-    printf " Running test $regression_test...                                       \\r"
-    ./wallet_tests -t regression_tests_without_network/$regression_test > /dev/null 2>&1 || printf "Test $regression_test failed.                            \\n"
+    printf " Running test %-52s\\r" "$regression_test..."
+    ./wallet_tests -t regression_tests_without_network/$regression_test > /dev/null 2>&1 || printf "Test %-60s\\n" "$regression_test failed."
     sleep 2
 done;
-printf "                                                                            \\r"
+printf "%-65s\\r"
 rm -f regression_tests/wallet_backup/wallet_backup.json regression_tests/blockchain_export_fork_graph/*.gv
