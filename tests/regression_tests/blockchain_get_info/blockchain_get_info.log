@@ -12,7 +12,7 @@ Returns:
 aliases: getconfig, get_config, config, blockchain_get_config
 (wallet closed) >>> blockchain_get_info
 {
-  "blockchain_id": "8ea6170509689e518d19db28026aafe428987edebddf59d360ecca736126ed7f",
+  "blockchain_id": "07247855cdc069157c264e6635ad26a6ac66689b2b9dab37e3d8d4185b941897",
   "symbol": "PTS",
   "name": "PTS",
   "version": 1,
@@ -24,14 +24,12 @@ aliases: getconfig, get_config, config, blockchain_get_config
   "address_prefix": "PTS",
   "relay_fee": "0.01000000 PTS",
   "delegate_num": 101,
-  "delegate_reg_fee": "0.00000000 PTS",
+  "delegate_reg_fee": "0.10000000 PTS",
   "name_size_max": 63,
   "memo_size_max": 19,
   "data_size_max": 8192,
   "symbol_size_max": 5,
   "symbol_size_min": 3,
-  "asset_reg_fee": "1.20960000 PTS",
-  "asset_shares_max": 1000000000000000,
   "max_pending_queue_size": 10,
   "max_trx_per_second": 5,
   "min_block_fee": "0.00000000 PTS"

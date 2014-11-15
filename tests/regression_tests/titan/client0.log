@@ -21,8 +21,8 @@ OK
 default (unlocked) >>> wallet_account_balance delegate0
 ACCOUNT                         BALANCE                     
 ============================================================
-delegate0                       19,651.88019801 PTS         
-default (unlocked) >>> debug_wait_for_block_by_number 3
+delegate0                       19,651.83019801 PTS         
+default (unlocked) >>> debug_wait_for_block_by_number 2
 OK
 default (unlocked) >>> debug_wait 2
 OK
@@ -42,7 +42,7 @@ default (unlocked) >>> wallet_account_balance test-account
 ACCOUNT                         BALANCE                     
 ============================================================
 test-account                    49.95000000 PTS             
-default (unlocked) >>> debug_wait_for_block_by_number 5
+default (unlocked) >>> debug_wait_for_block_by_number 4
 OK
 default (unlocked) >>> debug_wait 2
 OK
@@ -53,8 +53,8 @@ test-account                    99.95000000 PTS
 default (unlocked) >>> history test-account
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        BALANCE                 FEE                 ID      
 ==============================================================================================================================================================================================
-<d-ign></d-ign>2         delegate0           test-account        0.00000000 PTS          register test-account                       0.00000000 PTS          0.00000000 PTS      <d-ign></d-ign>
-<d-ign></d-ign>3         account-for-client1 test-account        100.00000000 PTS        take this                                   100.00000000 PTS        0.00000000 PTS      <d-ign></d-ign>
-<d-ign></d-ign>4         test-account        account-for-client1 50.00000000 PTS         again                                       49.95000000 PTS         0.05000000 PTS      <d-ign></d-ign>
-<d-ign></d-ign>5         account-for-client1 test-account        50.00000000 PTS         take this again                             99.95000000 PTS         0.00000000 PTS      <d-ign></d-ign>
+<d-ign></d-ign>1         delegate0           test-account        0.00000000 PTS          register test-account                       0.00000000 PTS          0.00000000 PTS      <d-ign></d-ign>
+<d-ign></d-ign>2         account-for-client1 test-account        100.00000000 PTS        take this                                   100.00000000 PTS        0.00000000 PTS      <d-ign></d-ign>
+<d-ign></d-ign>3         test-account        account-for-client1 50.00000000 PTS         again                                       49.95000000 PTS         0.05000000 PTS      <d-ign></d-ign>
+<d-ign></d-ign>4         account-for-client1 test-account        50.00000000 PTS         take this again                             99.95000000 PTS         0.00000000 PTS      <d-ign></d-ign>
 default (unlocked) >>> quit

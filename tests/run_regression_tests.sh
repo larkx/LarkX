@@ -4,7 +4,7 @@ cd "`dirname $0`"
 #sudo launchctl limit maxfiles 1000000 1000000
 ulimit -n 100000
 
-rm -f regression_tests/wallet_backup/wallet_backup.json
+rm -f regression_tests/wallet_backup/wallet_backup.json regression_tests/blockchain_export_fork_graph/*.gv
 
 for regression_test in `ls regression_tests | grep -v "^\\_"`; do
     printf " Running test $regression_test...                                       \\r"
@@ -12,4 +12,4 @@ for regression_test in `ls regression_tests | grep -v "^\\_"`; do
     sleep 2
 done;
 printf "                                                                            \\r"
-rm -f regression_tests/wallet_backup/wallet_backup.json
+rm -f regression_tests/wallet_backup/wallet_backup.json regression_tests/blockchain_export_fork_graph/*.gv
