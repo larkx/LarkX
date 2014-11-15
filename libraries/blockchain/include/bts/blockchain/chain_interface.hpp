@@ -89,6 +89,7 @@ namespace bts { namespace blockchain {
          virtual void                       store_delegate_slate( slate_id_type id,
                                                                   const delegate_slate& slate )             = 0;
 
+         virtual share_type                 get_account_registration_fee()const;
          virtual share_type                 get_delegate_registration_fee()const;
          virtual share_type                 get_asset_registration_fee()const;
 

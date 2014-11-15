@@ -203,11 +203,14 @@ string pretty_blockchain_info( fc::mutable_variant_object info, cptr client )
     const auto relay_fee = info["relay_fee"].as<share_type>();
     info["relay_fee"] = client->get_chain()->to_pretty_asset( asset( relay_fee ) );
 
+    const auto account_reg_fee = info["account_reg_fee"].as<share_type>();
+    info["account_reg_fee"] = client->get_chain()->to_pretty_asset( asset( account_reg_fee ) );
+
     const auto delegate_reg_fee = info["delegate_reg_fee"].as<share_type>();
     info["delegate_reg_fee"] = client->get_chain()->to_pretty_asset( asset( delegate_reg_fee ) );
 
-    const auto asset_reg_fee = info["asset_reg_fee"].as<share_type>();
-    info["asset_reg_fee"] = client->get_chain()->to_pretty_asset( asset( asset_reg_fee ) );
+//    const auto asset_reg_fee = info["asset_reg_fee"].as<share_type>();
+//    info["asset_reg_fee"] = client->get_chain()->to_pretty_asset( asset( asset_reg_fee ) );
 
     out << fc::json::to_pretty_string( info ) << "\n";
     return out.str();

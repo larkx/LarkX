@@ -23,6 +23,7 @@ aliases: getconfig, get_config, config, blockchain_get_config
   "max_blockchain_size": 107374182400,
   "address_prefix": "PTS",
   "relay_fee": "0.01000000 PTS",
+  "account_reg_fee": "0.10000000 PTS",
   "delegate_num": 101,
   "delegate_reg_fee": "0.10000000 PTS",
   "name_size_max": 63,

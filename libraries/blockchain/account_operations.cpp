@@ -31,9 +31,8 @@ namespace bts { namespace blockchain {
       if ( this->name.size() < PTS_INITIAL_MIN_LENGTH )
           FC_ASSERT(!"Account names shorter than 5 characters cannot be registered at this time.");
 
-
-      eval_state.required_fees += asset( PTS_EXTRA_FEE_1, 0 );
-
+      eval_state.required_fees += asset( eval_state._current_state->get_account_registration_fee(),
+                                         0 );
 
       if( banned_names.find( this->name ) != banned_names.end() )
           FC_ASSERT(!"This account name is a reserved word. Operation failed.");

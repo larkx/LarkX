@@ -1,5 +1,6 @@
 #include <bts/blockchain/chain_interface.hpp>
 #include <bts/blockchain/exceptions.hpp>
+#include <bts/blockchain/pts_config.hpp>
 
 #include <algorithm>
 #include <locale>
@@ -66,6 +67,11 @@ namespace bts { namespace blockchain {
       if( condition.type == withdraw_signature_type )
          return condition.as<withdraw_with_signature>().owner;
       return address();
+   }
+
+   share_type chain_interface::get_account_registration_fee()const
+   {
+      return PTS_ACCOUNT_REG_FEE;
    }
 
    share_type chain_interface::get_delegate_registration_fee()const
