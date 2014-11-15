@@ -28,14 +28,14 @@ namespace bts { namespace blockchain {
       if( !blockchain::is_valid_account_name( this->name ) )
          FC_CAPTURE_AND_THROW( invalid_account_name, (name) );
 
-      if ( this->name.size() < PTS_INITIAL_MIN_LENGTH )
-          FC_ASSERT(!"Account names shorter than 5 characters cannot be registered at this time.");
+      FC_ASSERT( this->name.size() >= PTS_INITIAL_MIN_LENGTH,
+                 "Account names shorter than 5 characters cannot be registered at this time.");
 
       eval_state.required_fees += asset( eval_state._current_state->get_account_registration_fee(),
                                          0 );
 
-      if( banned_names.find( this->name ) != banned_names.end() )
-          FC_ASSERT(!"This account name is a reserved word. Operation failed.");
+      FC_ASSERT( banned_names.find( this->name ) == banned_names.end(),
+                 "This account name is a reserved word. Operation failed.");
 
       auto current_account = eval_state._current_state->get_account_record( this->name );
       if( current_account ) FC_CAPTURE_AND_THROW( account_already_registered, (name) );
