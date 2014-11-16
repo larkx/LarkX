@@ -507,6 +507,7 @@ namespace bts { namespace wallet {
 
      private:
          unique_ptr<detail::wallet_impl> my;
+         wallet_account_record create_dummy_account( const blockchain::public_key_type& address )const;
    };
 
    typedef shared_ptr<wallet> wallet_ptr;

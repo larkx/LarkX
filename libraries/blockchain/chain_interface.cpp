@@ -1,6 +1,8 @@
+#include <bts/blockchain/address.hpp>
 #include <bts/blockchain/chain_interface.hpp>
 #include <bts/blockchain/exceptions.hpp>
 #include <bts/blockchain/pts_config.hpp>
+#include <bts/blockchain/pts_address.hpp>
 
 #include <algorithm>
 #include <locale>
@@ -31,6 +33,19 @@ namespace bts { namespace blockchain {
           else if( c == '-' ) continue;
           else return false;
       }
+
+      try {
+        blockchain::pts_address dummy( str );
+        return false;
+      } catch (...) { }
+      try {
+        if ( blockchain::address::is_valid( str ) )
+          return false;
+      } catch (...) { }
+      try {
+        blockchain::public_key_type dummy( str );
+        return false;
+      } catch (...) { }
 
       if( supername.empty() )
         return true;

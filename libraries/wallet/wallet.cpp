@@ -241,7 +241,7 @@ namespace detail {
         {
            scan_block( block_num, private_keys, now );
 #ifdef BTS_TEST_NETWORK
-           scan_block_experimental( block_num, account_keys, account_balances, account_names );
+//           scan_block_experimental( block_num, account_keys, account_balances, account_names );
 #endif
            _scan_progress = float(block_num-start)/(min_end-start+1);
            self->set_last_scanned_block_number( block_num );
@@ -1359,8 +1359,13 @@ namespace detail {
    { try {
       FC_ASSERT( is_open() );
 
-      if( !blockchain::is_valid_account_name( account_name ) )
-          FC_THROW_EXCEPTION( invalid_name, "Invalid account name!", ("account_name",account_name) );
+      if( !blockchain::is_valid_account_name( account_name ) ) {
+        try {
+            return create_dummy_account( blockchain::public_key_type( account_name ) );
+        } catch (...) {
+            FC_THROW_EXCEPTION( invalid_name, "Invalid account name!", ("account_name",account_name) );
+        }
+      }
 
       auto local_account = my->_wallet_db.lookup_account( account_name );
       auto chain_account = my->_blockchain->get_account_record( account_name );
@@ -1391,6 +1396,16 @@ namespace detail {
 
       return *local_account;
    } FC_CAPTURE_AND_RETHROW() }
+
+   wallet_account_record wallet::create_dummy_account( const blockchain::public_key_type& address )const
+   {
+       account dummy;
+       dummy.account_address = address;
+       dummy.name = std::string(address);
+       dummy.owner_key = address;
+       dummy.set_active_key(fc::time_point::now(), address);
+       return wallet_account_record( dummy );
+   }
 
    void wallet::remove_contact_account( const string& account_name )
    { try {
@@ -1566,7 +1581,7 @@ namespace detail {
       {
          my->scan_state();
 #ifdef BTS_TEST_NETWORK
-         my->scan_genesis_experimental( get_account_balance_records() );
+//         my->scan_genesis_experimental( get_account_balance_records() );
 #endif
          ++start;
       }
@@ -2154,7 +2169,7 @@ namespace detail {
        const auto key_record = my->_wallet_db.lookup_key( withdraw_condition.memo->one_time_key );
        FC_ASSERT( key_record.valid() && key_record->has_private_key() );
        const auto private_key = key_record->decrypt_private_key( my->_wallet_password );
-
+           
        /* Get shared secret and check memo decryption */
        bool found_recipient = false;
        public_key_type recipient_public_key;
