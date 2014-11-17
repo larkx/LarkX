@@ -1,4 +1,3 @@
-#define BOOST_TEST_ALTERNATIVE_INIT_API
 #include <boost/test/unit_test.hpp>
 #include <bts/blockchain/chain_database.hpp>
 #include <bts/blockchain/genesis_config.hpp>
@@ -774,7 +773,11 @@ void replay_chain_database_in_stages()
 }
 #endif // defined ENABLE_REPLAY_CHAIN_DATABASE_TESTS
 
-bool init_unit_test_suite() 
+#ifdef BOOST_TEST_DYN_LINK
+bool init_unit_test_suite()
+#else
+boost::unit_test::test_suite* init_unit_test_suite( int argc, char* argv[] )
+#endif
 {
   boost::unit_test::framework::master_test_suite().p_name.value = "BlockchainTests2cc";
 
@@ -816,7 +819,11 @@ bool init_unit_test_suite()
   boost::unit_test::framework::master_test_suite().add(BOOST_TEST_CASE(&replay_chain_database));
   boost::unit_test::framework::master_test_suite().add(BOOST_TEST_CASE(&replay_chain_database_in_stages));
 #endif
+#ifdef BOOST_TEST_DYN_LINK
   return true;
+#else
+  return 0;
+#endif
 }
 #ifdef BOOST_TEST_DYN_LINK
 int main( int argc, char* argv[] )
