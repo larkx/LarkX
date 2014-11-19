@@ -18,7 +18,7 @@ default (unlocked) >>> blockchain_get_block 1
 {
   "previous": "0000000000000000000000000000000000000000",
   "block_num": 1,
-  "timestamp": "20140620T144030",
+  "timestamp": "2014-06-20T14:40:30",
   "transaction_digest": "c8cf12fe3180ed901a58a0697a522f1217de72d04529bd255627a4ad6164f0f0",
   "next_secret_hash": "e21c9e5c09658f5f20f0e071e15a1e09904c50f4",
   "previous_secret": "d3e0e5f6607044248b65db8a73b5315e6eb8d66f",
@@ -33,7 +33,7 @@ default (unlocked) >>> blockchain_get_block 2
 {
   "previous": "0e738f9f8e54c58a9b040a30d165563064512547",
   "block_num": 2,
-  "timestamp": "20140620T144050",
+  "timestamp": "2014-06-20T14:40:50",
   "transaction_digest": "c8cf12fe3180ed901a58a0697a522f1217de72d04529bd255627a4ad6164f0f0",
   "next_secret_hash": "59ab5a9d26bf99dc852de7abd6d5836cfe1235fb",
   "previous_secret": "95c5967f899dc015c063a1a0407e615cebbe6f69",
@@ -48,7 +48,7 @@ default (unlocked) >>> blockchain_get_block 3
 {
   "previous": "82b98ccd149cc728808d8509d9aeeb33bc2927ca",
   "block_num": 3,
-  "timestamp": "20140620T144100",
+  "timestamp": "2014-06-20T14:41:00",
   "transaction_digest": "c8cf12fe3180ed901a58a0697a522f1217de72d04529bd255627a4ad6164f0f0",
   "next_secret_hash": "4260b088a6ec65d162f26ae78045e9a7435c39df",
   "previous_secret": "8a957b1b53300f2bd4814d468e78060515cfeb73",
@@ -63,7 +63,7 @@ default (unlocked) >>> blockchain_get_block 4
 {
   "previous": "6dfd702a7bd576f85ff6f2d37ee61dcb5ef56a98",
   "block_num": 4,
-  "timestamp": "20140620T144110",
+  "timestamp": "2014-06-20T14:41:10",
   "transaction_digest": "c8cf12fe3180ed901a58a0697a522f1217de72d04529bd255627a4ad6164f0f0",
   "next_secret_hash": "211a11586181828f3d12939b43b31bf2bea9d9be",
   "previous_secret": "55456af773b2c397e37b8de9826cb7679f85a698",

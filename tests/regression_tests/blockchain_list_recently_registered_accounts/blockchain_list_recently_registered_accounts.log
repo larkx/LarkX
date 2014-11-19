@@ -39,12 +39,12 @@ default (unlocked) >>> blockchain_list_recently_registered_accounts
     "public_data": null,
     "owner_key": "PTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp",
     "active_key_history": [[
-        "20140620T144030",
+        "2014-06-20T14:40:30",
         "PTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp"
       ]
     ],
-    "registration_date": "20140620T144030",
-    "last_update": "20140620T144030",
+    "registration_date": "2014-06-20T14:40:30",
+    "last_update": "2014-06-20T14:40:30",
     "delegate_info": {
       "votes_for": 0,
       "blocks_produced": 0,
@@ -72,12 +72,12 @@ default (unlocked) >>> blockchain_list_recently_registered_accounts
     "public_data": null,
     "owner_key": "PTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp",
     "active_key_history": [[
-        "20140620T144030",
+        "2014-06-20T14:40:30",
         "PTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp"
       ]
     ],
-    "registration_date": "20140620T144030",
-    "last_update": "20140620T144030",
+    "registration_date": "2014-06-20T14:40:30",
+    "last_update": "2014-06-20T14:40:30",
     "delegate_info": {
       "votes_for": 0,
       "blocks_produced": 0,
@@ -94,12 +94,12 @@ default (unlocked) >>> blockchain_list_recently_registered_accounts
     "public_data": null,
     "owner_key": "PTS8my3ctcuLgAhGP4TVoKe6twNcSqJQBrjCcY4qHsL7CR2utUL41",
     "active_key_history": [[
-        "20140620T144040",
+        "2014-06-20T14:40:40",
         "PTS8my3ctcuLgAhGP4TVoKe6twNcSqJQBrjCcY4qHsL7CR2utUL41"
       ]
     ],
-    "registration_date": "20140620T144040",
-    "last_update": "20140620T144040",
+    "registration_date": "2014-06-20T14:40:40",
+    "last_update": "2014-06-20T14:40:40",
     "delegate_info": {
       "votes_for": 0,
       "blocks_produced": 0,
@@ -127,12 +127,12 @@ default (unlocked) >>> blockchain_list_recently_registered_accounts
     "public_data": null,
     "owner_key": "PTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp",
     "active_key_history": [[
-        "20140620T144030",
+        "2014-06-20T14:40:30",
         "PTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp"
       ]
     ],
-    "registration_date": "20140620T144030",
-    "last_update": "20140620T144030",
+    "registration_date": "2014-06-20T14:40:30",
+    "last_update": "2014-06-20T14:40:30",
     "delegate_info": {
       "votes_for": 0,
       "blocks_produced": 0,
@@ -149,12 +149,12 @@ default (unlocked) >>> blockchain_list_recently_registered_accounts
     "public_data": null,
     "owner_key": "PTS8my3ctcuLgAhGP4TVoKe6twNcSqJQBrjCcY4qHsL7CR2utUL41",
     "active_key_history": [[
-        "20140620T144040",
+        "2014-06-20T14:40:40",
         "PTS8my3ctcuLgAhGP4TVoKe6twNcSqJQBrjCcY4qHsL7CR2utUL41"
       ]
     ],
-    "registration_date": "20140620T144040",
-    "last_update": "20140620T144040",
+    "registration_date": "2014-06-20T14:40:40",
+    "last_update": "2014-06-20T14:40:40",
     "delegate_info": {
       "votes_for": 0,
       "blocks_produced": 0,
@@ -171,12 +171,12 @@ default (unlocked) >>> blockchain_list_recently_registered_accounts
     "public_data": null,
     "owner_key": "PTS8mbyATjXztLhJvpxgrtYLELNgsQ48NkATL9svARwLvb49EPPk4",
     "active_key_history": [[
-        "20140620T144050",
+        "2014-06-20T14:40:50",
         "PTS8mbyATjXztLhJvpxgrtYLELNgsQ48NkATL9svARwLvb49EPPk4"
       ]
     ],
-    "registration_date": "20140620T144050",
-    "last_update": "20140620T144050",
+    "registration_date": "2014-06-20T14:40:50",
+    "last_update": "2014-06-20T14:40:50",
     "delegate_info": {
       "votes_for": 0,
       "blocks_produced": 0,
@@ -252,12 +252,12 @@ default (unlocked) >>> blockchain_list_recently_registered_accounts
     "public_data": null,
     "owner_key": "PTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp",
     "active_key_history": [[
-        "20140620T144030",
+        "2014-06-20T14:40:30",
         "PTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp"
       ]
     ],
-    "registration_date": "20140620T144030",
-    "last_update": "20140620T144030",
+    "registration_date": "2014-06-20T14:40:30",
+    "last_update": "2014-06-20T14:40:30",
     "delegate_info": {
       "votes_for": 0,
       "blocks_produced": 0,
@@ -274,12 +274,12 @@ default (unlocked) >>> blockchain_list_recently_registered_accounts
     "public_data": null,
     "owner_key": "PTS8my3ctcuLgAhGP4TVoKe6twNcSqJQBrjCcY4qHsL7CR2utUL41",
     "active_key_history": [[
-        "20140620T144040",
+        "2014-06-20T14:40:40",
         "PTS8my3ctcuLgAhGP4TVoKe6twNcSqJQBrjCcY4qHsL7CR2utUL41"
       ]
     ],
-    "registration_date": "20140620T144040",
-    "last_update": "20140620T144040",
+    "registration_date": "2014-06-20T14:40:40",
+    "last_update": "2014-06-20T14:40:40",
     "delegate_info": {
       "votes_for": 0,
       "blocks_produced": 0,
@@ -296,12 +296,12 @@ default (unlocked) >>> blockchain_list_recently_registered_accounts
     "public_data": null,
     "owner_key": "PTS8mbyATjXztLhJvpxgrtYLELNgsQ48NkATL9svARwLvb49EPPk4",
     "active_key_history": [[
-        "20140620T144050",
+        "2014-06-20T14:40:50",
         "PTS8mbyATjXztLhJvpxgrtYLELNgsQ48NkATL9svARwLvb49EPPk4"
       ]
     ],
-    "registration_date": "20140620T144050",
-    "last_update": "20140620T144050",
+    "registration_date": "2014-06-20T14:40:50",
+    "last_update": "2014-06-20T14:40:50",
     "delegate_info": {
       "votes_for": 0,
       "blocks_produced": 0,
@@ -318,12 +318,12 @@ default (unlocked) >>> blockchain_list_recently_registered_accounts
     "public_data": null,
     "owner_key": "PTS52aPLfCxir5QcsjCWa6qMg31YRjbBUr3sU8Jc2MdaVTFA31jVQ",
     "active_key_history": [[
-        "20140620T144100",
+        "2014-06-20T14:41:00",
         "PTS52aPLfCxir5QcsjCWa6qMg31YRjbBUr3sU8Jc2MdaVTFA31jVQ"
       ]
     ],
-    "registration_date": "20140620T144100",
-    "last_update": "20140620T144100",
+    "registration_date": "2014-06-20T14:41:00",
+    "last_update": "2014-06-20T14:41:00",
     "delegate_info": {
       "votes_for": 0,
       "blocks_produced": 0,
