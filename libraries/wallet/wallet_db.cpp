@@ -13,7 +13,7 @@ namespace bts { namespace wallet {
      class wallet_db_impl
      {
         public:
-           wallet_db*                                        self;
+           wallet_db*                                        self = nullptr;
            bts::db::level_map<int32_t,generic_wallet_record> _records;
 
            void store_generic_record( const generic_wallet_record& record, bool sync )
@@ -21,7 +21,11 @@ namespace bts { namespace wallet {
                auto index = record.get_wallet_record_index();
                FC_ASSERT( index != 0 );
                FC_ASSERT( _records.is_open() );
+#ifndef BTS_TEST_NETWORK
+               _records.store( index, record, true ); // Sync
+#else
                _records.store( index, record, sync );
+#endif
                load_generic_record( record );
            } FC_CAPTURE_AND_RETHROW( (record) ) }
 
@@ -766,16 +770,20 @@ namespace bts { namespace wallet {
    }
 
    void wallet_db::remove_item( int32_t index )
-   {
-      try
-      {
-          my->_records.remove( index );
-      }
-      catch( const fc::key_not_found_exception& )
-      {
-          wlog("wallet_db tried to remove nonexistent index: ${i}", ("i",index) );
-      }
-   }
+   { try {
+       try
+       {
+#ifndef BTS_TEST_NETWORK
+           my->_records.remove( index, true ); // Sync
+#else
+           my->_records.remove( index );
+#endif
+       }
+       catch( const fc::key_not_found_exception& )
+       {
+           wlog("wallet_db tried to remove nonexistent index: ${i}", ("i",index) );
+       }
+   } FC_CAPTURE_AND_RETHROW( (index) ) }
 
    bool wallet_db::validate_password( const fc::sha512& password )const
    {
