@@ -536,7 +536,6 @@ namespace bts { namespace wallet {
    {
        auto ret = vector<wallet_balance_record>();
        uint32_t count = 0;
-       ulog("Balances.size(): ${size}", ("size", balances.size()));
        for( auto item : balances )
        {
            if (count == limit && limit != uint32_t(-1))
