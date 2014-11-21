@@ -82,8 +82,11 @@ libraries/fc/vendor/udt4 is copyright University of Illinois and covered by the 
 libraries/fc/vendor/cyoencode-1.0.2 is copyright Graham Bull and covered by the BSD license
 (2-clause). See licenses/Cyo_License.txt.
 
-libraries/leveldb is copyright The LevelDB Authors and covered by the BSD license (3-clause).
-See licenses/LevelDB_License.txt.
+libraries/leveldb and vendor/leveldb-1.12.0 are copyright The LevelDB Authors and covered by
+the BSD license (3-clause). See licenses/LevelDB_License.txt.
+
+vendor/miniupnp is copyright Thomas Bernard and covered by the BSD license (3-clause).
+See licenses/MiniUPNP_License.txt.
 
 CMakeModules/cotire.cmake is copyright Sascha Kratky and covered by the MIT license (modern
 style with sublicense). See licenses/See MIT_Modern.md.
