@@ -1,3 +1,4 @@
+#include <bts/blockchain/pts_config.hpp>
 #include <bts/client/client.hpp>
 #include <bts/client/client_impl.hpp>
 #include <bts/utilities/key_conversion.hpp>
@@ -209,10 +210,14 @@ wallet_transaction_record detail::client_impl::wallet_asset_create(
         int64_t precision,
         bool is_market_issued /* = false */ )
 {
+#ifndef PTS_SUPPRESS_ASSETS
   const auto record = _wallet->create_asset( symbol, asset_name, description, data, issuer_name,
                                              maximum_share_supply, precision, is_market_issued );
   network_broadcast_transaction( record.trx );
   return record;
+#else
+  FC_THROW_EXCEPTION(invalid_operation, "Unsupported operation!");
+#endif
 }
 
 wallet_transaction_record detail::client_impl::wallet_asset_issue(
@@ -221,9 +226,13 @@ wallet_transaction_record detail::client_impl::wallet_asset_issue(
         const string& to_account_name,
         const string& memo_message )
 {
+#ifndef PTS_SUPPRESS_ASSETS
   const auto record = _wallet->issue_asset( real_amount, symbol, to_account_name, memo_message );
   network_broadcast_transaction( record.trx );
   return record;
+#else
+  FC_THROW_EXCEPTION(invalid_operation, "Unsupported operation!");
+#endif
 }
 
 vector<string> detail::client_impl::wallet_list() const

@@ -213,6 +213,7 @@ namespace bts { namespace blockchain {
    }
 #endif
 
+#ifndef PTS_SUPPRESS_ASSETS
    void transaction::create_asset( const std::string& symbol,
                                    const std::string& name,
                                    const std::string& description,
@@ -238,6 +239,7 @@ namespace bts { namespace blockchain {
    {
       operations.push_back( issue_asset_operation( amount_to_issue ) );
    }
+#endif
 
    void transaction::cover( const asset& cover_amount,
                             const market_index_key& order_idx )

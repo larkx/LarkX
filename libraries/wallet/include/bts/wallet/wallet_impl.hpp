@@ -122,8 +122,10 @@ class wallet_impl : public chain_observer
       bool scan_register_account( const register_account_operation& op, wallet_transaction_record& trx_rec );
       bool scan_update_account( const update_account_operation& op, wallet_transaction_record& trx_rec );
 
+#ifndef PTS_SUPPRESS_ASSETS
       bool scan_create_asset( const create_asset_operation& op, wallet_transaction_record& trx_rec );
       bool scan_issue_asset( const issue_asset_operation& op, wallet_transaction_record& trx_rec );
+#endif
 
       bool scan_update_feed(const update_feed_operation& op, wallet_transaction_record& trx_rec );
 

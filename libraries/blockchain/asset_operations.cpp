@@ -2,6 +2,8 @@
 #include <bts/blockchain/chain_interface.hpp>
 #include <bts/blockchain/exceptions.hpp>
 
+#ifndef PTS_SUPPRESS_ASSETS
+
 namespace bts { namespace blockchain {
  
    /**
@@ -132,3 +134,5 @@ namespace bts { namespace blockchain {
    } FC_CAPTURE_AND_RETHROW( (*this) ) }
 
 } } // bts::blockchain
+
+#endif

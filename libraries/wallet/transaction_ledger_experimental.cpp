@@ -260,6 +260,7 @@ void wallet_impl::scan_transaction_experimental( const transaction_evaluation_st
         return account_names.count( account_name ) > 0;
     };
 
+#ifndef PTS_SUPPRESS_ASSETS
     const auto scan_create_asset = [&]( const create_asset_operation& op ) -> bool
     {
         const oaccount_record account_record = _blockchain->get_account_record( op.issuer_account_id );
@@ -290,6 +291,7 @@ void wallet_impl::scan_transaction_experimental( const transaction_evaluation_st
 
         return account_names.count( account_name ) > 0;
     };
+#endif
 
     const auto scan_ask = [&]( const ask_operation& op ) -> bool
     {
@@ -385,6 +387,7 @@ void wallet_impl::scan_transaction_experimental( const transaction_evaluation_st
             case withdraw_pay_op_type:
                 my_transaction |= scan_withdraw_pay( op.as<withdraw_pay_operation>() );
                 break;
+#ifndef PTS_SUPPRESS_ASSETS
             case create_asset_op_type:
                 my_transaction |= scan_create_asset( op.as<create_asset_operation>() );
                 break;
@@ -394,6 +397,7 @@ void wallet_impl::scan_transaction_experimental( const transaction_evaluation_st
             case issue_asset_op_type:
                 my_transaction |= scan_issue_asset( op.as<issue_asset_operation>() );
                 break;
+#endif
             case bid_op_type:
                 // TODO
                 break;

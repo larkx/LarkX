@@ -2,7 +2,10 @@
 
 #include <bts/blockchain/asset.hpp>
 #include <bts/blockchain/operations.hpp>
+#include <bts/blockchain/pts_config.hpp>
 #include <bts/blockchain/types.hpp>
+
+#ifndef PTS_SUPPRESS_ASSETS
 
 namespace bts { namespace blockchain { 
 
@@ -90,3 +93,5 @@ namespace bts { namespace blockchain {
 FC_REFLECT( bts::blockchain::create_asset_operation, (symbol)(name)(description)(public_data)(issuer_account_id)(maximum_share_supply)(precision) )
 FC_REFLECT( bts::blockchain::update_asset_operation, (asset_id)(name)(description)(public_data)(issuer_account_id) )
 FC_REFLECT( bts::blockchain::issue_asset_operation, (amount) )
+
+#endif

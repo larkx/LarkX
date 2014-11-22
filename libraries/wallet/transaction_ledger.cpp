@@ -450,6 +450,7 @@ wallet_transaction_record wallet_impl::scan_transaction(
             case update_account_op_type:
                 store_record |= scan_update_account( op.as<update_account_operation>(), *transaction_record );
                 break;
+#ifndef PTS_SUPPRESS_ASSETS
             case create_asset_op_type:
                 store_record |= scan_create_asset( op.as<create_asset_operation>(), *transaction_record );
                 break;
@@ -459,6 +460,7 @@ wallet_transaction_record wallet_impl::scan_transaction(
             case issue_asset_op_type:
                 store_record |= scan_issue_asset( op.as<issue_asset_operation>(), *transaction_record );
                 break;
+#endif
             case update_feed_op_type:
                 store_record |= scan_update_feed( op.as<update_feed_operation>(), *transaction_record );
                 break;
@@ -698,6 +700,7 @@ bool wallet_impl::scan_update_account( const update_account_operation& op, walle
     return true;
 } FC_CAPTURE_AND_RETHROW() }
 
+#ifndef PTS_SUPPRESS_ASSETS
 bool wallet_impl::scan_create_asset( const create_asset_operation& op, wallet_transaction_record& trx_rec )
 {
    if( op.issuer_account_id != asset_record::market_issued_asset )
@@ -744,6 +747,7 @@ bool wallet_impl::scan_issue_asset( const issue_asset_operation& op, wallet_tran
    }
    return false;
 }
+#endif
 
 bool wallet_impl::scan_update_feed( const update_feed_operation& op, wallet_transaction_record& trx_rec )
 {

@@ -349,6 +349,7 @@ namespace bts { namespace wallet {
                  const string& account_to_pay_with,
                  bool sign = true
                  );
+#ifndef PTS_SUPPRESS_ASSETS
          wallet_transaction_record create_asset(
                  const string& symbol,
                  const string& asset_name,
@@ -367,6 +368,7 @@ namespace bts { namespace wallet {
                  const string& memo_message,
                  bool sign = true
                  );
+#endif
          /**
           *  ie: submit_bid( 10 BTC at 600.34 USD per BTC )
           *

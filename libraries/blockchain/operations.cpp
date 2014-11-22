@@ -19,9 +19,11 @@ namespace bts { namespace blockchain {
    const operation_type_enum update_account_operation::type         = update_account_op_type;
    const operation_type_enum withdraw_pay_operation::type           = withdraw_pay_op_type;
 
+#ifndef PTS_SUPPRESS_ASSETS
    const operation_type_enum create_asset_operation::type           = create_asset_op_type;
    const operation_type_enum update_asset_operation::type           = update_asset_op_type;
    const operation_type_enum issue_asset_operation::type            = issue_asset_op_type;
+#endif
 
 #if 0
    const operation_type_enum fire_delegate_operation::type          = fire_delegate_op_type;
@@ -49,9 +51,11 @@ namespace bts { namespace blockchain {
       bts::blockchain::operation_factory::instance().register_operation<withdraw_operation>();
       bts::blockchain::operation_factory::instance().register_operation<withdraw_all_operation>();
       bts::blockchain::operation_factory::instance().register_operation<deposit_operation>();
+#ifndef PTS_SUPPRESS_ASSETS
       bts::blockchain::operation_factory::instance().register_operation<create_asset_operation>();
       bts::blockchain::operation_factory::instance().register_operation<issue_asset_operation>();
       bts::blockchain::operation_factory::instance().register_operation<update_asset_operation>();
+#endif
       bts::blockchain::operation_factory::instance().register_operation<register_account_operation>();
       bts::blockchain::operation_factory::instance().register_operation<withdraw_pay_operation>();
       bts::blockchain::operation_factory::instance().register_operation<update_account_operation>();
@@ -99,6 +103,7 @@ namespace bts { namespace blockchain {
       converter_itr->second->from_variant( in, output );
    } FC_RETHROW_EXCEPTIONS( warn, "", ("in",in) ) }
 
+#ifndef PTS_SUPPRESS_ASSETS
    bool create_asset_operation::is_power_of_ten( int64_t n )
    {
       switch( n )
@@ -125,6 +130,7 @@ namespace bts { namespace blockchain {
       }
       return false;
    }
+#endif
 
 } } // bts::blockchain
 

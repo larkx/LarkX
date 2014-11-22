@@ -2863,6 +2863,7 @@ namespace detail {
       return record;
    } FC_CAPTURE_AND_RETHROW( (account_to_register)(public_data)(pay_with_account_name)(delegate_pay_rate) ) }
 
+#ifndef PTS_SUPPRESS_ASSETS
    wallet_transaction_record wallet::create_asset(
            const string& symbol,
            const string& asset_name,
@@ -2995,6 +2996,7 @@ namespace detail {
 
       return record;
    } FC_CAPTURE_AND_RETHROW() }
+#endif
 
    void wallet::update_account_private_data( const string& account_to_update,
                                              const variant& private_data )
