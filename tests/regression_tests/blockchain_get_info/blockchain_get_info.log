@@ -12,7 +12,7 @@ Returns:
 aliases: getconfig, get_config, config, blockchain_get_config
 (wallet closed) >>> blockchain_get_info
 {
-  "blockchain_id": "07247855cdc069157c264e6635ad26a6ac66689b2b9dab37e3d8d4185b941897",
+  "blockchain_id": "d352cdd4a6d9a1b18d811733c528a1323496100330d1cab408c7399a0d7e3180",
   "symbol": "PTS",
   "name": "PTS",
   "version": 1,

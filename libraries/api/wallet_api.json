@@ -172,6 +172,30 @@
           "prerequisites" : ["wallet_unlocked"]
       },
       {
+          "method_name": "wallet_import_by_signedmsg",
+          "description": "Import genesis balance using an external signature.",
+          "return_type": "transaction_record",
+          "parameters" : [
+          {
+              "name" : "address",
+              "type" : "string",
+              "description" : "PTS or BTC address from which to import"
+          },
+          {
+              "name" : "account",
+              "type" : "string",
+              "description" : "account to receive the imported balance"
+          },
+          {
+              "name" : "signature",
+              "type" : "string",
+              "description" : "signature created by pts or bitcoin wallet - if you leave this out you'll get an explanation how to create it",
+              "default_value" : null
+          }
+          ],
+          "prerequisites" : ["wallet_unlocked"]
+      },
+      {
         "method_name": "wallet_close",
         "description": "Closes the curent wallet if one is open",
         "return_type": "void",

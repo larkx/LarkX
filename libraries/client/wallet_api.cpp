@@ -376,6 +376,21 @@ string detail::client_impl::wallet_import_private_key(const string& wif_key_to_i
   return oacct->name;
 }
 
+wallet_transaction_record detail::client_impl::wallet_import_by_signedmsg(const string& src_address,
+                                       const string& dest_account_name,
+                                       const string& signature)
+{
+  fc::ecc::compact_signature csig;
+  string decoded = fc::base64_decode( signature );
+  if (decoded.size() > 0) {
+      FC_ASSERT(decoded.size() <= csig.size());
+      for (unsigned int i = 0; i < decoded.size(); i++) {
+          csig.data[i] = decoded[i];
+      }
+  }
+  return _wallet->import_by_signedmsg( src_address, dest_account_name, csig );
+}
+
 string detail::client_impl::wallet_dump_private_key( const std::string& input )
 {
   try

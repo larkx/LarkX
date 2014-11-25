@@ -1,0 +1,140 @@
+(wallet closed) >>> help wallet_import_by_signedmsg
+Usage:
+wallet_import_by_signedmsg <address> <account> [signature]                                            Import genesis balance using an external signature.
+Import genesis balance using an external signature.
+
+Parameters:
+  address (string, required): PTS or BTC address from which to import
+  account (string, required): account to receive the imported balance
+  signature (string, optional, defaults to null): signature created by pts or bitcoin wallet - if you leave this out you'll get an explanation how to create it
+
+Returns:
+  transaction_record
+(wallet closed) >>> wallet_create y1 123456789
+OK
+y1 (unlocked) >>> wallet_account_create import1
+"PTS8aj4rwi1RLHxtqFb1i5XxiCXxoxHhSabYyj31e89wXqErocGdz"
+y1 (unlocked) >>> wallet_dump_private_key PTS8aj4rwi1RLHxtqFb1i5XxiCXxoxHhSabYyj31e89wXqErocGdz
+"5KksW55L9ySPZ794VtapnuN2zPEZBEkrpWXHuMHTk3oynD99PKD"
+y1 (unlocked) >>> wallet_create y2 123456789
+OK
+y2 (unlocked) >>> wallet_account_create import2
+"PTS5rxHKF2f45vGEuE1bd4zXuGV4kRsnHjh8rotdK8HMp47a549WN"
+y2 (unlocked) >>> wallet_dump_private_key PTS5rxHKF2f45vGEuE1bd4zXuGV4kRsnHjh8rotdK8HMp47a549WN
+"5KB5qE4N1RjYjy3S9vWLXzk8c4JWYYWq8wHjMQsAUasK4M7r9nb"
+y2 (unlocked) >>> wallet_import_by_signedmsg Psdoo24PLxmmAShaq8aaXm3r888kYnsfX5 import1
+Command failed with exception: Assert Exception (10)
+opt_account.valid(): Unable to find account 'import1'
+
+
+
+
+y2 (unlocked) >>> wallet_import_by_signedmsg 1sdoo24PLxmmAShaq8aaXm3r888kYnsfX5 import2
+Command failed with exception: invalid pts address (30001)
+invalid pts_address 1sdoo24PLxmmAShaq8aaXm3r888kYnsfX5
+
+
+
+y2 (unlocked) >>> wallet_import_by_signedmsg Psdoo24PLxmmAShaq8aaXm3r888kYnsfX4 import2
+Command failed with exception: invalid pts address (30001)
+invalid pts_address Psdoo24PLxmmAShaq8aaXm3r888kYnsfX4
+
+
+
+y2 (unlocked) >>> wallet_import_by_signedmsg Psdoo24PLxmmAShaq8aaXm3r888kYnsfX5 import2
+Command failed with exception: Assert Exception (10)
+signature != signature_type(): Create a signature using the command 'signmessage Psdoo24PLxmmAShaq8aaXm3r888kYnsfX5 "Transfer Psdoo24PLxmmAShaq8aaXm3r888kYnsfX5 to PTS5rxHKF2f45vGEuE1bd4zXuGV4kRsnHjh8rotdK8HMp47a549WN"'
+
+
+
+y2 (unlocked) >>> wallet_import_by_signedmsg Psdoo24PLxmmAShaq8aaXm3r888kYnsfX5 import2 xyz
+y2 (unlocked) >>> wallet_import_by_signedmsg Psdoo24PLxmmAShaq8aaXm3r888kYnsfX5 import2 xyz=
+y2 (unlocked) >>> wallet_import_by_signedmsg Psdoo24PLxmmAShaq8aaXm3r888kYnsfX5 import2 IELkf13xdPzRz2wFo54qQLUPmK8DH4yZaIi/L7se0WT6j7oAzxVv+QB/Kjc+PE+Fq7TwBNidafYBlH1eGVXbfdI=
+y2 (unlocked) >>> debug_wait_for_block_by_number 2
+OK
+y2 (unlocked) >>> wallet_open y1
+OK
+y1 (locked) >>> wallet_unlock 999 123456789
+OK
+y1 (unlocked) >>> debug_wait 2
+OK
+y1 (unlocked) >>> wallet_account_register import1 import1
+TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID      
+======================================================================================================================================================================
+<d-ign></d-ign>PENDING   import1             import1             0.00000000 PTS          register import1                            0.10000000 PTS      <d-ign></d-ign>
+y1 (unlocked) >>> debug_wait_for_block_by_number 3
+OK
+y1 (unlocked) >>> wallet_open y2
+OK
+y2 (locked) >>> wallet_unlock 999 123456789
+OK
+y2 (unlocked) >>> debug_wait 2
+OK
+y2 (unlocked) >>> wallet_account_balance
+y2 (unlocked) >>> wallet_account_transaction_history
+y2 (unlocked) >>> wallet_import_by_signedmsg 17uzBLwTLQ1WNZfeEN8ttBJNWN8HLxheav import2
+Command failed with exception: Assert Exception (10)
+signature != signature_type(): Create a signature using the command 'signmessage 17uzBLwTLQ1WNZfeEN8ttBJNWN8HLxheav "Transfer 17uzBLwTLQ1WNZfeEN8ttBJNWN8HLxheav to PTS5rxHKF2f45vGEuE1bd4zXuGV4kRsnHjh8rotdK8HMp47a549WN"'
+
+
+
+y2 (unlocked) >>> wallet_import_by_signedmsg 17uzBLwTLQ1WNZfeEN8ttBJNWN8HLxheav import1 IFLGzyWe/6sYPX5n7mkcOSe1+pyc24PnWfi/C1/O9PchmolWuFILTU8WbotFV/OO+JdTLY78DLop9WYa9T3OCLs=
+Command failed with exception: Assert Exception (10)
+key.valid(): 
+
+
+
+
+y2 (unlocked) >>> wallet_import_by_signedmsg 17uzBLwTLQ1WNZfeEN8ttBJNWN8HLxheav import2 IFLGzyWe/6sYPX5n7mkcOSe1+pyc24PnWfi/C1/O9PchmolWuFILTU8WbotFV/OO+JdTLY78DLop9WYa9T3OCLs=
+y2 (unlocked) >>> wallet_account_balance
+y2 (unlocked) >>> wallet_account_transaction_history
+y2 (unlocked) >>> wallet_open y1
+OK
+y1 (locked) >>> wallet_unlock 999 123456789
+OK
+y1 (unlocked) >>> debug_wait 2
+OK
+y1 (unlocked) >>> wallet_import_by_signedmsg Psdoo24PLxmmAShaq8aaXm3r888kYnsfX5 import1
+Command failed with exception: Assert Exception (10)
+signature != signature_type(): Create a signature using the command 'signmessage Psdoo24PLxmmAShaq8aaXm3r888kYnsfX5 "Transfer Psdoo24PLxmmAShaq8aaXm3r888kYnsfX5 to PTS8aj4rwi1RLHxtqFb1i5XxiCXxoxHhSabYyj31e89wXqErocGdz"'
+
+
+
+y1 (unlocked) >>> wallet_import_by_signedmsg Psdoo24PLxmmAShaq8aaXm3r888kYnsfX5 import1 IGLYnWTgUa9xuBOUpqWPkbfB+Kh7Dcz9gYHD8Lkx8zNFloFG6Keq30IqB4NbarGrD9F6P0qtdsVl078zjCpFHRM=
+y1 (unlocked) >>> wallet_import_by_signedmsg PoTDjB28K29rQgwQtGBB2WN6THruZBVVFg import1
+Command failed with exception: Assert Exception (10)
+signature != signature_type(): Create a signature using the command 'signmessage PoTDjB28K29rQgwQtGBB2WN6THruZBVVFg "Transfer PoTDjB28K29rQgwQtGBB2WN6THruZBVVFg to PTS8aj4rwi1RLHxtqFb1i5XxiCXxoxHhSabYyj31e89wXqErocGdz"'
+
+
+
+y1 (unlocked) >>> wallet_import_by_signedmsg PoTDjB28K29rQgwQtGBB2WN6THruZBVVFg import1 IEbam/vMJ2VCWHpIzA8Pa56L73dgA9R/RYgSnlrgmCTUG+qjR8CiexMeDSNa7kyZ6rILlaIJ1Dvpej6+BEqra4k=
+y1 (unlocked) >>> wallet_account_balance
+y1 (unlocked) >>> wallet_account_transaction_history
+y1 (unlocked) >>> wallet_import_by_signedmsg 17Eb8J5CSushUatgU5PufRPpeWUCborAKe import1
+Command failed with exception: Assert Exception (10)
+signature != signature_type(): Create a signature using the command 'signmessage 17Eb8J5CSushUatgU5PufRPpeWUCborAKe "Transfer 17Eb8J5CSushUatgU5PufRPpeWUCborAKe to PTS8aj4rwi1RLHxtqFb1i5XxiCXxoxHhSabYyj31e89wXqErocGdz"'
+
+
+
+y1 (unlocked) >>> wallet_import_by_signedmsg 17Eb8J5CSushUatgU5PufRPpeWUCborAKe import1 IMKgRtXtQ5/4Uc8MtxlbZTMioQT9pRZRp46dE1gNIsHFiPZqCuofC/ZJRKefok/m0f4b7d7THUALuffz2wF5iRU=
+y1 (unlocked) >>> debug_wait_for_block_by_number 4
+OK
+y1 (unlocked) >>> wallet_import_private_key 5KB5qE4N1RjYjy3S9vWLXzk8c4JWYYWq8wHjMQsAUasK4M7r9nb import2 true true
+"import2"
+y1 (unlocked) >>> debug_wait 2
+OK
+y1 (unlocked) >>> wallet_account_balance
+y1 (unlocked) >>> wallet_account_transaction_history
+y1 (unlocked) >>> wallet_open y2
+OK
+y2 (locked) >>> wallet_unlock 999 123456789
+OK
+y2 (unlocked) >>> debug_wait 2
+OK
+y2 (unlocked) >>> wallet_import_private_key 5KksW55L9ySPZ794VtapnuN2zPEZBEkrpWXHuMHTk3oynD99PKD import1 true true
+"import1"
+y2 (unlocked) >>> debug_wait 2
+OK
+y2 (unlocked) >>> wallet_account_balance
+y2 (unlocked) >>> wallet_account_transaction_history
+y2 (unlocked) >>> quit

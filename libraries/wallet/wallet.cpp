@@ -1571,6 +1571,21 @@ namespace detail {
 
    } FC_CAPTURE_AND_RETHROW( (account_name) ) }
 
+   wallet_transaction_record wallet::import_by_signedmsg(const string& src_address,
+                                                         const string& dest_account_name,
+                                                         const signature_type& signature)
+   {
+      FC_ASSERT( is_open() );
+      FC_ASSERT( is_unlocked() );
+      const pts_address src( src_address );
+      public_key_type dest_key = get_account_public_key( dest_account_name );
+      FC_ASSERT( signature != signature_type(), "Create a signature using the command 'signmessage " + src_address + " \"Transfer " + src_address + " to " + std::string(dest_key) + "\"'");
+      const auto private_key = get_private_key( dest_key );
+      FC_ASSERT( dest_key == private_key.get_public_key() );
+
+      return wallet_transaction_record();
+   }
+
    void wallet::scan_chain( uint32_t start, uint32_t end, bool fast_scan )
    { try {
       FC_ASSERT( is_open() );

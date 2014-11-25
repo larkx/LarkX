@@ -218,12 +218,14 @@ namespace bts { namespace wallet {
                  const string& wallet_dat_passphrase,
                  const string& account_name
                  );
-
          void import_keyhotee( const string& firstname,
                             const string& middlename,
                             const string& lastname,
                             const string& brainkey,
                             const string& keyhoteeid );
+         wallet_transaction_record import_by_signedmsg(const string& src_address,
+                                                       const string& dest_account_name,
+                                                       const signature_type& signature);
 
          public_key_type import_private_key( const private_key_type& key,
                                              const string& account_name,
