@@ -141,6 +141,18 @@ namespace bts { namespace wallet {
                                          const string& memo,
                                          vote_selection_method vote_method = vote_recommended,
                                          fc::optional<public_key_type> memo_sender = fc::optional<public_key_type>());
+      /** @brief Claim genesis balance by means of an external signature
+       * 
+       * @param recipient the account to which the claim is to be credited
+       * @param source the BTC or PTS address from which to claim the genesis balance
+       * @param signature an externally generated signature for the message "Transfer <source> to <recipient>"
+       * @param vote_method The method with which to select the delegate vote for the deposited asset
+       * @return 
+       */
+      transaction_builder& claim_balance( const account_record& recipient,
+                                          const pts_address &source,
+                                          const fc::ecc::compact_signature &signature,
+                                          const vote_selection_method vote_method );
       /**
        * @brief Cancel a single order
        * @param order_id

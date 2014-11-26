@@ -159,6 +159,65 @@ transaction_builder& transaction_builder::deposit_asset(const bts::wallet::walle
    return *this;
 } FC_CAPTURE_AND_RETHROW( (recipient)(amount)(memo) ) }
 
+transaction_builder& transaction_builder::claim_balance( const bts::blockchain::account_record& recipient,
+                                                         const pts_address &source,
+                                                         const fc::ecc::compact_signature &signature,
+                                                         const vote_selection_method vote_method)
+{ try {
+   const string memo = "Genesis claim from " + std::string(source);
+
+   optional<public_key_type> titan_one_time_key;
+
+   public_key_type rcpt_key = recipient.active_key();
+   const asset amount = _wimpl->claim_to_transaction( recipient, source, signature,
+                                                      trx, required_signatures );
+   credit_balance(source, amount);
+
+   asset required_fee = _wimpl->self->get_transaction_fee( amount.asset_id );
+
+   FC_ASSERT( amount.asset_id == required_fee.asset_id );
+
+   asset to_claim(amount);
+   to_claim -= required_fee;
+
+   if( recipient.is_public_account() )
+   {
+      trx.deposit(recipient.active_key(), to_claim,
+                  _wimpl->select_slate(trx, to_claim.asset_id, vote_method));
+   } else {
+      auto one_time_key = _wimpl->create_one_time_key();
+      titan_one_time_key = one_time_key.get_public_key();
+      trx.deposit_to_account(recipient.active_key(),
+                             to_claim,
+                             _wimpl->self->get_private_key(rcpt_key),
+                             cli::pretty_shorten(memo, BTS_BLOCKCHAIN_MAX_MEMO_SIZE),
+                             _wimpl->select_slate(trx, to_claim.asset_id, vote_method),
+                             rcpt_key,
+                             one_time_key,
+                             from_memo);
+   }
+
+   deduct_balance(source, to_claim);
+
+   ledger_entry entry;
+//   entry.from_account = payer.owner_key;
+   entry.to_account = recipient.owner_key;
+   entry.amount = to_claim;
+   entry.memo = memo;
+   entry.memo_from_account = rcpt_key;
+   transaction_record.ledger_entries.push_back(std::move(entry));
+
+   auto memo_signature = _wimpl->self->get_private_key(rcpt_key)
+                                      .sign_compact(fc::sha256::hash(memo.data(),
+                                                    memo.size()));
+   notices.emplace_back(std::make_pair(mail::transaction_notice_message(string(memo),
+                                                                        std::move(titan_one_time_key),
+                                                                        std::move(memo_signature)),
+                                       recipient.active_key()));
+
+   return *this;
+} FC_CAPTURE_AND_RETHROW( (recipient)(source) ) }
+
 transaction_builder& transaction_builder::cancel_market_order(const order_id_type& order_id)
 { try {
    const auto order = _wimpl->_blockchain->get_market_order( order_id );
@@ -424,12 +483,17 @@ transaction_builder& transaction_builder::finalize()
    for( auto outstanding_balance : outstanding_balances )
    {
       asset balance(outstanding_balance.second, outstanding_balance.first.second);
-      address deposit_address = order_key_for_account(outstanding_balance.first.first);
-      string account_name = _wimpl->_wallet_db.lookup_account(outstanding_balance.first.first)->name;
-
       if( balance.amount == 0 ) continue;
-      else if( balance.amount > 0 ) trx.deposit(deposit_address, balance, slate_id);
-      else _wimpl->withdraw_to_transaction(-balance, account_name, trx, required_signatures);
+      if( balance.amount > 0 )
+      {
+          address deposit_address = order_key_for_account(outstanding_balance.first.first);
+          trx.deposit(deposit_address, balance, slate_id);
+      }
+      else
+      {
+          string account_name = _wimpl->_wallet_db.lookup_account(outstanding_balance.first.first)->name;
+          _wimpl->withdraw_to_transaction(-balance, account_name, trx, required_signatures);
+      }
    }
 
    return *this;

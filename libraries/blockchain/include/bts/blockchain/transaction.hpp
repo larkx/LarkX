@@ -40,6 +40,11 @@ namespace bts { namespace blockchain {
 
       void define_delegate_slate( delegate_slate s );
 
+      void claim( const balance_id_type& bid,
+                  const bts::blockchain::account_record& recipient,
+                  const pts_address &source,
+                  const fc::ecc::compact_signature signature );
+
       void withdraw( const balance_id_type& account,
                      share_type amount );
 

@@ -1,3 +1,4 @@
+#include <bts/blockchain/balance_operations.hpp>
 #include <bts/blockchain/pts_config.hpp>
 #include <bts/client/client.hpp>
 #include <bts/client/client_impl.hpp>
@@ -376,19 +377,37 @@ string detail::client_impl::wallet_import_private_key(const string& wif_key_to_i
   return oacct->name;
 }
 
-wallet_transaction_record detail::client_impl::wallet_import_by_signedmsg(const string& src_address,
-                                       const string& dest_account_name,
-                                       const string& signature)
+static const fc::ecc::compact_signature decode_signature( const string &base64 )
 {
   fc::ecc::compact_signature csig;
-  string decoded = fc::base64_decode( signature );
+  string decoded = fc::base64_decode( base64 );
   if (decoded.size() > 0) {
       FC_ASSERT(decoded.size() <= csig.size());
       for (unsigned int i = 0; i < decoded.size(); i++) {
           csig.data[i] = decoded[i];
       }
   }
-  return _wallet->import_by_signedmsg( src_address, dest_account_name, csig );
+  return csig;
+}
+
+wallet_transaction_record detail::client_impl::wallet_import_by_signedmsg( const string& dest_account_name,
+                                                                           const string& src_address,
+                                                                           const string& signature)
+{
+  pts_address source( src_address );
+  public_key_type dest_key = _wallet->get_account_public_key( dest_account_name );
+  FC_ASSERT( signature.size() > 0, "Create a signature using the command 'signmessage " + src_address + " \"" + claim_operation::claim_to_sign( source, dest_key ) + "\"'");
+  const auto private_key = _wallet->get_private_key( dest_key );
+  FC_ASSERT( dest_key == private_key.get_public_key() );
+  auto record = _wallet->create_transaction_builder()
+                       ->claim_balance( _wallet->get_account(dest_account_name),
+                                        source,
+                                        decode_signature( signature ),
+                                        vote_all )
+                          .finalize()
+                          .sign();
+  network_broadcast_transaction( record.trx );
+  return record;
 }
 
 string detail::client_impl::wallet_dump_private_key( const std::string& input )

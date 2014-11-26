@@ -97,6 +97,22 @@ namespace detail {
       FC_CAPTURE_AND_THROW( insufficient_funds, (required)(available)(balance_records) );
    } FC_CAPTURE_AND_RETHROW( (amount_to_withdraw)(from_account_name)(trx)(required_signatures) ) }
 
+   const asset wallet_impl::claim_to_transaction( const bts::blockchain::account_record& recipient,
+                                                  const pts_address &source,
+                                                  const fc::ecc::compact_signature signature,
+                                                  signed_transaction& trx,
+                                                  unordered_set<address>& required_signatures )
+   {
+      balance_record brec( source, asset( 0, 0 ), 0 );
+      obalance_record record = _blockchain->get_balance_record( brec.id() );
+      FC_ASSERT( record.valid(), "No unspent genesis balance found for " + string(source) );
+      const asset balance = record->get_balance();
+      FC_ASSERT( balance.amount > 0 && balance.asset_id == 0, "No unspent genesis balance found for " + string(source) );
+      trx.claim( record->id(), recipient, source, signature );
+      required_signatures.insert( recipient.active_address() );
+      return balance;
+   }
+
    void wallet_impl::authorize_update(unordered_set<address>& required_signatures, oaccount_record account, bool need_owner_key )
    {
      owallet_key_record oauthority_key = _wallet_db.lookup_key(account->owner_key);
@@ -1570,21 +1586,6 @@ namespace detail {
       FC_ASSERT( false, "Error parsing WIF private key" );
 
    } FC_CAPTURE_AND_RETHROW( (account_name) ) }
-
-   wallet_transaction_record wallet::import_by_signedmsg(const string& src_address,
-                                                         const string& dest_account_name,
-                                                         const signature_type& signature)
-   {
-      FC_ASSERT( is_open() );
-      FC_ASSERT( is_unlocked() );
-      const pts_address src( src_address );
-      public_key_type dest_key = get_account_public_key( dest_account_name );
-      FC_ASSERT( signature != signature_type(), "Create a signature using the command 'signmessage " + src_address + " \"Transfer " + src_address + " to " + std::string(dest_key) + "\"'");
-      const auto private_key = get_private_key( dest_key );
-      FC_ASSERT( dest_key == private_key.get_public_key() );
-
-      return wallet_transaction_record();
-   }
 
    void wallet::scan_chain( uint32_t start, uint32_t end, bool fast_scan )
    { try {

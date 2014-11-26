@@ -177,14 +177,14 @@
           "return_type": "transaction_record",
           "parameters" : [
           {
-              "name" : "address",
-              "type" : "string",
-              "description" : "PTS or BTC address from which to import"
-          },
-          {
               "name" : "account",
               "type" : "string",
               "description" : "account to receive the imported balance"
+          },
+          {
+              "name" : "address",
+              "type" : "string",
+              "description" : "PTS or BTC address from which to import"
           },
           {
               "name" : "signature",

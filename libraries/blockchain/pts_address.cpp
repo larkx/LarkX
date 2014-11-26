@@ -63,6 +63,41 @@ namespace bts { namespace blockchain {
         return fc::to_base58( addr.data, sizeof(addr) );
    }
 
+   /** @brief find the magic string used for signing messages
+    *
+    * @param version the address version byte identifying a blockchain
+    * @return the string prepended to signed messages before hashing
+    */
+   std::string const pts_address::signature_magic( char const version )
+   {
+        switch (version)
+        {
+            case 0: return "Bitcoin Signed Message:\n";
+            case 56: return "BitShares-PTS Signed Message:\n";
+            default: FC_THROW_EXCEPTION( invalid_pts_address, "Unsupported address version " + version );
+        }
+   }
+
+   static void add( fc::sha256::encoder &hasher, std::string const &data )
+   {
+       if( data.size() < 253 ) {
+           char len = data.size();
+           hasher.write( &len, sizeof(len) );
+       } else {
+           FC_THROW_EXCEPTION( fc::invalid_arg_exception, "String '" + data + "' too long" );
+       }
+       hasher.write( data.c_str(), data.size() );
+   }
+
+   fc::sha256 const pts_address::double_hash( std::string const &message,  char const version)
+   {
+       fc::sha256::encoder hasher;
+       add( hasher, signature_magic( version ) );
+       add( hasher, message );
+       fc::sha256 single = hasher.result();
+       return fc::sha256::hash( single.data(), sizeof(single) );
+   }
+
 } } // namespace bts
 
 namespace fc 

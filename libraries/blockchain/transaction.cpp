@@ -98,6 +98,15 @@ namespace bts { namespace blockchain {
       operations.emplace_back(op);
    }
 
+   void transaction::claim( const balance_id_type& bid,
+                            const bts::blockchain::account_record& recipient,
+                            const pts_address &source,
+                            const fc::ecc::compact_signature signature )
+   {
+      operations.push_back( claim_operation( bid, recipient.active_key(),
+                                             source, signature ) );
+   }
+
    void transaction::withdraw( const balance_id_type& account,
                                share_type             amount )
    { try {

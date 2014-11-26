@@ -145,6 +145,74 @@ namespace bts { namespace blockchain {
        eval_state._current_state->store_balance_record( *cur_record );
    } FC_CAPTURE_AND_RETHROW( (*this) ) }
 
+   static balance_record check_claim_input( transaction_evaluation_state& eval_state,
+                                            const balance_id_type &id )
+   {
+      obalance_record current_balance_record = eval_state._current_state->get_balance_record( id );
+      if( !current_balance_record )
+         FC_CAPTURE_AND_THROW( unknown_balance_record, (id) );
+
+      FC_ASSERT( current_balance_record->condition.asset_id == 0, "Can only claim " BTS_BLOCKCHAIN_SYMBOL " from genesis!" );
+      FC_ASSERT( current_balance_record->genesis_info.valid(), "Can only claim genesis balances!" );
+      return *current_balance_record;
+   }
+
+   static void withdraw_claim_input( transaction_evaluation_state& eval_state,
+                                     balance_record &balance_record )
+   {
+      share_type amount = balance_record.balance;
+
+      // update delegate vote on withdrawn account..
+      if( balance_record.condition.delegate_slate_id )
+         eval_state.adjust_vote( balance_record.condition.delegate_slate_id, -amount );
+
+      balance_record.balance = 0;
+      balance_record.last_update = eval_state._current_state->now();
+
+      eval_state._current_state->store_balance_record( balance_record );
+      eval_state.add_balance( asset(amount, 0) );
+   }
+
+   string claim_operation::claim_to_sign( pts_address const &source,
+                                          public_key_type const &dest )
+   {
+       return "Transfer " + string(source) + " to " + string(dest);
+   }
+
+   static fc::sha256 const double_hash_message( pts_address const &source,
+                                                public_key_type const &dest )
+   {
+       string message = claim_operation::claim_to_sign( source, dest );
+       return pts_address::double_hash( message, source.version() );
+   }
+
+   void claim_operation::validate_claim_signature() const
+   {
+       const fc::sha256 hash = double_hash_message( source, dest );
+       pts_address signed_by( fc::ecc::public_key( sig, hash ), true,
+                              source.version() );
+       FC_ASSERT(signed_by == source);
+   }
+
+   static void validate_claim_trx_signature( transaction_evaluation_state const& eval_state,
+                                             public_key_type const &dest)
+   {
+       address owner(dest);
+       if( !eval_state.check_signature( owner ) )
+           FC_CAPTURE_AND_THROW( missing_signature, (owner) );
+   }
+
+   /**
+    *  TODO: Document rules for claims
+    */
+   void claim_operation::evaluate( transaction_evaluation_state& eval_state )
+   { try {
+      validate_claim_signature();
+      balance_record current_balance_record = check_claim_input( eval_state, this->balance_id );
+      withdraw_claim_input( eval_state, current_balance_record );
+      validate_claim_trx_signature( eval_state, dest );
+   } FC_CAPTURE_AND_RETHROW( (*this) ) }
+
    /**
     *  TODO: Document rules for Withdraws
     */

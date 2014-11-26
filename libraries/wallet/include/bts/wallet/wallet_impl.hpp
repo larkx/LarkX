@@ -146,6 +146,11 @@ class wallet_impl : public chain_observer
                                     const string& from_account_name,
                                     signed_transaction& trx,
                                     unordered_set<address>& required_signatures );
+      const asset claim_to_transaction( const bts::blockchain::account_record& recipient,
+                                        const pts_address &source,
+                                        const fc::ecc::compact_signature signature,
+                                        signed_transaction& trx,
+                                        unordered_set<address>& required_signatures );
       void authorize_update( unordered_set<address>& required_signatures, oaccount_record account, bool need_owner_key = false );
 
       void scan_chain_task( uint32_t start, uint32_t end, bool fast_scan );

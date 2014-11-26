@@ -1,6 +1,7 @@
 #pragma once
 
 #include <fc/array.hpp>
+#include <fc/crypto/sha256.hpp>
 #include <string>
 
 namespace fc { namespace ecc { class public_key; } }
@@ -20,6 +21,10 @@ namespace bts { namespace blockchain {
        bool is_valid()const;
 
        operator std::string()const; ///< converts to base58 + checksum
+
+       static std::string const signature_magic( char const version );
+
+       static fc::sha256 const double_hash( std::string const &message, char const version);
 
        fc::array<char,25> addr; ///< binary representation of address
    };
