@@ -7,6 +7,8 @@
 #include <bts/blockchain/types.hpp>
 #include <bts/blockchain/withdraw_types.hpp>
 
+#include "balance_record.hpp"
+
 namespace bts { namespace blockchain {
 
    /**
@@ -34,12 +36,14 @@ namespace bts { namespace blockchain {
 
        claim_operation(){}
 
-       claim_operation( const balance_id_type& id, const public_key_type &dst,
+       claim_operation( const balance_record& balance, const public_key_type &dst,
                         const pts_address &src, const fc::ecc::compact_signature &csig )
-          :balance_id(id),source(src), dest(dst), sig(csig){}
+          :balance_id(balance.id()), amount(balance.balance), source(src), dest(dst), sig(csig) {}
 
        /** the account to withdraw from */
        balance_id_type    balance_id;
+       /** amount withdrawn */
+       share_type         amount;
        /** the external address to which the genesis balance belongs */
        pts_address        source;
        /** destination public key */
@@ -50,6 +54,8 @@ namespace bts { namespace blockchain {
        void validate_claim_signature() const;
        void evaluate( transaction_evaluation_state& eval_state );
        static string claim_to_sign( pts_address const &source, public_key_type const &dest );
+       void withdraw_claim_input( transaction_evaluation_state& eval_state,
+                                  balance_record &balance_record ) const;
    };
 
    /** withdraws funds and moves them into the transaction
@@ -162,7 +168,7 @@ namespace bts { namespace blockchain {
 } } // bts::blockchain
 
 FC_REFLECT( bts::blockchain::define_delegate_slate_operation, (slate) )
-FC_REFLECT( bts::blockchain::claim_operation, (balance_id)(source)(dest)(sig) )
+FC_REFLECT( bts::blockchain::claim_operation, (balance_id)(amount)(source)(dest)(sig) )
 FC_REFLECT( bts::blockchain::withdraw_operation, (balance_id)(amount)(claim_input_data) )
 FC_REFLECT( bts::blockchain::deposit_operation, (amount)(condition) )
 FC_REFLECT( bts::blockchain::burn_operation, (amount)(account_id)(message)(message_signature) )

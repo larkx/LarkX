@@ -192,12 +192,12 @@ import2                         3,999.90000000 PTS
 y1 (unlocked) >>> wallet_account_transaction_history
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID      
 ======================================================================================================================================================================
-<d-ign></d-ign>1         import2             import2             1,999.95000000 PTS      Claim from Psdoo...                         -1,999.95000000 PTS <d-ign></d-ign>
+<d-ign></d-ign>1         import2             import2             1,999.95000000 PTS      Claim from Psdoo...                         0.05000000 PTS      <d-ign></d-ign>
 <d-ign></d-ign>1         delegate0           import1             10.00000000 PTS                                                     0.05000000 PTS      <d-ign></d-ign>
 <d-ign></d-ign>4         import1             import1             0.00000000 PTS          register import1                            0.10000000 PTS      <d-ign></d-ign>
-<d-ign></d-ign>5         import2             import2             1,999.95000000 PTS      Claim from 17uzB...                         -1,999.95000000 PTS <d-ign></d-ign>
-<d-ign></d-ign>6         GENESIS             import1             1,999.95000000 PTS      Claim from 17Eb8J5CSushUatgU5PufRPpeWUCb... 0.05000000 PTS      <d-ign></d-ign>
+<d-ign></d-ign>5         import2             import2             1,999.95000000 PTS      Claim from 17uzB...                         0.05000000 PTS      <d-ign></d-ign>
 <d-ign></d-ign>6         GENESIS             import1             3,999.95000000 PTS      Claim from PoTDjB28K29rQgwQtGBB2WN6THruZ... 0.05000000 PTS      <d-ign></d-ign>
+<d-ign></d-ign>6         GENESIS             import1             1,999.95000000 PTS      Claim from 17Eb8J5CSushUatgU5PufRPpeWUCb... 0.05000000 PTS      <d-ign></d-ign>
 y1 (unlocked) >>> wallet_open y2
 OK
 y2 (locked) >>> wallet_unlock 999 123456789
@@ -220,8 +220,8 @@ TIMESTAMP           BLOCK     FROM                TO                  AMOUNT    
 <d-ign></d-ign>1         delegate0           import1             10.00000000 PTS                                                     0.05000000 PTS      <d-ign></d-ign>
 <d-ign></d-ign>4         import1             import1             0.00000000 PTS          register import1                            0.10000000 PTS      <d-ign></d-ign>
 <d-ign></d-ign>5         GENESIS             import2             1,999.95000000 PTS      Claim from 17uzBLwTLQ1WNZfeEN8ttBJNWN8HL... 0.05000000 PTS      <d-ign></d-ign>
-<d-ign></d-ign>6         import1             import1             1,999.95000000 PTS      Claim from 17Eb8...                         -1,999.95000000 PTS <d-ign></d-ign>
-<d-ign></d-ign>6         import1             import1             3,999.95000000 PTS      Claim from PoTDj...                         -3,999.95000000 PTS <d-ign></d-ign>
+<d-ign></d-ign>6         import1             import1             3,999.95000000 PTS      Claim from PoTDj...                         0.05000000 PTS      <d-ign></d-ign>
+<d-ign></d-ign>6         import1             import1             1,999.95000000 PTS      Claim from 17Eb8...                         0.05000000 PTS      <d-ign></d-ign>
 y2 (unlocked) >>> debug_wait_for_block_by_number 5
 OK
 y2 (unlocked) >>> debug_wait 2

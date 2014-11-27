@@ -114,6 +114,7 @@ class wallet_impl : public chain_observer
                                           transaction_ledger_entry& record,
                                           bool store_record );
 
+      void scan_claim( const claim_operation& op, asset& total_fee )const;
       bool scan_withdraw( const withdraw_operation& op, wallet_transaction_record& trx_rec, asset& total_fee, public_key_type& from_pub_key );
       bool scan_withdraw_pay( const withdraw_pay_operation& op, wallet_transaction_record& trx_rec, asset& total_fee );
 

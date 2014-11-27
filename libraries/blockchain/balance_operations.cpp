@@ -157,10 +157,10 @@ namespace bts { namespace blockchain {
       return *current_balance_record;
    }
 
-   static void withdraw_claim_input( transaction_evaluation_state& eval_state,
-                                     balance_record &balance_record )
+   void claim_operation::withdraw_claim_input( transaction_evaluation_state& eval_state,
+                                               balance_record &balance_record ) const
    {
-      share_type amount = balance_record.balance;
+      FC_ASSERT( balance_record.balance == amount );
 
       // update delegate vote on withdrawn account..
       if( balance_record.condition.delegate_slate_id )

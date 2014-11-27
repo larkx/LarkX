@@ -108,7 +108,7 @@ namespace detail {
       FC_ASSERT( record.valid(), "No unspent genesis balance found for " + string(source) );
       const asset balance = record->get_balance();
       FC_ASSERT( balance.amount > 0 && balance.asset_id == 0, "No unspent genesis balance found for " + string(source) );
-      trx.claim( record->id(), recipient, source, signature );
+      trx.claim( *record, recipient, source, signature );
       required_signatures.insert( recipient.active_address() );
       return balance;
    }

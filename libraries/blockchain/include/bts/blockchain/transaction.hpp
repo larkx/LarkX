@@ -5,6 +5,7 @@
 #include <bts/blockchain/proposal_record.hpp>
 #include <bts/blockchain/withdraw_types.hpp>
 #include <bts/blockchain/account_record.hpp>
+#include <bts/blockchain/balance_record.hpp>
 
 #include <fc/reflect/variant.hpp>
 
@@ -40,7 +41,7 @@ namespace bts { namespace blockchain {
 
       void define_delegate_slate( delegate_slate s );
 
-      void claim( const balance_id_type& bid,
+      void claim( const balance_record& balance,
                   const bts::blockchain::account_record& recipient,
                   const pts_address &source,
                   const fc::ecc::compact_signature signature );

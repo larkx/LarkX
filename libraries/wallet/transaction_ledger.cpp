@@ -335,6 +335,9 @@ wallet_transaction_record wallet_impl::scan_transaction(
     {
         switch( operation_type_enum( op.type ) )
         {
+            case claim_op_type:
+                scan_claim( op.as<claim_operation>(), total_fee );
+                break;
             case withdraw_op_type:
                 has_withdrawal |= scan_withdraw( op.as<withdraw_operation>(), *transaction_record, total_fee, withdraw_pub_key );
                 break;
@@ -505,6 +508,11 @@ wallet_transaction_record wallet_impl::scan_transaction(
         _wallet_db.store_transaction( *transaction_record );
 
     return *transaction_record;
+} FC_CAPTURE_AND_RETHROW() }
+
+void wallet_impl::scan_claim( const claim_operation& op, asset& total_fee ) const
+{ try {
+   total_fee.amount += op.amount;
 } FC_CAPTURE_AND_RETHROW() }
 
 // TODO: Refactor scan_withdraw{_pay}; almost exactly the same
@@ -1404,7 +1412,7 @@ pretty_transaction wallet::to_pretty_trx( const wallet_transaction_record& trx_r
            if( entry.memo_from_account.valid() )
                pretty_entry.from_account += " as " + get_key_label( *entry.memo_from_account );
        }
-       else if( trx_rec.is_virtual && trx_rec.block_num <= 0 || trx_rec.trx.is_claim() )
+       else if( (trx_rec.is_virtual && trx_rec.block_num <= 0) || trx_rec.trx.is_claim() )
           pretty_entry.from_account = "GENESIS";
        else if( trx_rec.is_market )
           pretty_entry.from_account = "MARKET";
