@@ -291,4 +291,19 @@ namespace bts { namespace blockchain {
       return false;
    }
 
+   bool transaction::is_claim()const
+   {
+      for( const auto& op : operations )
+      {
+          switch( operation_type_enum( op.type ) )
+          {
+              case claim_op_type:
+                  return true;
+              default:
+                  break;
+          }
+      }
+      return false;
+   }
+
 } } // bts::blockchain

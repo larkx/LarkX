@@ -164,7 +164,7 @@ transaction_builder& transaction_builder::claim_balance( const bts::blockchain::
                                                          const fc::ecc::compact_signature &signature,
                                                          const vote_selection_method vote_method)
 { try {
-   const string memo = "Genesis claim from " + std::string(source);
+   const string memo = "Claim from " + std::string(source);
 
    optional<public_key_type> titan_one_time_key;
 

@@ -130,6 +130,7 @@ namespace bts { namespace blockchain {
                          fc::variant value );
 
       bool is_cancel()const;
+      bool is_claim()const;
    }; // transaction
 
    struct signed_transaction : public transaction

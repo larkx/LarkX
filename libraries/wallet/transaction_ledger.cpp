@@ -1404,7 +1404,7 @@ pretty_transaction wallet::to_pretty_trx( const wallet_transaction_record& trx_r
            if( entry.memo_from_account.valid() )
                pretty_entry.from_account += " as " + get_key_label( *entry.memo_from_account );
        }
-       else if( trx_rec.is_virtual && trx_rec.block_num <= 0 )
+       else if( trx_rec.is_virtual && trx_rec.block_num <= 0 || trx_rec.trx.is_claim() )
           pretty_entry.from_account = "GENESIS";
        else if( trx_rec.is_market )
           pretty_entry.from_account = "MARKET";
