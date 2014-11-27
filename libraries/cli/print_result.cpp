@@ -145,6 +145,7 @@ namespace bts { namespace cli {
       out << pretty_balances( yield, client );
     };
 
+    _command_to_function["wallet_import_by_signedmsg"]          = &f_wallet_transfer;
     _command_to_function["wallet_transfer"]                     = &f_wallet_transfer;
     _command_to_function["wallet_transfer_from"]                = &f_wallet_transfer;
     _command_to_function["wallet_get_transaction"]              = &f_wallet_transfer;

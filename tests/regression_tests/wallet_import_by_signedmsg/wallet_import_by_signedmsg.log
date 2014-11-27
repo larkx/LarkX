@@ -72,66 +72,9 @@ unable to reconstruct public key from signature
 
 
 y2 (unlocked) >>> wallet_import_by_signedmsg import2 Psdoo24PLxmmAShaq8aaXm3r888kYnsfX5 IELkf13xdPzRz2wFo54qQLUPmK8DH4yZaIi/L7se0WT6j7oAzxVv+QB/Kjc+PE+Fq7TwBNidafYBlH1eGVXbfdI=
-{
-  "index": 14,
-  "record_id": "2d41e68ed6dec386e9caf8557f6c9a46cddd792b",
-  "block_num": 0,
-  "is_virtual": false,
-  "is_confirmed": false,
-  "is_market": false,
-  "trx": {
-    "expiration": "20140620T154040",
-    "delegate_slate_id": null,
-    "operations": [{
-        "type": "claim_op_type",
-        "data": {
-          "balance_id": "PTS7BgiGzg6YgrS14u9wqmA4wYAxh1zq9NEw",
-          "source": "Psdoo24PLxmmAShaq8aaXm3r888kYnsfX5",
-          "dest": "PTS5rxHKF2f45vGEuE1bd4zXuGV4kRsnHjh8rotdK8HMp47a549WN",
-          "sig": "2042e47f5df174fcd1cf6c05a39e2a40b50f98af031f8c996888bf2fbb1ed164fa8fba00cf156ff9007f2a373e3c4f85abb4f004d89d69f601947d5e1955db7dd2"
-        }
-      },{
-        "type": "deposit_op_type",
-        "data": {
-          "amount": 199995000000,
-          "condition": {
-            "asset_id": 0,
-            "delegate_slate_id": 0,
-            "type": "withdraw_signature_type",
-            "data": {
-              "owner": "PTSJAMudUhFMgak8hub6cwHn4csEzmBw9QDq",
-              "memo": {
-                "one_time_key": "PTS5KYRNZcdGmKJE9EF4Wg3ZhNp1XBBtXfnXbNVoF9qyTwR8GvquK",
-                "encrypted_memo_data": "37c2ec110ef64e6ac6933c9b881767c5a2137240a1b1a705c17379f27b95e97eebef452f888321bb575c6373c80a0f8fdf224c3684bc04b5315c3ecd7c0f3ba3"
-              }
-            }
-          }
-        }
-      }
-    ],
-    "signatures": [
-      "20ae62ef753099e1d7cdd372e87ceca3e98a91b042f98a71f8e13c9bdf36977e66fd8be67ec5639919423cac48d67c6379d4845f76c3f0670ebd03d2203ae93800"
-    ]
-  },
-  "ledger_entries": [{
-      "from_account": null,
-      "to_account": "PTS5rxHKF2f45vGEuE1bd4zXuGV4kRsnHjh8rotdK8HMp47a549WN",
-      "amount": {
-        "amount": 199995000000,
-        "asset_id": 0
-      },
-      "memo": "Genesis claim from Psdoo24PLxmmAShaq8aaXm3r888kYnsfX5",
-      "memo_from_account": "PTS5rxHKF2f45vGEuE1bd4zXuGV4kRsnHjh8rotdK8HMp47a549WN"
-    }
-  ],
-  "fee": {
-    "amount": 5000000,
-    "asset_id": 0
-  },
-  "created_time": "20140620T144040",
-  "received_time": "20140620T144040",
-  "extra_addresses": []
-}
+TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID      
+======================================================================================================================================================================
+<d-ign></d-ign>PENDING   UNKNOWN             import2             1,999.95000000 PTS      Genesis claim from Psdoo24PLxmmAShaq8aaX... 0.05000000 PTS      <d-ign></d-ign>
 y2 (unlocked) >>> debug_wait_for_block_by_number 2
 OK
 y2 (unlocked) >>> wallet_open y1
@@ -174,66 +117,9 @@ key.valid():
 
 
 y2 (unlocked) >>> wallet_import_by_signedmsg import2 17uzBLwTLQ1WNZfeEN8ttBJNWN8HLxheav IFLGzyWe/6sYPX5n7mkcOSe1+pyc24PnWfi/C1/O9PchmolWuFILTU8WbotFV/OO+JdTLY78DLop9WYa9T3OCLs=
-{
-  "index": 18,
-  "record_id": "b7568c944e608a59c6b03cbd023ab68fae2ec0d5",
-  "block_num": 0,
-  "is_virtual": false,
-  "is_confirmed": false,
-  "is_market": false,
-  "trx": {
-    "expiration": "20140620T154110",
-    "delegate_slate_id": null,
-    "operations": [{
-        "type": "claim_op_type",
-        "data": {
-          "balance_id": "PTSCVACeL7T6XnJLc2wzzZCszZVca8g2STqe",
-          "source": "17uzBLwTLQ1WNZfeEN8ttBJNWN8HLxheav",
-          "dest": "PTS5rxHKF2f45vGEuE1bd4zXuGV4kRsnHjh8rotdK8HMp47a549WN",
-          "sig": "2052c6cf259effab183d7e67ee691c3927b5fa9c9cdb83e759f8bf0b5fcef4f7219a8956b8520b4d4f166e8b4557f38ef897532d8efc0cba29f5661af53dce08bb"
-        }
-      },{
-        "type": "deposit_op_type",
-        "data": {
-          "amount": 199995000000,
-          "condition": {
-            "asset_id": 0,
-            "delegate_slate_id": 0,
-            "type": "withdraw_signature_type",
-            "data": {
-              "owner": "PTSBB7yYvGqgrwBDT2nsePkbZKGrAvfkyhSo",
-              "memo": {
-                "one_time_key": "PTS8h9Jn75Kk6dnXiz7bH81bXYi5uUm58HJkjZHjjiRqgd2nQCsz3",
-                "encrypted_memo_data": "8a8d4d6eba487269aa70a89f5221b7e13e2a9d99db24d3295c5d32dd18dd65c7d82bf3e058533f5624ddc266438ce4e9ec31a0ca32f37762ba0ef8d57cdc72d9"
-              }
-            }
-          }
-        }
-      }
-    ],
-    "signatures": [
-      "1fc630e99ecb62dc41eda3012b64c0ab0dd090651f41eaf6cb0965e3e46c80926af4ae9f37977a93794fcc64f68a0e60c1ede51b04cd343fb21098dc4668728ce2"
-    ]
-  },
-  "ledger_entries": [{
-      "from_account": null,
-      "to_account": "PTS5rxHKF2f45vGEuE1bd4zXuGV4kRsnHjh8rotdK8HMp47a549WN",
-      "amount": {
-        "amount": 199995000000,
-        "asset_id": 0
-      },
-      "memo": "Genesis claim from 17uzBLwTLQ1WNZfeEN8ttBJNWN8HLxheav",
-      "memo_from_account": "PTS5rxHKF2f45vGEuE1bd4zXuGV4kRsnHjh8rotdK8HMp47a549WN"
-    }
-  ],
-  "fee": {
-    "amount": 5000000,
-    "asset_id": 0
-  },
-  "created_time": "20140620T144110",
-  "received_time": "20140620T144110",
-  "extra_addresses": []
-}
+TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID      
+======================================================================================================================================================================
+<d-ign></d-ign>PENDING   UNKNOWN             import2             1,999.95000000 PTS      Genesis claim from 17uzBLwTLQ1WNZfeEN8tt... 0.05000000 PTS      <d-ign></d-ign>
 y2 (unlocked) >>> wallet_account_balance
 ACCOUNT                         BALANCE                     
 ============================================================
@@ -269,66 +155,9 @@ signature.size() > 0: Create a signature using the command 'signmessage PoTDjB28
 
 
 y1 (unlocked) >>> wallet_import_by_signedmsg import1 PoTDjB28K29rQgwQtGBB2WN6THruZBVVFg IEbam/vMJ2VCWHpIzA8Pa56L73dgA9R/RYgSnlrgmCTUG+qjR8CiexMeDSNa7kyZ6rILlaIJ1Dvpej6+BEqra4k=
-{
-  "index": 16,
-  "record_id": "f79e81d2114e7770c0fbdccf5f7307c158d9fcf2",
-  "block_num": 0,
-  "is_virtual": false,
-  "is_confirmed": false,
-  "is_market": false,
-  "trx": {
-    "expiration": "20140620T154110",
-    "delegate_slate_id": null,
-    "operations": [{
-        "type": "claim_op_type",
-        "data": {
-          "balance_id": "PTSNSHksHr9Uv4cx9wthVsSfPJx59ajFD8p6",
-          "source": "PoTDjB28K29rQgwQtGBB2WN6THruZBVVFg",
-          "dest": "PTS8aj4rwi1RLHxtqFb1i5XxiCXxoxHhSabYyj31e89wXqErocGdz",
-          "sig": "2046da9bfbcc276542587a48cc0f0f6b9e8bef776003d47f4588129e5ae09824d41beaa347c0a27b131e0d235aee4c99eab20b95a209d43be97a3ebe044aab6b89"
-        }
-      },{
-        "type": "deposit_op_type",
-        "data": {
-          "amount": 399995000000,
-          "condition": {
-            "asset_id": 0,
-            "delegate_slate_id": 0,
-            "type": "withdraw_signature_type",
-            "data": {
-              "owner": "PTSG551H4TpR83kbwn9dsyCmunE8NG9Jnvxg",
-              "memo": {
-                "one_time_key": "PTS8dvNzw95fQKmHawbTv8B53ng48PbZwMuj7NJ8iGWu4wHrhPrCu",
-                "encrypted_memo_data": "a153551cc93ea8db22f3c524477620ee07292c29697a9e525c0a6f8d2fa90c00a0d6c009d9f8b130aa546c54c3b220512fd0400c827bd53d716be372a0ad3004"
-              }
-            }
-          }
-        }
-      }
-    ],
-    "signatures": [
-      "1f455a71954b4076ff59ae182c2a126a6613aa460678af030cae007dd220eb55a76a492bc792f8273209726aaddbf2b51507914d1b12ed6b4ef0a33446791c6604"
-    ]
-  },
-  "ledger_entries": [{
-      "from_account": null,
-      "to_account": "PTS8aj4rwi1RLHxtqFb1i5XxiCXxoxHhSabYyj31e89wXqErocGdz",
-      "amount": {
-        "amount": 399995000000,
-        "asset_id": 0
-      },
-      "memo": "Genesis claim from PoTDjB28K29rQgwQtGBB2WN6THruZBVVFg",
-      "memo_from_account": "PTS8aj4rwi1RLHxtqFb1i5XxiCXxoxHhSabYyj31e89wXqErocGdz"
-    }
-  ],
-  "fee": {
-    "amount": 5000000,
-    "asset_id": 0
-  },
-  "created_time": "20140620T144110",
-  "received_time": "20140620T144110",
-  "extra_addresses": []
-}
+TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID      
+======================================================================================================================================================================
+<d-ign></d-ign>PENDING   UNKNOWN             import1             3,999.95000000 PTS      Genesis claim from PoTDjB28K29rQgwQtGBB2... 0.05000000 PTS      <d-ign></d-ign>
 y1 (unlocked) >>> wallet_account_balance
 ACCOUNT                         BALANCE                     
 ============================================================
@@ -346,66 +175,9 @@ signature.size() > 0: Create a signature using the command 'signmessage 17Eb8J5C
 
 
 y1 (unlocked) >>> wallet_import_by_signedmsg import1 17Eb8J5CSushUatgU5PufRPpeWUCborAKe IMKgRtXtQ5/4Uc8MtxlbZTMioQT9pRZRp46dE1gNIsHFiPZqCuofC/ZJRKefok/m0f4b7d7THUALuffz2wF5iRU=
-{
-  "index": 18,
-  "record_id": "218514e527cfa5690eab2d992f40d92d341dbbb6",
-  "block_num": 0,
-  "is_virtual": false,
-  "is_confirmed": false,
-  "is_market": false,
-  "trx": {
-    "expiration": "20140620T154110",
-    "delegate_slate_id": null,
-    "operations": [{
-        "type": "claim_op_type",
-        "data": {
-          "balance_id": "PTSMJHAuU2HxAAcreM6saN8ZQabLnaAC5xF4",
-          "source": "17Eb8J5CSushUatgU5PufRPpeWUCborAKe",
-          "dest": "PTS8aj4rwi1RLHxtqFb1i5XxiCXxoxHhSabYyj31e89wXqErocGdz",
-          "sig": "20c2a046d5ed439ff851cf0cb7195b653322a104fda51651a78e9d13580d22c1c588f66a0aea1f0bf64944a79fa24fe6d1fe1bedded31d400bb9f7f3db01798915"
-        }
-      },{
-        "type": "deposit_op_type",
-        "data": {
-          "amount": 199995000000,
-          "condition": {
-            "asset_id": 0,
-            "delegate_slate_id": 0,
-            "type": "withdraw_signature_type",
-            "data": {
-              "owner": "PTSM1eYU43k7sxfur9HRVfRUcwzAzsMjgcwy",
-              "memo": {
-                "one_time_key": "PTS5MLBKqfNnZ9t8xS625cX8gCXTBCvW9hSQJsdMbx6CHzLmxReqm",
-                "encrypted_memo_data": "27de627a193cc355942a5f284979692b1e35a6fa78fabba56965601dd089c09404371edfe311faf6b7b224066adb3bb6b00391350b8a42b63c437a29c0978884"
-              }
-            }
-          }
-        }
-      }
-    ],
-    "signatures": [
-      "20dbd9e07bde986aaedbb80c145ec4b437154431c887510b16624cde0b2d69498d753b9e23354b944d726be0958abc4207b8df5d88b84a8359ed9e014c9ed54079"
-    ]
-  },
-  "ledger_entries": [{
-      "from_account": null,
-      "to_account": "PTS8aj4rwi1RLHxtqFb1i5XxiCXxoxHhSabYyj31e89wXqErocGdz",
-      "amount": {
-        "amount": 199995000000,
-        "asset_id": 0
-      },
-      "memo": "Genesis claim from 17Eb8J5CSushUatgU5PufRPpeWUCborAKe",
-      "memo_from_account": "PTS8aj4rwi1RLHxtqFb1i5XxiCXxoxHhSabYyj31e89wXqErocGdz"
-    }
-  ],
-  "fee": {
-    "amount": 5000000,
-    "asset_id": 0
-  },
-  "created_time": "20140620T144110",
-  "received_time": "20140620T144110",
-  "extra_addresses": []
-}
+TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID      
+======================================================================================================================================================================
+<d-ign></d-ign>PENDING   UNKNOWN             import1             1,999.95000000 PTS      Genesis claim from 17Eb8J5CSushUatgU5Puf... 0.05000000 PTS      <d-ign></d-ign>
 y1 (unlocked) >>> debug_wait_for_block_by_number 4
 OK
 y1 (unlocked) >>> wallet_import_private_key 5KB5qE4N1RjYjy3S9vWLXzk8c4JWYYWq8wHjMQsAUasK4M7r9nb import2 true true
