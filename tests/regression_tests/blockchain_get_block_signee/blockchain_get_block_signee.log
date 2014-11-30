@@ -13,23 +13,23 @@ OK
 default (unlocked) >>> debug_wait_for_block_by_number 1
 OK
 default (unlocked) >>> blockchain_get_block_signee 1
-"delegate42"
+"delegate85"
 default (unlocked) >>> debug_advance_time 1 blocks
 OK
 default (unlocked) >>> debug_wait_for_block_by_number 2
 OK
 default (unlocked) >>> blockchain_get_block_signee 2
-"delegate44"
+"delegate18"
 default (unlocked) >>> debug_advance_time 1 blocks
 OK
 default (unlocked) >>> debug_wait_for_block_by_number 3
 OK
 default (unlocked) >>> blockchain_get_block_signee 3
-"delegate45"
+"delegate19"
 default (unlocked) >>> debug_advance_time 1 blocks
 OK
 default (unlocked) >>> debug_wait_for_block_by_number 4
 OK
 default (unlocked) >>> blockchain_get_block_signee 4
-"delegate46"
+"delegate32"
 default (unlocked) >>> quit

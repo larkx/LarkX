@@ -103,12 +103,19 @@ namespace detail {
                                                   signed_transaction& trx,
                                                   unordered_set<address>& required_signatures )
    {
-      balance_record brec( source, asset( 0, 0 ), 0 );
-      obalance_record record = _blockchain->get_balance_record( brec.id() );
-      FC_ASSERT( record.valid(), "No unspent genesis balance found for " + string(source) );
-      const asset balance = record->get_balance();
+      address source_addr(source);
+      balance_record record;
+      _blockchain->scan_balances( [&] ( const balance_record &balance_record ) {
+          if( balance_record.genesis_info.valid()
+                  && balance_record.get_balance().asset_id == 0
+                  && balance_record.condition.type == withdraw_signature_type
+                  && balance_record.condition.as<withdraw_with_signature>().owner == source_addr ) {
+              record = balance_record;
+          }
+      } );
+      const asset balance = record.get_balance();
       FC_ASSERT( balance.amount > 0 && balance.asset_id == 0, "No unspent genesis balance found for " + string(source) );
-      trx.claim( *record, recipient, source, signature );
+      trx.claim( record, recipient, source, signature );
       required_signatures.insert( recipient.active_address() );
       return balance;
    }

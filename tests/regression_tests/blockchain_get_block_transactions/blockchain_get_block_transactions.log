@@ -20,7 +20,7 @@ Returns:
   blockchain_transaction_record_map
 default (unlocked) >>> blockchain_get_block_transactions 2
 [[
-    "80f81d51f2f9d25e5632a75187f880a6ae8d4854",{
+    "ce6ce53d941fad63c4de0e18664dd41dfaf90de3",{
       "trx": {
         "expiration": "20140620T154030",
         "delegate_slate_id": null,
@@ -44,14 +44,14 @@ default (unlocked) >>> blockchain_get_block_transactions 2
           },{
             "type": "withdraw_op_type",
             "data": {
-              "balance_id": "PTS6GvhLUV93rQZLJSstvyhMeoU9cnZ578kz",
+              "balance_id": "PTSJBJdJoNjzkRQ4BUri6FCvbRgqrBoyD8iY",
               "amount": 10005000000,
               "claim_input_data": ""
             }
           }
         ],
         "signatures": [
-          "208513ec7641898a4a37e0bfe8617a37bef25351eada00e9d0c04e79869bd335f63bd058229f93a2d5e14e9e11cf3c80a5de246543e90d3e040bbaf6020f12b30c"
+          "208513ec7641898a4a37e0bfe8617a37bef25351eada00e9d0c04e79869bd335f61c3c12615142e736488433fa8a87495a6feef3c689cbc9a563b9e6d8fd874f21"
         ]
       },
       "signed_keys": [
@@ -110,7 +110,28 @@ default (unlocked) >>> blockchain_get_block_transactions 2
           5000000
         ]
       ],
-      "net_delegate_votes": [],
+      "net_delegate_votes": [[
+          20,{
+            "votes_for": -10005000000
+          }
+        ],[
+          66,{
+            "votes_for": -10005000000
+          }
+        ],[
+          33,{
+            "votes_for": -10005000000
+          }
+        ],[
+          19,{
+            "votes_for": -10005000000
+          }
+        ],[
+          52,{
+            "votes_for": -10005000000
+          }
+        ]
+      ],
       "chain_location": {
         "block_num": 2,
         "trx_num": 0

@@ -3,6 +3,7 @@
 #include <bts/blockchain/chain_database.hpp>
 #include <bts/blockchain/checkpoints.hpp>
 #include <bts/blockchain/config.hpp>
+#include <bts/blockchain/pts_config.hpp>
 #include <bts/blockchain/genesis_config.hpp>
 #include <bts/blockchain/genesis_json.hpp>
 #include <bts/blockchain/market_records.hpp>
@@ -18,6 +19,9 @@
 #include <fc/thread/mutex.hpp>
 #include <fc/thread/non_preemptable_scope_check.hpp>
 #include <fc/thread/unique_lock.hpp>
+
+#include <boost/random/mersenne_twister.hpp>
+#include <boost/random/uniform_int_distribution.hpp>
 
 #include <algorithm>
 #include <deque>
@@ -152,6 +156,116 @@ namespace bts { namespace blockchain {
           _pending_trx_state = std::make_shared<pending_chain_state>( self->shared_from_this() );
       } FC_CAPTURE_AND_RETHROW( (data_dir) ) }
 
+      static boost::random::mt11213b create_rng( const digest_type& chain_id )
+      {
+          uint32_t seed = chain_id._hash[0] & 0xffffffff;
+          return boost::random::mt11213b( seed );
+      }
+
+      static void add_one_to_slate( const std::vector<account_id_type> &delegate_ids,
+                                    std::unordered_set<account_id_type> &slate,
+                                    boost::random::mt11213b &prng )
+      {
+          boost::random::uniform_int_distribution<size_t> delegates_distribution( 0, delegate_ids.size() );
+          slate.insert( delegate_ids[delegates_distribution( prng )] );
+      }
+
+      static void remove_one_from_slate( const std::vector<account_id_type> &delegate_ids,
+                                         std::unordered_set<account_id_type> &slate,
+                                         boost::random::mt11213b &prng )
+      {
+          boost::random::uniform_int_distribution<size_t> delegates_distribution( 0, delegate_ids.size() );
+          slate.erase( delegate_ids[delegates_distribution( prng )] );
+      }
+
+      static void adjust_slate( const std::vector<account_id_type> &delegate_ids,
+                                std::unordered_set<account_id_type> &slate,
+                                boost::random::mt11213b &prng,
+                                size_t target )
+      {
+          while( slate.size() != target )
+          {
+              if( slate.size() > target )
+              {
+                  remove_one_from_slate( delegate_ids, slate, prng );
+              }
+              else
+              {
+                  add_one_to_slate( delegate_ids, slate, prng );
+              }
+          }
+      }
+
+      static std::unordered_set<account_id_type> prefill_slate( const std::vector<account_id_type> &delegate_ids,
+                                                                boost::random::mt11213b &prng )
+      {
+          std::unordered_set<account_id_type> new_slate;
+
+          const size_t target_size = (BTS_BLOCKCHAIN_NUM_DELEGATES * GENESIS_VOTE_PERMILLE) / 1000;
+          if( GENESIS_VOTE_PERMILLE < 500 )
+              new_slate.insert( delegate_ids.begin(), delegate_ids.end() );
+          adjust_slate( delegate_ids, new_slate, prng, target_size );
+
+          return new_slate;
+      }
+
+      static void fill_remaining_slate( const std::vector<account_id_type> &delegate_ids,
+                                        std::unordered_set<account_id_type> &slate,
+                                        boost::random::mt11213b &prng )
+      {
+          static const boost::random::uniform_int_distribution<unsigned short> per_mille(0, 999);
+          const int remaining = BTS_BLOCKCHAIN_NUM_DELEGATES * GENESIS_VOTE_PERMILLE
+                                - slate.size() * 1000;
+          if( remaining == 0 )
+              return;
+          FC_ASSERT( remaining > 0 && remaining < 1000 );
+          if( per_mille( prng ) >= remaining )
+              return;
+          adjust_slate( delegate_ids, slate, prng, slate.size() + 1 );
+      }
+
+      slate_id_type chain_database_impl::generate_random_slate( const std::vector<account_id_type> &delegate_ids,
+                                                                boost::random::mt11213b &prng ) const
+      {
+#ifndef GENESIS_VOTE_PERMILLE
+          return 0;
+#else
+          std::unordered_set<account_id_type> selected = prefill_slate( delegate_ids, prng );
+          fill_remaining_slate( delegate_ids, selected, prng );
+          delegate_slate slate;
+          slate.supported_delegates.insert( slate.supported_delegates.begin(),
+                                            selected.begin(), selected.end() );
+          std::sort( slate.supported_delegates.begin(), slate.supported_delegates.end() );
+          return store_slate( slate );
+#endif
+      }
+
+      slate_id_type chain_database_impl::store_slate( const delegate_slate &slate ) const
+      {
+          if( slate.supported_delegates.size() == 0 )
+              return 0;
+
+          slate_id_type id = slate.id();
+          odelegate_slate existing = self->get_delegate_slate( id );
+          if( !existing.valid() )
+              self->store_delegate_slate( id, slate );
+          return id;
+      }
+
+      static void add_votes( const delegate_slate &slate,
+                             share_type amount,
+                             std::map<account_id_type, account_record> &delegates )
+      {
+          for( account_id_type acct : slate.supported_delegates )
+              delegates[acct].adjust_votes_for( amount );
+      }
+
+      void chain_database_impl::store_delegates( const std::map<account_id_type, account_record> &delegates ) const
+      {
+          for( auto entry : delegates )
+              self->store_account_record( entry.second );
+      }
+
       digest_type chain_database_impl::initialize_genesis( const optional<path>& genesis_file, bool chain_id_only )
       { try {
          digest_type chain_id = self->chain_id();
@@ -227,6 +341,7 @@ namespace bts { namespace blockchain {
 
          fc::time_point_sec timestamp = config.timestamp;
          std::vector<account_id_type> delegate_ids;
+         std::map<account_id_type, account_record> delegate_map;
          int32_t account_id = 1;
          for( const auto& name : config.names )
          {
@@ -241,12 +356,17 @@ namespace bts { namespace blockchain {
             {
                rec.delegate_info = delegate_stats( name.delegate_pay_rate );
                delegate_ids.push_back( account_id );
+               delegate_map[account_id] = rec;
             }
-            self->store_account_record( rec );
+            else
+                self->store_account_record( rec );
             ++account_id;
          }
 
          int64_t n = 0;
+         boost::random::mt11213b prng = create_rng( _chain_id );
+//         delegates_distribution = rn_dist( 1, delegate_ids.size() );
+         std::map<const pts_address, balance_record> balance_by_address;
          for( const auto& item : config.balances )
          {
             ++n;
@@ -254,18 +374,28 @@ namespace bts { namespace blockchain {
             fc::uint128 initial( int64_t(item.second) );
 
             const auto addr = item.first;
-            balance_record initial_balance( addr,
-                                            asset( share_type( initial.low_bits() ), 0 ),
-                                            0 /* Not voting for anyone */
-                                          );
-
             /* In case of redundant balances */
-            auto cur = self->get_balance_record( initial_balance.id() );
-            if( cur.valid() ) initial_balance.balance += cur->balance;
-            initial_balance.genesis_info = genesis_record( initial_balance.get_balance(), string( addr ) );
-            initial_balance.last_update = config.timestamp;
-            self->store_balance_record( initial_balance );
+            auto cur = balance_by_address.find( addr );
+            if( cur != balance_by_address.end() )
+            {
+                cur->second.balance += initial.low_bits();
+            }
+            else
+            {
+                balance_record initial_balance( addr,
+                                                asset( share_type( initial.low_bits() ), 0 ),
+                                                generate_random_slate( delegate_ids, prng ) );
+                initial_balance.last_update = config.timestamp;
+                balance_by_address[addr] = initial_balance;
+                cur = balance_by_address.find( addr );
+            }
+            odelegate_slate oslate = self->get_delegate_slate( cur->second.condition.delegate_slate_id );
+            FC_ASSERT( oslate.valid() );
+            add_votes( *oslate, initial.low_bits(), delegate_map );
+            cur->second.genesis_info = genesis_record( cur->second.get_balance(), string( addr ) );
+            self->store_balance_record( cur->second );
          }
+         store_delegates( delegate_map );
 
          asset total;
          auto itr = _balance_db.begin();

@@ -4,6 +4,7 @@
 #include <bts/blockchain/chain_database.hpp>
 #include <bts/blockchain/checkpoints.hpp>
 #include <bts/blockchain/config.hpp>
+#include <bts/blockchain/delegate_slate.hpp>
 #include <bts/blockchain/genesis_config.hpp>
 #include <bts/blockchain/genesis_json.hpp>
 #include <bts/blockchain/market_records.hpp>
@@ -19,6 +20,9 @@
 #include <fc/thread/mutex.hpp>
 #include <fc/thread/non_preemptable_scope_check.hpp>
 #include <fc/thread/unique_lock.hpp>
+
+#include <boost/random/mersenne_twister.hpp>
+#include <boost/random/uniform_int_distribution.hpp>
 
 #include <algorithm>
 #include <deque>
@@ -174,6 +178,11 @@ namespace bts { namespace blockchain {
             bts::db::level_map<market_history_key, market_history_record>               _market_history_db;
 
             std::map<operation_type_enum, std::deque<operation>>                        _recent_operations;
+         private:
+            slate_id_type generate_random_slate( const std::vector<account_id_type> &delegate_ids,
+                                                 boost::random::mt11213b &prng ) const;
+            slate_id_type store_slate( const bts::blockchain::delegate_slate &slate ) const;
+            void store_delegates( const std::map<account_id_type, account_record> &delegates ) const;
       };
   } // end namespace bts::blockchain::detail
 } } // end namespace bts::blockchain
