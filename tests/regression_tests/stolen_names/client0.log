@@ -25,4 +25,6 @@ You cannot rename a registered account!
 
 default (unlocked) >>> debug_advance_time 1 blocks
 OK
+default (unlocked) >>> debug_advance_time 1 blocks
+OK
 default (unlocked) >>> quit

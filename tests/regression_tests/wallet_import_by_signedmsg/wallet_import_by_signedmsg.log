@@ -12,16 +12,12 @@ Returns:
   transaction_record
 (wallet closed) >>> wallet_create y1 123456789
 OK
-y1 (unlocked) >>> wallet_account_create import1
-"PTS8aj4rwi1RLHxtqFb1i5XxiCXxoxHhSabYyj31e89wXqErocGdz"
-y1 (unlocked) >>> wallet_dump_private_key PTS8aj4rwi1RLHxtqFb1i5XxiCXxoxHhSabYyj31e89wXqErocGdz
-"5KksW55L9ySPZ794VtapnuN2zPEZBEkrpWXHuMHTk3oynD99PKD"
+y1 (unlocked) >>> wallet_import_private_key 5KksW55L9ySPZ794VtapnuN2zPEZBEkrpWXHuMHTk3oynD99PKD import1 true
+"import1"
 y1 (unlocked) >>> wallet_create y2 123456789
 OK
-y2 (unlocked) >>> wallet_account_create import2
-"PTS5rxHKF2f45vGEuE1bd4zXuGV4kRsnHjh8rotdK8HMp47a549WN"
-y2 (unlocked) >>> wallet_dump_private_key PTS5rxHKF2f45vGEuE1bd4zXuGV4kRsnHjh8rotdK8HMp47a549WN
-"5KB5qE4N1RjYjy3S9vWLXzk8c4JWYYWq8wHjMQsAUasK4M7r9nb"
+y2 (unlocked) >>> wallet_import_private_key 5KB5qE4N1RjYjy3S9vWLXzk8c4JWYYWq8wHjMQsAUasK4M7r9nb import2 true
+"import2"
 y2 (unlocked) >>> wallet_import_by_signedmsg import1 Psdoo24PLxmmAShaq8aaXm3r888kYnsfX5
 Command failed with exception: Assert Exception (10)
 opt_account.valid(): Unable to find account 'import1'
@@ -71,6 +67,8 @@ unable to reconstruct public key from signature
 
 
 
+y2 (unlocked) >>> debug_wait_for_block_by_number 1
+OK
 y2 (unlocked) >>> wallet_import_by_signedmsg import2 Psdoo24PLxmmAShaq8aaXm3r888kYnsfX5 IELkf13xdPzRz2wFo54qQLUPmK8DH4yZaIi/L7se0WT6j7oAzxVv+QB/Kjc+PE+Fq7TwBNidafYBlH1eGVXbfdI=
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID      
 ======================================================================================================================================================================
@@ -102,7 +100,7 @@ import2                         1,999.95000000 PTS
 y2 (unlocked) >>> wallet_account_transaction_history
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        BALANCE                 FEE                 ID      
 ==============================================================================================================================================================================================
-<d-ign></d-ign>1         GENESIS             import2             1,999.95000000 PTS      Claim from Psdoo24PLxmmAShaq8aaXm3r888kY... 1,999.95000000 PTS      0.05000000 PTS      <d-ign></d-ign>
+<d-ign></d-ign>2         GENESIS             import2             1,999.95000000 PTS      Claim from Psdoo24PLxmmAShaq8aaXm3r888kY... 1,999.95000000 PTS      0.05000000 PTS      <d-ign></d-ign>
 y2 (unlocked) >>> wallet_import_by_signedmsg import2 17uzBLwTLQ1WNZfeEN8ttBJNWN8HLxheav
 Command failed with exception: Assert Exception (10)
 signature.size() > 0: Create a signature using the command 'signmessage 17uzBLwTLQ1WNZfeEN8ttBJNWN8HLxheav "Transfer 17uzBLwTLQ1WNZfeEN8ttBJNWN8HLxheav to PTS5rxHKF2f45vGEuE1bd4zXuGV4kRsnHjh8rotdK8HMp47a549WN"'
@@ -127,7 +125,7 @@ import2                         1,999.95000000 PTS
 y2 (unlocked) >>> wallet_account_transaction_history
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        BALANCE                 FEE                 ID      
 ==============================================================================================================================================================================================
-<d-ign></d-ign>1         GENESIS             import2             1,999.95000000 PTS      Claim from Psdoo24PLxmmAShaq8aaXm3r888kY... 1,999.95000000 PTS      0.05000000 PTS      <d-ign></d-ign>
+<d-ign></d-ign>2         GENESIS             import2             1,999.95000000 PTS      Claim from Psdoo24PLxmmAShaq8aaXm3r888kY... 1,999.95000000 PTS      0.05000000 PTS      <d-ign></d-ign>
 <d-ign></d-ign>PENDING   GENESIS             import2             1,999.95000000 PTS      Claim from 17uzBLwTLQ1WNZfeEN8ttBJNWN8HL... N/A                     0.05000000 PTS      <d-ign></d-ign>
 y2 (unlocked) >>> wallet_open y1
 OK
@@ -165,7 +163,7 @@ import1                         9.90000000 PTS
 y1 (unlocked) >>> wallet_account_transaction_history
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        BALANCE                 FEE                 ID      
 ==============================================================================================================================================================================================
-<d-ign></d-ign>1         delegate0           import1             10.00000000 PTS                                                     10.00000000 PTS         0.05000000 PTS      <d-ign></d-ign>
+<d-ign></d-ign>2         delegate0           import1             10.00000000 PTS                                                     10.00000000 PTS         0.05000000 PTS      <d-ign></d-ign>
 <d-ign></d-ign>4         import1             import1             0.00000000 PTS          register import1                            9.90000000 PTS          0.10000000 PTS      <d-ign></d-ign>
 <d-ign></d-ign>PENDING   GENESIS             import1             3,999.95000000 PTS      Claim from PoTDjB28K29rQgwQtGBB2WN6THruZ... N/A                     0.05000000 PTS      <d-ign></d-ign>
 y1 (unlocked) >>> wallet_import_by_signedmsg import1 17Eb8J5CSushUatgU5PufRPpeWUCborAKe
@@ -192,12 +190,12 @@ import2                         3,999.90000000 PTS
 y1 (unlocked) >>> wallet_account_transaction_history
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID      
 ======================================================================================================================================================================
-<d-ign></d-ign>1         delegate0           import1             10.00000000 PTS                                                     0.05000000 PTS      <d-ign></d-ign>
-<d-ign></d-ign>1         import2             import2             1,999.95000000 PTS      Claim from Psdoo...                         0.05000000 PTS      <d-ign></d-ign>
+<d-ign></d-ign>2         import2             import2             1,999.95000000 PTS      Claim from Psdoo...                         0.05000000 PTS      <d-ign></d-ign>
+<d-ign></d-ign>2         delegate0           import1             10.00000000 PTS                                                     0.05000000 PTS      <d-ign></d-ign>
 <d-ign></d-ign>4         import1             import1             0.00000000 PTS          register import1                            0.10000000 PTS      <d-ign></d-ign>
 <d-ign></d-ign>5         import2             import2             1,999.95000000 PTS      Claim from 17uzB...                         0.05000000 PTS      <d-ign></d-ign>
-<d-ign></d-ign>6         GENESIS             import1             1,999.95000000 PTS      Claim from 17Eb8J5CSushUatgU5PufRPpeWUCb... 0.05000000 PTS      <d-ign></d-ign>
 <d-ign></d-ign>6         GENESIS             import1             3,999.95000000 PTS      Claim from PoTDjB28K29rQgwQtGBB2WN6THruZ... 0.05000000 PTS      <d-ign></d-ign>
+<d-ign></d-ign>6         GENESIS             import1             1,999.95000000 PTS      Claim from 17Eb8J5CSushUatgU5PufRPpeWUCb... 0.05000000 PTS      <d-ign></d-ign>
 y1 (unlocked) >>> wallet_open y2
 OK
 y2 (locked) >>> wallet_unlock 999 123456789
@@ -216,12 +214,12 @@ import2                         3,999.90000000 PTS
 y2 (unlocked) >>> wallet_account_transaction_history
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID      
 ======================================================================================================================================================================
-<d-ign></d-ign>1         delegate0           import1             10.00000000 PTS                                                     0.05000000 PTS      <d-ign></d-ign>
-<d-ign></d-ign>1         GENESIS             import2             1,999.95000000 PTS      Claim from Psdoo24PLxmmAShaq8aaXm3r888kY... 0.05000000 PTS      <d-ign></d-ign>
+<d-ign></d-ign>2         GENESIS             import2             1,999.95000000 PTS      Claim from Psdoo24PLxmmAShaq8aaXm3r888kY... 0.05000000 PTS      <d-ign></d-ign>
+<d-ign></d-ign>2         delegate0           import1             10.00000000 PTS                                                     0.05000000 PTS      <d-ign></d-ign>
 <d-ign></d-ign>4         import1             import1             0.00000000 PTS          register import1                            0.10000000 PTS      <d-ign></d-ign>
 <d-ign></d-ign>5         GENESIS             import2             1,999.95000000 PTS      Claim from 17uzBLwTLQ1WNZfeEN8ttBJNWN8HL... 0.05000000 PTS      <d-ign></d-ign>
-<d-ign></d-ign>6         import1             import1             1,999.95000000 PTS      Claim from 17Eb8...                         0.05000000 PTS      <d-ign></d-ign>
 <d-ign></d-ign>6         import1             import1             3,999.95000000 PTS      Claim from PoTDj...                         0.05000000 PTS      <d-ign></d-ign>
+<d-ign></d-ign>6         import1             import1             1,999.95000000 PTS      Claim from 17Eb8...                         0.05000000 PTS      <d-ign></d-ign>
 y2 (unlocked) >>> debug_wait_for_block_by_number 5
 OK
 y2 (unlocked) >>> debug_wait 2

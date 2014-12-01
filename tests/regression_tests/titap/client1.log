@@ -1,9 +1,7 @@
+default (unlocked) >>> debug_wait_for_block_by_number 1
+OK
 default (unlocked) >>> wallet_account_create test-account
-"PTS6mBbqxv7oSqbcKW2xCaWxpGaR4SS1yk2VTkaQtAXGDmqV9raea"
-default (unlocked) >>> debug_wait 2
-OK
-default (unlocked) >>> debug_advance_time 1 blocks
-OK
+"PTS5kmVHDwLN9zsxa18jKFrLn6yPJkBsxJJHmFeRygEpUaBWCqcb4"
 default (unlocked) >>> debug_wait 2
 OK
 default (unlocked) >>> debug_wait_for_block_by_number 2
