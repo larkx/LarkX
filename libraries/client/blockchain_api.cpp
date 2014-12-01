@@ -1,5 +1,6 @@
 #include <bts/blockchain/exceptions.hpp>
 #include <bts/blockchain/account_operations.hpp>
+#include <bts/blockchain/pts_config.hpp>
 #include <bts/blockchain/time.hpp>
 #include <bts/client/client.hpp>
 #include <bts/client/client_impl.hpp>
