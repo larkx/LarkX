@@ -1289,8 +1289,8 @@ namespace bts { namespace blockchain {
 
                  my->_ask_db.set_write_through( write_through );
                  my->_bid_db.set_write_through( write_through );
-                 my->_relative_ask_db.set_write_through( write_through );
-                 my->_relative_bid_db.set_write_through( write_through );
+//                 my->_relative_ask_db.set_write_through( write_through );
+//                 my->_relative_bid_db.set_write_through( write_through );
                  my->_short_db.set_write_through( write_through );
                  my->_collateral_db.set_write_through( write_through );
 
