@@ -568,44 +568,34 @@ void transaction_builder::pay_fee()
    FC_THROW( "Unable to pay fee; no remaining balances can cover it and no account can pay it." );
 } FC_RETHROW_EXCEPTIONS( warn, "All balances: ${bals}", ("bals", outstanding_balances) ) }
 
+//Time to get desperate
 bool transaction_builder::withdraw_fee()
 {
-   //Shake down every owner with a balance until you find one who can pay a fee
-   std::unordered_set<blockchain::address> checked_accounts;
-   //At this point, we'll require XTS.
-   asset final_fee= _wimpl->self->get_transaction_fee();
-   address bag_holder;
+   const auto balances = _wimpl->self->get_account_balances( "", false );
 
-   for( auto itr = outstanding_balances.begin(); itr != outstanding_balances.end(); ++itr )
+   //Shake 'em down
+   for( const auto& item : outstanding_balances )
    {
-      address potential_bag_holder = itr->first.first;
+      const address& bag_holder = item.first.first;
 
-      //Have we already vetted this potential bag holder?
-      if( checked_accounts.find(potential_bag_holder) != checked_accounts.end() ) continue;
-      checked_accounts.insert(potential_bag_holder);
+      //Got any lunch money?
+      const owallet_account_record account_rec = _wimpl->_wallet_db.lookup_account(bag_holder);
+      if( !account_rec || balances.count( account_rec->name ) == 0 )
+         continue;
 
-      //Am I allowed to take money from this potential bag holder?
-      auto account_rec = _wimpl->_wallet_db.lookup_account(potential_bag_holder);
-      if( !account_rec || !account_rec->is_my_account ) continue;
+      //Well how much?
+      const map<asset_id_type, share_type>& account_balances = balances.at( account_rec->name );
+      for( const auto& balance_item : account_balances )
+      {
+          const asset balance( balance_item.second, balance_item.first );
+          const asset fee = _wimpl->self->get_transaction_fee( balance.asset_id );
+          if( fee.asset_id != balance.asset_id || fee > balance )
+              continue;
 
-      //Does this potential bag holder have any money I can take?
-      account_balance_summary_type balances = _wimpl->self->get_account_balances(account_rec->name);
-      if( balances.empty() ) continue;
-
-      //Does this potential bag holder have enough XTS?
-      auto balance_map = balances.begin()->second;
-      if( balance_map.find(0) == balance_map.end() || balance_map[0] < final_fee.amount ) continue;
-
-      //Let this potential bag holder be THE bag holder.
-      bag_holder = potential_bag_holder;
-      break;
-   }
-
-   if( bag_holder != address() )
-   {
-      deduct_balance(bag_holder, final_fee);
-      transaction_record.fee = final_fee;
-      return true;
+          deduct_balance(bag_holder, fee);
+          transaction_record.fee = fee;
+          return true;
+      }
    }
    return false;
 }
