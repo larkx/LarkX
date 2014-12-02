@@ -8,26 +8,26 @@ TIMESTAMP           BLOCK     FROM                TO                  AMOUNT    
 <d-ign></d-ign>PENDING   delegate0           PTS8aj4rwi1RLHxt... 10.00000000 PTS                                                     0.05000000 PTS      <d-ign></d-ign>
 default (unlocked) >>> debug_advance_time 1 blocks
 OK
-default (unlocked) >>> debug_wait 2
+default (unlocked) >>> debug_wait 3
 OK
 default (unlocked) >>> debug_advance_time 1 blocks
 OK
-default (unlocked) >>> debug_wait 2
+default (unlocked) >>> debug_wait 5
 OK
 default (unlocked) >>> debug_advance_time 1 blocks
 OK
-default (unlocked) >>> debug_wait 2
+default (unlocked) >>> debug_wait 5
 OK
 default (unlocked) >>> debug_advance_time 1 blocks
 OK
-default (unlocked) >>> debug_wait 2
+default (unlocked) >>> debug_wait 3
 OK
 default (unlocked) >>> debug_advance_time 1 blocks
 OK
-default (unlocked) >>> debug_wait 2
+default (unlocked) >>> debug_wait 3
 OK
 default (unlocked) >>> debug_advance_time 1 blocks
 OK
-default (unlocked) >>> debug_wait 2
+default (unlocked) >>> debug_wait 3
 OK
 default (unlocked) >>> quit
