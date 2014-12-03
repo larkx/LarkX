@@ -12,10 +12,11 @@ ts="`zcat "$2" | cut -d, -f 2 | cut -d: -f 2`"
 echo '"timestamp" : "'`date -d @$ts +%Y%m%dT%H%M%S`'",'
 echo '"market_assets": [ ],'
 echo '"names": ['
-sed 's=",=",\
+cat `dirname $0`/names.json $1 |
+  sed 's=",=",\
 	=g;s={= {\
 	=g;s=}=\
- }=g;s=:=: =g' <$1
+ }=g;s=:=: =g'
 echo '],'
 zcat "$2" | sed 's=^.*"balances="balances=;s=,"moneysupply".*==' | \
   sed 's=",=",\
