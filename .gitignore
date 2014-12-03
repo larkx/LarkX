@@ -34,13 +34,13 @@ programs/client/pts_client
 
 programs/utils/btc_wallet_dump
 programs/utils/bts_create_genesis
-programs/utils/bts_create_key
+programs/utils/pts_create_key
 programs/utils/bts_genesis_to_bin
 programs/utils/bts_genesis_to_cpp
 programs/utils/bts_json_to_cpp
 programs/utils/convert_btc_pubkey
 programs/utils/key_to_wif
-programs/utils/map_bts_network
+programs/utils/map_pts_network
 programs/utils/pack_web
 
 programs/utils/Genesis/private.csv

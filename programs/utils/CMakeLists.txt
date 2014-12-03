@@ -7,8 +7,8 @@ include_directories( ${CMAKE_CURRENT_SOURCE_DIR}/../../libraries/bitcoin/include
 add_executable( btc_wallet_dump bitcoin_recovery.cpp )
 target_link_libraries( btc_wallet_dump fc bts_blockchain bts_utilities bitcoin )
 
-add_executable( bts_create_key bts_create_key.cpp )
-target_link_libraries( bts_create_key fc bts_blockchain bts_utilities)
+add_executable( pts_create_key pts_create_key.cpp )
+target_link_libraries( pts_create_key fc bts_blockchain bts_utilities)
 
 add_executable( bts_create_genesis bts_create_genesis.cpp )
 target_link_libraries( bts_create_genesis fc bts_blockchain bts_utilities)
@@ -27,8 +27,8 @@ target_include_directories( bts_genesis_to_bin PRIVATE "${CMAKE_CURRENT_SOURCE_D
 add_executable( bts_json_to_cpp bts_json_to_cpp.cpp )
 target_link_libraries( bts_json_to_cpp fc bts_utilities)
 
-add_executable( map_bts_network map_bts_network.cpp )
-target_link_libraries( map_bts_network fc bts_net bts_client)
+add_executable( map_pts_network map_pts_network.cpp )
+target_link_libraries( map_pts_network fc bts_net bts_client)
 
 add_executable( pack_web pack_web.cpp )
 target_link_libraries( pack_web fc )
