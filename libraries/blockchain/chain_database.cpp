@@ -166,7 +166,7 @@ namespace bts { namespace blockchain {
                                     std::unordered_set<account_id_type> &slate,
                                     boost::random::mt11213b &prng )
       {
-          boost::random::uniform_int_distribution<size_t> delegates_distribution( 0, delegate_ids.size() );
+          boost::random::uniform_int_distribution<size_t> delegates_distribution( 0, delegate_ids.size() - 1 );
           slate.insert( delegate_ids[delegates_distribution( prng )] );
       }
 
@@ -174,7 +174,7 @@ namespace bts { namespace blockchain {
                                          std::unordered_set<account_id_type> &slate,
                                          boost::random::mt11213b &prng )
       {
-          boost::random::uniform_int_distribution<size_t> delegates_distribution( 0, delegate_ids.size() );
+          boost::random::uniform_int_distribution<size_t> delegates_distribution( 0, delegate_ids.size() - 1 );
           slate.erase( delegate_ids[delegates_distribution( prng )] );
       }
 
