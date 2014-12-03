@@ -1,7 +1,7 @@
 default (unlocked) >>> wallet_account_balance delegate0
 ACCOUNT                         BALANCE                     
 ============================================================
-delegate0                       19,801.98019801 PTS         
+delegate0                       9,900,990.099009 PTS        
 default (unlocked) >>> wallet_account_create test
 "PTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp"
 default (unlocked) >>> wallet_account_balance test
@@ -26,7 +26,7 @@ aliases: transfer
 default (unlocked) >>> wallet_transfer 100 PTS delegate0 test
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID      
 ======================================================================================================================================================================
-<d-ign></d-ign>PENDING   delegate0           test                100.00000000 PTS                                                    0.05000000 PTS      <d-ign></d-ign>
+<d-ign></d-ign>PENDING   delegate0           test                100.000000 PTS                                                      5.000000 PTS        <d-ign></d-ign>
 default (unlocked) >>> debug_advance_time 1 blocks
 OK
 default (unlocked) >>> debug_wait 4
@@ -34,9 +34,9 @@ OK
 default (unlocked) >>> wallet_account_balance delegate0
 ACCOUNT                         BALANCE                     
 ============================================================
-delegate0                       19,701.93019801 PTS         
+delegate0                       9,900,885.099009 PTS        
 default (unlocked) >>> wallet_account_balance test
 ACCOUNT                         BALANCE                     
 ============================================================
-test                            100.00000000 PTS            
+test                            100.000000 PTS              
 default (unlocked) >>> quit

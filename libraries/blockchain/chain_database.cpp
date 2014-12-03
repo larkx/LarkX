@@ -323,7 +323,7 @@ namespace bts { namespace blockchain {
          self->set_property( bts::blockchain::chain_id, fc::variant(_chain_id) );
 
          fc::uint128 total_unscaled = 0;
-         for( const auto& item : config.balances ) total_unscaled += int64_t(item.second/1000);
+         for( const auto& item : config.balances ) total_unscaled += uint64_t(item.second);
          ilog( "Total unscaled: ${s}", ("s", total_unscaled) );
 
          std::vector<name_config> delegate_config;
@@ -372,6 +372,10 @@ namespace bts { namespace blockchain {
             ++n;
 
             fc::uint128 initial( int64_t(item.second) );
+#ifdef BTS_BLOCKCHAIN_INITIAL_SHARES
+            initial *= fc::uint128(int64_t(BTS_BLOCKCHAIN_INITIAL_SHARES));
+            initial /= total_unscaled;
+#endif
 
             const auto addr = item.first;
             /* In case of redundant balances */

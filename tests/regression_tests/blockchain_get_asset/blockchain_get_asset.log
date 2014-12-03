@@ -18,10 +18,10 @@ aliases: get_asset
   "description": "PTS P2P Currency",
   "public_data": "",
   "issuer_account_id": 0,
-  "precision": 100000000,
+  "precision": 1000000,
   "registration_date": "2014-06-20T14:40:27",
   "last_update": "2014-06-20T14:40:27",
-  "current_share_supply": 199999999999901,
+  "current_share_supply": 999999999999907,
   "maximum_share_supply": 1000000000000000,
   "collected_fees": 0
 }
@@ -33,10 +33,10 @@ aliases: get_asset
   "description": "PTS P2P Currency",
   "public_data": "",
   "issuer_account_id": 0,
-  "precision": 100000000,
+  "precision": 1000000,
   "registration_date": "2014-06-20T14:40:27",
   "last_update": "2014-06-20T14:40:27",
-  "current_share_supply": 199999999999901,
+  "current_share_supply": 999999999999907,
   "maximum_share_supply": 1000000000000000,
   "collected_fees": 0
 }

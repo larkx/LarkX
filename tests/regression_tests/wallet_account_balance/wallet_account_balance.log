@@ -13,5 +13,5 @@ aliases: balance, getbalance
 default (unlocked) >>> wallet_account_balance delegate0
 ACCOUNT                         BALANCE                     
 ============================================================
-delegate0                       19,801.98019801 PTS         
+delegate0                       9,900,990.099009 PTS        
 default (unlocked) >>> quit

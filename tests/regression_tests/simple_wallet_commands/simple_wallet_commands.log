@@ -10,7 +10,7 @@ wallet (unlocked) >>> wallet_get_info
   "transaction_scanning_enabled": false,
   "last_scanned_block_num": null,
   "last_scanned_block_timestamp": null,
-  "transaction_fee": "0.05000000 PTS",
+  "transaction_fee": "5.000000 PTS",
   "transaction_expiration_secs": 3600,
   "unlocked": true,
   "unlocked_until": "<d-ign></d-ign>",
@@ -65,7 +65,7 @@ OK
 wallet (unlocked) >>> wallet_get_name 
 "wallet"
 wallet (unlocked) >>> wallet_set_priority_fee 99999
-99,999.00000000 PTS
+99,999.000000 PTS
 wallet (unlocked) >>> wallet_account_set_favorite myaccount
 OK
 wallet (unlocked) >>> wallet_list_favorite_accounts 
@@ -102,7 +102,7 @@ wallet (unlocked) >>> wallet_get_info
   "transaction_scanning_enabled": true,
   "last_scanned_block_num": null,
   "last_scanned_block_timestamp": null,
-  "transaction_fee": "99,999.00000000 PTS",
+  "transaction_fee": "99,999.000000 PTS",
   "transaction_expiration_secs": 3600,
   "unlocked": true,
   "unlocked_until": "<d-ign></d-ign>",

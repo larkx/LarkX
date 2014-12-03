@@ -17,7 +17,7 @@ No account found.
 default (unlocked) >>> wallet_account_register testaccount1 delegate0 null 100
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID      
 ======================================================================================================================================================================
-<d-ign></d-ign>PENDING   delegate0           testaccount1        0.00000000 PTS          register testaccount1 as a delegate         0.10000000 PTS      <d-ign></d-ign>
+<d-ign></d-ign>PENDING   delegate0           testaccount1        0.000000 PTS            register testaccount1 as a delegate         10.000000 PTS       <d-ign></d-ign>
 default (unlocked) >>> debug_advance_time 1 blocks
 OK
 default (unlocked) >>> debug_wait 2
@@ -60,7 +60,7 @@ default (unlocked) >>> blockchain_list_recently_registered_accounts
 default (unlocked) >>> wallet_account_register testaccount2 delegate0 null 90
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID      
 ======================================================================================================================================================================
-<d-ign></d-ign>PENDING   delegate0           testaccount2        0.00000000 PTS          register testaccount2 as a delegate         0.10000525 PTS      <d-ign></d-ign>
+<d-ign></d-ign>PENDING   delegate0           testaccount2        0.000000 PTS            register testaccount2 as a delegate         10.000525 PTS       <d-ign></d-ign>
 default (unlocked) >>> debug_advance_time 1 blocks
 OK
 default (unlocked) >>> debug_wait 2
@@ -115,7 +115,7 @@ default (unlocked) >>> blockchain_list_recently_registered_accounts
 default (unlocked) >>> wallet_account_register testaccount3 delegate0 null 10
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID      
 ======================================================================================================================================================================
-<d-ign></d-ign>PENDING   delegate0           testaccount3        0.00000000 PTS          register testaccount3 as a delegate         0.10000117 PTS      <d-ign></d-ign>
+<d-ign></d-ign>PENDING   delegate0           testaccount3        0.000000 PTS            register testaccount3 as a delegate         10.000117 PTS       <d-ign></d-ign>
 default (unlocked) >>> debug_advance_time 1 blocks
 OK
 default (unlocked) >>> debug_wait 2
@@ -192,7 +192,7 @@ default (unlocked) >>> blockchain_list_recently_registered_accounts
 default (unlocked) >>> wallet_account_register testaccount4 delegate0 null 100
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID      
 ======================================================================================================================================================================
-<d-ign></d-ign>PENDING   delegate0           testaccount4        0.00000000 PTS          register testaccount4 as a delegate         0.10001767 PTS      <d-ign></d-ign>
+<d-ign></d-ign>PENDING   delegate0           testaccount4        0.000000 PTS            register testaccount4 as a delegate         10.001767 PTS       <d-ign></d-ign>
 default (unlocked) >>> debug_advance_time 1 blocks
 OK
 default (unlocked) >>> debug_wait 2
@@ -207,7 +207,7 @@ Active Key History:
 
 ID    NAME (* next in line)           APPROVAL       PRODUCED MISSED   RELIABILITY   PAY RATE PAY BALANCE         LAST BLOCK  VERSION     
 ==========================================================================================================================================
-102   testaccount1                    0.00000000 %   0        0        N/A           100 %    0.00000000 PTS      NONE                    
+102   testaccount1                    0.00000000 %   0        0        N/A           100 %    0.000000 PTS        NONE                    
 
 default (unlocked) >>> blockchain_get_account testaccount2
 Name: testaccount2
@@ -219,7 +219,7 @@ Active Key History:
 
 ID    NAME (* next in line)           APPROVAL       PRODUCED MISSED   RELIABILITY   PAY RATE PAY BALANCE         LAST BLOCK  VERSION     
 ==========================================================================================================================================
-103   testaccount2                    0.00000000 %   0        0        N/A           90 %     0.00000000 PTS      NONE                    
+103   testaccount2                    0.00000000 %   0        0        N/A           90 %     0.000000 PTS        NONE                    
 
 default (unlocked) >>> blockchain_get_account testaccount3
 Name: testaccount3
@@ -231,7 +231,7 @@ Active Key History:
 
 ID    NAME (* next in line)           APPROVAL       PRODUCED MISSED   RELIABILITY   PAY RATE PAY BALANCE         LAST BLOCK  VERSION     
 ==========================================================================================================================================
-104   testaccount3                    0.00000000 %   0        0        N/A           10 %     0.00000000 PTS      NONE                    
+104   testaccount3                    0.00000000 %   0        0        N/A           10 %     0.000000 PTS        NONE                    
 
 default (unlocked) >>> blockchain_get_account testaccount4
 Name: testaccount4
@@ -243,7 +243,7 @@ Active Key History:
 
 ID    NAME (* next in line)           APPROVAL       PRODUCED MISSED   RELIABILITY   PAY RATE PAY BALANCE         LAST BLOCK  VERSION     
 ==========================================================================================================================================
-105   testaccount4                    0.00000000 %   0        0        N/A           100 %    0.00000000 PTS      NONE                    
+105   testaccount4                    0.00000000 %   0        0        N/A           100 %    0.000000 PTS        NONE                    
 
 default (unlocked) >>> blockchain_list_recently_registered_accounts
 [{

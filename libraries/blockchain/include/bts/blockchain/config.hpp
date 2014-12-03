@@ -23,13 +23,13 @@
 #define BTS_BLOCKCHAIN_SYMBOL                               "PTS"
 #define BTS_BLOCKCHAIN_NAME                                 "PTS"
 #define BTS_BLOCKCHAIN_DESCRIPTION                          "PTS P2P Currency"
-#define BTS_BLOCKCHAIN_PRECISION                            (uint64_t(100000000))
+#define BTS_BLOCKCHAIN_PRECISION                            (uint64_t(1000000))
 #define BTS_BLOCKCHAIN_MAX_TRANSACTION_EXPIRATION_SEC       (60*60*24*2)
 #define BTS_BLOCKCHAIN_MIN_YIELD_PERIOD_SEC                 (60*60*24) // 24 hours
 
-#define BTS_BLOCKCHAIN_MIN_BURN_FEE                         BTS_BLOCKCHAIN_PRECISION * 1 // 1 XTS
-#define BTS_BLOCKCHAIN_DEFAULT_RELAY_FEE                    1000000 // XTS
-#define BTS_BLOCKCHAIN_MINIMUM_SHORT_ORDER_SIZE             (BTS_BLOCKCHAIN_PRECISION*1000000)
+#define BTS_BLOCKCHAIN_MIN_BURN_FEE                         BTS_BLOCKCHAIN_PRECISION // 1 PTS
+#define BTS_BLOCKCHAIN_DEFAULT_RELAY_FEE                    BTS_BLOCKCHAIN_PRECISION // 1 PTS
+#define BTS_BLOCKCHAIN_MINIMUM_SHORT_ORDER_SIZE             (BTS_BLOCKCHAIN_PRECISION*10000000)
 //#define BTS_BLOCKCHAIN_MAX_SHORT_PERIOD_SEC                 (30*24*60*60) // 30 days * 24 hours * 60 minutes * 60 seconds = 1 month
 #define BTS_BLOCKCHAIN_MAX_SHORT_PERIOD_SEC                 (2*60*60) // 2 hours for test network
 
@@ -43,7 +43,7 @@
 
 #define BTS_BLOCKCHAIN_ENABLE_NEGATIVE_VOTES                false
 
-#define BTS_MAX_DELEGATE_PAY_PER_BLOCK                      int64_t( 50 * BTS_BLOCKCHAIN_PRECISION ) // 50 XTS
+#define BTS_MAX_DELEGATE_PAY_PER_BLOCK                      int64_t( 50 * BTS_BLOCKCHAIN_PRECISION ) // 50 PTS
 
 /**
  * To prevent a delegate from producing blocks on split network,
@@ -89,7 +89,7 @@
  * Initial shares read from the genesis block are scaled to this number. It is divided
  * by 100 so that new shares may be issued without exceeding BTS_BLOCKCHAIN_MAX_SHARES
  */
-//#define BTS_BLOCKCHAIN_INITIAL_SHARES                       (BTS_BLOCKCHAIN_MAX_SHARES/5)
+#define BTS_BLOCKCHAIN_INITIAL_SHARES                       (BTS_BLOCKCHAIN_MAX_SHARES) // 10^9 PTS
 
 /**
  *  The number of blocks expected per hour based upon the BTS_BLOCKCHAIN_BLOCK_INTERVAL_SEC

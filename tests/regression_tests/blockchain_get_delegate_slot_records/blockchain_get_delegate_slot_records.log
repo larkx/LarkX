@@ -30,32 +30,32 @@ Parameters:
 
 Returns:
   slot_records_list
-default (unlocked) >>> blockchain_get_delegate_slot_records delegate85 1
+default (unlocked) >>> blockchain_get_delegate_slot_records delegate17 1
 [{
     "start_time": "2014-06-20T14:40:30",
-    "block_producer_id": 86,
-    "block_id": "0e738f9f8e54c58a9b040a30d165563064512547"
+    "block_producer_id": 18,
+    "block_id": "e4c530a42a457384286a86977104827dbbc7cc0a"
   }
 ]
-default (unlocked) >>> blockchain_get_delegate_slot_records delegate8 1
+default (unlocked) >>> blockchain_get_delegate_slot_records delegate23 1
 [{
     "start_time": "2014-06-20T14:40:40",
-    "block_producer_id": 9,
-    "block_id": "3100701b61b0512bbb5de1d7d9a92ee330d7a35a"
+    "block_producer_id": 24,
+    "block_id": "5ff8d0d9f5e4d60d825179bdb12702a4b497bd2b"
   }
 ]
-default (unlocked) >>> blockchain_get_delegate_slot_records delegate18 -1
+default (unlocked) >>> blockchain_get_delegate_slot_records delegate27 -1
 [{
     "start_time": "2014-06-20T14:40:50",
-    "block_producer_id": 19,
-    "block_id": "70348f503393b69e3e9460924e28eda77fa5114b"
+    "block_producer_id": 28,
+    "block_id": "e0966a12017829252b9baa2cffe0d1e467f0dbc0"
   }
 ]
-default (unlocked) >>> blockchain_get_delegate_slot_records delegate19 4
+default (unlocked) >>> blockchain_get_delegate_slot_records delegate39 4
 [{
     "start_time": "2014-06-20T14:41:00",
-    "block_producer_id": 20,
-    "block_id": "01ca4f59ee9dafc3264c75f8b45cd1e154d5e436"
+    "block_producer_id": 40,
+    "block_id": "48f572327ac6e35d2d40f5ed80e32d2f1fccaa10"
   }
 ]
 default (unlocked) >>> quit

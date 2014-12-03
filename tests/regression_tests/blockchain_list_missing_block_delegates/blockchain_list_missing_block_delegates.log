@@ -16,14 +16,14 @@ default (unlocked) >>> debug_wait_for_block_by_number 2
 OK
 default (unlocked) >>> blockchain_list_missing_block_delegates 2
 [
-  "delegate8",
-  "delegate18",
-  "delegate19",
-  "delegate32",
-  "delegate34",
-  "delegate49",
-  "delegate59",
-  "delegate73",
-  "delegate80"
+  "delegate23",
+  "delegate27",
+  "delegate39",
+  "delegate52",
+  "delegate58",
+  "delegate60",
+  "delegate67",
+  "delegate71",
+  "delegate75"
 ]
 default (unlocked) >>> quit

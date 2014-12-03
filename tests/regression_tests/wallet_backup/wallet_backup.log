@@ -1,7 +1,7 @@
 default (unlocked) >>> wallet_account_balance delegate0
 ACCOUNT                         BALANCE                     
 ============================================================
-delegate0                       19,801.98019801 PTS         
+delegate0                       9,900,990.099009 PTS        
 default (unlocked) >>> help wallet_backup_create
 Usage:
 wallet_backup_create <json_filename>                                                                  Exports the current wallet to a JSON file
@@ -37,5 +37,5 @@ OK
 recovered (unlocked) >>> wallet_account_balance delegate0
 ACCOUNT                         BALANCE                     
 ============================================================
-delegate0                       19,801.98019801 PTS         
+delegate0                       9,900,990.099009 PTS        
 recovered (unlocked) >>> quit

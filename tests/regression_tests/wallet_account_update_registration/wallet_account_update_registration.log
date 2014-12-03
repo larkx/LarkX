@@ -3,7 +3,7 @@ default (unlocked) >>> wallet_account_create tests
 default (unlocked) >>> wallet_transfer 100 PTS delegate0 tests
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID      
 ======================================================================================================================================================================
-<d-ign></d-ign>PENDING   delegate0           tests               100.00000000 PTS                                                    0.05000000 PTS      <d-ign></d-ign>
+<d-ign></d-ign>PENDING   delegate0           tests               100.000000 PTS                                                      5.000000 PTS        <d-ign></d-ign>
 default (unlocked) >>> debug_advance_time 1 blocks
 OK
 default (unlocked) >>> debug_wait 5
@@ -11,13 +11,13 @@ OK
 default (unlocked) >>> wallet_account_balance tests
 ACCOUNT                         BALANCE                     
 ============================================================
-tests                           100.00000000 PTS            
+tests                           100.000000 PTS              
 default (unlocked) >>> blockchain_get_account tests
 No account found.
 default (unlocked) >>> wallet_account_register tests tests
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID      
 ======================================================================================================================================================================
-<d-ign></d-ign>PENDING   tests               tests               0.00000000 PTS          register tests                              0.10000000 PTS      <d-ign></d-ign>
+<d-ign></d-ign>PENDING   tests               tests               0.000000 PTS            register tests                              10.000000 PTS       <d-ign></d-ign>
 default (unlocked) >>> debug_advance_time 1 blocks
 OK
 default (unlocked) >>> debug_wait 2
@@ -33,8 +33,8 @@ Not a delegate.
 default (unlocked) >>> wallet_account_update_registration tests tests null 100
  TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID      
 ========================================================================================================================================================================
-|<d-ign></d-ign>PENDING   tests               tests               0.00000883 PTS          Fee to promote tests to a delegate          0.05000000 PTS      <d-ign></d-ign>|
-|                              tests               tests               0.00000000 PTS          Update tests's public data                                              |
+|<d-ign></d-ign>PENDING   tests               tests               0.000883 PTS            Fee to promote tests to a delegate          5.000000 PTS        <d-ign></d-ign>|
+|                              tests               tests               0.000000 PTS            Update tests's public data                                              |
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 default (unlocked) >>> debug_advance_time 1 blocks
 OK
@@ -50,6 +50,6 @@ Active Key History:
 
 ID    NAME (* next in line)           APPROVAL       PRODUCED MISSED   RELIABILITY   PAY RATE PAY BALANCE         LAST BLOCK  VERSION     
 ==========================================================================================================================================
-102   tests                           0.00000000 %   0        0        N/A           100 %    0.00000000 PTS      NONE                    
+102   tests                           0.00000000 %   0        0        N/A           100 %    0.000000 PTS        NONE                    
 
 default (unlocked) >>> quit
