@@ -12,7 +12,8 @@ ts="`zcat "$2" | cut -d, -f 2 | cut -d: -f 2`"
 echo '"timestamp" : "'`date -d @$ts +%Y%m%dT%H%M%S`'",'
 echo '"market_assets": [ ],'
 echo '"names": ['
-cat `dirname $0`/names.json $1 |
+cat `dirname $0`/names.json $1 | \
+  grep '"name"' | \
   sed 's=",=",\
 	=g;s={= {\
 	=g;s=}=\
