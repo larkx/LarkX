@@ -104,17 +104,23 @@ namespace bts { namespace wallet {
          int32_t            new_wallet_record_index();
          optional<wallet_master_key_record>                               wallet_master_key;
          /** maps wallet_record_index to accounts */
-         unordered_map< int32_t,wallet_account_record >                   accounts;
-         unordered_map< address, wallet_key_record >                      keys;
-         unordered_map< transaction_id_type, wallet_transaction_record >  transactions;
-         unordered_map< balance_id_type,wallet_balance_record >           balances;
-         map<property_enum, wallet_property_record>                       properties;
-         map< string, wallet_setting_record >                             settings;
+         unordered_map<int32_t, wallet_account_record>                  accounts;
+         unordered_map<address, wallet_key_record>                      keys;
+         unordered_map<transaction_id_type, wallet_transaction_record>  transactions;
+         unordered_map<balance_id_type,wallet_balance_record>           balances;
+         map<property_enum, wallet_property_record>                     properties;
+         map<string, wallet_setting_record>                             settings;
 
-         unordered_map< address, address >                                btc_to_bts_address;
-         unordered_map< address, int32_t >                                address_to_account_wallet_record_index;
-         unordered_map< account_id_type, int32_t >                        account_id_to_wallet_record_index;
-         map< string, int32_t >                                           name_to_account_wallet_record_index;
+         // Caches to lookup accounts
+         unordered_map<address, int32_t>                                address_to_account_wallet_record_index;
+         map<string, int32_t>                                           name_to_account_wallet_record_index;
+         unordered_map<account_id_type, int32_t>                        account_id_to_wallet_record_index;
+
+         // Cache to lookup keys
+         unordered_map<address, address>                                btc_to_bts_address;
+
+         // Cache to lookup transactions
+         unordered_map<transaction_id_type, transaction_id_type>        id_to_transaction_record_index;
 
          void remove_item( int32_t index );
          /**
