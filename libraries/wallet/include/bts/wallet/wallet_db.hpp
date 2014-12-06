@@ -25,8 +25,8 @@ namespace bts { namespace wallet {
                                              const address& parent_account_address = address(),
                                              bool store_key = true );
 
-         void        set_property( property_enum property_id, const fc::variant& v );
-         fc::variant get_property( property_enum property_id )const;
+         void        set_property( const property_enum property_id, const fc::variant& v, const bool sync = true );
+         fc::variant get_property( const property_enum property_id )const;
 
          void store_key( const key_data& k );
          void store_transaction( wallet_transaction_record& t );
@@ -121,14 +121,14 @@ namespace bts { namespace wallet {
           *  This is private
           */
          template<typename T>
-         void store_record( T record_to_store, bool sync = false )
+         void store_record( T record_to_store, bool sync = true )
          {
             if( record_to_store.wallet_record_index == 0 )
                record_to_store.wallet_record_index = new_wallet_record_index();
             store_generic_record( generic_wallet_record( record_to_store ), sync );
          }
 
-        void store_generic_record( const generic_wallet_record& record, bool sync = false );
+        void store_generic_record( const generic_wallet_record& record, bool sync = true );
 
         friend class detail::wallet_db_impl;
         unique_ptr<detail::wallet_db_impl> my;

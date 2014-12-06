@@ -16,16 +16,12 @@ namespace bts { namespace wallet {
            wallet_db*                                        self = nullptr;
            bts::db::level_map<int32_t,generic_wallet_record> _records;
 
-           void store_generic_record( const generic_wallet_record& record, bool sync )
+           void store_generic_record( const generic_wallet_record& record, bool sync = true )
            { try {
                auto index = record.get_wallet_record_index();
                FC_ASSERT( index != 0 );
                FC_ASSERT( _records.is_open() );
-#ifndef BTS_TEST_NETWORK
-               _records.store( index, record, true ); // Sync
-#else
                _records.store( index, record, sync );
-#endif
                load_generic_record( record );
            } FC_CAPTURE_AND_RETHROW( (record) ) }
 
@@ -297,7 +293,7 @@ namespace bts { namespace wallet {
       return new_priv_key;
    }
 
-   void wallet_db::set_property( property_enum property_id, const variant& v )
+   void wallet_db::set_property( const property_enum property_id, const variant& v, const bool sync )
    {
       wallet_property_record property_record;
       auto property_itr = properties.find( property_id );
@@ -313,10 +309,10 @@ namespace bts { namespace wallet {
           else
               property_record = wallet_property_record( wallet_property(property_id, v), new_wallet_record_index() );
       }
-      store_record( property_record );
+      store_record( property_record, sync );
    }
 
-   variant wallet_db::get_property( property_enum property_id )const
+   variant wallet_db::get_property( const property_enum property_id )const
    {
       auto property_itr = properties.find( property_id );
       if( property_itr != properties.end() ) return property_itr->second.value;

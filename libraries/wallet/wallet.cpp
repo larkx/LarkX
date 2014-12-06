@@ -3484,7 +3484,7 @@ namespace detail {
    void wallet::set_last_scanned_block_number( uint32_t block_num )
    { try {
        FC_ASSERT( is_open() );
-       my->_wallet_db.set_property( last_unlocked_scanned_block_number, fc::variant( block_num ) );
+       my->_wallet_db.set_property( last_unlocked_scanned_block_number, fc::variant( block_num ), false );
    } FC_CAPTURE_AND_RETHROW() }
 
    uint32_t wallet::get_last_scanned_block_number()const
