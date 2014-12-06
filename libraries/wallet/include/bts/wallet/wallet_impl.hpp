@@ -136,7 +136,7 @@ class wallet_impl : public chain_observer
 
       bool scan_burn( const burn_operation& op, wallet_transaction_record& trx_rec, asset& total_fee );
 
-      void sync_balance_with_blockchain( const balance_id_type& balance_id, const obalance_record& record );
+      void sync_balance_with_blockchain( const balance_id_type& balance_id, const obalance_record& record, const bool sync = true );
       void sync_balance_with_blockchain( const balance_id_type& balance_id );
 
       vector<wallet_transaction_record> get_pending_transactions()const;

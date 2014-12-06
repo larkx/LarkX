@@ -217,7 +217,7 @@ void wallet_impl::scan_balances()
        if( transaction_record.valid() )
        {
            transaction_record->ledger_entries.clear();
-           _wallet_db.store_transaction( *transaction_record );
+           _wallet_db.store_transaction( *transaction_record, false );
        }
    }
 
@@ -250,7 +250,7 @@ void wallet_impl::scan_balances()
               transaction_record->is_virtual = true;
               transaction_record->is_confirmed = true;
               transaction_record->ledger_entries.push_back( entry );
-              _wallet_db.store_transaction( *transaction_record );
+              _wallet_db.store_transaction( *transaction_record, false );
           }
         }
    } );
@@ -269,7 +269,7 @@ void wallet_impl::scan_registered_accounts()
            {
               blockchain::account_record& as_blockchain_account_record = *existing_account_record;
               as_blockchain_account_record = scanned_account_record;
-              _wallet_db.cache_account( *existing_account_record );
+              _wallet_db.cache_account( *existing_account_record, false );
            }
         }
    } );

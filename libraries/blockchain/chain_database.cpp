@@ -336,6 +336,9 @@ namespace bts { namespace blockchain {
                     "genesis.json does not contain enough initial delegates",
                     ("required",BTS_BLOCKCHAIN_NUM_DELEGATES)("provided",delegate_config.size()) );
 
+         _slate_db.set_write_through( false );
+         _account_db.set_write_through( false );
+
          account_record god; god.id = 0; god.name = "god";
          self->store_account_record( god );
 
@@ -400,6 +403,9 @@ namespace bts { namespace blockchain {
             self->store_balance_record( cur->second );
          }
          store_delegates( delegate_map );
+
+         _slate_db.set_write_through( true );
+         _account_db.set_write_through( true );
 
          asset total;
          auto itr = _balance_db.begin();
