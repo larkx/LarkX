@@ -177,12 +177,12 @@ namespace detail {
       return fc::ripemd160::hash( enc.result() );
    }
 
-   void wallet_impl::sync_balance_with_blockchain( const balance_id_type& balance_id, const obalance_record& record )
+   void wallet_impl::sync_balance_with_blockchain( const balance_id_type& balance_id, const obalance_record& record, const bool sync )
    {
       if( !record.valid() || record->balance == 0 )
           _wallet_db.remove_balance( balance_id );
       else
-          _wallet_db.cache_balance( *record );
+          _wallet_db.cache_balance( *record, sync );
    }
 
    void wallet_impl::sync_balance_with_blockchain( const balance_id_type& balance_id )
@@ -302,7 +302,7 @@ namespace detail {
                {
                    blockchain::account_record& brec = acct.second;
                    brec = *blockchain_acct_rec;
-                   _wallet_db.cache_account( acct.second );
+                   _wallet_db.cache_account( acct.second, false );
                }
             }
         }
@@ -3484,7 +3484,7 @@ namespace detail {
    void wallet::set_last_scanned_block_number( uint32_t block_num )
    { try {
        FC_ASSERT( is_open() );
-       my->_wallet_db.set_property( last_unlocked_scanned_block_number, fc::variant( block_num ) );
+       my->_wallet_db.set_property( last_unlocked_scanned_block_number, fc::variant( block_num ), false );
    } FC_CAPTURE_AND_RETHROW() }
 
    uint32_t wallet::get_last_scanned_block_number()const
@@ -3795,7 +3795,7 @@ namespace detail {
           balance_records[ name ].push_back( *pending_record );
 
           /* Re-cache the pending balance just in case */
-          my->sync_balance_with_blockchain( balance_id, pending_record );
+          my->sync_balance_with_blockchain( balance_id, pending_record, false );
       };
 
       my->_blockchain->scan_balances( scan_balance );

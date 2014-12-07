@@ -48,26 +48,28 @@ Building PTS on OS X 10.9
 
 7) Build PTS client with CMake
 
-    git clone https://github.com/pmconrad/PTS.git
+    git clone https://github.com/PTS-DPOS/PTS.git
     cd PTS
     git submodule init
     git submodule update
     cmake -DCMAKE_PREFIX_PATH=/usr/local/ssl .
-    make
+    make pts_client
 
 8) To build the Desktop Client
 
     TODO: describe Install Node
 
-    git clone git@github.com:BitShares/web_wallet.git
-    git clone git@github.com:BitShares/qt_wallet.git
+    git clone https://github.com/PTS-DPOS/PTS.git
+    cd PTS
+    git submodule init
+    git submodule update
     cd programs/web_wallet/
     sudo npm install lineman-angular
     sudo npm install lineman-less
     cd ../..
     export CMAKE_PREFIX_PATH=~/Qt/5.3/
-    make buildweb
     cmake -DINCLUDE_QT_WALLET=TRUE -DCMAKE_PREFIX_PATH=/usr/local/ssl  .
+    make buildweb
     make
 
 By default, the web wallet will not be rebuilt even after pulling new changes. To force the web wallet to rebuild, use `make forcebuildweb`.

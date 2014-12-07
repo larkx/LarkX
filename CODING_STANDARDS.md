@@ -12,7 +12,7 @@ PTS C++ application that follow conventions similar to boost or the standard tem
 
       namespace a { namespace b { 
 
-         namespace deltail { some_class_impl; }
+         namespace detail { some_class_impl; }
 
          class some_class : public base_class
          {

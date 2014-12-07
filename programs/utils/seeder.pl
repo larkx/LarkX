@@ -40,6 +40,7 @@ my $DB_FILE = $ARGV[0];
 my $PORT = $ARGV[1];
 
 my $active_addrs = &parse_input($PORT);
+&filter_private($active_addrs);
 my $known_addrs = &parse_db($DB_FILE);
 &update_db($known_addrs, $active_addrs);
 &save_db($DB_FILE, $known_addrs);
@@ -55,6 +56,22 @@ my %addrs = ();
 	if ($addr) { $addrs{$addr} = 1; }
     }
     return \%addrs;
+}
+
+sub is_private {
+my $addr = shift;
+
+    return $addr =~ /^(10|172\.(1[6-9]|2.|3[01])|192\.168)\./;
+}
+
+sub filter_private {
+my $addrs = shift;
+
+    foreach my $addr (keys %$addrs) {
+	if (&is_private($addr)) {
+	    delete $addrs->{$addr};
+	}
+    }
 }
 
 sub parse_input_line {

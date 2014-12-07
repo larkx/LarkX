@@ -16,12 +16,12 @@ mkdir D:\PTS
 * Clone the PTS repository
   ```
 cd D:\PTS
-git clone https://github.com/pmconrad/PTS.git
+git clone https://github.com/PTS-DPOS/PTS.git
 cd PTS
 git submodule init
 git submodule update
 cd vendor
-git clone https://github.com/InvictusInnovations/leveldb-win.git
+git clone https://github.com/PTS-DPOS/leveldb-win.git
 ```
 
 * Dowload CMake

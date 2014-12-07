@@ -9,11 +9,11 @@ No balances found.
 default (unlocked) >>> wallet_transfer 100 PTS delegate0 test
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID      
 ======================================================================================================================================================================
-<d-ign></d-ign>PENDING   delegate0           test                100.000000 PTS                                                      5.000000 PTS        <d-ign></d-ign>
+<d-ign></d-ign>PENDING   delegate0           test                100.000000 PTS                                                      25.000000 PTS       <d-ign></d-ign>
 default (unlocked) >>> wallet_account_balance delegate0
 ACCOUNT                         BALANCE                     
 ============================================================
-delegate0                       9,900,885.099009 PTS        
+delegate0                       9,900,865.099009 PTS        
 default (unlocked) >>> wallet_account_balance test
 No balances found.
 default (unlocked) >>> help blockchain_list_pending_transactions
@@ -47,7 +47,7 @@ No pending transactions.
 default (unlocked) >>> wallet_account_balance delegate0
 ACCOUNT                         BALANCE                     
 ============================================================
-delegate0                       9,900,885.099009 PTS        
+delegate0                       9,900,865.099009 PTS        
 default (unlocked) >>> wallet_account_balance test
 ACCOUNT                         BALANCE                     
 ============================================================

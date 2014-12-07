@@ -16,16 +16,12 @@ namespace bts { namespace wallet {
            wallet_db*                                        self = nullptr;
            bts::db::level_map<int32_t,generic_wallet_record> _records;
 
-           void store_generic_record( const generic_wallet_record& record, bool sync )
+           void store_generic_record( const generic_wallet_record& record, bool sync = true )
            { try {
                auto index = record.get_wallet_record_index();
                FC_ASSERT( index != 0 );
                FC_ASSERT( _records.is_open() );
-#ifndef BTS_TEST_NETWORK
-               _records.store( index, record, true ); // Sync
-#else
                _records.store( index, record, sync );
-#endif
                load_generic_record( record );
            } FC_CAPTURE_AND_RETHROW( (record) ) }
 
@@ -225,7 +221,7 @@ namespace bts { namespace wallet {
       {
          next_rec_number = next_rec_num.as<int32_t>();
       }
-      set_property( property_enum::next_record_number, next_rec_number + 1 );
+      set_property( property_enum::next_record_number, next_rec_number + 1, false );
       return next_rec_number;
    }
 
@@ -297,7 +293,7 @@ namespace bts { namespace wallet {
       return new_priv_key;
    }
 
-   void wallet_db::set_property( property_enum property_id, const variant& v )
+   void wallet_db::set_property( const property_enum property_id, const variant& v, const bool sync )
    {
       wallet_property_record property_record;
       auto property_itr = properties.find( property_id );
@@ -313,10 +309,10 @@ namespace bts { namespace wallet {
           else
               property_record = wallet_property_record( wallet_property(property_id, v), new_wallet_record_index() );
       }
-      store_record( property_record );
+      store_record( property_record, sync );
    }
 
-   variant wallet_db::get_property( property_enum property_id )const
+   variant wallet_db::get_property( const property_enum property_id )const
    {
       auto property_itr = properties.find( property_id );
       if( property_itr != properties.end() ) return property_itr->second.value;
@@ -381,7 +377,7 @@ namespace bts { namespace wallet {
             {
               // FC_ASSERT(oacct.valid(), "expecting an account to existing at this point");
                oacct->is_my_account = true;
-               cache_account( *oacct );
+               cache_account( *oacct, false );
                /*
                ilog( "WALLET: storing private key for ${key} under account '${account_name}' address: (${account})",
                      ("key",key_to_store.public_key)
@@ -585,7 +581,7 @@ namespace bts { namespace wallet {
       war.wallet_record_index = new_wallet_record_index();
       if (has_private_key(war.account_address))
           war.is_my_account = true;
-      store_record( war );
+      store_record( war, false );
 
       auto current_key = lookup_key( blockchain_account.owner_key );
       if( current_key.valid() )
@@ -684,7 +680,7 @@ namespace bts { namespace wallet {
       return owallet_account_record();
    }
 
-   void wallet_db::cache_balance( const bts::blockchain::balance_record& balance_to_cache )
+   void wallet_db::cache_balance( const bts::blockchain::balance_record& balance_to_cache, const bool sync )
    {
       auto balance_id = balance_to_cache.id();
       owallet_balance_record current_bal = lookup_balance(balance_id);
@@ -700,7 +696,7 @@ namespace bts { namespace wallet {
          balance_record = *current_bal;
       }
 
-      store_record( balance_record );
+      store_record( balance_record, sync );
    }
 
    void wallet_db::remove_contact_account( const string& account_name )
@@ -748,16 +744,16 @@ namespace bts { namespace wallet {
       store_record( acct );
    }
 
-   void wallet_db::store_transaction( wallet_transaction_record& trx_to_store )
+   void wallet_db::store_transaction( wallet_transaction_record& trx_to_store, const bool sync )
    { try {
       if( trx_to_store.wallet_record_index == 0 )
          trx_to_store.wallet_record_index = new_wallet_record_index();
-      store_record( trx_to_store );
+      store_record( trx_to_store, sync );
 
       transactions[ trx_to_store.record_id ] = trx_to_store;
    } FC_CAPTURE_AND_RETHROW( (trx_to_store) ) }
 
-   void wallet_db::cache_account( const wallet_account_record& war )
+   void wallet_db::cache_account( const wallet_account_record& war, const bool sync )
    {
       accounts[war.wallet_record_index] = war;
       if( war.id != 0 )
@@ -765,7 +761,7 @@ namespace bts { namespace wallet {
          account_id_to_wallet_record_index[war.id] = war.wallet_record_index;
          name_to_account_wallet_record_index[war.name] = war.wallet_record_index;
       }
-      store_record( war );
+      store_record( war, sync );
    }
 
    void wallet_db::remove_item( int32_t index )

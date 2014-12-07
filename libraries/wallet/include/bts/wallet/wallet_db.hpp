@@ -17,21 +17,19 @@ namespace bts { namespace wallet {
 
          bool is_open()const;
 
-         int32_t            new_wallet_record_index();
-         int32_t            new_key_child_index( const address& parent_account_address );
          private_key_type   get_private_key( const fc::sha512& password, int index );
 
          private_key_type   new_private_key( const fc::sha512& password,
                                              const address& parent_account_address = address(),
                                              bool store_key = true );
 
-         void        set_property( property_enum property_id, const fc::variant& v );
-         fc::variant get_property( property_enum property_id )const;
+         void        set_property( const property_enum property_id, const fc::variant& v, const bool sync = true );
+         fc::variant get_property( const property_enum property_id )const;
 
          void store_key( const key_data& k );
-         void store_transaction( wallet_transaction_record& t );
-         void cache_balance( const bts::blockchain::balance_record& b );
-         void cache_account( const wallet_account_record& );
+         void store_transaction( wallet_transaction_record& t, const bool sync = true );
+         void cache_balance( const bts::blockchain::balance_record& b, const bool sync = true );
+         void cache_account( const wallet_account_record&, const bool sync = true );
          void cache_memo( const memo_status& memo,
                           const private_key_type& account_key,
                           const fc::sha512& password );
@@ -102,6 +100,8 @@ namespace bts { namespace wallet {
          map<transaction_id_type, transaction_ledger_entry> experimental_transactions;
 
       private:
+         int32_t            new_key_child_index( const address& parent_account_address );
+         int32_t            new_wallet_record_index();
          optional<wallet_master_key_record>                               wallet_master_key;
          /** maps wallet_record_index to accounts */
          unordered_map< int32_t,wallet_account_record >                   accounts;
@@ -121,14 +121,14 @@ namespace bts { namespace wallet {
           *  This is private
           */
          template<typename T>
-         void store_record( T record_to_store, bool sync = false )
+         void store_record( T record_to_store, bool sync = true )
          {
             if( record_to_store.wallet_record_index == 0 )
                record_to_store.wallet_record_index = new_wallet_record_index();
             store_generic_record( generic_wallet_record( record_to_store ), sync );
          }
 
-        void store_generic_record( const generic_wallet_record& record, bool sync = false );
+        void store_generic_record( const generic_wallet_record& record, bool sync = true );
 
         friend class detail::wallet_db_impl;
         unique_ptr<detail::wallet_db_impl> my;
