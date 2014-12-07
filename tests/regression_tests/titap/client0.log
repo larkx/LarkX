@@ -9,14 +9,14 @@ OK
 default (unlocked) >>> wallet_transfer 150 PTS delegate0 PTS5kmVHDwLN9zsxa18jKFrLn6yPJkBsxJJHmFeRygEpUaBWCqcb4
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID      
 ======================================================================================================================================================================
-<d-ign></d-ign>PENDING   delegate0           PTS5kmVHDwLN9zsx... 150.000000 PTS                                                      5.000000 PTS        <d-ign></d-ign>
+<d-ign></d-ign>PENDING   delegate0           PTS5kmVHDwLN9zsx... 150.000000 PTS                                                      25.000000 PTS       <d-ign></d-ign>
 default (unlocked) >>> wallet_account_create other-test
 "PTS8mbyATjXztLhJvpxgrtYLELNgsQ48NkATL9svARwLvb49EPPk4"
 default (unlocked) >>> history delegate0
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        BALANCE                 FEE                 ID      
 ==============================================================================================================================================================================================
 <d-ign></d-ign>0         GENESIS             delegate0           9,900,990.099009 PTS    claim PiAmLNkx6fJD9e9GhigEhcyRSMmxmFkyns    9,900,990.099009 PTS    0.000000 PTS        <d-ign></d-ign>
-<d-ign></d-ign>PENDING   delegate0           PTS5kmVHDwLN9zsx... 150.000000 PTS                                                      N/A                     5.000000 PTS        <d-ign></d-ign>
+<d-ign></d-ign>PENDING   delegate0           PTS5kmVHDwLN9zsx... 150.000000 PTS                                                      N/A                     25.000000 PTS       <d-ign></d-ign>
 default (unlocked) >>> debug_advance_time 1 blocks
 OK
 default (unlocked) >>> debug_wait 2
@@ -36,13 +36,13 @@ TIMESTAMP           BLOCK     FROM                TO                  AMOUNT    
 default (unlocked) >>> wallet_transfer 50 PTS other-test test-account
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID      
 ======================================================================================================================================================================
-<d-ign></d-ign>PENDING   other-test          test-account        50.000000 PTS                                                       5.000000 PTS        <d-ign></d-ign>
+<d-ign></d-ign>PENDING   other-test          test-account        50.000000 PTS                                                       25.000000 PTS       <d-ign></d-ign>
 default (unlocked) >>> history other-test
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        BALANCE                 FEE                 ID      
 ==============================================================================================================================================================================================
-<d-ign></d-ign>PENDING   other-test          test-account        50.000000 PTS                                                       N/A                     5.000000 PTS        <d-ign></d-ign>
+<d-ign></d-ign>PENDING   other-test          test-account        50.000000 PTS                                                       N/A                     25.000000 PTS       <d-ign></d-ign>
 <d-ign></d-ign>PENDING   other-test          other-test          0.000000 PTS            register other-test                         N/A                     10.000000 PTS       <d-ign></d-ign>
-<d-ign></d-ign>3         test-account        other-test          100.000000 PTS          again                                       85.000000 PTS           0.000000 PTS        <d-ign></d-ign>
+<d-ign></d-ign>3         test-account        other-test          100.000000 PTS          again                                       65.000000 PTS           0.000000 PTS        <d-ign></d-ign>
 default (unlocked) >>> debug_advance_time 1 blocks
 OK
 default (unlocked) >>> debug_wait_for_block_by_number 4
@@ -53,6 +53,6 @@ default (unlocked) >>> history other-test
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        BALANCE                 FEE                 ID      
 ==============================================================================================================================================================================================
 <d-ign></d-ign>3         test-account        other-test          100.000000 PTS          again                                       100.000000 PTS          0.000000 PTS        <d-ign></d-ign>
-<d-ign></d-ign>4         other-test          test-account        50.000000 PTS                                                       45.000000 PTS           5.000000 PTS        <d-ign></d-ign>
-<d-ign></d-ign>4         other-test          other-test          0.000000 PTS            register other-test                         35.000000 PTS           10.000000 PTS       <d-ign></d-ign>
+<d-ign></d-ign>4         other-test          test-account        50.000000 PTS                                                       25.000000 PTS           25.000000 PTS       <d-ign></d-ign>
+<d-ign></d-ign>4         other-test          other-test          0.000000 PTS            register other-test                         15.000000 PTS           10.000000 PTS       <d-ign></d-ign>
 default (unlocked) >>> quit
