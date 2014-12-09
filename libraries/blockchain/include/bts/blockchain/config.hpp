@@ -28,7 +28,7 @@
 #define BTS_BLOCKCHAIN_MIN_YIELD_PERIOD_SEC                 (60*60*24) // 24 hours
 
 #define BTS_BLOCKCHAIN_MIN_BURN_FEE                         BTS_BLOCKCHAIN_PRECISION // 1 PTS
-#define BTS_BLOCKCHAIN_DEFAULT_RELAY_FEE                    (BTS_BLOCKCHAIN_PRECISION * 1) // FIXME: increase to 5 PTS for dry run 2
+#define BTS_BLOCKCHAIN_DEFAULT_RELAY_FEE                    (BTS_BLOCKCHAIN_PRECISION * 5) // 5 PTS
 #define BTS_BLOCKCHAIN_MINIMUM_SHORT_ORDER_SIZE             (BTS_BLOCKCHAIN_PRECISION*10000000)
 //#define BTS_BLOCKCHAIN_MAX_SHORT_PERIOD_SEC                 (30*24*60*60) // 30 days * 24 hours * 60 minutes * 60 seconds = 1 month
 #define BTS_BLOCKCHAIN_MAX_SHORT_PERIOD_SEC                 (2*60*60) // 2 hours for test network
@@ -89,7 +89,7 @@
  * Initial shares read from the genesis block are scaled to this number. It is divided
  * by 100 so that new shares may be issued without exceeding BTS_BLOCKCHAIN_MAX_SHARES
  */
-#define BTS_BLOCKCHAIN_INITIAL_SHARES                       (BTS_BLOCKCHAIN_MAX_SHARES) // 10^9 PTS
+#define BTS_BLOCKCHAIN_INITIAL_SHARES                       (BTS_BLOCKCHAIN_MAX_SHARES) // 10^9 PTS with 6 decimals
 
 /**
  *  The number of blocks expected per hour based upon the BTS_BLOCKCHAIN_BLOCK_INTERVAL_SEC
@@ -119,7 +119,7 @@
 
  *   Currently set to 1 week of active block production to break even.
  */
-#define BTS_BLOCKCHAIN_DELEGATE_REGISTRATION_FEE            (BTS_BLOCKCHAIN_BLOCKS_PER_DAY/12) // FIXME: increase to 5 PTS for dry run 2
+#define BTS_BLOCKCHAIN_DELEGATE_REGISTRATION_FEE            (BTS_BLOCKCHAIN_BLOCKS_PER_DAY * 7)
 
 /**
     If you are going to create an asset, you expect that it will be used in transactions.  We would
