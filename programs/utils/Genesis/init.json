@@ -84,6 +84,9 @@
 {"name":"delegate1.ihashfury","owner":"PTS7M3c25XRySUXiRmQRpo2Edz3JDCTRMQ4nauYzp5nBQHR2ms6jC","delegate_pay_rate":100},
 {"name":"delegate2.ihashfury","owner":"PTS5aQX55HUPF86y63eRDQ1ehpcsmGm297mp2RX4bnLPtYnsMsvCV","delegate_pay_rate":100},
 {"name":"delegate3.ihashfury","owner":"PTS8jNvmwc15kJ59SAFoDoztmVFun3psKJZup2effoCkUtqPrcTRx","delegate_pay_rate":100},
+{"name":"delegate4.ihashfury","owner":"PTS6jrGAFKBMFBGqruJmK3a1FrFbGmGZsBbCrUSVizLASGK5DPTJU","delegate_pay_rate":100},
+{"name":"delegate5.ihashfury","owner":"PTS8ZMCr9rAXXzZQ7Xu85TjaXQCRDEyZuG2CBLT58ixy9KabaMYdR","delegate_pay_rate":100},
+{"name":"delegate6.ihashfury","owner":"PTS5D8KXFr7wpLqyBEHYAfsbJ5spt5PfqNo2DsMFryzVo2vuzDuuH","delegate_pay_rate":100},
 
 {"name":"delegate0.bitsharesblocks","owner":"PTS7dFMG2EPEq2uWr3AuFgyM4V1KBxdhAmbZhmJwAjF6RzZ8wn5UV","delegate_pay_rate":100},
 {"name":"delegate1.bitsharesblocks","owner":"PTS7Q8h532L3KAsQU8vivXVnrMV9TWduc6G5Wbi9NpMSTr1HGBSCW","delegate_pay_rate":100},
