@@ -4,7 +4,6 @@
 #include <bts/wallet/wallet_impl.hpp>
 
 #include <bts/blockchain/time.hpp>
-
 #include <bts/cli/pretty.hpp>
 #include <bts/utilities/git_revision.hpp>
 #include <bts/utilities/key_conversion.hpp>
@@ -338,6 +337,8 @@ namespace detail {
        {
            self->auto_backup( "version_upgrade" );
 
+#if 0
+           // Take this as an example for future wallet version upgrades
            if( current_version < 100 )
            {
                self->set_automatic_backups( true );
@@ -370,110 +371,7 @@ namespace detail {
                    _unlocked_upgrade_tasks.push_back( rescan );
                }
            }
-
-           if( current_version < 101 )
-           {
-               /* Check for old index format market order virtual transactions */
-               auto present = false;
-               const auto items = _wallet_db.get_transactions();
-               for( const auto& item : items )
-               {
-                   const auto id = item.first;
-                   const auto trx_rec = item.second;
-                   if( trx_rec.is_virtual && trx_rec.is_market )
-                   {
-                       present = true;
-                       _wallet_db.remove_transaction( id );
-                   }
-               }
-               if( present )
-               {
-                   const uint32_t start = 1;
-                   const auto end = _blockchain->get_head_block_num();
-
-                   /* Upgrade market order virtual transaction indexes */
-                   for( auto block_num = start; block_num <= end; block_num++ )
-                   {
-                       const auto block_timestamp = _blockchain->get_block_header( block_num ).timestamp;
-                       const auto market_trxs = _blockchain->get_market_transactions( block_num );
-                       for( const auto& market_trx : market_trxs )
-                           scan_market_transaction( market_trx, block_num, block_timestamp, block_timestamp );
-                   }
-               }
-           }
-
-           if( current_version < 102 )
-           {
-               self->set_transaction_fee( asset( BTS_WALLET_DEFAULT_TRANSACTION_FEE ) );
-           }
-
-           if( current_version < 103 )
-           {
-               const auto items = _wallet_db.get_balances();
-               for( const auto& balance_item : items )
-                   sync_balance_with_blockchain( balance_item.first );
-           }
-
-           if( current_version < 104 )
-           {
-#if 0
-               /* Transaction scanning was broken by commit 00ece3a78b2775c4b8817e394f59b6225dded80b */
-               const auto broken_time = time_point_sec( 1408463100 ); // 2014-08-19T15:45:00
-               auto broken_trxs = vector<transaction_id_type>();
-               const auto items = _wallet_db.get_transactions();
-               for( const auto& item : items )
-               {
-                   const auto id = item.first;
-                   const auto trx_rec = item.second;
-                   if( trx_rec.is_confirmed && trx_rec.created_time >= broken_time )
-                       broken_trxs.push_back( id );
-               }
-               if( broken_trxs.size() > 0 )
-               {
-                   const function<void( void )> rescan = [broken_trxs, this]()
-                   {
-                       for( const auto& id : broken_trxs )
-                       {
-                           const auto trx_rec = _wallet_db.lookup_transaction( id );
-                           if( !trx_rec.valid() ) continue;
-                           try
-                           {
-                               self->scan_transaction( trx_rec->block_num, trx_rec->record_id );
-                           }
-                           catch( ... )
-                           {
-                           }
-                       }
-                   };
-                   _unlocked_upgrade_tasks.push_back( rescan );
-               }
 #endif
-           }
-
-           if( current_version < 106 )
-           {
-               self->set_transaction_expiration( BTS_WALLET_DEFAULT_TRANSACTION_EXPIRATION_SEC );
-
-#if 0
-               /* Transaction scanning was broken by commit d93521c7a2916eb0995dfadacd5ee74760f29d4b */
-               const uint32_t broken_block_num = 274524; // 2014-08-20T20:53:00
-               const auto block_num = std::min( broken_block_num, self->get_last_scanned_block_number() );
-               self->set_last_scanned_block_number( block_num );
-               _wallet_db.remove_transaction( transaction_id_type() );
-#endif
-           }
-
-           if( current_version < 107 )
-           {
-               const auto items = _wallet_db.get_transactions();
-               for( const auto& item : items )
-               {
-                   const auto id = item.first;
-                   const auto trx_rec = item.second;
-                   if( trx_rec.is_virtual && trx_rec.is_market && trx_rec.block_num == 554801 )
-                       _wallet_db.remove_transaction( id );
-               }
-           }
 
            if( _unlocked_upgrade_tasks.empty() )
            {
@@ -731,7 +629,7 @@ namespace detail {
     */
    bool wallet_impl::is_valid_account( const string& account_name )const
    {
-      if( !blockchain::is_valid_account_name( account_name ) )
+      if( !_blockchain->is_valid_account_name( account_name ) )
           FC_THROW_EXCEPTION( invalid_name, "Invalid account name!", ("account_name",account_name) );
       FC_ASSERT( self->is_open() );
       if( _wallet_db.lookup_account( account_name ).valid() )
@@ -745,7 +643,7 @@ namespace detail {
    bool wallet_impl::is_receive_account( const string& account_name )const
    {
       FC_ASSERT( self->is_open() );
-      if( !blockchain::is_valid_account_name( account_name ) ) return false;
+      if( !_blockchain->is_valid_account_name( account_name ) ) return false;
       auto opt_account = _wallet_db.lookup_account( account_name );
       if( !opt_account.valid() ) return false;
       auto opt_key = _wallet_db.lookup_key( opt_account->active_address() );
@@ -925,7 +823,7 @@ namespace detail {
    { try {
       FC_ASSERT(is_enabled(), "Wallet is disabled in this client!");
 
-      if( !blockchain::is_valid_account_name( wallet_name ) )
+      if( !my->_blockchain->is_valid_account_name( wallet_name ) )
           FC_THROW_EXCEPTION( invalid_name, "Invalid name for a wallet!", ("wallet_name",wallet_name) );
 
       auto wallet_file_path = fc::absolute( get_data_directory() ) / wallet_name;
@@ -958,7 +856,7 @@ namespace detail {
    { try {
       FC_ASSERT(is_enabled(), "Wallet is disabled in this client!");
 
-      if( !blockchain::is_valid_account_name( wallet_name ) )
+      if( !my->_blockchain->is_valid_account_name( wallet_name ) )
           FC_THROW_EXCEPTION( invalid_name, "Invalid name for a wallet!", ("wallet_name",wallet_name) );
 
       auto wallet_file_path = fc::absolute( get_data_directory() ) / wallet_name;
@@ -1051,7 +949,7 @@ namespace detail {
       if( !fc::exists( filename ) )
           FC_THROW_EXCEPTION( file_not_found, "Filename to import from could not be found!", ("filename",filename) );
 
-      if( !blockchain::is_valid_account_name( wallet_name ) )
+      if( !my->_blockchain->is_valid_account_name( wallet_name ) )
           FC_THROW_EXCEPTION( invalid_wallet_name, "Invalid name for a wallet!", ("wallet_name",wallet_name) );
 
       create( wallet_name, passphrase );
@@ -1271,7 +1169,7 @@ namespace detail {
    public_key_type wallet::create_account( const string& account_name,
                                            const variant& private_data )
    { try {
-      if( !blockchain::is_valid_account_name( account_name ) )
+      if( !my->_blockchain->is_valid_account_name( account_name ) )
           FC_THROW_EXCEPTION( invalid_name, "Invalid account name!", ("account_name",account_name) );
 
       FC_ASSERT( is_open() );
@@ -1332,7 +1230,7 @@ namespace detail {
    { try {
       FC_ASSERT( is_open() );
 
-      if( !blockchain::is_valid_account_name( account_name ) )
+      if( !my->_blockchain->is_valid_account_name( account_name ) )
           FC_THROW_EXCEPTION( invalid_name, "Invalid account name!", ("account_name",account_name) );
 
       const auto current_registered_account = my->_blockchain->get_account_record( account_name );
@@ -1395,7 +1293,7 @@ namespace detail {
    { try {
       FC_ASSERT( is_open() );
 
-      if( !blockchain::is_valid_account_name( account_name ) ) {
+      if( !my->_blockchain->is_valid_account_name( account_name ) ) {
         try {
             return create_dummy_account( blockchain::public_key_type( account_name ) );
         } catch (...) {
@@ -1462,46 +1360,54 @@ namespace detail {
    void wallet::rename_account( const string& old_account_name,
                                  const string& new_account_name )
    { try {
-      if( !blockchain::is_valid_account_name( old_account_name ) )
+      FC_ASSERT( is_open() );
+      if( !my->_blockchain->is_valid_account_name( old_account_name ) )
           FC_THROW_EXCEPTION( invalid_name, "Invalid old account name!", ("old_account_name",old_account_name) );
-      if( !blockchain::is_valid_account_name( new_account_name ) )
+      if( !my->_blockchain->is_valid_account_name( new_account_name ) )
           FC_THROW_EXCEPTION( invalid_name, "Invalid new account name!", ("new_account_name",new_account_name) );
 
-      FC_ASSERT( is_open() );
+      optional<public_key_type> old_key;
       auto registered_account = my->_blockchain->get_account_record( old_account_name );
-      auto local_account = my->_wallet_db.lookup_account( old_account_name );
-      if( registered_account.valid()
-          && !(local_account && local_account->owner_key != registered_account->owner_key) )
-          FC_THROW_EXCEPTION( invalid_name, "You cannot rename a registered account!" );
+      bool have_registered = false;
+      for( const auto& item : my->_wallet_db.get_accounts() )
+      {
+          const wallet_account_record& local_account = item.second;
+          if( local_account.name != old_account_name )
+              continue;
+
+          if( !registered_account.valid() || registered_account->owner_key != local_account.owner_key )
+          {
+              old_key = local_account.owner_key;
+              break;
+          }
+
+          have_registered |= registered_account.valid() && registered_account->owner_key == local_account.owner_key;
+      }
+
+      if( !old_key.valid() )
+      {
+          if( registered_account.valid() )
+              FC_THROW_EXCEPTION( key_already_registered, "You cannot rename a registered account!" );
+
+          FC_THROW_EXCEPTION( unknown_account, "Unknown account name!", ("old_account_name", old_account_name) );
+      }
+
+      registered_account = my->_blockchain->get_account_record( *old_key );
+      if( registered_account.valid() && registered_account->name != new_account_name )
+      {
+          FC_THROW_EXCEPTION( key_already_registered, "That account is already registered to a different name!",
+                              ("desired_name",new_account_name)("registered_name",registered_account->name) );
+      }
 
       registered_account = my->_blockchain->get_account_record( new_account_name );
       if( registered_account.valid() )
-          FC_THROW_EXCEPTION( invalid_name, "Your new account name is already registered!" );
+          FC_THROW_EXCEPTION( duplicate_account_name, "Your new account name is already registered!" );
 
-      auto old_account = my->_wallet_db.lookup_account( old_account_name );
-      FC_ASSERT( old_account.valid() );
-      auto old_key = old_account->owner_key;
+      const auto new_account = my->_wallet_db.lookup_account( new_account_name );
+      if( new_account.valid() )
+          FC_THROW_EXCEPTION( duplicate_account_name, "You already have the new account name in your wallet!" );
 
-      //Check for duplicate names in wallet
-      if( !my->is_unique_account(old_account_name) )
-      {
-        //Find the wallet record that is not in the blockchain; or is, but under a different name
-        auto wallet_accounts = my->_wallet_db.get_accounts();
-        for( const auto& wallet_account : wallet_accounts )
-        {
-          if( wallet_account.second.name == old_account_name )
-          {
-            auto record = my->_blockchain->get_account_record(wallet_account.second.owner_key);
-            if( !(record.valid() && record->name == old_account_name) )
-              old_key = wallet_account.second.owner_key;
-          }
-        }
-      }
-
-      auto new_account = my->_wallet_db.lookup_account( new_account_name );
-      FC_ASSERT( !new_account.valid() );
-
-      my->_wallet_db.rename_account( old_key, new_account_name );
+      my->_wallet_db.rename_account( *old_key, new_account_name );
    } FC_CAPTURE_AND_RETHROW( (old_account_name)(new_account_name) ) }
 
    /**
@@ -1545,7 +1451,7 @@ namespace detail {
       FC_ASSERT( account_name.size(), "You must specify an account name because the private key "
                                       "does not belong to any known accounts");
 
-      if( !blockchain::is_valid_account_name( account_name ) )
+      if( !my->_blockchain->is_valid_account_name( account_name ) )
           FC_THROW_EXCEPTION( invalid_name, "Invalid account name!", ("account_name",account_name) );
 
       auto account_with_key = my->_wallet_db.lookup_account( key.get_public_key() );
@@ -1688,7 +1594,7 @@ namespace detail {
 
       if( delegate_name != "ALL" )
       {
-          if( !blockchain::is_valid_account_name( delegate_name ) )
+          if( !my->_blockchain->is_valid_account_name( delegate_name ) )
               FC_THROW_EXCEPTION( invalid_name, "Invalid delegate name!", ("delegate_name",delegate_name) );
 
           auto delegate_record = get_account( delegate_name );
@@ -1762,6 +1668,7 @@ namespace detail {
           FC_THROW_EXCEPTION( invalid_timestamp, "Invalid block timestamp! Block production may be disabled" );
 
       auto delegate_record = my->_blockchain->get_slot_signee( header.timestamp, my->_blockchain->get_active_delegates() );
+      FC_ASSERT( delegate_record.is_delegate() && delegate_record.delegate_info.valid() );
       auto delegate_pub_key = delegate_record.active_key();
       auto delegate_key = get_private_key( address(delegate_pub_key) );
       FC_ASSERT( delegate_pub_key == delegate_key.get_public_key() );
@@ -2820,7 +2727,7 @@ namespace detail {
            account_type new_account_type,
            bool sign )
    { try {
-      if( !blockchain::is_valid_account_name( account_to_register ) )
+      if( !my->_blockchain->is_valid_account_name( account_to_register ) )
           FC_THROW_EXCEPTION( invalid_name, "Invalid account name!", ("account_to_register",account_to_register) );
 
       FC_ASSERT( is_open() );
@@ -2842,28 +2749,63 @@ namespace detail {
       if( new_account_type == public_account )
          meta_info = account_meta_info( public_account );
 
-      trx.register_account( account_to_register,
-                            public_data,
-                            account_public_key, // master
-                            account_public_key, // active
-                            delegate_pay_rate <= 100 ? delegate_pay_rate : -1,
-                            meta_info );
-
-      const auto pos = account_to_register.find( '.' );
-      if( pos != string::npos )
+      // TODO: This is a hack to register with different owner and active keys until the API is fixed
+      try
       {
-        string parent_name;
-        try
-        {
-          parent_name = account_to_register.substr( pos+1, string::npos );
-          const auto parent_acct = get_account( parent_name );
-          required_signatures.insert( parent_acct.active_address() );
-        }
-        catch( const unknown_account& )
-        {
-          FC_THROW_EXCEPTION( unauthorized_child_account, "Need parent account to authorize registration!",
-                              ("child_account",account_to_register)("parent_account",parent_name) );
-        }
+          const wallet_account_record local_account = get_account( account_to_register );
+          trx.register_account( account_to_register,
+                                public_data,
+                                local_account.owner_key,
+                                local_account.active_key(),
+                                delegate_pay_rate <= 100 ? delegate_pay_rate : -1,
+                                meta_info );
+      }
+      catch( ... )
+      {
+          trx.register_account( account_to_register,
+                                public_data,
+                                account_public_key, // master
+                                account_public_key, // active
+                                delegate_pay_rate <= 100 ? delegate_pay_rate : -1,
+                                meta_info );
+      }
+
+      // Verify a parent key is available if required
+      optional<string> parent_name = my->_blockchain->get_parent_account_name( account_to_register );
+      if( parent_name.valid() )
+      {
+          bool have_parent_key = false;
+          for( ; parent_name.valid(); parent_name = my->_blockchain->get_parent_account_name( *parent_name ) )
+          {
+              try
+              {
+                  const wallet_account_record parent_record = get_account( *parent_name );
+                  if( parent_record.is_retracted() )
+                      continue;
+
+                  if( my->_wallet_db.has_private_key( parent_record.active_address() ) )
+                  {
+                      required_signatures.insert( parent_record.active_address() );
+                      have_parent_key = true;
+                      break;
+                  }
+
+                  if( my->_wallet_db.has_private_key( parent_record.owner_key ) )
+                  {
+                      required_signatures.insert( parent_record.owner_key );
+                      have_parent_key = true;
+                      break;
+                  }
+              }
+              catch( ... )
+              {
+              }
+          }
+          if( !have_parent_key )
+          {
+              FC_THROW_EXCEPTION( unauthorized_child_account, "Parent account must authorize registration of this child account!",
+                                  ("child_account",account_to_register) );
+          }
       }
 
       //auto required_fees = get_transaction_fee();
@@ -2924,7 +2866,7 @@ namespace detail {
 
       required_fees += asset(my->_blockchain->get_asset_registration_fee(),0);
 
-      if( !blockchain::is_valid_account_name( issuer_account_name ) )
+      if( !my->_blockchain->is_valid_account_name( issuer_account_name ) )
           FC_THROW_EXCEPTION( invalid_name, "Invalid account name!", ("issuer_account_name",issuer_account_name) );
       auto from_account_address = get_account_public_key( issuer_account_name );
       auto oname_rec = my->_blockchain->get_account_record( issuer_account_name );
@@ -2974,7 +2916,7 @@ namespace detail {
            const string& memo_message,
            bool sign )
    { try {
-      if( !blockchain::is_valid_account_name( to_account_name ) )
+      if( !my->_blockchain->is_valid_account_name( to_account_name ) )
           FC_THROW_EXCEPTION( invalid_name, "Invalid account name!", ("to_account_name",to_account_name) );
 
       FC_ASSERT( is_open() );
@@ -3107,7 +3049,7 @@ namespace detail {
                                        const variant& data,
                                        bool sign  )
    {
-      if( !blockchain::is_valid_account_name( delegate_account_name ) )
+      if( !my->_blockchain->is_valid_account_name( delegate_account_name ) )
           FC_THROW_EXCEPTION( invalid_name, "Invalid account name!", ("delegate_account_name",delegate_account_name) );
 
       FC_ASSERT( is_open() );
@@ -3151,7 +3093,7 @@ namespace detail {
                                              const string& message,
                                              bool sign )
    {
-      if( !blockchain::is_valid_account_name( delegate_name ) )
+      if( !my->_blockchain->is_valid_account_name( delegate_name ) )
           FC_THROW_EXCEPTION( invalid_name, "Invalid account name!", ("delegate_name",delegate_name) );
 
       FC_ASSERT( is_open() );
@@ -3478,8 +3420,14 @@ namespace detail {
              }
          }
       }
+
       return xts_fee;
-   } FC_CAPTURE_AND_RETHROW() }
+   } FC_CAPTURE_AND_RETHROW( (desired_fee_asset_id) ) }
+
+   bool wallet::asset_can_pay_fee(const asset_id_type& desired_fee_asset_id) const
+   {
+      return get_transaction_fee(desired_fee_asset_id).asset_id == desired_fee_asset_id;
+   }
 
    void wallet::set_last_scanned_block_number( uint32_t block_num )
    { try {
@@ -3687,7 +3635,7 @@ namespace detail {
 
    private_key_type wallet::get_active_private_key( const string& account_name )const
    { try {
-      if( !blockchain::is_valid_account_name( account_name ) )
+      if( !my->_blockchain->is_valid_account_name( account_name ) )
           FC_THROW_EXCEPTION( invalid_name, "Invalid account name!", ("account_name",account_name) );
       FC_ASSERT( is_open() );
       FC_ASSERT( is_unlocked() );
@@ -3709,7 +3657,7 @@ namespace detail {
     */
    public_key_type wallet::get_account_public_key( const string& account_name )const
    { try {
-      if( !blockchain::is_valid_account_name( account_name ) )
+      if( !my->_blockchain->is_valid_account_name( account_name ) )
           FC_THROW_EXCEPTION( invalid_name, "Invalid account name!", ("account_name",account_name) );
       FC_ASSERT( my->is_unique_account(account_name) );
       FC_ASSERT( is_open() );

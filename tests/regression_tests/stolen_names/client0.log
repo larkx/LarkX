@@ -17,7 +17,7 @@ Active Key History:
 - PTS7sBALSBA1rNiSWA1kqpponAXqrCXhRztLGwSxZjzLa3txJdUmp, last used <d-ign></d-ign>
 Not a delegate.
 default (unlocked) >>> wallet_rename_account thief thiever
-Command failed with exception: invalid account name (20017)
+Command failed with exception: key belongs to other account (20032)
 You cannot rename a registered account!
 
 

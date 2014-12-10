@@ -11,9 +11,6 @@
 
 namespace bts { namespace blockchain {
 
-   bool is_valid_account_name( const string& name );
-   bool is_valid_symbol_name( const string& name );
-
    enum chain_property_enum
    {
       last_asset_id            = 0,
@@ -55,6 +52,13 @@ namespace bts { namespace blockchain {
          virtual ~chain_interface(){};
          /** return the timestamp from the most recent block */
          virtual fc::time_point_sec         now()const                                                      = 0;
+
+         optional<string>                   get_parent_account_name( const string& account_name )const;
+         bool                               is_valid_account_name( const string& name )const;
+         bool                               is_valid_symbol_name( const string& name )const;
+
+         share_type                         get_delegate_registration_fee( uint8_t pay_rate )const;
+         share_type                         get_asset_registration_fee( uint8_t symbol_length )const;
 
          std::vector<account_id_type>       get_active_delegates()const;
          void                               set_active_delegates( const std::vector<account_id_type>& id );

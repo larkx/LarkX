@@ -7,15 +7,6 @@
 
 namespace bts { namespace blockchain {
 
-   static const fc::microseconds one_year = fc::seconds( 60*60*24*365 );
-
-   string get_parent_account_name( const string& child )
-   {
-      auto pos = child.find( '.' );
-      if( pos == string::npos ) return string();
-      return child.substr( pos+1, string::npos );
-   }
-
    bool register_account_operation::is_delegate()const
    {
        return delegate_pay_rate <= 100;
@@ -25,7 +16,7 @@ namespace bts { namespace blockchain {
    { try {
       auto now = eval_state._current_state->now();
 
-      if( !blockchain::is_valid_account_name( this->name ) )
+      if( !eval_state._current_state->is_valid_account_name( this->name ) )
          FC_CAPTURE_AND_THROW( invalid_account_name, (name) );
 
       FC_ASSERT( this->name.size() >= PTS_INITIAL_MIN_LENGTH,
@@ -40,17 +31,10 @@ namespace bts { namespace blockchain {
       auto current_account = eval_state._current_state->get_account_record( this->name );
       if( current_account ) FC_CAPTURE_AND_THROW( account_already_registered, (name) );
 
-      string parent_name = get_parent_account_name( this->name );
-      if( parent_name.size() )
+      if( eval_state._current_state->get_parent_account_name( this->name ).valid() )
       {
-         auto parent_record = eval_state._current_state->get_account_record( parent_name );
-         if( !parent_record ) FC_CAPTURE_AND_THROW( unknown_account_name, (parent_name) );
-         if( !eval_state.check_signature( parent_record->active_key() ) )
-         {
-            FC_CAPTURE_AND_THROW( missing_parent_account_signature, (parent_name) );
-         }
-         if( parent_record->is_retracted() )
-            FC_CAPTURE_AND_THROW( parent_account_retracted, (parent_record) );
+          if( !eval_state.any_parent_has_signed( this->name ) )
+              FC_CAPTURE_AND_THROW( missing_parent_account_signature, (*this) );
       }
 
       auto account_with_same_key = eval_state._current_state->get_account_record( address(this->active_key) );
@@ -87,75 +71,26 @@ namespace bts { namespace blockchain {
    { try {
       auto current_record = eval_state._current_state->get_account_record( this->account_id );
       if( !current_record ) FC_CAPTURE_AND_THROW( unknown_account_id, (account_id) );
-      if( current_record->is_retracted() ) FC_CAPTURE_AND_THROW( account_retracted, (current_record) );
 
-      string parent_name = get_parent_account_name( current_record->name );
-      if( this->active_key && *this->active_key != current_record->active_key() )
+      if( current_record->is_retracted() )
+          FC_CAPTURE_AND_THROW( account_retracted, (current_record) );
+
+      // If updating active key
+      if( this->active_key.valid() && *this->active_key != current_record->active_key() )
       {
-         // check signature of any parent record...
-         if( parent_name.size() == 0 )
-         {
-            if( !eval_state.check_signature(current_record->owner_key)  )
-               FC_CAPTURE_AND_THROW( missing_signature, (current_record->owner_key) );
-         }
-         else
-         {
-             auto parent_record = eval_state._current_state->get_account_record( parent_name );
-             if( !parent_record )
-                FC_CAPTURE_AND_THROW( unknown_parent_account_name, (parent_name) );
+          const oaccount_record account_with_same_key = eval_state._current_state->get_account_record( *this->active_key );
+          if( account_with_same_key.valid() )
+              FC_CAPTURE_AND_THROW( account_key_in_use, (*this->active_key)(account_with_same_key) );
 
-             bool verified = false;
-             while( !verified && parent_record.valid() )
-             {
-                if( parent_record->is_retracted() )
-                   FC_CAPTURE_AND_THROW( parent_account_retracted, (parent_name) );
+          if( !eval_state.check_signature( current_record->owner_key ) && !eval_state.any_parent_has_signed( current_record->name ) )
+              FC_CAPTURE_AND_THROW( missing_signature, (*this) );
 
-                if( eval_state.check_signature( parent_record->owner_key ) ||
-                    eval_state.check_signature( parent_record->active_address() ) )
-                   verified = true;
-                else
-                {
-                   parent_name = get_parent_account_name( parent_name );
-                   parent_record = eval_state._current_state->get_account_record( parent_name );
-                }
-             }
-             if( !verified )
-             {
-                string message = "updating the active key for this account requires the signature "
-                                 "of the owner or one of their parent accounts";
-                FC_CAPTURE_AND_THROW( missing_signature, (message) );
-             }
-         }
+          current_record->set_active_key( eval_state._current_state->now(), *this->active_key );
       }
       else
       {
-         bool verified = eval_state.check_signature( current_record->active_address() );
-         if( !verified ) verified = eval_state.check_signature( current_record->owner_key );
-
-         if( !verified && parent_name.size() )
-         {
-             auto parent_record = eval_state._current_state->get_account_record( parent_name );
-             while( !verified && parent_record.valid() )
-             {
-                if( parent_record->is_retracted() )
-                   FC_CAPTURE_AND_THROW( parent_account_retracted, (parent_name) );
-
-                if( eval_state.check_signature( parent_record->owner_key ) ||
-                    eval_state.check_signature( parent_record->active_address() ) )
-                   verified = true;
-                else
-                {
-                   parent_name = get_parent_account_name( parent_name );
-                   parent_record = eval_state._current_state->get_account_record( parent_name );
-                }
-             }
-         }
-         if( !verified )
-         {
-            string message = "updating the active key for this account requires the signature "
-                             "of the owner or one of their parent accounts";
-            FC_CAPTURE_AND_THROW( missing_signature, (message) );
-         }
+          if( !eval_state.account_or_any_parent_has_signed( *current_record ) )
+              FC_CAPTURE_AND_THROW( missing_signature, (*this) );
       }
 
       if( this->public_data.valid() )
@@ -230,17 +165,23 @@ namespace bts { namespace blockchain {
       FC_ASSERT( !"Link account operation is not enabled yet!" );
 
       auto source_account_rec = eval_state._current_state->get_account_record( source_account );
-      FC_ASSERT( source_account_rec.valid() );
+      if( !source_account_rec.valid() )
+          FC_CAPTURE_AND_THROW( unknown_account_id, (*this) );
+
+      if( source_account_rec->is_retracted() )
+          FC_CAPTURE_AND_THROW( account_retracted, (*this) );
 
       auto destination_account_rec = eval_state._current_state->get_account_record( destination_account );
-      FC_ASSERT( destination_account_rec.valid() );
+      if( !destination_account_rec.valid() )
+          FC_CAPTURE_AND_THROW( unknown_account_id, (*this) );
 
-      if( !eval_state.check_signature( source_account_rec->active_key() ) )
-      {
-         FC_CAPTURE_AND_THROW( missing_signature, (source_account_rec->active_key()) );
-      }
+      if( destination_account_rec->is_retracted() )
+          FC_CAPTURE_AND_THROW( account_retracted, (*this) );
+
+      if( !eval_state.account_or_any_parent_has_signed( *source_account_rec ) )
+          FC_CAPTURE_AND_THROW( missing_signature, (*this) );
 
       // STORE LINK...
-   } FC_CAPTURE_AND_RETHROW( (eval_state) ) }
+   } FC_CAPTURE_AND_RETHROW( (*this) ) }
 
 } } // bts::blockchain
