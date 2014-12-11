@@ -1,5 +1,7 @@
 #include <bts/blockchain/pending_chain_state.hpp>
 
+#include <bts/blockchain/fork_blocks.hpp>
+
 namespace bts { namespace blockchain {
 
    pending_chain_state::pending_chain_state( chain_interface_ptr prev_state )
