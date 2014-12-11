@@ -128,8 +128,6 @@ namespace bts { namespace blockchain {
           _block_id_to_block_data_db.open( data_dir / "raw_chain/block_id_to_block_data_db" );
           _id_to_transaction_record_db.open( data_dir / "index/id_to_transaction_record_db" );
 
-          for( auto itr = _id_to_transaction_record_db.begin(); itr.valid(); ++itr )
-             _known_transactions.insert( itr.key() );
 
           _pending_transaction_db.open( data_dir / "index/pending_transaction_db" );
 
@@ -155,6 +153,13 @@ namespace bts { namespace blockchain {
           _market_history_db.open( data_dir / "index/market_history_db" );
 
           _pending_trx_state = std::make_shared<pending_chain_state>( self->shared_from_this() );
+
+          for( auto itr = _id_to_transaction_record_db.begin(); itr.valid(); ++itr )
+          {
+             const auto val = itr.value();
+             if( val.trx.expiration > self->now() )
+                _unique_transactions[val.trx.expiration].insert( val.trx.digest(_chain_id) );
+          }
       } FC_CAPTURE_AND_RETHROW( (data_dir) ) }
 
       static boost::random::mt11213b create_rng( const digest_type& chain_id )
@@ -1114,6 +1119,13 @@ namespace bts { namespace blockchain {
             throw;
          }
 
+         // purge the expired known transactions database, they cannot no longer fork us
+         auto itr = _unique_transactions.begin();
+         while( itr != _unique_transactions.end() && itr->first < self->now() )
+         {
+            itr = _unique_transactions.erase(itr);
+         }
+
          //Schedule the observer notifications for later; the chain is in a
          //non-premptable state right now, and observers may yield.
          if( (now() - block_data.timestamp).to_seconds() < BTS_BLOCKCHAIN_BLOCK_INTERVAL_SEC )
@@ -1930,13 +1942,14 @@ namespace bts { namespace blockchain {
       if( record_to_store.trx.operations.size() == 0 )
       {
         my->_id_to_transaction_record_db.remove( record_id );
-        my->_known_transactions.erase( record_id );
+        my->_unique_transactions[record_to_store.trx.expiration].erase( record_to_store.trx.digest(my->_chain_id) );
       }
       else
       {
         FC_ASSERT( record_id == record_to_store.trx.id() );
         my->_id_to_transaction_record_db.store( record_id, record_to_store );
-        my->_known_transactions.insert( record_id );
+        if( record_to_store.trx.expiration > this->now() )
+           FC_ASSERT( my->_unique_transactions[record_to_store.trx.expiration].insert( record_to_store.trx.digest(my->_chain_id) ).second );
       }
    } FC_CAPTURE_AND_RETHROW( (record_id)(record_to_store) ) }
 
@@ -3054,9 +3067,12 @@ namespace bts { namespace blockchain {
       return history;
    }
 
-   bool chain_database::is_known_transaction( const transaction_id_type& id )
+   bool chain_database::is_known_transaction( fc::time_point_sec exp, const digest_type& id )
    {
-      return my->_known_transactions.find( id ) != my->_known_transactions.end();
+      auto itr = my->_unique_transactions.find(exp);
+      if( itr != my->_unique_transactions.end() )
+         return itr->second.find( id ) != itr->second.end();
+      return false;
    }
    void chain_database::skip_signature_verification( bool state )
    {
@@ -3527,7 +3543,7 @@ namespace bts { namespace blockchain {
    {
      fc::mutable_variant_object stats;
 #define CHAIN_DB_DATABASES (_market_transactions_db)(_slate_db)(_fork_number_db)(_fork_db)(_property_db)(_undo_state_db) \
-                           (_block_num_to_id_db)(_block_id_to_block_record_db)(_block_id_to_block_data_db)(_known_transactions) \
+                           (_block_num_to_id_db)(_block_id_to_block_record_db)(_block_id_to_block_data_db) \
                            (_id_to_transaction_record_db)(_pending_transaction_db)(_pending_fee_index)(_asset_db)(_balance_db) \
                            (_burn_db)(_account_db)(_address_to_account_db)(_account_index_db)(_symbol_index_db)(_delegate_vote_index_db) \
                            (_slot_record_db)(_ask_db)(_bid_db)(_short_db)(_collateral_db)(_feed_db)(_market_status_db)(_market_history_db) \
