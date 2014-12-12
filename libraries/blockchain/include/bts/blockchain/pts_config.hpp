@@ -3,4 +3,4 @@
 
 #define PTS_SUPPRESS_ASSETS     // undefine to allow asset creation/manipulation
 
-#define GENESIS_VOTE_PERMILLE   50
+#define GENESIS_VOTE_PERMILLE   80
