@@ -13,6 +13,7 @@
 #include <bts/db/cached_level_map.hpp>
 #include <bts/db/level_map.hpp>
 
+#include <fc/compress/lzma.hpp>
 #include <fc/io/fstream.hpp>
 #include <fc/io/json.hpp>
 #include <fc/io/raw_variant.hpp>
@@ -2115,10 +2116,14 @@ namespace bts { namespace blockchain {
    void chain_database::create_snapshot() const
    { try {
       const fc::time_point_sec timestamp(now());
-      std::ofstream snapshot( snapshot_filename( timestamp ).string() );
+      const fc::path filename = snapshot_filename( timestamp );
+      std::ofstream snapshot( filename.string() );
       write_snapshot_header( snapshot, timestamp );
       const share_type supply = write_snapshot_balances( snapshot );
       write_snapshot_footer( snapshot, supply );
+      snapshot.close();
+      fc::lzma_compress_file( filename, filename.string() + ".lz" );
+      fc::remove(filename);
    } FC_CAPTURE_AND_RETHROW( (now()) ) }
 
    void chain_database::add_observer( chain_observer* observer )
@@ -2140,7 +2145,7 @@ namespace bts { namespace blockchain {
 
    fc::path chain_database::snapshot_filename( const fc::time_point_sec timestamp ) const
    {
-      return *snapshots_dir / timestamp.to_non_delimited_iso_string();
+      return *snapshots_dir / (timestamp.to_non_delimited_iso_string() + ".json");
    }
 
    void chain_database::remove_observer( chain_observer* observer )
