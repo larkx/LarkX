@@ -106,6 +106,7 @@ namespace bts { namespace blockchain {
                                                                                          const public_key_type& block_signee );
 
             void                                        revalidate_pending();
+            void                                        handle_snapshots( const full_block& block_data )const;
 
             fc::future<void> _revalidate_pending;
             fc::mutex        _push_block_mutex;

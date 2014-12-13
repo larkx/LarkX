@@ -986,6 +986,18 @@ namespace bts { namespace blockchain {
       } FC_CAPTURE_AND_RETHROW() }
 
       /**
+       *  Checks if a snapshot should be made now and creates it if so.
+       */
+      void chain_database_impl::handle_snapshots( const full_block& block_data ) const
+      {
+          if( !self->do_snapshots() ) return;
+          uint32_t prev_block_day = self->now().sec_since_epoch() / 86400;
+          uint32_t new_block_day = block_data.timestamp.sec_since_epoch() / 86400;
+          if( prev_block_day == new_block_day ) return;
+          self->create_snapshot();
+      }
+
+      /**
        *  Performs all of the block validation steps and throws if error.
        */
       void chain_database_impl::extend_chain( const full_block& block_data )
@@ -1010,6 +1022,8 @@ namespace bts { namespace blockchain {
             verify_header( block_data, block_signee );
 
             summary.block_data = block_data;
+
+            handle_snapshots( block_data );
 
             /* Create a pending state to track changes that would apply as we evaluate the block */
             pending_chain_state_ptr pending_state = std::make_shared<pending_chain_state>( self->shared_from_this() );
@@ -2055,9 +2069,78 @@ namespace bts { namespace blockchain {
       return next_block;
    } FC_CAPTURE_AND_RETHROW( (timestamp) ) }
 
+   void chain_database::write_snapshot_header( std::ofstream &out,
+                                              const fc::time_point_sec &timestamp ) const
+   {
+      out << "{"
+          << "\"blocknum\":" << get_head_block_num()
+          << ",\"blocktime\":" << timestamp.sec_since_epoch();
+   }
+
+   share_type chain_database::write_snapshot_balances( std::ofstream &out ) const
+   {
+      out << ",\"balances\":[";
+      bool first = true;
+      share_type total = 0;
+      auto balance_record = my->_balance_db.begin();
+      while( balance_record.valid() )
+      {
+        if( balance_record.value().condition.type == withdraw_signature_type ) {
+            const share_type balance = balance_record.value().balance;
+            total += balance;
+            if( !first ) out << ",";
+            out << "[\"" 
+                << std::string( balance_record.value().condition.as<withdraw_with_signature>().owner )
+                << "\","
+                << balance
+                << "]";
+            first = false;
+        }
+        ++balance_record;
+      }
+      out << "]";
+      return total;
+   }
+
+   void chain_database::write_snapshot_footer( std::ofstream &out,
+                                               const share_type supply ) const
+   {
+      out << ",\"moneysupply\":" << supply
+          << "}";
+   }
+
+   /**
+    *  Creates a snapshot in snapshots_dir.
+    */
+   void chain_database::create_snapshot() const
+   { try {
+      const fc::time_point_sec timestamp(now());
+      std::ofstream snapshot( snapshot_filename( timestamp ).string() );
+      write_snapshot_header( snapshot, timestamp );
+      const share_type supply = write_snapshot_balances( snapshot );
+      write_snapshot_footer( snapshot, supply );
+   } FC_CAPTURE_AND_RETHROW( (now()) ) }
+
    void chain_database::add_observer( chain_observer* observer )
    {
       my->_observers.insert(observer);
+   }
+
+   void chain_database::save_snapshots_in( const fc::path &dir )
+   {
+      FC_ASSERT( fc::exists(dir) );
+      FC_ASSERT( fc::is_directory(dir) );
+      snapshots_dir = dir;
+   }
+
+   bool chain_database::do_snapshots() const
+   {
+      return snapshots_dir.valid();
+   }
+
+   fc::path chain_database::snapshot_filename( const fc::time_point_sec timestamp ) const
+   {
+      return *snapshots_dir / timestamp.to_non_delimited_iso_string();
    }
 
    void chain_database::remove_observer( chain_observer* observer )

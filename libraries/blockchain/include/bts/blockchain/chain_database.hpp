@@ -105,6 +105,10 @@ namespace bts { namespace blockchain {
          void set_relay_fee( share_type shares );
          share_type get_relay_fee();
 
+         void save_snapshots_in( const fc::path &dir );
+         bool do_snapshots()const;
+         fc::path snapshot_filename( const fc::time_point_sec timestamp ) const;
+
          void sanity_check()const;
 
          time_point_sec get_genesis_timestamp()const;
@@ -348,6 +352,7 @@ namespace bts { namespace blockchain {
          asset                              unclaimed_genesis();
 
          void                               dump_state( const fc::path& path )const;
+         void                               create_snapshot()const;
          fc::variant_object                 get_stats() const;
 
          // TODO: Only call on pending chain state
@@ -357,7 +362,12 @@ namespace bts { namespace blockchain {
          }
 
       private:
+         void write_snapshot_header( std::ofstream &out,
+                                     const fc::time_point_sec &timestamp )const;
+         share_type write_snapshot_balances( std::ofstream &out )const;
+         void write_snapshot_footer( std::ofstream &out, const share_type supply )const;
          unique_ptr<detail::chain_database_impl> my;
+         fc::optional<fc::path> snapshots_dir;
    };
 
    typedef shared_ptr<chain_database> chain_database_ptr;
