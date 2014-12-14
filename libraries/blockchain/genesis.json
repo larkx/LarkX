@@ -1,5 +1,5 @@
 {
-"timestamp" : "20141209T232539",
+"timestamp" : "20141214T214417",
 "market_assets": [ ],
 "names": [
  {
@@ -60,6 +60,11 @@
  {
 	"name": "riverhead",
 	"owner": "PTS7B14yhvgRdUUR6xFMMaEqDuLNxn1hApTtna1LjWzNCh2QjkkG2",
+	"delegate_pay_rate": 255
+ },
+ {
+	"name": "mira",
+	"owner": "PTS8BnPS3LwZ7WM3rRB4ZMftbJTrdDeLBpcd6YHKj4E6fdbcncaTR",
 	"delegate_pay_rate": 255
  },
  {
@@ -1092,10 +1097,6 @@
  [
 	"PXzJTtLdmjYkdpSENtgeT1LzRRmopD11Bd",
 	3868904687
- ],
- [
-	"PXzKVuwBH6Zpk2BgGaWJNJ8XdzHf3RguUo",
-	100106000000
  ],
  [
 	"PXzNbNhLwkpUB5UwANY5C5kkXxtQKt1JwP",
@@ -2242,10 +2243,6 @@
 	55421000
  ],
  [
-	"PY7Pgor3eukpZEjc1zLhLMrT36ot3vY2PM",
-	1246991
- ],
- [
 	"PY7RqhbitsGXdZHZgPMjsNnCk5anjpHDBR",
 	33500000
  ],
@@ -2446,10 +2443,6 @@
 	10177206
  ],
  [
-	"PY8mVSwvUcmcivNHyhhXy5DX9vRCK4JB5F",
-	48503710000
- ],
- [
 	"PY8o7pmLWU8e82p67ij87XXwpuXTvf7L8V",
 	20100000000
  ],
@@ -2464,10 +2457,6 @@
  [
 	"PY8qgDPEriSSTTFVnhKUGx1h4k8venQHhu",
 	27381
- ],
- [
-	"PY8rqs8usXUD6rmhHBMEDSD8jeHjRmsfes",
-	55769200000
  ],
  [
 	"PY8sPuSv9v4CAvSVwfXeg8RsZvNKTGHbbd",
@@ -3662,10 +3651,6 @@
 	210000000
  ],
  [
-	"PYFsWpNHAb1Td3MAoQiv2MKqsYQKq6ZVd5",
-	99694000000
- ],
- [
 	"PYFu4a2A1fe779cPGE7ELavcDKGYVEk2YL",
 	24611062
  ],
@@ -4026,10 +4011,6 @@
 	3944960
  ],
  [
-	"PYJVTkmwtajn6VmtjjfBUHUuM19Yq3Doo5",
-	1000000000
- ],
- [
 	"PYJXEs5H8qXAAUr97wNrmjhk5JNDHbSNFk",
 	104015
  ],
@@ -4088,10 +4069,6 @@
  [
 	"PYJiNM1mGxy1uPdiquojAzPeUv3pjNcxep",
 	60000
- ],
- [
-	"PYJipiDrLrnLD6umcrxrJyUHWDK8LmqNJs",
-	252844265471
  ],
  [
 	"PYJjJzBRRudvTHXsGwH5FexSzUcAa253JF",
@@ -4284,6 +4261,10 @@
  [
 	"PYL2QhMicU1t5De3qb6VARQPwKuHhGreNN",
 	4286875000
+ ],
+ [
+	"PYL6K37qJhqeUMEsQaKPL57k4FcCVz1VBh",
+	1061195
  ],
  [
 	"PYL7nJz8TEodP7DA53yAhmTHTXiL3zp4JH",
@@ -4482,6 +4463,10 @@
 	243118231
  ],
  [
+	"PYMSy5jGzy7yUrBVAXDK3ah8BcZcssQ445",
+	307053800
+ ],
+ [
 	"PYMVSmUszxwNzgTXRfCtJm23hVjSphJ3E4",
 	1277289
  ],
@@ -4600,10 +4585,6 @@
  [
 	"PYNEeEzbqckf9DyGq4q5VpJ3P4p3ZrbAsr",
 	3756170
- ],
- [
-	"PYNGzEvBYJsa98EnwTCXbe7iuifHH1Pzxw",
-	50009000000
  ],
  [
 	"PYNHuEWAqgN5GeT7yaijZfkf3B3rDLAWY1",
@@ -6148,10 +6129,6 @@
  [
 	"PYX1QfUv4rnAUffr72s2y4D7SYtHCDrzmR",
 	1297600
- ],
- [
-	"PYX3UTgEEde6ejuPkWKjqnMoeVkRYTWH2W",
-	30400000000
  ],
  [
 	"PYX4DouYJikoTfomkPb245sqV4CRxq1xuT",
@@ -8210,10 +8187,6 @@
 	1758569
  ],
  [
-	"PYkpdkrPXPEiGXyG3NV1eBRaThdfwmxC1c",
-	13696000000
- ],
- [
 	"PYktatihgGHVky6HR3m6XE8SzCwJ7CA73C",
 	3000000
  ],
@@ -8792,6 +8765,10 @@
  [
 	"PYprqRr9UC3y72KiRQ8mqWUkN8RtACCDXS",
 	180000
+ ],
+ [
+	"PYpuuTWsmHPKDDV2eRNZ6TYZBF2nSsw6rM",
+	1329340
  ],
  [
 	"PYq1MztyogwLWZM9n95XohEqwpzMrzRBnM",
@@ -10830,10 +10807,6 @@
 	434517
  ],
  [
-	"PZ3QwrwtVWNm88afnNRPDsf8QuZArSNRgG",
-	61270000
- ],
- [
 	"PZ3S1jws195bxf6VrY9PBSLRtRrs9L3auy",
 	13053145
  ],
@@ -11666,10 +11639,6 @@
 	4911117
  ],
  [
-	"PZ8uDbxuEwRBUP1Ev6bocGuskWLDBbkHsn",
-	43460000000
- ],
- [
 	"PZ8vdr2Qp46BmHMULbWLRWKXMHD8hihBoG",
 	4635278
  ],
@@ -11716,10 +11685,6 @@
  [
 	"PZ9KWNXcNb8xXXkneAsK57esTBuvZRDysx",
 	18960000
- ],
- [
-	"PZ9KqtfbTG7YV8sVYBceTjbaJshauU3XU7",
-	16712328600
  ],
  [
 	"PZ9L4BoT81dKyPKj9Um39o1Ddfs5aez38x",
@@ -12496,6 +12461,10 @@
  [
 	"PZDgv9CDvvhfkLUggRPGKaXWojf9kP4pto",
 	4650000
+ ],
+ [
+	"PZDjTzJveRHP9QCPcb4afgFZn54xit71Lm",
+	511428175
  ],
  [
 	"PZDjxn7xK1sFZNyaDMXHvd3HUMz39s5qhF",
@@ -13778,6 +13747,10 @@
 	2184860655
  ],
  [
+	"PZMqkzkRscqhmYmuhANrGfaQBsrytJ4MtF",
+	406824375
+ ],
+ [
 	"PZMt3H1SvrcFgGpd65iPf123pFoa9Zbn8B",
 	51724
  ],
@@ -13816,10 +13789,6 @@
  [
 	"PZN2pwkc89u5Wyr15ntT8SPyUthLe9aZQk",
 	245900
- ],
- [
-	"PZN3SgFteCU9wYWt57pz9yRVqTY9Srw5pK",
-	1905900
  ],
  [
 	"PZN3aP6jVMrJM2pPLuWnGebx3KUEGdoEYJ",
@@ -14390,10 +14359,6 @@
 	3581360000
  ],
  [
-	"PZRr9X2LSYuA4SX5PNXQ24qenXSpBFibj4",
-	99891650
- ],
- [
 	"PZRtH6sBrk2xmWhWa1oLFrby2YiD1RBkot",
 	55387736
  ],
@@ -14452,6 +14417,10 @@
  [
 	"PZSJpEqT65Q9D817x6HVRqxMSvVt4HSdVF",
 	26190000
+ ],
+ [
+	"PZSMm54rvWCcqQVHSWbBwMFYfm4Lm3CnjP",
+	607613475
  ],
  [
 	"PZSPCrmgNqxJxLPfmYyxQtA9cTLS9Mhbky",
@@ -15602,6 +15571,10 @@
 	10000
  ],
  [
+	"PZZiocRKgpPueHfrz9ma4yCFrL7sUUkoTt",
+	149991000000
+ ],
+ [
 	"PZZmAXRXoxFJeGP3vDWD97YMgtuxS3P2qL",
 	451989
  ],
@@ -16248,10 +16221,6 @@
  [
 	"PZe4ER2K5FsyHaJVmuSu2jwULqYYvAQxCu",
 	60000
- ],
- [
-	"PZe52YM3xJ2jTJGrB8kGKoaLgxTo7uJ5sH",
-	50009000000
  ],
  [
 	"PZe5pd817ZqeZTjsTGCWandybP1aV7ViuW",
@@ -18582,6 +18551,10 @@
 	31718034
  ],
  [
+	"PZtYf1k199fydPK6h7cvTKajmEmcU5ki7m",
+	2552516802
+ ],
+ [
 	"PZtbTSkPg2Ls4UzewJVjgiGevmudhbB6kp",
 	3868904687
  ],
@@ -18700,10 +18673,6 @@
  [
 	"PZuQkjVf97QzEQJMLgSw1ikXqDRhLhLiMB",
 	176490000
- ],
- [
-	"PZuU78725C1WZsxy9ecF4PgjVu2vPE5JS5",
-	5000000000
  ],
  [
 	"PZuVet7vwLfmDnTxtwi9cwBJb9Bh69f75s",
@@ -19391,7 +19360,7 @@
  ],
  [
 	"PZyQj2A2iywroYWmsgJf45mMDmces7BiAc",
-	241341600
+	321458200
  ],
  [
 	"PZyQt5Q7xppNxa9vzVWEfiaC7PLTqbJvJd",
@@ -19723,7 +19692,7 @@
  ],
  [
 	"Pa18CoXAnJTwDdKzLvVcscbmPFUcwq64uW",
-	352289748
+	15319509748
  ],
  [
 	"Pa18sPCo1YFnW3LCfwhKMvUzjyFmWsqJy9",
@@ -20030,6 +19999,10 @@
 	824000000
  ],
  [
+	"Pa3FpMacHzcj1Be7W3VwK5iS4E3n2G9dC1",
+	35644859710
+ ],
+ [
 	"Pa3HZN1YDGnSY3ZB6QMzXxGKWbp9u6on5n",
 	1000000000
  ],
@@ -20155,7 +20128,7 @@
  ],
  [
 	"Pa3ubTs14pTpzUZMvCyQ6mwChpED8JYTba",
-	50092900
+	102839800
  ],
  [
 	"Pa3vV4VydA7khQLgpN3fojPiu8LTy3T4M8",
@@ -22698,6 +22671,10 @@
 	76600
  ],
  [
+	"PaLMohgzkpot2biUPsTEkfW1geMfrSYVjw",
+	21334200
+ ],
+ [
 	"PaLN91UYXURyAiWEj4eqKboMTHrV6yqjZr",
 	170770892
  ],
@@ -23536,10 +23513,6 @@
  [
 	"PaRUxYLC7SDFoVNLgcRHiY3x4CEFnAmuJi",
 	433380
- ],
- [
-	"PaRV56c4FsGabzYAYXqtGqxNXeGdbXmM8f",
-	48522000000
  ],
  [
 	"PaRX9anbfgvYJyHyzCw3K91Xyh8aJcnhY1",
@@ -24690,10 +24663,6 @@
 	543271
  ],
  [
-	"PaYgvYtnNFYb5fGTLY88UDoCUp9Qgg1wiE",
-	619396275
- ],
- [
 	"PaYihXcTnTPJeCJmufAnNi6ouoNfxYkuoh",
 	3530300
  ],
@@ -25818,6 +25787,10 @@
 	113414552
  ],
  [
+	"PafzXoREU54kyRoVwpYg5PbqKcukjAKw5K",
+	71672830000
+ ],
+ [
 	"Pag1goUybFPanzLFD4hXmEtKgBGipjawgG",
 	143200
  ],
@@ -25883,7 +25856,7 @@
  ],
  [
 	"PagJfTFcRukaYmF2qC2NtR8SJcUqW9vXr3",
-	11472999996
+	18456999997
  ],
  [
 	"PagKqeAjUfCVZ4KpMvo6icJY8DcFVBadd5",
@@ -26107,7 +26080,7 @@
  ],
  [
 	"PahdDLXkHgCkK4chFgWRSQwfPTcKNzyFFM",
-	800000000
+	950000000
  ],
  [
 	"PahehDtTLdxPgFuLm3oqz2ozQmb3wyeSSx",
@@ -26248,10 +26221,6 @@
  [
 	"PaiMwUcXb6UGfTRiYT3VSzjFKcKRchvHBL",
 	11592009
- ],
- [
-	"PaiP6ZotP29VUGWCfQbjtBAaFveaRmciHi",
-	3000000
  ],
  [
 	"PaiPqV37FQ38SBkWR2C2tmgRKUikhPfuqN",
@@ -26680,10 +26649,6 @@
  [
 	"Pam3xJUBcaYA5w3YGReno43qQ2JDqwKSRo",
 	1405735
- ],
- [
-	"Pam6CiFYWvBphMXuiNSPGLPMYCGygdrjn1",
-	631691675
  ],
  [
 	"Pam6H8ZMN4aQWMnyoHvpVuSo3ms36ZMMK2",
@@ -29262,6 +29227,10 @@
 	300175800
  ],
  [
+	"Pb4CX49izS3KXf5uBUiusLjQGaSRQ3ngbd",
+	1129286
+ ],
+ [
 	"Pb4Cm2f6KzbmHrrAuefzSwz41ywebHMKbn",
 	347567846
  ],
@@ -29974,6 +29943,10 @@
 	100000
  ],
  [
+	"Pb8D7yK9DmdLExL9o7Kh2Jesu8cp1fQUwh",
+	101301700
+ ],
+ [
 	"Pb8DhLwogGCAFQCfVsVarm27vmMFb6zQfW",
 	20292835423
  ],
@@ -30051,7 +30024,7 @@
  ],
  [
 	"Pb8izSzAa99ks9mHJ1fxmPfPPzwWbnM7qU",
-	5240116800
+	5447760800
  ],
  [
 	"Pb8mqEMvZwHkqrbWq7a2tjVaFSdVjGCGZj",
@@ -30806,6 +30779,10 @@
 	200391400
  ],
  [
+	"PbDMbBhukd47itknCwmSyNST5KKwWNmYUi",
+	615660000
+ ],
+ [
 	"PbDMgWcqAvpgqcB8G8iWY3Y2ZhcFw7NtRA",
 	142791458
  ],
@@ -30908,10 +30885,6 @@
  [
 	"PbDnjkZcWVxU4VPJNNsScfBvf9SEbhJpeD",
 	300000000
- ],
- [
-	"PbDoCZqQkpEXYBz9tZy61emTxTRYopDwqu",
-	159790000
  ],
  [
 	"PbDpy8CqJXMxKf2dFBkNphkLvDsrwK3yAR",
@@ -31116,6 +31089,10 @@
  [
 	"PbFAnHbBx9JyAYESH9pzP5LGEVPPNsc9kr",
 	12958
+ ],
+ [
+	"PbFC45f8gKFXuV3T82pvzutJCDzXMcJ42V",
+	23089956903
  ],
  [
 	"PbFCyZiAHPJwhrX2b5ZhCLvVsRBLq1fq1t",
@@ -32110,10 +32087,6 @@
 	3868914687
  ],
  [
-	"PbMjQ29HCjxRs2vHXGBWHxuQRe6wZitUTU",
-	43952000000
- ],
- [
 	"PbMkFHTwWA7bspQtAWkZ3VFQCZEVbPcR1G",
 	1000000
  ],
@@ -32796,6 +32769,10 @@
  [
 	"PbSUN7PT6c865WmHRSu5dyDxb4ZAd2hCZA",
 	149228
+ ],
+ [
+	"PbSUk4iUWDTu5pFTHa1KmXiNU5Vs4s6dZp",
+	16414025
  ],
  [
 	"PbSW7TZjBUEyQkrRjxaodcJqATEHZhYKFH",
@@ -33504,6 +33481,10 @@
  [
 	"PbXNLkL5HyidSMXzRDhXLZKwA4ic3mxqya",
 	3240239
+ ],
+ [
+	"PbXP51ALFGt1pKPsVCBJhsvQyqujrFhvgA",
+	500000000
  ],
  [
 	"PbXRBYRitm6evaeQWG5mj7dfJJwBv3swiL",
@@ -34286,10 +34267,6 @@
 	12973
  ],
  [
-	"Pbc2r9UwAwt2cyFN1CGXFTgSmyWQgKzsBG",
-	2552516802
- ],
- [
 	"Pbc4gqwmwJ2VrtBaYNCE7WxJkTyRgRz2zw",
 	20000000
  ],
@@ -34831,7 +34808,7 @@
  ],
  [
 	"PbfG6K28n5VSpFaNVPPG1PuGr6Mh9DskcF",
-	23978394683
+	24081335483
  ],
  [
 	"PbfGY4mU6QsZvYjHiHVvPcRvF1aKLZt9SG",
@@ -35040,10 +35017,6 @@
  [
 	"PbgZM7ypbLSgovHkDTUmY1jJoLB1cqKLLP",
 	40000
- ],
- [
-	"PbgcdLBPdCGiaWqPFNrLTXRifKiJcRdjzU",
-	50009000000
  ],
  [
 	"PbgjLnG8hmhdTs5mgcVSLreGaPhwU86rPH",
@@ -35574,6 +35547,10 @@
 	1490940000
  ],
  [
+	"PbkSEcp4URQqMMJirychf1EiGjqdLhtmXC",
+	67982010000
+ ],
+ [
 	"PbkVMAaFa2Yry1x6hRPTcWSUeRaT4aMbnx",
 	500100000
  ],
@@ -36072,6 +36049,10 @@
  [
 	"PboaZhQmmAmobKNtGm7aNSNrJD5kqyQWNh",
 	8000000
+ ],
+ [
+	"PbobgLuWwX9iQmgrMKydXZmHDNJPWFkRtJ",
+	5107000000
  ],
  [
 	"PbodCpUtmjW7Kb1QCUcoXV1wX643z8XZNY",
@@ -37738,6 +37719,10 @@
 	27397510
  ],
  [
+	"PbzWDSd9DJdRZKQVE1bVzf8EzTgGGQmvKj",
+	42260170000
+ ],
+ [
 	"PbzYrbri3DLgxm6q7DthZA4H4qw1aWQ686",
 	80000
  ],
@@ -38167,7 +38152,7 @@
  ],
  [
 	"Pc3arAyeQdn1Cf1tsvrZRPEviQ1RnzEwXj",
-	11402715435
+	56946891587
  ],
  [
 	"Pc3awkRgFXeoA9PmUVn9sEHwH1EwkpTQsZ",
@@ -38436,6 +38421,10 @@
  [
 	"Pc5AmCKei5VVcsTdVFoxEy7qyQmZGX53cf",
 	5000000000
+ ],
+ [
+	"Pc5CdGg4hD7Ca8waHapaqwhrmX77SQCbuy",
+	23460000000
  ],
  [
 	"Pc5DbFPreKoipSTLyhH5yxYczwY83pLvV8",
@@ -39154,6 +39143,10 @@
 	4009516436
  ],
  [
+	"Pc9ogJRBKnaZYoVytx6uQamKysSMmybc9b",
+	34494500
+ ],
+ [
 	"Pc9p1xrdj724B54kAMrFxaNRxz6rY9farp",
 	2891157
  ],
@@ -39684,6 +39677,10 @@
  [
 	"PcDWLKue9uHf94RccjJ4HQkVCEMu2HuWaL",
 	3748604
+ ],
+ [
+	"PcDWazC6Co991i3bCVrCVbKHtEYGB68YvT",
+	315832375
  ],
  [
 	"PcDXXSTPxcmawXxz586Fm8KS7dKrRtPUcP",
@@ -41074,6 +41071,10 @@
 	188375790
  ],
  [
+	"PcN6dHMDKLvS5jiyhHvZDw16mXXDXbg6BY",
+	2319634658
+ ],
+ [
 	"PcN6kd9gp3Wov1gdFULdcb57TjtgdFVdiV",
 	1000000000
  ],
@@ -42098,6 +42099,10 @@
 	1004095
  ],
  [
+	"PcUEvSDTLPB3Dmifa8XeNBhWRfnQ1SMRNW",
+	1493523848
+ ],
+ [
 	"PcUFohuzyRVS4JZdR5cJ4rQUCgt6vYhb8x",
 	6000000
  ],
@@ -42322,6 +42327,10 @@
 	120149
  ],
  [
+	"PcVYqjJr5nLEiSrs1JEjft7xiUVRKvrRMX",
+	2896000000
+ ],
+ [
 	"PcVZnqyKNccaNUm7Pvb7Pr5ku733oNqgS9",
 	1001000000
  ],
@@ -42540,10 +42549,6 @@
  [
 	"PcX4kKPvJGpwipFfbZFCxFrdV6THbfMxDD",
 	800000000
- ],
- [
-	"PcX8V18jMGc84UM8RxsXzQcCDVHqbHtYxW",
-	43584357
  ],
  [
 	"PcXBfrXwfqMDcp2UvJJDNVJtJnqQKvtDqW",
@@ -43372,10 +43377,6 @@
  [
 	"PccPoedPJHhPAuordVQwwQWiDJ52avKxHc",
 	525000000
- ],
- [
-	"PccRYaiC77BngcYAPgStFWPVxKns4P48gX",
-	545736
  ],
  [
 	"PccRjVTb9aThpnwscVWw7QkpneYy2TEtLP",
@@ -44942,6 +44943,10 @@
 	54270053
  ],
  [
+	"PcnF2PyAYurCNykWS12SXG34vm5Wrc2VW7",
+	1783091
+ ],
+ [
 	"PcnFkjCXgwzQLtGU5r6pGpjho18UkYLu5W",
 	186220332
  ],
@@ -44984,10 +44989,6 @@
  [
 	"PcnShyTPBGThLSGpr2XncebYtmnraPVQ8C",
 	1000000000
- ],
- [
-	"PcnVZeUNb2cmt3TaoNggMVVM7Es3o6PzBb",
-	1394392014
  ],
  [
 	"PcnVsGDG61HUPAwCdDEXvVcF65Re8xs9Sp",
@@ -45882,6 +45883,10 @@
 	10000
  ],
  [
+	"PctNCeFSPeEPtjFTcgMZx7UVqYQGpeTZfC",
+	74355280000
+ ],
+ [
 	"PctNSva3B3p1ZJCKtZbRtgpapenXhPnbXt",
 	467454
  ],
@@ -46248,6 +46253,10 @@
  [
 	"PcvhGR1RJUTYuHLjhmNeC7sTGiwnBoArZs",
 	720911337
+ ],
+ [
+	"Pcvj5QfpD3YcyGxEK4YZMBSAGyVLmPnw2S",
+	3303804759
  ],
  [
 	"PcvjvGumuvJXB8je96wsTPtMcDMVXzCB57",
@@ -46663,7 +46672,7 @@
  ],
  [
 	"Pcy3A5uYKRu5e5jAxfT1QXAFmLfG4ML5s2",
-	184000000000
+	183600000000
  ],
  [
 	"Pcy4Xz33EmoN3o9q2FBtJujyXLenAfgpD4",
@@ -48192,6 +48201,10 @@
  [
 	"Pd979Rog4NeJDcViKrnH4wQJCjHKUpaqvd",
 	111969536
+ ],
+ [
+	"Pd98CNzQZ2g9CK2AGC7GvJ8mFCBRUpJaVP",
+	11300000000
  ],
  [
 	"Pd98EiQSWRNNm9BNWbzREKthX1fXhwhisZ",
@@ -50218,6 +50231,10 @@
 	720200
  ],
  [
+	"PdN7M6sxrGtqQ1iNq56kBcj2WJVRb7GM6B",
+	1512328600
+ ],
+ [
 	"PdN8NQFLQ9hVa7nbhFqJqD9AZq1ucj3ovD",
 	90000
  ],
@@ -51054,10 +51071,6 @@
 	1428571429
  ],
  [
-	"PdTHu156rszEpT9L4HjyTBioEHpVCQsyEs",
-	8131000000
- ],
- [
 	"PdTNxZv2aDcc11dbRkwNYVUkEpanceknKi",
 	1000880
  ],
@@ -51618,10 +51631,6 @@
 	14292878
  ],
  [
-	"PdXB64uCuLDU6bzoaJJphZwNsC59MK63Jq",
-	46990526150
- ],
- [
 	"PdXDjdaMf9QU7s2h4LcceLQmnhr4kV4uyM",
 	4363332
  ],
@@ -52006,6 +52015,10 @@
 	4520000
  ],
  [
+	"PdZyiSPtB8RsPkn5RgQzn5iU2Ydy5YkPnz",
+	29996000000
+ ],
+ [
 	"Pda1BiAejWz64k4CkWmVnnJz4yvzE7jhwy",
 	2090000
  ],
@@ -52204,6 +52217,10 @@
  [
 	"Pdb9gBJsHwt6unGAWuSDpsXd8TGQ1RNtCw",
 	9184606
+ ],
+ [
+	"PdbAosdMCD3qGXHKnNByzW4faK387ZBrfA",
+	284360500
  ],
  [
 	"PdbAqSQfTwc24uraj53Q4gioAnrCfkq2ro",
@@ -52444,10 +52461,6 @@
  [
 	"PdckHNpsMsnpaMFWpm9YQRTeUhfwUuKsbP",
 	100000000
- ],
- [
-	"PdcmyBRkxHsSveEKs38VxB3Mot5SVptz74",
-	703215580000
  ],
  [
 	"Pdcob1DA1AiVDb5tbxuWcqYXTQd5qX7zSK",
@@ -52940,6 +52953,10 @@
  [
 	"PdffFbHRrEzEerYxapdmQqx7oBX55R7g2T",
 	2018932300
+ ],
+ [
+	"Pdffm9Ejv23mPSjRWeTBqUY7eWNHgRWok8",
+	167799875
  ],
  [
 	"PdfgPgfWVTSjY9vRitWJiq7FezWFofo8Wa",
@@ -54750,10 +54767,6 @@
 	300135800
  ],
  [
-	"Pdru2CbzWxT4gaRiqy94yuFJMYUWtSwSkW",
-	1144700000
- ],
- [
 	"Pdruj1kB1nLr56yKxsVtoyDxyGpCbvoXJH",
 	1999600000
  ],
@@ -55011,7 +55024,7 @@
  ],
  [
 	"PdtSNKEJfK728b75xQW94eh7JyMzaSoFpf",
-	19281000000
+	20109000000
  ],
  [
 	"PdtSfNgJBYZNsyqtQJaqmRNk8nke1fxPTd",
@@ -55908,6 +55921,10 @@
  [
 	"Pe13rbWro7MWZnJGGNj9URLrF2sWYmbVp7",
 	30497
+ ],
+ [
+	"Pe17cx9uBNAzeJaey4HPrN3m4vALH3kVV2",
+	36990526150
  ],
  [
 	"Pe18zwLPVhvYeLBpQEiP2hsvH3kVxYs2vL",
@@ -58442,10 +58459,6 @@
 	5560031
  ],
  [
-	"PeJD7veMQHVkkLj2YrYYYVgkwzbQUJSwho",
-	102818000
- ],
- [
 	"PeJHYy4hhXciFjyjqGixD2EsYHigmxGgZp",
 	14550000
  ],
@@ -59358,6 +59371,10 @@
 	1224124
  ],
  [
+	"PePSckV76g5KQb2qLiJt4PLjWVEP6ST3vk",
+	106027157
+ ],
+ [
 	"PePTwaFNNkHkfdNQZRH9ZpmYB9PdAzqcxw",
 	1000232
  ],
@@ -59690,8 +59707,8 @@
 	976680000
  ],
  [
-	"PeRdzmXGFhSJZVWeTEVbZbQSxHZuAz4jz2",
-	117979010000
+	"PeRdWyF7YagduxhvhU7oUiSF1kXkETDLZy",
+	610359675
  ],
  [
 	"PeRekEqhLddWoRtzy91r5jpnnaKxC37KqC",
@@ -60414,10 +60431,6 @@
 	19000
  ],
  [
-	"PeW8TT4vKWpGECyyqYXN7Wi94Mt2uaW5EM",
-	10000000000
- ],
- [
 	"PeWAGiC5Gfu1vbr9d3QQ8N49f6JAVrGmJe",
 	1428988
  ],
@@ -60490,20 +60503,16 @@
 	233931
  ],
  [
+	"PeWcYMrJkZQ6TkQ1jeVMJdmx34o2ef6YLN",
+	850009000000
+ ],
+ [
 	"PeWfEfyUuY7y1dfxiMvFbaAQTh2Rt1x9Ps",
 	1388870
  ],
  [
-	"PeWk7xhQM2B4AaTHMAt8MQzCbp9cuFdupg",
-	2600000000
- ],
- [
 	"PeWnJfJqfWbNU8NdGFD1mYjXH9jGdA9Dwn",
 	7861543
- ],
- [
-	"PeWnPMK5qqYFfWTJWCu9q9h9eAdDzTpRXT",
-	6026357
  ],
  [
 	"PeWnSdgWKwJNyxn64EdceJegwCvSDkzFkv",
@@ -61810,10 +61819,6 @@
 	216551318
  ],
  [
-	"PefUQ1NMaEQSNooHRc2poN7QhTCye8dYq5",
-	442858175
- ],
- [
 	"PefUcmTzCJohQTsax2jWkyapK9fQX1V8f1",
 	1898100
  ],
@@ -61983,7 +61988,7 @@
  ],
  [
 	"Pegd26ZSPVkpDRey846xvQyoNai7pXVftD",
-	280600000000
+	356500000000
  ],
  [
 	"Pegimf89q6x8Z9SvasFXgLG85AaiqLhapU",
@@ -63310,6 +63315,10 @@
 	20000000
  ],
  [
+	"Peq4SSTTbGUoV1xshzjmBtVcAA38hAD4ww",
+	335980000
+ ],
+ [
 	"Peq8Xn1tfXNBym4aFabgAjZ1Sics6oBrLY",
 	8060000
  ],
@@ -64112,10 +64121,6 @@
  [
 	"PeuXuEbaZKMFmckMuvqZbXVuP2gMx35Uth",
 	1114055300
- ],
- [
-	"PeuYUrrytP9A4AWq2cr1P6jnbZCChdZTJ6",
-	2031121000
  ],
  [
 	"PeuZ3ZRvPRzuRVPYfohMmQ8Ggd5UAZ7Wfz",
@@ -68558,10 +68563,6 @@
 	1026332
  ],
  [
-	"PfQ39GWg3Ja1hr3EDrmM7cy4Ka5oKn8jft",
-	10000000000
- ],
- [
 	"PfQ3dsvYoQdMwbAXc9mtY2v2iZLfPj7J4z",
 	28173904
  ],
@@ -69436,6 +69437,10 @@
  [
 	"PfVoi5PfkHQjVhcyjsEFVKrLeZAMqnwoqS",
 	501100000
+ ],
+ [
+	"PfVrSHb3AKvCpNYDDQyNyXBoLdDf3o7bVt",
+	496000000
  ],
  [
 	"PfVs9gbNaSJwsksKcPxWm9q1YsNyWB8osb",
@@ -72942,10 +72947,6 @@
 	52569478
  ],
  [
-	"PftFzJq4Rgc2P3o9PXyknF8m6jA3zU9fop",
-	15223850000
- ],
- [
 	"PftGiNY8LWnDXqGH7np2ATwjFedEDP51n7",
 	1573750000
  ],
@@ -74618,10 +74619,6 @@
 	550000
  ],
  [
-	"Pg4DNyizoSqBHGUR4NxgSBu7fkyWfR2VzF",
-	2894803395
- ],
- [
 	"Pg4DinX8iYBUfyE6keeDUqtJLxkkRsZFeS",
 	49452
  ],
@@ -75366,10 +75363,6 @@
 	112337743
  ],
  [
-	"Pg8yKG9X8GBw6n8F73dAU8BRXCntFDWvi5",
-	9700011935
- ],
- [
 	"Pg91vgdrasL4Ho9BvDiPdTB5xeLuhZxzUg",
 	1999937605
  ],
@@ -75484,10 +75477,6 @@
  [
 	"Pg9mVdcQmVKy4ajCAnp9y7f8FvVPJjn7mx",
 	421546
- ],
- [
-	"Pg9mkVieQyYKb9JpBaaGJkkQRodE5gfLx3",
-	209372200
  ],
  [
 	"Pg9n2FuzbeYbcGKxWDfV5VvtVFymPAg2Kv",
@@ -75798,6 +75787,10 @@
 	34908523
  ],
  [
+	"PgBzPLt3a7XiA26H1QeyvZBYJrHBWa9urP",
+	1517148329
+ ],
+ [
 	"PgCA7iQEyELdGuj8xMqHvLQAJE4xasYDYx",
 	5081092
  ],
@@ -75814,6 +75807,10 @@
 	619307200
  ],
  [
+	"PgCENe2GfrG51BAPu3GZQepDMLjjN41JSY",
+	249485000000
+ ],
+ [
 	"PgCJeCvDz5y7ntdTkSizEX5HcSmDovWrEn",
 	43190000
  ],
@@ -75824,6 +75821,10 @@
  [
 	"PgCKGvZk9M6KqriEPZtSkEyF6mtWoeANNS",
 	10000
+ ],
+ [
+	"PgCKdqsVLc15SciaznWNc6EcZX6YaQCZnh",
+	11524600
  ],
  [
 	"PgCLU2oNCHeGMGDjDoL4XvcQDTBj8PYePL",
@@ -76260,10 +76261,6 @@
  [
 	"PgEzGgdkAXzdMu9ytNesopqEYsjqXpEmrB",
 	215511576
- ],
- [
-	"PgEzbrbQTpSViSTVPDw7WmMPFmYdUfNo64",
-	10000000000
  ],
  [
 	"PgF44SJ6xXX6ny8rHErRrqrthhahN7btUx",
@@ -77610,6 +77607,10 @@
 	100375804
  ],
  [
+	"PgPXU5pJXeKaddF5JGpsiifLypkJXspmmq",
+	18285825216
+ ],
+ [
 	"PgPaGNrtrBfuVHk66EztgnDTbuSwDhpf8D",
 	60360099
  ],
@@ -77684,10 +77685,6 @@
  [
 	"PgPxUVBFJk4z6AT4YKYpRjF1RKg5xYLn3i",
 	11000000000
- ],
- [
-	"PgPxUmrnLXhkRHuAwJBCZAndgEofAXqQuJ",
-	4847139000
  ],
  [
 	"PgQ2Smr3MrPEmcc6WHtcp74uekv4Ng1JXw",
@@ -77912,10 +77909,6 @@
  [
 	"PgRX6ntgoAVeX5AYxf7EkrbBS7cuj2QX9n",
 	2999000000
- ],
- [
-	"PgRXh5BBNZBUBGhhuvsT3pDLfx1neBMwh4",
-	100106000000
  ],
  [
 	"PgRYpA5cpM2SKoNTv2xSU8qP6YnZyTDQX6",
@@ -78906,10 +78899,6 @@
 	740000
  ],
  [
-	"PgY2HLsgwdRef7PXHFSDEYAZ7tqHsrRcnG",
-	9622747
- ],
- [
 	"PgY3ZByHy2SwHqZNYZQKXY1v2Fy63bymdd",
 	20000
  ],
@@ -79040,6 +79029,10 @@
  [
 	"PgYs6uoPteRSF9TypAN88YXBrjSh2PTLVD",
 	152423912520
+ ],
+ [
+	"PgYs98Jtc5M8A1qfCFKk5WMiFeq6VQ6ogS",
+	6499122850
  ],
  [
 	"PgYsxZpS9Edeyq2rpmmFdd9kNYEAxtnbwf",
@@ -79292,10 +79285,6 @@
  [
 	"PgarzLd672hMxysK6tT8uvak3CXLYN3Hm9",
 	70000000
- ],
- [
-	"PgauEnMtkTk3qZwn3pjAHYJ2YnPRxaFMHe",
-	4997100000
  ],
  [
 	"PgauMJc8ow7HxxKh1naQvvDYyexUFPrFXc",
@@ -80282,10 +80271,6 @@
 	440000
  ],
  [
-	"Pgh8rnKYJEsf7b9DnK4Qb41GRUwgd2MwQE",
-	7503188510
- ],
- [
 	"Pgh9v7DACsj7nLLQmr2d7BR1c2eWD4T8KW",
 	796708417
  ],
@@ -80527,7 +80512,7 @@
  ],
  [
 	"PgidpnNJ3QEtHzZZ4A5mYqad9gg5yGX3Eu",
-	402451500
+	502856100
  ],
  [
 	"PgieuAfXyNF6eKCXuMP8SPwUGGgVg4ZDou",
@@ -81710,10 +81695,6 @@
 	1350689377
  ],
  [
-	"PgrgNZLyqekzawVD8a3qBC7vXBi9dXQLFk",
-	44000000000
- ],
- [
 	"PgrgZJypQt3yEr7GzBkynY4syQSGZeBj2Q",
 	10000000
  ],
@@ -81732,6 +81713,10 @@
  [
 	"PgrkYqUjAHrTfryhgEBbtK1zxBuzeQcfSc",
 	3869074687
+ ],
+ [
+	"PgrnwzozkbUQXQFUXMu8jqsTvMzHKr8QMa",
+	49601000000
  ],
  [
 	"PgrqNP2JHuRZZYwQANcPnwR77RTBLKhsYq",
@@ -82602,10 +82587,6 @@
 	13300
  ],
  [
-	"PgwdrqH96TaqjgmLGFhW5i9STZhagDZqfy",
-	2088225810
- ],
- [
 	"PgweAHtmDzqxYJUmpMexzWYiqqZiKw1aFC",
 	4071364
  ],
@@ -83406,6 +83387,10 @@
 	3868904687
  ],
  [
+	"Ph2TvojvRMpPCdrKvxt2oDvSEztLMEz73R",
+	32347500000
+ ],
+ [
 	"Ph2XUZjvqGBEFpenKhddqbuoREzgJVFEkL",
 	3330000
  ],
@@ -83656,10 +83641,6 @@
  [
 	"Ph3yWgWG4ZQ9NVAWgcYzVcH2Zzu55xedTX",
 	20000
- ],
- [
-	"Ph3zjwSusYpumR46kdcEmnqndwFGYm8Bom",
-	102251100
  ],
  [
 	"Ph42mDe5YRGN8YTm1EbJEFh62eqBUQpjPC",
@@ -84504,10 +84485,6 @@
  [
 	"Ph8uvoMcQSgvJHo4rzeahKB9YKvgt4xf2W",
 	1370633
- ],
- [
-	"Ph8vNob8mcmpzcxfdf6wQtuxePFf8yJSrv",
-	6000000
  ],
  [
 	"Ph8wEzVQvzgU9JGpmUNNeuzwjJkwTfuvgm",
@@ -86052,6 +86029,10 @@
  [
 	"PhKJ2H9nWnSezcJwuhurDpMY12L6Y1wBZq",
 	99000000
+ ],
+ [
+	"PhKKR7gWxVbYx7GHNqA7vm766vtYbRD2q9",
+	81765700
  ],
  [
 	"PhKL72o8KJApV55X8tcRkSf1bQERJTBFjK",
@@ -88142,10 +88123,6 @@
 	20000
  ],
  [
-	"PhYZ2zxxBvPVFcASeNoUzaGDrkC3sErkWH",
-	522904775
- ],
- [
 	"PhYabPtd6s591TemTudjihY8LWbYmyYKdG",
 	58330000
  ],
@@ -88720,10 +88697,6 @@
  [
 	"PhcFdKApEwcBmR79WKXs7TrXndcW42Jb92",
 	60020000
- ],
- [
-	"PhcHpUPVAPtRVcVRGiqJxRRFcSbMmmidib",
-	30151470000
  ],
  [
 	"PhcM33uRDBN9wLsFjeceFwtioVguV4i4g8",
@@ -91194,10 +91167,6 @@
 	10000
  ],
  [
-	"Phs6HF1Hpomjx3J9oY5SXySGjt2nncKTPo",
-	20335980000
- ],
- [
 	"Phs6KQbvBMj2FiGF6jPRvTjYHfnmyuSNyg",
 	1001000
  ],
@@ -91534,10 +91503,6 @@
 	79054496
  ],
  [
-	"Phtxif5u2tN13CN3s1rGSH3it9hptNezh6",
-	363883293
- ],
- [
 	"PhtzBDL59Yj4kWttcYoYFfLUn6YauFhJmC",
 	2820000
  ],
@@ -91724,10 +91689,6 @@
  [
 	"Phv9bjUjyWbDrYTU688hZ5VKQ2w2abHhyx",
 	10000
- ],
- [
-	"PhvBJSDh5fXtMGwVAEkYLPg17CWr3zCGGG",
-	1505290000
  ],
  [
 	"PhvFgtX2y56Sj7SWCWQVh2TWwWJCzUyutJ",
@@ -92112,10 +92073,6 @@
  [
 	"PhxmSJSm6f9uatb9sPsKSPYm8NdbzrwrTD",
 	270165341
- ],
- [
-	"PhxmYNW49qnVdrys22Aa63WKjDTPrTKYbq",
-	4618621
  ],
  [
 	"PhxoneM4ZLzpdgcMYDJNqsX2ieyrmHzAsx",
@@ -92978,6 +92935,10 @@
 	160310
  ],
  [
+	"Pi4p77guptwtGZ5b4k7KbmZGVR7mQQrrw7",
+	20200000000
+ ],
+ [
 	"Pi4pXQ4ZPWM48dhHXxnhYAvWokLy6vrna4",
 	25000000
  ],
@@ -93792,10 +93753,6 @@
  [
 	"PiA8BuUopUxvNCrS1UA3gDyiZUtctXv9RT",
 	1809219
- ],
- [
-	"PiA9D3sXVfqvW5nLkDBAPkLB2YnnJWR3D5",
-	32399095
  ],
  [
 	"PiAA2v1XL2vCz8f4A3tGG9eByRd9naPsbj",
@@ -95176,6 +95133,10 @@
  [
 	"PiJ4Z3SYpq69CvhLUR6aLBgtLwMDukAa1h",
 	3868904687
+ ],
+ [
+	"PiJ4hkUFFiCxPfvBwxCissfV5VvwWgjY8V",
+	996837440
  ],
  [
 	"PiJ4uzobofNveBogCBFWyArRdMaDk13syk",
@@ -96686,10 +96647,6 @@
 	7982045
  ],
  [
-	"PiU8B1MNFHXesJh3EDYTbswjQmMQ4b2aDb",
-	89596990000
- ],
- [
 	"PiU8E7Z4NQkVsXFrg637jh8brk18Vs4Bbj",
 	20000
  ],
@@ -96936,10 +96893,6 @@
  [
 	"PiVjyCyYKbQ5C7vxn11rekURKRZPU1Kq2W",
 	929738
- ],
- [
-	"PiVn81C3NEHUSv6TN8pkoQ48nuFaENo5Jo",
-	1002363
  ],
  [
 	"PiVpebnDZ4JXHSaP2sHpSqD5wr4Jf1xeM7",
@@ -97252,6 +97205,10 @@
  [
 	"PiY551uvKFFQVrW5pagWLZvkVCionvePER",
 	100000
+ ],
+ [
+	"PiY6dxAiggTzEzKYWCMn2MSquakYuExMY5",
+	42389095
  ],
  [
 	"PiY7u7CLcrjYEs1wJWshpdNXHqLoaCdsoR",
@@ -98422,10 +98379,6 @@
 	377120000
  ],
  [
-	"PifkhJpS7gCnCuMNMNDu6HR81ADDwuxmHM",
-	97097333
- ],
- [
 	"PifqTBjGwGG92rUEZ4L2ruTqUvfyszg7vY",
 	1000000
  ],
@@ -98778,10 +98731,6 @@
 	130000
  ],
  [
-	"Pihhw2UmPAcRF3jTbBs3hRrDyGYok32YHk",
-	5079171417
- ],
- [
 	"PihiZYLh9in9EcKgW7PraR6M2EhnTzU5ue",
 	3868914687
  ],
@@ -98872,6 +98821,10 @@
  [
 	"PiiJh7ZBhQb1e8LLPFH4QWgKLebyWSgrF2",
 	101210100
+ ],
+ [
+	"PiiKJAmVZ2gMwTGnPxmQ3U26YCktZ952WW",
+	49826600
  ],
  [
 	"PiiLKgDYLfphmjaE4KeVN3bweUz8ZTyq4c",
@@ -100746,10 +100699,6 @@
 	640000
  ],
  [
-	"Piuwj52jq7aGJvtNtx44bhFWNcq6yaSPQV",
-	417144075
- ],
- [
 	"PiuwnxcDWbwsxzqhBvnfiHMJ4ief8aVKJj",
 	80000
  ],
@@ -101194,10 +101143,6 @@
 	264672
  ],
  [
-	"Pixh33rLeQisUR5mEdLDPwmgXjijA1QmN8",
-	621096175
- ],
- [
 	"PixiCcNpFrGYwCMUkpyWozwvhEuNk7F5HE",
 	994600
  ],
@@ -101412,10 +101357,6 @@
  [
 	"PizEBEjgYS4DP4U8BWYRwNzgcv9D75fZEw",
 	576209
- ],
- [
-	"PizEMV82mVGHAj9PadLJjRZLiqexKwwUQt",
-	507063800
  ],
  [
 	"PizGu5GjhgQFJH3w1fWunPewpV4iFjnzXW",
@@ -102666,6 +102607,10 @@
 	380084
  ],
  [
+	"Pj8JMU2pfPJNE32YYKTPmqeeSwNDApxTuS",
+	48901000000
+ ],
+ [
 	"Pj8LWM6f2SmnDT3UTxFq8VfwdYWropgcne",
 	351400
  ],
@@ -103272,10 +103217,6 @@
  [
 	"PjCRXc1FJz1AC4ibkRtZ3u54XpAVzb5z4L",
 	10000000
- ],
- [
-	"PjCWHNaHEqGgrLybyaqFyShGypUABPT5Gm",
-	1251451
  ],
  [
 	"PjCXDN2HPNoReF5xXiMbDtcrF6XBEsXEh3",
@@ -104030,10 +103971,6 @@
 	90000
  ],
  [
-	"PjHY3vmT8vG7ekanZRcNEtiNH3VhJnfZPR",
-	168000000000
- ],
- [
 	"PjHY8bB3oV7bzJmecXff34U9bgj6G1fgRs",
 	1393000
  ],
@@ -104178,10 +104115,6 @@
 	1000013
  ],
  [
-	"PjJgXNVmHMZZszAKERiAfoGT9184jdw81p",
-	528059375
- ],
- [
 	"PjJhuYnmPtcxRAJXpfwvsSM4xNcPGYnjzf",
 	1450055400
  ],
@@ -104300,6 +104233,10 @@
  [
 	"PjKNKgAF5NEpHYXhE56c1fAAhnRcpae2Dy",
 	1000000000
+ ],
+ [
+	"PjKR7QBZpDefADdm5TJQeTGewXAvEeLsA5",
+	9996000000
  ],
  [
 	"PjKRYzCU5Dqb7x28P8mhNPm5Q3V9W2jk4J",
@@ -105070,10 +105007,6 @@
 	1015210
  ],
  [
-	"PjPm1bXoHd2aPLqEQjYSZubHVhPSXBYsd1",
-	2800000000
- ],
- [
 	"PjPnC2PLiMNgcST1pFEcBf4ji8vN1vDnfv",
 	820177
  ],
@@ -105766,10 +105699,6 @@
 	2147992
  ],
  [
-	"PjUFskHh55LVPoRL1HuSFVicQMDiWuYqDV",
-	23872400
- ],
- [
 	"PjUG3QKWy8niFnLJD1XMuFUJpWWVZNf95P",
 	118213794
  ],
@@ -106224,10 +106153,6 @@
  [
 	"PjWim7WQodRpeKw2pw1s9mEhYBU68QTMdm",
 	50000000
- ],
- [
-	"PjWoKsHMBiTyCWgw9LbLV18ZdUDCQv6APR",
-	1224971136
  ],
  [
 	"PjWp59qWRaVt7XsWeJjwgCnijKDnbC4mtF",
@@ -106779,7 +106704,7 @@
  ],
  [
 	"PjaMw6tkC8Jza36riWio1jMFynfLDyXrNb",
-	13000000
+	1902009100
  ],
  [
 	"PjaNurch7jdhH6yWt4qVEPBMaDPfUCJ7AE",
@@ -107279,7 +107204,7 @@
  ],
  [
 	"PjdS7mYXzLYhWdro5H46C93fHurx8xTGDd",
-	356538605
+	368224605
  ],
  [
 	"PjdVvyQz72XR2XZ73VaQwzwTjWGmjj2HzP",
@@ -108892,10 +108817,6 @@
  [
 	"PjoZGCK3uC6DVCrWQYAi4gkTi151RrFVyn",
 	393150
- ],
- [
-	"PjoZjhYSYw5PrXmGP9nH6Y5pL4vFiGVwwe",
-	3908144911
  ],
  [
 	"Pjoa4ehxp9iamuNp28Lw5SwFfb82j18hpz",
@@ -111227,7 +111148,7 @@
  ],
  [
 	"Pk3mHjZrW3HGmx5jMNaN1GhXT2WgXHjRCz",
-	110781200
+	54768600
  ],
  [
 	"Pk3n3czBoPEUaNfBUMVTNVBCKqDsD2Dwqe",
@@ -111656,6 +111577,10 @@
  [
 	"Pk6HMcAA7XPNzyeZ5n1CbAyY1eBvZbG5jP",
 	980000
+ ],
+ [
+	"Pk6JUpqsrAaZwRzEPVarcyVri8HakKP17q",
+	1224971136
  ],
  [
 	"Pk6PcuqZjrBSpALcDB4FSwwhW9iZyaDATo",
@@ -112802,10 +112727,6 @@
 	100000000
  ],
  [
-	"PkDLSmnkdXwTHjSFbtxBcx91DFrvyjwNvi",
-	25890000
- ],
- [
 	"PkDP6VZZDcN5bbc4qfs8NJc9HJSfpzvmzu",
 	47250000
  ],
@@ -113356,10 +113277,6 @@
  [
 	"PkH7nWMJBttcpeqqBhuMjY3bhmzBwYKufH",
 	1099000000
- ],
- [
-	"PkH8TeN9X4NQzVUKz72RkqqqiY5nvmj2Kk",
-	46363775
  ],
  [
 	"PkHAfWotZyjDZzKE6rq1FB6ytVvrddcY8V",
@@ -114074,10 +113991,6 @@
 	114870000
  ],
  [
-	"PkMovnofyqcQvdmM6UoKjt8qBiwXDn8TW9",
-	3000000
- ],
- [
 	"PkMqhzvuCchT4nCcjN7zu9Lmy39o3TzkJ9",
 	9608172
  ],
@@ -114466,10 +114379,6 @@
 	3053700
  ],
  [
-	"PkQEsUdnP2Cb9gNhkanTPzDJbNegUZm6v2",
-	47852127
- ],
- [
 	"PkQGXg12ANpNVozs8S4AFDmjvd5LnA5JX1",
 	100000
  ],
@@ -114651,7 +114560,7 @@
  ],
  [
 	"PkRDdAJfywcarqcDNDfZJWVqPWPVfYLKdg",
-	230261200
+	124542000
  ],
  [
 	"PkREJAEtCPz8nZd8NGVEMXq4vvmVBve4SY",
@@ -115508,10 +115417,6 @@
  [
 	"PkWSS9ULGxdNj5tbvs9r7Rh5Pe1RYBfLbr",
 	9990000
- ],
- [
-	"PkWU4ssw9Km1M1he64GrUSj83csZ6SdMYd",
-	6000000
  ],
  [
 	"PkWVsvkhVc3J8zneYEYFpMM3HHhJRCqoSk",
@@ -116922,10 +116827,6 @@
 	10000
  ],
  [
-	"PkgEabEveh6AGwBJpaQGkZBXw3A8AfiKGp",
-	100000800
- ],
- [
 	"PkgKxt6ttVubJ3KHgKWaN68fiCTWb17ESb",
 	900000000
  ],
@@ -117010,16 +116911,8 @@
 	3868904687
  ],
  [
-	"PkghcZAfTNV7oFek3WSvaiJGLbYLm7QYUU",
-	100206000000
- ],
- [
 	"PkgiMRTxJWwFWJTHd4wCNYVBgn1SjSRg9F",
 	20000
- ],
- [
-	"PkgjV1Qf2z1ZRu6C2WQdyzsiQTiarqDTg3",
-	573700000
  ],
  [
 	"PkgjvXtJfY9wdJJqvJzbagLiiFUKp7kqUf",
@@ -117446,10 +117339,6 @@
 	910907
  ],
  [
-	"PkjH41XQk5JQy3hnADdeUZsnPze2BwXihb",
-	10000000
- ],
- [
 	"PkjHTZjeGrRZ1Z2JSLVsn7ist29j3Res4H",
 	40000
  ],
@@ -117826,6 +117715,10 @@
 	1140000
  ],
  [
+	"PkmeemdZfMCWChjifJgWx5WnL8NA4J2hc5",
+	67998774168
+ ],
+ [
 	"Pkmf9U8JNEmygbnkAY9jApxFWkFjsPaq6N",
 	62823381
  ],
@@ -118183,7 +118076,7 @@
  ],
  [
 	"PkoiVj33Q9HmbLE4kfgc3X4zTptQNzeaAY",
-	302197000000
+	302574820000
  ],
  [
 	"PkookyAHUAEpHN32QuBqLSwzne8nbBYHyM",
@@ -118932,6 +118825,10 @@
  [
 	"Pkte5cTsSEEf2UUpdTc7YCJMfZYtnS3vzH",
 	100420000
+ ],
+ [
+	"PktfpKo8KT68MHS2NKq9mFTbj4RCEqrUu9",
+	34494500
  ],
  [
 	"PktfwWdzNFpa5VWG7Vb146iDh3XcABE627",
@@ -120079,7 +119976,7 @@
  ],
  [
 	"Pm1bJNQoArcxSkGFxwobgPXkfoF9t3h7Lt",
-	14391694228
+	14403160828
  ],
  [
 	"Pm1ebRiVDbDsUjtEumoN5GFzAMgvmXt1uJ",
@@ -120608,10 +120505,6 @@
  [
 	"Pm5LmgBVZuw7Q5feTWNcU9HufaPnML9CFy",
 	10000000000
- ],
- [
-	"Pm5MBriM9WtCqkqJit6NxKexBiT3G4n2Dr",
-	687110000
  ],
  [
 	"Pm5Mw2FJv8S1x4jPToogp9PSfP26dVKmPi",
@@ -121476,10 +121369,6 @@
  [
 	"PmAWKjM28AjmNaD3VQ4fk5MNWj8i3Vhz3v",
 	213747055
- ],
- [
-	"PmAWhVxuLypX5M4CkHfxyAuyuk17L8fpyF",
-	3000000
  ],
  [
 	"PmAXxYDexYfZQNxaBHbgurDdgGqdqM8EEk",
@@ -122386,10 +122275,6 @@
 	27380
  ],
  [
-	"PmG5PoJAWRDr9ACYzWTt8KwpFeEUotnKSU",
-	398736283
- ],
- [
 	"PmG86GeZHvHCijdCWXxSoyAsfLDvXmK6qZ",
 	37565976
  ],
@@ -123240,6 +123125,10 @@
  [
 	"PmMba1qeZHYmjgWnpMPS7NMbYFL3LXSVgY",
 	1000182
+ ],
+ [
+	"PmMdWV4wW1C2yBqcrdqF9GpwsjoawZQeGd",
+	3604000
  ],
  [
 	"PmMgLVCTbhur1g3EauQYryokbeEea9pMvv",
@@ -125810,10 +125699,6 @@
 	4033828
  ],
  [
-	"PmeZxZEwrVCfwRqG4KNviVj1Bso4t4DbHN",
-	12000000
- ],
- [
 	"PmebUANmmGXAn3kfYhLXe97esfae47ML4Y",
 	90524380
  ],
@@ -126016,10 +125901,6 @@
  [
 	"PmfkYTCQ9tvaRwz1ta93cvMiikNo77LATc",
 	500000
- ],
- [
-	"PmfmAHjs7pAcb77ingvEhCrhYMWmRBt1K7",
-	481981353
  ],
  [
 	"Pmfn39R1Zy1dw5bFYdzVtjQsFCEJpCR8YQ",
@@ -128495,7 +128376,7 @@
  ],
  [
 	"PmwhoLtunuN1iQtVQKukLox2a3HbXC3MxX",
-	1232505700000
+	1629014810000
  ],
  [
 	"PmwkzU8jscEX2BHk2WZZmJrpoNpprQu9cJ",
@@ -129470,6 +129351,10 @@
 	14062392200
  ],
  [
+	"Pn3ks2jcKJp4jnRjFx7qV6Ti1KuCZhSJwa",
+	607037775
+ ],
+ [
 	"Pn3q1h2jyP1h9SEBsezJskXeYBXKKr3zkZ",
 	3568069700
  ],
@@ -129908,10 +129793,6 @@
  [
 	"Pn6raZ8Ywr78VJ5GdztM8y7r7WJeDgG1Uv",
 	4536541
- ],
- [
-	"Pn6sqT6irLmAXJvSTgkXJ4Ny1HLEjWPDr2",
-	402900000
  ],
  [
 	"Pn6vUcBZ5P978VgbrUGW8U8TQqhm7tuhkx",
@@ -130416,6 +130297,10 @@
  [
 	"Pn9qVQwadAHcRKtNPQs3uisYeXbe2B72SW",
 	25000000
+ ],
+ [
+	"Pn9ua9YDNEZRpWPrEkptfhkDHtqk6FF6ZF",
+	112000000
  ],
  [
 	"Pn9wmYD3QybqvStf5uz9TAgGxYgsYiQJK9",
@@ -131223,7 +131108,7 @@
  ],
  [
 	"PnEN33WXzNuALnzZqadbCnadAHGXvNV5mS",
-	800000000
+	700000000
  ],
  [
 	"PnENCG6uP5emgVMZamAByfYCFc6PQEhcFe",
@@ -132008,6 +131893,10 @@
  [
 	"PnKhNNFRQa9KKrmCgo8FVLXR8MJekyypwu",
 	144645674
+ ],
+ [
+	"PnKiNY5581EvwZ22mKvF2GvHo2wQXbnZaS",
+	22390000
  ],
  [
 	"PnKiPuLh8QBnM7G7UF5KVWctt3aUBo8n6y",
@@ -133146,6 +133035,10 @@
 	1600000000
  ],
  [
+	"PnSL1QoJFMWpriUoDSXaG7GqZv6wkaWgmJ",
+	8374324549
+ ],
+ [
 	"PnSNZ61omR5rWGTQs8ZcjbH4pBHHM8ig9g",
 	20000
  ],
@@ -133856,6 +133749,10 @@
  [
 	"PnX4UVTYJY4fTYvUYKjfRoTy57ehNGJzp6",
 	774996
+ ],
+ [
+	"PnX4V2MoUS3Pv1A5PR88hvwppF6TQDFYUR",
+	329991935
  ],
  [
 	"PnX5wEPiA86fawctMA2Ebi38LSdZDZRGzG",
@@ -136043,7 +135940,7 @@
  ],
  [
 	"PnnCWFt19WZFA32Qg8QawgxPQHkSX6ZUxP",
-	4719440000
+	4731212800
  ],
  [
 	"PnnCmsjBXXF1DXASc8Xnr6bkKaovRqKrC6",
@@ -136076,6 +135973,10 @@
  [
 	"PnnTGCyjerGaEK8dnuQQc7chzHTV8CHfBB",
 	11077723
+ ],
+ [
+	"PnnUsnnYtJfB8W4irkQEKALWkKr5Q2nKfr",
+	516601075
  ],
  [
 	"PnnWu6eBzNGF8PLnFCh1T4bmDodikMy31b",
@@ -136508,10 +136409,6 @@
  [
 	"Pnpr7p8fvKcyz5EweYxMwcRAqoSi76cKQ9",
 	73474013
- ],
- [
-	"PnprHbXcQioJW5j2LVQGiHysSgZAYuaQZE",
-	13750000
  ],
  [
 	"Pnpu138QCh6cE8zutSiVbf8xMdBoeFLGBJ",
@@ -137470,10 +137367,6 @@
 	2986536
  ],
  [
-	"PnwkbcxqtdTcpsHuRJsnt8CX1mAg9BgtXF",
-	407598675
- ],
- [
 	"Pnwm9oKWVVJuNmEo3JeVedDywhnR7rJjnM",
 	50000000
  ],
@@ -137850,8 +137743,8 @@
 	60693430
  ],
  [
-	"Pnz7h7FB6EjUJLpeXvgnjTVnhr13y86FmB",
-	10000000000
+	"Pnz6TREc5pKWLsZEZiS4iqDoVB92E3ZrcZ",
+	99994000000
  ],
  [
 	"PnzA4bgp7XGwKMp7uaHPpaVJrhL8u4rCnK",
@@ -137872,6 +137765,10 @@
  [
 	"PnzFvHVDNELweU5aibBwpiuDkZeRQxLpZG",
 	10000
+ ],
+ [
+	"PnzJn5yGT1YJrbpD5D1mN7XqCQJckdEsv9",
+	9400000000
  ],
  [
 	"PnzLe5fg4Mr6wNsy2bguVokp7MSHmMG17M",
@@ -139598,6 +139495,10 @@
 	64084
  ],
  [
+	"PoAfWZDE8m6JYD3QxjPgAY81wii6HEnbLx",
+	170392000000
+ ],
+ [
 	"PoAfZUSAtepG3fq9YjBfWT8XxgDeUKWG37",
 	5110073400
  ],
@@ -140586,6 +140487,10 @@
 	1129793
  ],
  [
+	"PoHHd24DXPVGjcf4jMAJFYTuy4QxD7MZvQ",
+	1330431751417
+ ],
+ [
 	"PoHLV29RHrcSAw6oXWkWsRy7GUMFfC6xZC",
 	100000000
  ],
@@ -141243,7 +141148,7 @@
  ],
  [
 	"PoM2SHAkxbfPewjGcdwW2f4y5quyuNwn6c",
-	19506038830
+	10503772774
  ],
  [
 	"PoM2Taveah5P3HZYp3KS9HADhZAKJrdRKz",
@@ -141454,6 +141359,10 @@
 	763213
  ],
  [
+	"PoNbjDcZC3E4UyyMF8kZeN3y9gj8uGf35q",
+	113296700
+ ],
+ [
 	"PoNbzMxM5jEsedU8VtXcvgHvzHk5ek4Hjs",
 	59598
  ],
@@ -141480,10 +141389,6 @@
  [
 	"PoNkooGncX2nKFsvATeqKGVtojMRSwLHUz",
 	24783867
- ],
- [
-	"PoNqAtfLpzukkL5iGkwkZHwHz5evBTj5ft",
-	45487023615
  ],
  [
 	"PoNrNDau65jJWivWNeXsHYr8vaC8Riar8Q",
@@ -141788,6 +141693,10 @@
  [
 	"PoQeJcEfFPVds7aVspa8GHa448bmRCjmTk",
 	1139000000
+ ],
+ [
+	"PoQeZ8v8qso5VE6H7pYPUMrfg1ooM2SrT5",
+	8692907286
  ],
  [
 	"PoQfjpxiTNjoTTTdDKfXqioyaSShfr58Dh",
@@ -142360,6 +142269,10 @@
  [
 	"PoUg36jejS6FTEK8dLArySkndUfn6fwWxp",
 	3946866
+ ],
+ [
+	"PoUguForybiJmKE3AKKT4ZqS3W4bPyKeEv",
+	8527200
  ],
  [
 	"PoUi12mdYcWbMQfETfP3V4urUFDTxLkf1L",
@@ -143942,10 +143855,6 @@
 	41997793
  ],
  [
-	"Poeo4Ypy4FBP7cdW3ocouuwCUNikr8TMTq",
-	32209120400
- ],
- [
 	"PoepVrBPXqwrWgwhVyNLbQUf45AMu5CTGS",
 	35152617
  ],
@@ -144694,6 +144603,10 @@
 	42100
  ],
  [
+	"PojhPJFkbde8qjdLbZaMhutK3E6GtJ9ei3",
+	350009000000
+ ],
+ [
 	"Pojiq2xZ5ZdDsc7SwwtYwpRrGcDmPxMtWX",
 	43234923
  ],
@@ -144806,10 +144719,6 @@
 	300000
  ],
  [
-	"PokVwdh2qSXDGwkkCMKa1wBKEwR47LF7rJ",
-	565137000000
- ],
- [
 	"PokXDvTc8u7v7Gd3ogLY2jjWiiv9jFfkV4",
 	13080571
  ],
@@ -144819,7 +144728,7 @@
  ],
  [
 	"PokbMyQGJCBuk56s2zotSzGTz7CThVkAkd",
-	180057500000
+	147510000000
  ],
  [
 	"Pokdb3vHtUaqtgj7XhQgfmQFxiCTmbLeH1",
@@ -145108,10 +145017,6 @@
  [
 	"PonCHMWMED6zJV9RbF5UGciHSKWBuomkXz",
 	187300
- ],
- [
-	"PonEwhs7a2DUuBgkf52jt4XxiPPzHynXK8",
-	21500000000
  ],
  [
 	"PonFkhMoLUknKiM9dH2xVTwMnsmJ4GmuDx",
@@ -147062,6 +146967,10 @@
 	361500
  ],
  [
+	"Pp25nsetpuiASWjDm8GM2zK2i2xt3rbGmW",
+	3807696822
+ ],
+ [
 	"Pp26bkMNUrPBfHC8mRJ7GEdiEYVbJEAs6p",
 	10000000
  ],
@@ -147928,6 +147837,10 @@
  [
 	"Pp7Yky1zVPf52KBFWgQnZiBUVe5BEdJmFw",
 	51516877500
+ ],
+ [
+	"Pp7aCAGnbziSb9UJszfbNgcsuEYHN3xsDY",
+	45287023615
  ],
  [
 	"Pp7ctxd49m2qhgGEYP5TLJP9ZbV8uXCjX4",
@@ -148854,10 +148767,6 @@
 	100000000
  ],
  [
-	"PpDY5gNr4kXvKVxoXkETmMyeBGQHgNMJJU",
-	3994925
- ],
- [
 	"PpDYbFyRVJkkdNhJjGbA7hcPXq52regMnp",
 	1035905
  ],
@@ -149328,10 +149237,6 @@
  [
 	"PpGKLXAUvPVY8EtVB1LoyVt1WaF4N5mizF",
 	840443
- ],
- [
-	"PpGL6mV2hvaK3bMarZ8numnpc6iMnznVKk",
-	20433617
  ],
  [
 	"PpGLJTw2QPZC8Uq9Vu818DYJVRKiies3uS",
@@ -150086,10 +149991,6 @@
 	8000000
  ],
  [
-	"PpLznoUULwjYcutTJQkmBjrzCcwGDhsG5X",
-	1000033
- ],
- [
 	"PpM3n3qp2DpNeY7mHchuxqZYiMGLBksjsg",
 	1000000
  ],
@@ -150292,6 +150193,10 @@
  [
 	"PpNQSdQoFPwv5cfZwY5p4fSyPJ1ossm1ew",
 	88400000
+ ],
+ [
+	"PpNQTDKRCDmS2SAA37uFhQJrqhMEfLiCtK",
+	4196000000
  ],
  [
 	"PpNTaUXtWYn3bpHDLXAXDTWEkFgnRKMVCc",
@@ -152398,6 +152303,10 @@
 	6295
  ],
  [
+	"PpcPycjJvGWMnumShxaJen4JjM4wFSq5Qg",
+	86125032070
+ ],
+ [
 	"PpcRr2hzmvbXdRzCcskW8vWhrfNQumaRk1",
 	20000
  ],
@@ -154494,6 +154403,10 @@
 	4286875000
  ],
  [
+	"Ppr9K4NY4MMyMnFSEVie5t3SvaKJffkHaG",
+	25289180000
+ ],
+ [
 	"PprBkNALKnJGEFcoyhgTy9RSJKH7PASa6m",
 	2080000
  ],
@@ -154876,10 +154789,6 @@
  [
 	"PptFSV52j6LUPhA9ghm9V4sQHWNVBL8vC1",
 	1888680
- ],
- [
-	"PptM5oHXDd7V9qN733t8bDdXdG7pjKj8aS",
-	459581275
  ],
  [
 	"PptMBJfq3rfvHxCfjr7jhfabvayxVgv6nr",
@@ -158994,10 +158903,6 @@
 	28965492
  ],
  [
-	"PqLDzh1zkyaR9MXrFGXFK3owd8cufu55vD",
-	61079777
- ],
- [
 	"PqLFKyhkmhcdGQaTdz9aN4c9PFgQoJZz5Q",
 	14179008
  ],
@@ -159344,10 +159249,6 @@
  [
 	"PqNChcYktrbSCJJShWk7dyLCtF4BbCSTDS",
 	100000000
- ],
- [
-	"PqNDWt4D1fb9MkxCKnzsHgiKnf9KRqvjCK",
-	50009000000
  ],
  [
 	"PqNEAHowS7gMbZoSzvvQQJ85BWV8PpJ4tG",
@@ -160826,6 +160727,10 @@
 	13731843
  ],
  [
+	"PqY9PiN3PeCTNmXShWeF6yuBXZ2Dy2Ruj5",
+	33800000000
+ ],
+ [
 	"PqY9hhLbNYcLPW1yVTL6GTW6fi8JavT7on",
 	5138549
  ],
@@ -161726,10 +161631,6 @@
 	498999600
  ],
  [
-	"Pqe2Mn9wbRyEtpdMchq8t1EV9p6zuZ4gJB",
-	32007225832
- ],
- [
 	"Pqe2T7VDqx64AfYoYfg8MkH4i61Lt1GgLv",
 	1505165
  ],
@@ -161860,6 +161761,10 @@
  [
 	"Pqeje5qMWcwPAWsirXMaYcSNssTdRQcqmY",
 	1886580051
+ ],
+ [
+	"PqejteqR9Pb4s2p6wdM3cfueKbHczGB9vX",
+	447088775
  ],
  [
 	"PqekbwkJzpoo46XGbvyK7oYUmNm4hRhRdq",
@@ -162248,10 +162153,6 @@
  [
 	"Pqh5LhafZVMkrxWmXDgvsFjUNwyXfAgRrm",
 	2393000
- ],
- [
-	"Pqh7EtPg9F7cKCcKYx6hYxpPW3jqBtgvLX",
-	86278810000
  ],
  [
 	"Pqh8EQ1JPt3MRHaZTMcRA5BcvMRSmFrWff",
@@ -163711,7 +163612,7 @@
  ],
  [
 	"PqrHJNpXd9An3v4KFTk3s8aRLF6GU3pPZT",
-	9751519415
+	4013805883
  ],
  [
 	"PqrHWEj3zshow71xxDVCeGx2ngSkN5NLYf",
@@ -163808,6 +163709,10 @@
  [
 	"Pqry5HsvSPU8j5aHPWBMoY1y8DYMxfwVHm",
 	3180000
+ ],
+ [
+	"Pqs2oyb4wd7ee1tgh3qBAau1w5iPZeBqP9",
+	343932375
  ],
  [
 	"Pqs2yjyhP5skjd664vUoPTbnKEu1jWiYxu",
@@ -164092,6 +163997,10 @@
  [
 	"PqtxvjDDtEo7eBGWV4uc2byzPjqCoZ3cWB",
 	11363416
+ ],
+ [
+	"PqtyeTBP9TrDoi2Uw7p5Wb9p5pz4ngW97g",
+	362731575
  ],
  [
 	"Pqu28BN9mz9e64Ehh9qY2kC9Mz3e6EYzrm",
@@ -164810,6 +164719,10 @@
 	17670000
  ],
  [
+	"PqyZYVLWRBViHxNJzqTywDt9SSpmaaqQo3",
+	538351875
+ ],
+ [
 	"PqydLtjGUDoBhrUBMWRpvFJigqqVhX4kLr",
 	20000000000
  ],
@@ -164892,10 +164805,6 @@
  [
 	"Pqz3B8zQcJqeFiuUNBKiu1R9btUvX2Ppf3",
 	1386371
- ],
- [
-	"Pqz4reMzJB91opChoieKUtyvhvBBV5yqxn",
-	29829075
  ],
  [
 	"Pqz5zahPn7MyUe1iZ3Y2SJytimvHnPMsrn",
@@ -165258,10 +165167,6 @@
 	5000000000
  ],
  [
-	"Pr2BxhEYyXY5JMbDjLtKMYZNGkM37xPac2",
-	559696075
- ],
- [
 	"Pr2Ea2FbwKyux78MFUmmdLwLNCUzYBmjeW",
 	345900000
  ],
@@ -165340,10 +165245,6 @@
  [
 	"Pr2nRgEyZkx4MmG9fd6GLtzc6bQahbLUCW",
 	88646
- ],
- [
-	"Pr2nYVVUDi24esGQe6w2sfyw2vwTDpZLD3",
-	1004950
  ],
  [
 	"Pr2npoRdCR9qQakh1Lo3EwEjJvxR81tXQF",
@@ -165482,10 +165383,6 @@
 	9236
  ],
  [
-	"Pr3djzr8F2S6neUAEwH4f3wgKTwsG4Bwfy",
-	301372900
- ],
- [
 	"Pr3fBwHVtYUmVs93KcLMhSD8nNnHcPQxro",
 	9914583
  ],
@@ -165508,6 +165405,10 @@
  [
 	"Pr3jmryfvDDZ8hdNVgPB5DGF9LQNhBFxZU",
 	1000008
+ ],
+ [
+	"Pr3kD1tziWqrAfctJt6sR5Aapdoj2YgQcD",
+	16179237731
  ],
  [
 	"Pr3nnjRGNfrztaKWL3kt3nMsdfhWs3MKcf",
@@ -167982,10 +167883,6 @@
 	3246863151
  ],
  [
-	"PrKWJ3nWCnPJ3PmkoYSJgfuJQ1ybV3gCQx",
-	431582675
- ],
- [
 	"PrKWodjZunSLjFpAzfHT7nvt86CqR3Tziv",
 	72741
  ],
@@ -168604,6 +168501,10 @@
  [
 	"PrNtWjkN2uZWZKb1tzazKLaDnwVfDa89N4",
 	3868904687
+ ],
+ [
+	"PrNu6DvmR18DffU7yfuofH6PQYbbdUiCE8",
+	115810
  ],
  [
 	"PrNuXs2Sqt1mgrerwAVEQXk9vWzHU49ViM",
@@ -171362,6 +171263,10 @@
 	1803500
  ],
  [
+	"Prg4cjUN7UicC7ZMhMikuqYMuyJjS6dh8K",
+	189366186
+ ],
+ [
 	"Prg6goLzTowhg1FGaQaWdERZWv2oPNpd9c",
 	1621800
  ],
@@ -171519,7 +171424,7 @@
  ],
  [
 	"Prh2q7vgDnHDpDBazL8EYP3TFgB8WwsmQX",
-	67505165626
+	119417618116
  ],
  [
 	"Prh5JRuzwNthQDpCzUNikczGrWk9w8v8DD",
@@ -172346,6 +172251,10 @@
 	1100000000
  ],
  [
+	"PrnSGbkg2piCutQCXrk68tuECMJTUqvCLJ",
+	65737356
+ ],
+ [
 	"PrnSXqHMafAWMvW6n1cRE1pRjrd2fczfLF",
 	62715
  ],
@@ -172899,7 +172808,7 @@
  ],
  [
 	"PrqcBYwXjyfVfXrtaMefmdix5RjsRybJSE",
-	1603241000
+	116241000
  ],
  [
 	"PrqfDHmVUgt4Ra3beoQAdy4uSyJNkVxZ27",
@@ -173123,7 +173032,7 @@
  ],
  [
 	"PrrtrqsqSi1nVpBwer46WaY4x9kr1Cw9fA",
-	553579779233
+	557443024883
  ],
  [
 	"PrruTMQP4Kho3YnYs2NiUtpiwvdPh5u6Nc",
@@ -173198,10 +173107,6 @@
 	21630690
  ],
  [
-	"PrsKTHURReCkw3C9eKR25rixHr34ML2GZj",
-	29900000000
- ],
- [
 	"PrsKfQDJnyGV8Ui9oD3ft1ikCqNC3tdjxb",
 	24892
  ],
@@ -173224,10 +173129,6 @@
  [
 	"PrsUUUua2YneUJWnYa7gxUjE6bTp5EWnDn",
 	10000000000
- ],
- [
-	"PrsUaUVcBayKc8BKvtnDDYbaJZuPoFnq7w",
-	19600000000
  ],
  [
 	"PrsVRqWUcxziiAJmuei7Nje9ckvkgw7m15",
@@ -173859,7 +173760,7 @@
  ],
  [
 	"Prwi1r3ith3phw24JE4chMhBDxbt7KMdtz",
-	97372000000
+	61610000000
  ],
  [
 	"PrwiKVHLsrEMjYGarh8g1pYtYhTrqppz8z",
@@ -173912,10 +173813,6 @@
  [
 	"PrwzRioGHBkuR1ZAxNsyGqNAwXycdPogVK",
 	2771797
- ],
- [
-	"Prx1B6oZf2H9qVbmwT8YTkFa5xCLLyUMvv",
-	1428344
  ],
  [
 	"Prx1eESjeQ52zKpW8z2emDu3UShFmjejBt",
@@ -174738,10 +174635,6 @@
 	934527980
  ],
  [
-	"Ps39EvCmA9fWtoiDDjfEPeXPpG8u5ebx1A",
-	4546399908
- ],
- [
 	"Ps39QDL4nS9nSZE8HSVFwdVgCL5aXqAkub",
 	1000000
  ],
@@ -174922,10 +174815,6 @@
 	236709
  ],
  [
-	"Ps4Zpy9yNn3kqC5m7e3vbM7kobxfooJvaZ",
-	29999959000
- ],
- [
 	"Ps4af9qVpUGCin3YTmYZPdfSCAJU87d4Aa",
 	458787
  ],
@@ -175008,6 +174897,10 @@
  [
 	"Ps5AZpzxYPnUM12qQGuoXWnUQfzdoWnweH",
 	3868904687
+ ],
+ [
+	"Ps5BFUJBUiSkVFomRNVwL8G5LsB9ivLdC8",
+	1923998220
  ],
  [
 	"Ps5DpujtSCdxtk6ukWGSbFVordBB3H2eNx",
@@ -175223,7 +175116,7 @@
  ],
  [
 	"Ps6WT3mp9dLojEMpLaVVPpu5H2FHwGTorK",
-	211515100
+	222963400
  ],
  [
 	"Ps6ZFQNoLWiLCfkn7xH9ExBexjWu3nShgp",
@@ -175418,6 +175311,10 @@
 	30000
  ],
  [
+	"Ps7iy1rqxUPUVPYwEFm1Jd5KYGNTjAtXur",
+	74816820000
+ ],
+ [
 	"Ps7jnu8r2akC1pEjiKwzvziE6GgkWGQgzG",
 	1306866
  ],
@@ -175472,6 +175369,10 @@
  [
 	"Ps82PNXfor7iSF6php81osxX8iNigzCktv",
 	1508635704
+ ],
+ [
+	"Ps85FtNWzHRBiGukz8D5XSTLiokNi6yoNJ",
+	96000000
  ],
  [
 	"Ps87jVoegzTsJ9kA4nUJaYGpdw7HDJG9en",
@@ -175996,6 +175897,10 @@
  [
 	"PsBJKXGqAsJ8rmLovYRAVUR4FKenDx4fFc",
 	1404000000
+ ],
+ [
+	"PsBK62UkKuxsC1cFXFF8zQra1omZjHqvz3",
+	494256575
  ],
  [
 	"PsBKEcgQdD1iD4dhj7zkbk9M7siGdYKELW",
@@ -178262,6 +178167,10 @@
 	6185
  ],
  [
+	"PsRr7M5atBMSJDJeyQpsJqC19YTHWCoVv7",
+	331168075
+ ],
+ [
 	"PsRs7Ujf777TQKbvF2LAj6SK8u267VCMzK",
 	105680000
  ],
@@ -178506,10 +178415,6 @@
 	536010950
  ],
  [
-	"PsTBgYMQGsSoR8Cspz63aNuJEmtqUJB9SR",
-	9000000000
- ],
- [
 	"PsTD3Hce9KVDjxWuNCD7mGiekBxdEF1kLj",
 	29079930
  ],
@@ -178568,10 +178473,6 @@
  [
 	"PsTfipefQk7kDeb4VXpsGqoJhBsa3enrLh",
 	4070000
- ],
- [
-	"PsTfwfWSf8pNXGzhKa7U6LFD3wcZt8Bk6n",
-	615660000
  ],
  [
 	"PsThiFVnkaEb4WTpGrE73ViTb89XMp9bGP",
@@ -178878,10 +178779,6 @@
 	52954
  ],
  [
-	"PsVYRvvfDnBGTbzeHxXEMF37gREu8n2i4i",
-	12000000
- ],
- [
 	"PsVZ16VgrCTmWjjy5kW2HUfqe1gLxKfGPC",
 	340795251
  ],
@@ -179068,10 +178965,6 @@
  [
 	"PsWoAZa5nSWqf2V7KWNqVb5YSpimvmJ87A",
 	920000
- ],
- [
-	"PsWoED7cYUDxSorxTvSChLTc8jGtvvWLqS",
-	619275875
  ],
  [
 	"PsWrizDSvER8vg7xzLJUAYASkDQ4yYCVA3",
@@ -179892,10 +179785,6 @@
  [
 	"PscKhrvsGR4KjrjnUo2NUk2fAYVyjR6B4J",
 	4750000000
- ],
- [
-	"PscP6TcpqRo96nG1HotNGkRWkKPVaj5RKD",
-	17755340
  ],
  [
 	"PscR9z43iFqKZE94vzNsWtKsLBikfZcVys",
@@ -184130,10 +184019,6 @@
 	47900000
  ],
  [
-	"Pt5aACrsFKbnzehLmdVFzVqWYUyBWLfn6W",
-	129200000
- ],
- [
 	"Pt5b5dJWVmKy1pEgLSpV8FGxfSFXTk3hBT",
 	1890000
  ],
@@ -184774,6 +184659,10 @@
 	21769606
  ],
  [
+	"Pt9YroGVPKhUogP1cpKtSRib928uUHxuN5",
+	31000000
+ ],
+ [
 	"Pt9aG1SkXYFsJe6PZRFNbqLmG5FhhCV7ye",
 	6508
  ],
@@ -184816,6 +184705,10 @@
  [
 	"Pt9oQvzZMdMUE5UEVPqCFEwwDxFoVv2cR6",
 	1000000000
+ ],
+ [
+	"Pt9oYyBacrjxnvkuFPA1q4ffUsoX8tQABS",
+	3000000
  ],
  [
 	"Pt9r4JzQLB9t9SHEde2kNYdN4ZLgjVko6Q",
@@ -185030,10 +184923,6 @@
 	2612600
  ],
  [
-	"PtAikKin8AvAEoSiR7uKWsAfTmsDX7w6Xm",
-	5000000000
- ],
- [
 	"PtAjKKUJomQJggnaSy5pXnzouVsgS8r6FJ",
 	1600000
  ],
@@ -185099,7 +184988,7 @@
  ],
  [
 	"PtB4xyGyDx1MpbQQBZda3n5GedLvPKMA7t",
-	10358157611
+	10370385711
  ],
  [
 	"PtB63RnVger5J6ryj8j8ma8dF3BHjUwKph",
@@ -185382,6 +185271,10 @@
 	131223
  ],
  [
+	"PtCm7sEdV7d8L1vd5P3o1BCQwnzbB7L92C",
+	591100000
+ ],
+ [
 	"PtCmnKcwW1kojHht79TY3LGaGCRY3Atxyy",
 	5463
  ],
@@ -185468,10 +185361,6 @@
  [
 	"PtDREH2ZodeynpNcJV6f5HCKnm35Z1n44q",
 	1557600
- ],
- [
-	"PtDReiRjhyxvXRRuSgVb6GX87oBTBsPq5J",
-	99990000
  ],
  [
 	"PtDTzydvp6jAcAZFsomEmBVV1PCaZXskJe",
@@ -186398,6 +186287,10 @@
 	1019003
  ],
  [
+	"PtKEUJrib6yBgSG7diYo6enF6J29d8HCj4",
+	22115832
+ ],
+ [
 	"PtKEbLpDnj4ycnJYcvJtN69J5QDBk76Wi4",
 	1000311
  ],
@@ -186774,6 +186667,10 @@
 	3476762687
  ],
  [
+	"PtMtb3GTbNMgrrQG9wj5N2vR5GR36gLNos",
+	102499400
+ ],
+ [
 	"PtMu8cFCkQnpYFcLGYPKJyDx7Peipo1VyV",
 	1542664718
  ],
@@ -187034,6 +186931,10 @@
 	468231
  ],
  [
+	"PtPRxhnHWBdAbABMUmd6Ff2bkG2Siz4rdg",
+	2088100000
+ ],
+ [
 	"PtPTe8pN7Jm452My7YA5Dv82y97K1Sgj2S",
 	5793185
  ],
@@ -187112,10 +187013,6 @@
  [
 	"PtPv5ecLDUFDppvNZ8HTLaR2iCsCfPL2VJ",
 	2962300
- ],
- [
-	"PtPvqHksWqtGCQsi7JBwMPd5GTi5d1k2px",
-	8374324549
  ],
  [
 	"PtPvqksoFHNNTG2WrcRGkSC2YPKtFbUgpv",
@@ -188566,6 +188463,10 @@
 	3868904687
  ],
  [
+	"PtYr1tLqeLVa3yTAuFe8rBKpDeyZxMpLGi",
+	1120000
+ ],
+ [
 	"PtYvM92HvnU7f6PojhsZT7gei7Q8RW8exv",
 	3868904687
  ],
@@ -189050,6 +188951,10 @@
 	20664
  ],
  [
+	"Ptbd5socJENXpBi3vdWzKnaJ8kUwdXy426",
+	4896000000
+ ],
+ [
 	"PtbeaX5bzDZVo5GjfWs43QRFaUQdMxYjjy",
 	1008316
  ],
@@ -189252,6 +189157,10 @@
  [
 	"PtcuHpvAXGbv53tRsdktV4PZfXnPyAfq2m",
 	18537384
+ ],
+ [
+	"PtcutV35Sh4an82VmqYVUKCsXoXGtKD7ZR",
+	24874515440
  ],
  [
 	"PtcwZikwJjhZ28QXkiT4d1LXFZhsGJ2EA1",
@@ -190014,10 +189923,6 @@
 	1000000000
  ],
  [
-	"Pti8bxZJTPyHyH17akBS6tT1R4DeabDjwt",
-	39056284565
- ],
- [
 	"PtiDCxMCXLCUuGnus2wL3q2mGa6bnUWYja",
 	3590000
  ],
@@ -190352,10 +190257,6 @@
  [
 	"Ptk9nMDgNKq9yzgrordqvQP7KejHTis89x",
 	41966286
- ],
- [
-	"PtkA7EBuaDNtWb52VKC7hg9KfKWAen5TCF",
-	505791175
  ],
  [
 	"PtkAzSN4xT7mGN8K3asWoxEX8ZLpG7DJaw",
@@ -199578,6 +199479,10 @@
 	23600000
  ],
  [
+	"Ptu3zcsQZHGvawa8C1ZwAmNoNkgPg76d3y",
+	250955256371
+ ],
+ [
 	"Ptu4mKSKRYXvbsTGSUoCKgD7xEbRim5vff",
 	1850000
  ],
@@ -199664,6 +199569,10 @@
  [
 	"PtubuPfiMRtrPmqQBaLzY4pp1nHvARWxUw",
 	101820000
+ ],
+ [
+	"PtudB3v4caK2DeoAgf5hvoqpmXFzA5bpbA",
+	364463326
  ],
  [
 	"Ptuf82z7mbC48sbYGWG4XprSbXi3dKG3PA",
@@ -201014,10 +200923,6 @@
 	15618300
  ],
  [
-	"Pu4wm35E8bfy3d3ci9QjVJX3RLh7rJis5E",
-	9289804760
- ],
- [
 	"Pu4wmjGhu9Rv5XSCvXpKqR167HXTpqWCso",
 	40419
  ],
@@ -201183,7 +201088,7 @@
  ],
  [
 	"Pu5ryHowVvDKQGyU7kU7MVrxe8QzgaX1FR",
-	27996000000
+	14000000000
  ],
  [
 	"Pu5tjx6i7qeXU3stYDFhE8ZA3bh9LHX8MB",
@@ -201292,6 +201197,10 @@
  [
 	"Pu6RZxZohQqFzowiaQ296UsyJ6wVYBYhXN",
 	1001108
+ ],
+ [
+	"Pu6Vg64SBfmMoViRG6RH4cY1dcFbiDdhxX",
+	305089275
  ],
  [
 	"Pu6WGE4FJ3QYQmBuR9Peshn3sEgGXBvHt9",
@@ -201726,10 +201635,6 @@
 	812409
  ],
  [
-	"Pu9U2CKRFyTBfLXQQGfaoypamtNqW3FtVX",
-	400006000000
- ],
- [
 	"Pu9VcrF3uH51C29a8wsbbUoD5Vepy71Q6C",
 	1338610
  ],
@@ -202158,10 +202063,6 @@
 	1051780
  ],
  [
-	"PuC8XofVc3uUTmwSnip1g5VNCGUAXYt1Pf",
-	308976325
- ],
- [
 	"PuC8xADvbJDUYWfmcUpzQVUBBhv1RKTFJs",
 	143802800
  ],
@@ -202532,6 +202433,10 @@
  [
 	"PuEW2SCh7C5Q8iSKY4sYXNevUP8zmwk9c9",
 	79300
+ ],
+ [
+	"PuEXX1jCcNDamW9mwRs3MYbEPZPMTgar9M",
+	982224677
  ],
  [
 	"PuEYJB4xTQiMzsupmMrwx5Xp72N5Ks8cKQ",
@@ -204118,10 +204023,6 @@
 	5717064858
  ],
  [
-	"PuQ9t4H68CJxGLsVXBGsZ8ZR1y4Q6SMnYC",
-	512513400
- ],
- [
 	"PuQBfiu3Up554fzbi1hzMbik7uRsPh6n9Y",
 	15299437
  ],
@@ -204690,6 +204591,10 @@
 	441451
  ],
  [
+	"PuTLjcGxtLGQqZ7ZjpaxCAPg8LUrfR5fke",
+	49997000000
+ ],
+ [
 	"PuTMMuLQjKqW3iDSrbjxa4CmoLoLt5VoKX",
 	1008000
  ],
@@ -204699,7 +204604,7 @@
  ],
  [
 	"PuTNagZgSw7XQj9ZzuSrhb5d1o7xxcSyxm",
-	19994000000
+	28812133784
  ],
  [
 	"PuTNyxkuKUXNSNk8sYVWLe5nHZXxdeDYq7",
@@ -204712,10 +204617,6 @@
  [
 	"PuTPon2G5STchXMeoQtNKJT1xSeGgKNoXR",
 	5914005
- ],
- [
-	"PuTQoZ9ky6XFydqfXJkq9NcaL3mh36LJfJ",
-	528864475
  ],
  [
 	"PuTQxBYzCwY4HBLwucdrQ9sFrBkTuSdB3t",
@@ -204944,10 +204845,6 @@
  [
 	"PuUvpSq7DeFCPadBNEoYnKKfohMNmKS1rx",
 	325900
- ],
- [
-	"PuUxUwCs9o28MLYejPmcH8cZxE2mb2QHdu",
-	551586375
  ],
  [
 	"PuUyVYxHYStGwCyAJ9EpPmCWagHttQzVZU",
@@ -205774,10 +205671,6 @@
 	1393554528
  ],
  [
-	"Pua5G8w6ap3H1gwTHqd1FsHCEyaaDNqY5T",
-	20009000000
- ],
- [
 	"Pua7PeN3m8PJT2SZxVACJJzGkhfg1CcUyU",
 	1000010
  ],
@@ -206426,6 +206319,10 @@
 	6000000
  ],
  [
+	"PueQHeaabDtapxgEkESbM1WUKLnFTUkRoe",
+	695000000
+ ],
+ [
 	"PueRkkor3dc2Kq44AzTrpdoiZQxXmZWiTf",
 	480080000
  ],
@@ -206768,10 +206665,6 @@
  [
 	"PugKBznr7YAWs3MkegGC2nmyLodTEnPRem",
 	11588
- ],
- [
-	"PugLGHX5ZytgeTRWvHqorvngKWUYNuqvGL",
-	41591755603
  ],
  [
 	"PugLH8xDRszpKbSYTgz9v7FeykAUFprZVu",
@@ -207918,6 +207811,10 @@
 	470000000
  ],
  [
+	"Puo8P7wPmeXUGc3JFFNKiUSWZU2F8FpLGG",
+	20890194117
+ ],
+ [
 	"Puo8modWND2LuB3ov6yHcpyBHr5Xw5cAMk",
 	12000000
  ],
@@ -207994,10 +207891,6 @@
 	4317500
  ],
  [
-	"PuoejpJbDWeMwZf9sQCX9KhUJip24h8vuM",
-	100106000000
- ],
- [
 	"Puoh6v1r42QAg6mC16k23gjoCEiXaJG5AB",
 	2000000
  ],
@@ -208024,6 +207917,10 @@
  [
 	"PuorLsmmabhudcwv3FiE7bJWnJ5GWSuLvp",
 	5380340
+ ],
+ [
+	"PuozujqWND7tUpm8UjpqwCZbhtYtsMQFW3",
+	5700000000
  ],
  [
 	"Pup2qzSPKRZXhMcHZQ7sgPDsSCjdDZL2aT",
@@ -208591,7 +208488,7 @@
  ],
  [
 	"PusaX3dT9zFkADoHQMEUrUXLb3skAckdLu",
-	34785150000
+	44462750000
  ],
  [
 	"PusaaSW4iF6WLLxbr9xsd8gKLpd3GqhZHJ",
@@ -209252,10 +209149,6 @@
  [
 	"Puwrhc182PHWteRkChzoHdiujaHjBzAg5f",
 	869408537
- ],
- [
-	"Puwsp8vgNHZBVWJHkfv2bVPwPhEoQ7RS2v",
-	121669830000
  ],
  [
 	"PuwuJGL1Sv4HzDz55jHvX8D2nMKqMk9wQL",
@@ -210706,10 +210599,6 @@
 	50000
  ],
  [
-	"Pv7YJvvdhBrKuQFrGyaRFvTQi6uN5H3wju",
-	2956953
- ],
- [
 	"Pv7aPYmtiCPaUHZYqknCDFisuQDu7zvdFm",
 	166396431
  ],
@@ -212106,6 +211995,10 @@
 	357311269
  ],
  [
+	"PvGaJQn7DtfXcgTZX47KQ31B4pndrCHvvY",
+	21314590000
+ ],
+ [
 	"PvGaj9S7NyfcwKuPH3z9EER9mN4eMQY3M9",
 	27823
  ],
@@ -212280,10 +212173,6 @@
  [
 	"PvHvifP3kw9gWEkJFdJhvUng81mgArgf69",
 	30670000
- ],
- [
-	"PvHzPspwkreNzd6FJMMhHgHBpCe3JKUByN",
-	900006000000
  ],
  [
 	"PvJ36eyP61u5HeN9pZkJe2XyFfGV6SLqtg",
@@ -213030,6 +212919,10 @@
 	14036
  ],
  [
+	"PvP9DSqocWuAdVBCnoP8EGN6gkZJehTg1J",
+	1192000000
+ ],
+ [
 	"PvP9oMerapjjz2wQZp7P7VL8tV3aA7smhh",
 	8220257
  ],
@@ -213347,7 +213240,7 @@
  ],
  [
 	"PvRX6CaPrpahTdhMtEV5mNegvXHW9ihyod",
-	10134900
+	20861400
  ],
  [
 	"PvRY3GmBVtf5peS31LxZLwQwDC5QLCNhD8",
@@ -213490,6 +213383,10 @@
 	20000
  ],
  [
+	"PvSWcs2Tvq8uLca6uAfJEWU3yC3CrVPYz4",
+	347331175
+ ],
+ [
 	"PvSXGc52Hwqkxz9cVJHpP2cwn8MuWSVEsz",
 	3221900
  ],
@@ -213500,6 +213397,10 @@
  [
 	"PvSXxBJq2y9uB1348HEmpjPk9Vti6pdTCz",
 	16563311
+ ],
+ [
+	"PvSawg5DkbrJd3EdMXckgtxSz2k8SuKPTZ",
+	3109274565
  ],
  [
 	"PvSbnpYWfigUhdAnm8njAQwNvxnKKzVWyx",
@@ -214126,10 +214027,6 @@
 	67143
  ],
  [
-	"PvWqiE4A8GqANKymFHfBjPHGN5dsVNXSEP",
-	12000000
- ],
- [
 	"PvWrgRaadT4zJXU1xAVU9xAeoBas5a6Taf",
 	3788670000
  ],
@@ -214324,6 +214221,10 @@
  [
 	"PvXyxhmtPULeyinmFM43n1i7vHhmFjfbCW",
 	12675000
+ ],
+ [
+	"PvXz7Pp4PQU1dB88CZ9YdMFmJm6fFSzeWG",
+	18394798700
  ],
  [
 	"PvXzX4REVY1oaPoSQ3WbgGmYQNVhL3UXYx",
@@ -215134,10 +215035,6 @@
 	946200
  ],
  [
-	"PvdL4wSZzVfnovE4udFPCxmcodcaUijhUm",
-	2000000000
- ],
- [
 	"PvdPzbXGru8ac6qCbuEtxzo5tRRh2WuPwU",
 	1010000
  ],
@@ -215328,10 +215225,6 @@
  [
 	"PvePZMi8ok1gkCrCNVpH6bJBEZopv6KRUd",
 	61490000
- ],
- [
-	"PvePaSdVCVVaUysxMMo5kePduyubopbJa6",
-	117995774168
  ],
  [
 	"PveQRA1kZii3jBqW2EFAxqvdqkStcd8ixe",
@@ -215848,6 +215741,10 @@
  [
 	"PvhhJNsU7Rwo9sCJtL7XMx4j97dUqWWRK8",
 	950000
+ ],
+ [
+	"PvhhZBMinc4huGXBb8rzEbWAaotHAqSYGc",
+	2600000000
  ],
  [
 	"PvhjapocXLYrFZYqN3vKpCxuiGrke2QnAY",
@@ -217174,10 +217071,6 @@
 	2503880000
  ],
  [
-	"PvrfnAzGoKjSGiSwDwTFcpMCZzVEGTkEzi",
-	270750675
- ],
- [
 	"Pvrfr4zjkQ8aD6kVuZPUcrPPAKAiVKBow6",
 	600000000
  ],
@@ -217580,10 +217473,6 @@
  [
 	"Pvu7zpABaMrKh2EcryZc9UriEDaK8my1mh",
 	3788202
- ],
- [
-	"Pvu8TYTKJirBaF5UNxWmr5ujSdxZtgH23E",
-	100106000000
  ],
  [
 	"PvuAMCfQ6Gxw2arKrAPdhkttfB1Navtt4z",
@@ -219150,6 +219039,10 @@
 	32976630
  ],
  [
+	"Pw53q1pgYq7kpnoKVZ6Rt3CYngc27HomPz",
+	24300000000
+ ],
+ [
 	"Pw54K3cDjg2MZgRSZM5z5j567TriRsfRwe",
 	26417982
  ],
@@ -219724,10 +219617,6 @@
  [
 	"Pw8n1ioHdFhXCpyw1H3Rp6sTJtcptshZ7L",
 	1000000000
- ],
- [
-	"Pw8n5YMnQXCfG2ntEPEdAVBNeXNvpGhA72",
-	10752300
  ],
  [
 	"Pw8tVy7547p1GSYRhQSgnSzpohaMT38KNp",
@@ -220599,7 +220488,7 @@
  ],
  [
 	"PwF2EDPtvSqFpCwT4xGRSch62h2mdEzuCo",
-	50994000000
+	135988000000
  ],
  [
 	"PwF36AViNtuJfYGuMadMo1dDgn3U8jZ1DC",
