@@ -13,7 +13,7 @@ OK
 default (unlocked) >>> wallet_account_register test-account delegate0
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID      
 ======================================================================================================================================================================
-<d-ign></d-ign>PENDING   delegate0           test-account        0.000000 PTS            register test-account                       10.000000 PTS       <d-ign></d-ign>
+<d-ign></d-ign>PENDING   delegate0           test-account        0.000000 PTS            register test-account                       100.000000 PTS      <d-ign></d-ign>
 default (unlocked) >>> wallet_transfer 150 PTS delegate0 account-for-client1 "send this back"
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID      
 ======================================================================================================================================================================
@@ -25,7 +25,7 @@ OK
 default (unlocked) >>> wallet_account_balance delegate0
 ACCOUNT                         BALANCE                     
 ============================================================
-delegate0                       9,900,805.099009 PTS        
+delegate0                       9,900,715.099009 PTS        
 default (unlocked) >>> debug_wait_for_block_by_number 3
 OK
 default (unlocked) >>> debug_wait 2
