@@ -1,5 +1,7 @@
 #include <bts/blockchain/pending_chain_state.hpp>
 
+#include <bts/blockchain/fork_blocks.hpp>
+
 namespace bts { namespace blockchain {
 
    pending_chain_state::pending_chain_state( chain_interface_ptr prev_state )
@@ -94,18 +96,26 @@ namespace bts { namespace blockchain {
       return prev_state->get_transaction( trx_id, exact );
    }
 
-   bool pending_chain_state::is_known_transaction( const transaction_id_type& id )
+   bool pending_chain_state::is_known_transaction( fc::time_point_sec exp, const digest_type& id )
    { try {
-      auto itr = transactions.find( id );
-      if( itr != transactions.end() ) return true;
+      auto itr = unique_transactions.find( id );
+      if( itr != unique_transactions.end() ) return true;
       chain_interface_ptr prev_state = _prev_state.lock();
-      return prev_state->is_known_transaction( id );
+      return prev_state->is_known_transaction( exp, id );
    } FC_CAPTURE_AND_RETHROW( (id) ) }
 
    void pending_chain_state::store_transaction( const transaction_id_type& id,
                                                 const transaction_record& rec )
    {
+      chain_interface_ptr prev_state = _prev_state.lock();
       transactions[id] = rec;
+      if( prev_state )
+      {
+         auto prop = prev_state->get_property(chain_id);
+         auto insert_result = unique_transactions.insert(rec.trx.digest( prop.as<digest_type>() ));
+         if (get_head_block_num()  >= FORK_25)
+           FC_ASSERT(insert_result.second, "duplicate transaction error");
+      }
 
       for( const auto& op : rec.trx.operations )
         store_recent_operation(op);

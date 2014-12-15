@@ -136,6 +136,7 @@ program_options::variables_map parse_option_variables(int argc, char** argv)
          ("growl", program_options::value<std::string>()->implicit_value("127.0.0.1"), "Send notifications about potential problems to Growl")
          ("growl-password", program_options::value<std::string>(), "Password for authenticating to a Growl server")
          ("growl-identifier", program_options::value<std::string>(), "A name displayed in growl messages to identify this bitshares_client instance")
+         ("snapshot-dir", program_options::value<string>(), "Create daily snapshots of all balances in this directory")
          ;
 
    program_options::variables_map option_variables;
@@ -828,7 +829,11 @@ bool client_impl::has_item(const bts::net::item_id& id)
 
    if (id.item_type == trx_message_type)
    {
-      return _chain_db->is_known_transaction( id.item_hash );
+      //return _chain_db->is_known_transaction( id.item_hash );
+      // TODO: the performance of get_transaction is much slower than is_known_transaction,
+      // but we do not have enough information to call is_known_transaction because it depends 
+      // upon the transaction digest + expiration date and we only have the trx id.
+      return _chain_db->get_transaction( id.item_hash ).valid();
    }
    return false;
 }
@@ -1451,6 +1456,9 @@ void client::configure_from_command_line(int argc, char** argv)
    fc::optional<fc::path> genesis_file_path;
    if (option_variables.count("genesis-config"))
       genesis_file_path = option_variables["genesis-config"].as<string>();
+
+   if (option_variables.count("snapshot-dir"))
+      my->_chain_db->save_snapshots_in( option_variables["snapshot-dir"].as<string>() );
 
    my->_enable_ulog = option_variables["ulog"].as<bool>();
    this->open( datadir, genesis_file_path );

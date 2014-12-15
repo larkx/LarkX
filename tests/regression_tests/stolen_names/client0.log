@@ -3,7 +3,7 @@ default (unlocked) >>> wallet_account_create thief
 default (unlocked) >>> wallet_account_register thief delegate0
 TIMESTAMP           BLOCK     FROM                TO                  AMOUNT                  MEMO                                        FEE                 ID      
 ======================================================================================================================================================================
-<d-ign></d-ign>PENDING   delegate0           thief               0.000000 PTS            register thief                              10.000000 PTS       <d-ign></d-ign>
+<d-ign></d-ign>PENDING   delegate0           thief               0.000000 PTS            register thief                              100.000000 PTS      <d-ign></d-ign>
 default (unlocked) >>> debug_advance_time 1 blocks
 OK
 default (unlocked) >>> debug_wait 2

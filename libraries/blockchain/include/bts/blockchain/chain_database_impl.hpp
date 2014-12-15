@@ -106,6 +106,7 @@ namespace bts { namespace blockchain {
                                                                                          const public_key_type& block_signee );
 
             void                                        revalidate_pending();
+            void                                        handle_snapshots( const full_block& block_data )const;
 
             fc::future<void> _revalidate_pending;
             fc::mutex        _push_block_mutex;
@@ -118,6 +119,7 @@ namespace bts { namespace blockchain {
              *  pending transactions remain.
              */
             pending_chain_state_ptr                                                     _pending_trx_state;
+
 
             chain_database*                                                             self = nullptr;
             unordered_set<chain_observer*>                                              _observers;
@@ -145,14 +147,14 @@ namespace bts { namespace blockchain {
 
             bts::db::level_map<block_id_type,full_block>                                _block_id_to_block_data_db;
 
-            std::unordered_set<transaction_id_type>                                     _known_transactions;
+            map<fc::time_point_sec, unordered_set<digest_type> >                        _unique_transactions;
             bts::db::level_map<transaction_id_type,transaction_record>                  _id_to_transaction_record_db;
 
             signed_block_header                                                         _head_block_header;
             block_id_type                                                               _head_block_id;
 
-            bts::db::level_map<transaction_id_type, signed_transaction>                 _pending_transaction_db;
-            std::map<fee_index, transaction_evaluation_state_ptr>                       _pending_fee_index;
+            bts::db::level_map<digest_type, signed_transaction>                         _pending_transaction_db;
+            std::map<fee_index, transaction_evaluation_state_ptr>                          _pending_fee_index;
 
             bts::db::cached_level_map<asset_id_type, asset_record>                      _asset_db;
             bts::db::cached_level_map<string, asset_id_type>                            _symbol_index_db;

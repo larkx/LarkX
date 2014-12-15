@@ -32,7 +32,7 @@ namespace bts { namespace blockchain {
 
          virtual void reset();
 
-         virtual void evaluate( const signed_transaction& trx, bool skip_signature_check = false );
+         virtual void evaluate( const signed_transaction& trx, bool skip_signature_check = false, bool enforce_canonical = false );
          virtual void evaluate_operation( const operation& op );
 
          /** perform any final operations based upon the current state of
