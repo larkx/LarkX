@@ -189,7 +189,7 @@ namespace bts { namespace blockchain {
    void claim_operation::validate_claim_signature() const
    {
        const fc::sha256 hash = double_hash_message( source, dest );
-       pts_address signed_by( fc::ecc::public_key( sig, hash ), true,
+       pts_address signed_by( fc::ecc::public_key( sig, hash, false ), true,
                               source.version() );
        FC_ASSERT(signed_by == source);
    }
