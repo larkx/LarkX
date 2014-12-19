@@ -11,6 +11,7 @@ namespace bts { namespace blockchain { namespace detail {
       _pending_state = std::make_shared<pending_chain_state>( ps );
       _prior_state = ps;
   }
+#ifndef PTS_SUPPRESS_MARKET
 
   void market_engine::cancel_all_shorts()
   {
@@ -766,5 +767,5 @@ namespace bts { namespace blockchain { namespace detail {
                                 _current_collat_record.interest_rate,
                                 get_current_cover_age() ) + _current_ask->get_balance();
   }
-
+#endif
 } } } // end namespace bts::blockchain::detail

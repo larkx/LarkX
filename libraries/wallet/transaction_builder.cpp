@@ -217,7 +217,7 @@ transaction_builder& transaction_builder::claim_balance( const bts::blockchain::
 
    return *this;
 } FC_CAPTURE_AND_RETHROW( (recipient)(source) ) }
-
+#ifndef PTS_SUPPRESS_MARKET
 transaction_builder& transaction_builder::cancel_market_order(const order_id_type& order_id)
 { try {
    const auto order = _wimpl->_blockchain->get_market_order( order_id );
@@ -465,6 +465,7 @@ transaction_builder& transaction_builder::submit_cover(const wallet_account_reco
    required_signatures.insert(owner_key_record->public_key);
    return *this;
 } FC_CAPTURE_AND_RETHROW( (from_account.name)(cover_amount)(order_id) ) }
+#endif
 
 transaction_builder& transaction_builder::finalize()
 { try {

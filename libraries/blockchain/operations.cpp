@@ -32,11 +32,13 @@ namespace bts { namespace blockchain {
    const operation_type_enum vote_proposal_operation::type          = vote_proposal_op_type;
 #endif
 
+#ifndef PTS_SUPPRESS_MARKET
    const operation_type_enum bid_operation::type                    = bid_op_type;
    const operation_type_enum ask_operation::type                    = ask_op_type;
    const operation_type_enum cover_operation::type                  = cover_op_type;
    const operation_type_enum add_collateral_operation::type         = add_collateral_op_type;
    const operation_type_enum remove_collateral_operation::type      = remove_collateral_op_type;
+#endif
 
    const operation_type_enum define_delegate_slate_operation::type  = define_delegate_slate_op_type;
 
@@ -47,7 +49,9 @@ namespace bts { namespace blockchain {
 
    const operation_type_enum claim_operation::type                  = claim_op_type;
 
+#ifndef PTS_SUPPRESS_MARKET
    const operation_type_enum short_operation::type                  = short_op_v2_type;
+#endif
 
    static bool first_chain = []()->bool{
       bts::blockchain::operation_factory::instance().register_operation<withdraw_operation>();
@@ -66,11 +70,13 @@ namespace bts { namespace blockchain {
       bts::blockchain::operation_factory::instance().register_operation<submit_proposal_operation>();
       bts::blockchain::operation_factory::instance().register_operation<vote_proposal_operation>();
 #endif
+#ifndef PTS_SUPPRESS_MARKET
       bts::blockchain::operation_factory::instance().register_operation<bid_operation>();
       bts::blockchain::operation_factory::instance().register_operation<ask_operation>();
       bts::blockchain::operation_factory::instance().register_operation<cover_operation>();
       bts::blockchain::operation_factory::instance().register_operation<add_collateral_operation>();
       bts::blockchain::operation_factory::instance().register_operation<remove_collateral_operation>();
+#endif
       bts::blockchain::operation_factory::instance().register_operation<define_delegate_slate_operation>();
       bts::blockchain::operation_factory::instance().register_operation<update_feed_operation>();
       bts::blockchain::operation_factory::instance().register_operation<burn_operation>();
@@ -80,7 +86,9 @@ namespace bts { namespace blockchain {
 
       bts::blockchain::operation_factory::instance().register_operation<claim_operation>();
 
+#ifndef PTS_SUPPRESS_MARKET
       bts::blockchain::operation_factory::instance().register_operation<short_operation>();
+#endif
       return true;
    }();
 

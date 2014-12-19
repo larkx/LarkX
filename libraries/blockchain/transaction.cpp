@@ -60,6 +60,7 @@ namespace bts { namespace blockchain {
       operations.emplace_back( burn_operation( quantity, for_or_against, message, sig) );
    }
 
+#ifndef PTS_SUPPRESS_MARKET
    void transaction::bid( const asset& quantity,
                           const price& price_per_unit,
                           const address& owner )
@@ -97,6 +98,7 @@ namespace bts { namespace blockchain {
 
       operations.emplace_back(op);
    }
+#endif
 
    void transaction::claim( const balance_record& balance,
                             const bts::blockchain::account_record& recipient,
@@ -249,7 +251,7 @@ namespace bts { namespace blockchain {
       operations.push_back( issue_asset_operation( amount_to_issue ) );
    }
 #endif
-
+#ifndef PTS_SUPPRESS_MARKET
    void transaction::cover( const asset& cover_amount,
                             const market_index_key& order_idx )
    {
@@ -261,7 +263,7 @@ namespace bts { namespace blockchain {
    {
       operations.push_back( add_collateral_operation(collateral_amount, order_idx) );
    }
-
+#endif
    void transaction::publish_feed( feed_id_type feed_id,
                                    account_id_type delegate_id,
                                    fc::variant value )
@@ -271,6 +273,7 @@ namespace bts { namespace blockchain {
 
    bool transaction::is_cancel()const
    {
+#ifndef PTS_SUPPRESS_MARKET
       for( const auto& op : operations )
       {
           switch( operation_type_enum( op.type ) )
@@ -288,6 +291,7 @@ namespace bts { namespace blockchain {
                   break;
           }
       }
+#endif
       return false;
    }
 

@@ -3,7 +3,7 @@
 #include <stdint.h>
 
 /* Comment out this line for a non-test network */
-//#define BTS_TEST_NETWORK
+#define BTS_TEST_NETWORK
 
 #define BTS_TEST_NETWORK_VERSION                            4
 

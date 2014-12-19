@@ -153,6 +153,7 @@ namespace bts { namespace wallet {
                                           const pts_address &source,
                                           const fc::ecc::compact_signature &signature,
                                           const vote_selection_method vote_method );
+#ifndef PTS_SUPPRESS_MARKET
       /**
        * @brief Cancel a single order
        * @param order_id
@@ -210,6 +211,7 @@ namespace bts { namespace wallet {
       transaction_builder& submit_cover(const wallet_account_record& from_account,
                                         asset cover_amount,
                                         const order_id_type& order_id);
+#endif
       /**
        * @brief Balance the books and pay the fees
        *

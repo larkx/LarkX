@@ -972,6 +972,7 @@ namespace bts { namespace blockchain {
           }
       }
 
+#ifndef PTS_SUPPRESS_MARKET
       void chain_database_impl::execute_markets( const fc::time_point_sec& timestamp, const pending_chain_state_ptr& pending_state )
       { try {
         vector<market_transaction> market_transactions;
@@ -991,6 +992,7 @@ namespace bts { namespace blockchain {
 
         pending_state->set_market_transactions( std::move( market_transactions ) );
       } FC_CAPTURE_AND_RETHROW() }
+#endif
 
       /**
        *  Checks if a snapshot should be made now and creates it if so.
@@ -1048,9 +1050,9 @@ namespace bts { namespace blockchain {
 
 //            if( block_data.block_num < BTSX_MARKET_FORK_2_BLOCK_NUM )
 //                apply_transactions( block_data, pending_state );
-
+#ifndef PTS_SUPPRESS_MARKET
             execute_markets( block_data.timestamp, pending_state );
-
+#endif
 //            if( block_data.block_num >= BTSX_MARKET_FORK_2_BLOCK_NUM )
                 apply_transactions( block_data, pending_state );
 
@@ -2038,8 +2040,9 @@ namespace bts { namespace blockchain {
       auto start_time = time_point::now();
 
       pending_chain_state_ptr pending_state = std::make_shared<pending_chain_state>( shared_from_this() );
-//      if( pending_state->get_head_block_num() >= BTSX_MARKET_FORK_2_BLOCK_NUM )
-         my->execute_markets( timestamp, pending_state );
+#ifndef PTS_SUPPRESS_MARKET
+      my->execute_markets( timestamp, pending_state );
+#endif
       auto pending_trx = get_pending_transactions();
 
       full_block next_block;

@@ -2,11 +2,12 @@
 #include <bts/blockchain/exceptions.hpp>
 #include <bts/blockchain/market_engine.hpp>
 #include <bts/blockchain/market_operations.hpp>
-
+#include <bts/blockchain/pts_config.hpp>
 #include <bts/blockchain/fork_blocks.hpp>
 
 namespace bts { namespace blockchain {
 
+#ifndef PTS_SUPPRESS_MARKET
    /**
     *  If the amount is negative then it will withdraw/cancel the bid assuming
     *  it is signed by the owner and there is sufficient funds.
@@ -295,5 +296,5 @@ namespace bts { namespace blockchain {
       // Should this even be allowed?
       FC_ASSERT( !"Not implemented!" );
    }
-
+#endif
 } } // bts::blockchain

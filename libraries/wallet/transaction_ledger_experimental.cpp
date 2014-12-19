@@ -292,7 +292,7 @@ void wallet_impl::scan_transaction_experimental( const transaction_evaluation_st
         return account_names.count( account_name ) > 0;
     };
 #endif
-
+#ifndef PTS_SUPPRESS_MARKET
     const auto scan_ask = [&]( const ask_operation& op ) -> bool
     {
         const market_order order( ask_order, op.ask_index, op.amount );
@@ -321,7 +321,7 @@ void wallet_impl::scan_transaction_experimental( const transaction_evaluation_st
         const owallet_key_record key_record = _wallet_db.lookup_key( op.ask_index.owner );
         return key_record.valid() && key_record->has_private_key();
     };
-
+#endif
     const auto scan_update_feed = [&]( const update_feed_operation& op ) -> bool
     {
         const oasset_record asset_record = _blockchain->get_asset_record( op.feed.feed_id );
@@ -398,6 +398,7 @@ void wallet_impl::scan_transaction_experimental( const transaction_evaluation_st
                 my_transaction |= scan_issue_asset( op.as<issue_asset_operation>() );
                 break;
 #endif
+#ifndef PTS_SUPPRESS_MARKET
             case bid_op_type:
                 // TODO
                 break;
@@ -407,6 +408,7 @@ void wallet_impl::scan_transaction_experimental( const transaction_evaluation_st
             case cover_op_type:
                 // TODO
                 break;
+#endif
             case define_delegate_slate_op_type:
                 // Don't care; do nothing
                 break;

@@ -3,4 +3,6 @@
 
 #define PTS_SUPPRESS_ASSETS     // undefine to allow asset creation/manipulation
 
+#define PTS_SUPPRESS_MARKET     // undefine to enable market operations
+
 #define GENESIS_VOTE_PERMILLE   80

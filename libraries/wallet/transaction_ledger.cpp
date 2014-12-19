@@ -360,6 +360,7 @@ wallet_transaction_record wallet_impl::scan_transaction(
             case withdraw_pay_op_type:
                 has_withdrawal |= scan_withdraw_pay( op.as<withdraw_pay_operation>(), *transaction_record, total_fee );
                 break;
+#ifndef PTS_SUPPRESS_MARKET
             case bid_op_type:
             {
                 const auto bid_op = op.as<bid_operation>();
@@ -381,6 +382,7 @@ wallet_transaction_record wallet_impl::scan_transaction(
                     has_withdrawal |= scan_short( short_op, *transaction_record, total_fee );
                 break;
             }
+#endif
             default:
                 break;
         }
@@ -399,6 +401,7 @@ wallet_transaction_record wallet_impl::scan_transaction(
                 is_deposit = scan_deposit( op.as<deposit_operation>(), keys, *transaction_record, total_fee );
                 has_deposit |= is_deposit;
                 break;
+#ifndef PTS_SUPPRESS_MARKET
             case bid_op_type:
             {
                 const auto bid_op = op.as<bid_operation>();
@@ -420,6 +423,7 @@ wallet_transaction_record wallet_impl::scan_transaction(
                     has_deposit |= scan_short( short_op, *transaction_record, total_fee );
                 break;
             }
+#endif
             case burn_op_type:
             {
                 store_record |= scan_burn( op.as<burn_operation>(), *transaction_record, total_fee );

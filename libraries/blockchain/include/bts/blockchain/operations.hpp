@@ -41,12 +41,14 @@ namespace bts { namespace blockchain {
       submit_proposal_op_type       = 10,
       vote_proposal_op_type         = 11,
 
+#ifndef PTS_SUPPRESS_MARKET
       /** market operations */
       bid_op_type                   = 12,
       ask_op_type                   = 13,
       cover_op_type                 = 15,
       add_collateral_op_type        = 16,
       remove_collateral_op_type     = 17,
+#endif
 
       define_delegate_slate_op_type = 18,
 
@@ -58,7 +60,9 @@ namespace bts { namespace blockchain {
 
       claim_op_type                 = 24,
 
+#ifndef PTS_SUPPRESS_MARKET
       short_op_v2_type              = 34
+#endif
    };
 
    /**

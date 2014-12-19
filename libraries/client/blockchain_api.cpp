@@ -4,6 +4,7 @@
 #include <bts/blockchain/time.hpp>
 #include <bts/client/client.hpp>
 #include <bts/client/client_impl.hpp>
+#include <bts/wallet/exceptions.hpp>
 
 #include <fc/thread/non_preemptable_scope_check.hpp>
 
@@ -331,6 +332,7 @@ asset client_impl::blockchain_calculate_supply( const string& asset )const
 
 asset client_impl::blockchain_calculate_debt( const string& asset/*, bool include_interest*/ )const
 {
+#ifndef PTS_SUPPRESS_MARKET
    asset_id_type asset_id;
    if( std::all_of( asset.begin(), asset.end(), ::isdigit ) )
       asset_id = std::stoi( asset );
@@ -338,6 +340,9 @@ asset client_impl::blockchain_calculate_debt( const string& asset/*, bool includ
       asset_id = _chain_db->get_asset_id( asset );
 
    return _chain_db->calculate_debt( asset_id/*, include_interest*/ );
+#else
+  FC_THROW_EXCEPTION(invalid_operation, "Unsupported operation!");
+#endif
 }
 
 bts::blockchain::blockchain_security_state client_impl::blockchain_get_security_state()const
@@ -380,35 +385,56 @@ vector<market_order>    client_impl::blockchain_market_list_bids( const string& 
                                                                   const string& base_symbol,
                                                                   uint32_t limit  )
 {
+#ifndef PTS_SUPPRESS_MARKET
    return _chain_db->get_market_bids( quote_symbol, base_symbol, limit );
+#else
+  FC_THROW_EXCEPTION(invalid_operation, "Unsupported operation!");
+#endif
 }
 vector<market_order>    client_impl::blockchain_market_list_asks( const string& quote_symbol,
                                                                   const string& base_symbol,
                                                                   uint32_t limit  )
 {
+#ifndef PTS_SUPPRESS_MARKET
    return _chain_db->get_market_asks( quote_symbol, base_symbol, limit );
+#else
+  FC_THROW_EXCEPTION(invalid_operation, "Unsupported operation!");
+#endif
 }
 
 vector<market_order>    client_impl::blockchain_market_list_shorts( const string& quote_symbol,
                                                                     uint32_t limit  )const
 {
+#ifndef PTS_SUPPRESS_MARKET
    return _chain_db->get_market_shorts( quote_symbol, limit );
+#else
+  FC_THROW_EXCEPTION(invalid_operation, "Unsupported operation!");
+#endif
 }
 vector<market_order>    client_impl::blockchain_market_list_covers( const string& quote_symbol,
                                                                     uint32_t limit  )
 {
+#ifndef PTS_SUPPRESS_MARKET
    return _chain_db->get_market_covers( quote_symbol, limit );
+#else
+  FC_THROW_EXCEPTION(invalid_operation, "Unsupported operation!");
+#endif
 }
 
 share_type              client_impl::blockchain_market_get_asset_collateral( const string& symbol )
 {
+#ifndef PTS_SUPPRESS_MARKET
    return _chain_db->get_asset_collateral( symbol );
+#else
+  FC_THROW_EXCEPTION(invalid_operation, "Unsupported operation!");
+#endif
 }
 
 std::pair<vector<market_order>,vector<market_order>> client_impl::blockchain_market_order_book( const string& quote_symbol,
                                                                                                 const string& base_symbol,
                                                                                                 uint32_t limit  )
 {
+#ifndef PTS_SUPPRESS_MARKET
    auto bids = blockchain_market_list_bids(quote_symbol, base_symbol, limit);
    auto asks = blockchain_market_list_asks(quote_symbol, base_symbol, limit);
    auto covers = blockchain_market_list_covers(quote_symbol,limit);
@@ -419,6 +445,9 @@ std::pair<vector<market_order>,vector<market_order>> client_impl::blockchain_mar
    });
 
    return std::make_pair(bids, asks);
+#else
+  FC_THROW_EXCEPTION(invalid_operation, "Unsupported operation!");
+#endif
 }
 
 std::vector<order_history_record> client_impl::blockchain_market_order_history( const std::string &quote_symbol,
@@ -427,11 +456,15 @@ std::vector<order_history_record> client_impl::blockchain_market_order_history( 
                                                                                 uint32_t limit,
                                                                                 const string& owner )const
 {
+#ifndef PTS_SUPPRESS_MARKET
    auto quote_id = _chain_db->get_asset_id(quote_symbol);
    auto base_id = _chain_db->get_asset_id(base_symbol);
    address owner_address = owner.empty()? address() : address(owner);
 
    return _chain_db->market_order_history(quote_id, base_id, skip_count, limit, owner_address);
+#else
+  FC_THROW_EXCEPTION(invalid_operation, "Unsupported operation!");
+#endif
 }
 
 market_history_points client_impl::blockchain_market_price_history( const std::string& quote_symbol,
@@ -440,9 +473,13 @@ market_history_points client_impl::blockchain_market_price_history( const std::s
                                                                     const fc::microseconds& duration,
                                                                     const market_history_key::time_granularity_enum& granularity )const
 {
+#ifndef PTS_SUPPRESS_MARKET
    return _chain_db->get_market_price_history( _chain_db->get_asset_id(quote_symbol),
                                                _chain_db->get_asset_id(base_symbol),
                                                start_time, duration, granularity );
+#else
+  FC_THROW_EXCEPTION(invalid_operation, "Unsupported operation!");
+#endif
 }
 
 map<transaction_id_type, transaction_record> client_impl::blockchain_get_block_transactions( const string& block )const

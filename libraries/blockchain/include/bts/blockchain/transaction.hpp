@@ -6,6 +6,7 @@
 #include <bts/blockchain/withdraw_types.hpp>
 #include <bts/blockchain/account_record.hpp>
 #include <bts/blockchain/balance_record.hpp>
+#include <bts/blockchain/pts_config.hpp>
 
 #include <fc/reflect/variant.hpp>
 
@@ -106,7 +107,7 @@ namespace bts { namespace blockchain {
                  account_id_type for_or_against,
                  const string& public_message,
                  const fc::optional<signature_type>& message_sig );
-
+#ifndef PTS_SUPPRESS_MARKET
       void bid( const asset& quantity,
                 const price& price_per_unit,
                 const address& owner );
@@ -125,7 +126,7 @@ namespace bts { namespace blockchain {
 
       void add_collateral( share_type collateral_amount,
                            const market_index_key& order_idx );
-
+#endif
       void publish_feed( feed_id_type feed_id,
                          account_id_type delegate_id,
                          fc::variant value );

@@ -441,6 +441,7 @@ namespace detail {
       if( (order_type == bid_order || order_type == ask_order) && atof(order_price.c_str()) == 0 )
         FC_CAPTURE_AND_THROW( invalid_price, (order_price) );
 
+#ifndef PTS_SUPPRESS_MARKET
       price price_arg = _blockchain->to_ugly_price(order_price,
                                                    base_symbol,
                                                    quote_symbol,
@@ -462,7 +463,8 @@ namespace detail {
          builder->submit_short(self->get_account(account_name), quantity, price_arg, price_limit);
       }
       else
-         FC_THROW_EXCEPTION( invalid_operation, "This function only supports bids, asks and shorts." );
+#endif
+          FC_THROW_EXCEPTION( invalid_operation, "This function only supports bids, asks and shorts." );
    }
 
    void wallet_impl::create_file( const path& wallet_file_path,
@@ -3146,7 +3148,7 @@ namespace detail {
       return trx;
    }
 #endif
-
+#ifndef PTS_SUPPRESS_MARKET
    wallet_transaction_record wallet::cancel_market_orders(
            const vector<order_id_type>& order_ids,
            bool sign )
@@ -3379,7 +3381,7 @@ namespace detail {
           return builder.sign();
        return builder.transaction_record;
    } FC_CAPTURE_AND_RETHROW( (from_account_name)(real_quantity_usd)(quote_symbol)(cover_id)(sign) ) }
-
+#endif
    void wallet::set_transaction_fee( const asset& fee )
    { try {
       FC_ASSERT( is_open() );
@@ -3955,7 +3957,7 @@ namespace detail {
       }
       return account_keys;
    }
-
+#ifndef PTS_SUPPRESS_MARKET
    map<order_id_type, market_order> wallet::get_market_orders( const string& account_name, uint32_t limit )const
    {
       map<order_id_type, market_order> order_map;
@@ -4068,5 +4070,5 @@ namespace detail {
       }
       return result;
    } FC_CAPTURE_AND_RETHROW( (quote_symbol)(base_symbol) ) }
-
+#endif
 } } // bts::wallet

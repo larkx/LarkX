@@ -658,6 +658,7 @@ wallet_transaction_record client_impl::wallet_market_submit_bid(
        const string& quote_symbol,
        bool allow_stupid_bid )
 {
+#ifndef PTS_SUPPRESS_MARKET
   vector<market_order> lowest_ask = blockchain_market_order_book(quote_symbol, quantity_symbol, 1).second;
 
   if (!allow_stupid_bid && lowest_ask.size()
@@ -669,6 +670,9 @@ wallet_transaction_record client_impl::wallet_market_submit_bid(
   const auto record = _wallet->submit_bid( from_account, quantity, quantity_symbol, quote_price, quote_symbol );
   network_broadcast_transaction( record.trx );
   return record;
+#else
+  FC_THROW_EXCEPTION(invalid_operation, "Unsupported operation!");
+#endif
 }
 
 wallet_transaction_record client_impl::wallet_market_submit_ask(
@@ -679,6 +683,7 @@ wallet_transaction_record client_impl::wallet_market_submit_ask(
            const string& quote_symbol,
            bool allow_stupid_ask )
 {
+#ifndef PTS_SUPPRESS_MARKET
   vector<market_order> highest_bid = blockchain_market_order_book(quote_symbol, quantity_symbol, 1).first;
 
   if (!allow_stupid_ask && highest_bid.size()
@@ -690,6 +695,9 @@ wallet_transaction_record client_impl::wallet_market_submit_ask(
   const auto record = _wallet->submit_ask( from_account, quantity, quantity_symbol, quote_price, quote_symbol );
   network_broadcast_transaction( record.trx );
   return record;
+#else
+  FC_THROW_EXCEPTION(invalid_operation, "Unsupported operation!");
+#endif
 }
 
 wallet_transaction_record client_impl::wallet_market_submit_short(
@@ -700,6 +708,7 @@ wallet_transaction_record client_impl::wallet_market_submit_short(
        const string& quote_symbol,
        const string& short_price_limit )
 {
+#ifndef PTS_SUPPRESS_MARKET
   const auto record = _wallet->submit_short( from_account,
                                              quantity,
                                              collateral_symbol,
@@ -708,16 +717,23 @@ wallet_transaction_record client_impl::wallet_market_submit_short(
                                              short_price_limit );
   network_broadcast_transaction( record.trx );
   return record;
+#else
+  FC_THROW_EXCEPTION(invalid_operation, "Unsupported operation!");
+#endif
 }
 
 wallet_transaction_record client_impl::wallet_market_batch_update(const std::vector<order_id_type> &cancel_order_ids,
                                                                  const std::vector<order_description> &new_orders,
                                                                  bool sign)
 {
+#ifndef PTS_SUPPRESS_MARKET
   const auto record = _wallet->batch_market_update(cancel_order_ids, new_orders, sign);
   if( sign )
      network_broadcast_transaction( record.trx );
   return record;
+#else
+  FC_THROW_EXCEPTION(invalid_operation, "Unsupported operation!");
+#endif
 }
 
 wallet_transaction_record client_impl::wallet_market_cover(
@@ -726,9 +742,13 @@ wallet_transaction_record client_impl::wallet_market_cover(
        const string& quantity_symbol,
        const order_id_type& cover_id )
 {
+#ifndef PTS_SUPPRESS_MARKET
   const auto record = _wallet->cover_short( from_account, quantity, quantity_symbol, cover_id );
   network_broadcast_transaction( record.trx );
   return record;
+#else
+  FC_THROW_EXCEPTION(invalid_operation, "Unsupported operation!");
+#endif
 }
 
 wallet_transaction_record client_impl::wallet_delegate_withdraw_pay( const string& delegate_name,
@@ -759,15 +779,23 @@ wallet_transaction_record client_impl::wallet_market_add_collateral( const std::
                                                                      const order_id_type& cover_id,
                                                                      const string& real_quantity_collateral_to_add )
 {
+#ifndef PTS_SUPPRESS_MARKET
    const auto record = _wallet->add_collateral( from_account_name, cover_id, real_quantity_collateral_to_add );
    network_broadcast_transaction( record.trx );
    return record;
+#else
+  FC_THROW_EXCEPTION(invalid_operation, "Unsupported operation!");
+#endif
 }
 
 map<order_id_type, market_order> client_impl::wallet_account_order_list( const string& account_name,
                                                                          uint32_t limit )
 {
+#ifndef PTS_SUPPRESS_MARKET
    return _wallet->get_market_orders( account_name, limit );
+#else
+  FC_THROW_EXCEPTION(invalid_operation, "Unsupported operation!");
+#endif
 }
 
 map<order_id_type, market_order> client_impl::wallet_market_order_list( const string& quote_symbol,
@@ -775,21 +803,33 @@ map<order_id_type, market_order> client_impl::wallet_market_order_list( const st
                                                                         uint32_t limit,
                                                                         const string& account_name )
 {
+#ifndef PTS_SUPPRESS_MARKET
    return _wallet->get_market_orders( quote_symbol, base_symbol, limit, account_name );
+#else
+  FC_THROW_EXCEPTION(invalid_operation, "Unsupported operation!");
+#endif
 }
 
 wallet_transaction_record client_impl::wallet_market_cancel_order( const order_id_type& order_id )
 {
+#ifndef PTS_SUPPRESS_MARKET
    const auto record = _wallet->cancel_market_orders( {order_id} );
    network_broadcast_transaction( record.trx );
    return record;
+#else
+  FC_THROW_EXCEPTION(invalid_operation, "Unsupported operation!");
+#endif
 }
 
 wallet_transaction_record client_impl::wallet_market_cancel_orders( const vector<order_id_type>& order_ids )
 {
+#ifndef PTS_SUPPRESS_MARKET
    const auto record = _wallet->cancel_market_orders( order_ids );
    network_broadcast_transaction( record.trx );
    return record;
+#else
+  FC_THROW_EXCEPTION(invalid_operation, "Unsupported operation!");
+#endif
 }
 
 account_vote_summary_type client_impl::wallet_account_vote_summary( const string& account_name )const
