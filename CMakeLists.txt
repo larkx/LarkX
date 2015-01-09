@@ -176,7 +176,7 @@ endif( WIN32 )
 
 find_package( BerkeleyDB )
 
-set( CUSTOM_URL_SCHEME "pts" )
+set( CUSTOM_URL_SCHEME "ptst" )
 
 add_subdirectory( libraries )
 add_subdirectory( vendor/miniupnp/miniupnpc )
