@@ -70,7 +70,7 @@ include_directories( ${CMAKE_SOURCE_DIR}/libraries/client/include )
 
 if( WIN32 )
     set( DB_VERSION 60 )
-    message( STATUS "Configuring PTS on WIN32")
+    message( STATUS "Configuring LarkX on WIN32")
     set( ZLIB_LIBRARIES "" )
     set( LEVEL_DB_DIR vendor/leveldb-win )
 
@@ -117,7 +117,7 @@ if( WIN32 )
 set( RPCRT4 Rpcrt4 )
 endif (WIN32)
 target_link_libraries( pts_client_tests bts_client bts_rpc bts_net bts_wallet bts_blockchain fc )
-add_dependencies(pts_client_tests pts_client)
+add_dependencies(pts_client_tests larkx_client)
 endif (false )
 
 #add_executable( recover recover.cpp )
