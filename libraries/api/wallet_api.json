@@ -94,13 +94,13 @@
       },
       {
         "method_name": "wallet_import_bitcoin",
-        "description": "Imports a Bitcoin Core or old PTS wallet",
+        "description": "Imports a Bitcoin Core or old PTS/CLR wallet",
         "return_type": "uint32_t",
         "parameters" : [
            {
               "name" : "wallet_filename",
               "type" : "filename",
-              "description" : "the Bitcoin/PTS wallet file path"
+              "description" : "the Bitcoin/PTS/CLR wallet file path"
            },
            {
               "name" : "passphrase",
@@ -184,12 +184,12 @@
           {
               "name" : "address",
               "type" : "string",
-              "description" : "PTS or BTC address from which to import"
+              "description" : "CLR or PTS or BTC address from which to import"
           },
           {
               "name" : "signature",
               "type" : "string",
-              "description" : "signature created by pts or bitcoin wallet - if you leave this out you'll get an explanation how to create it",
+              "description" : "signature created by clr or pts or bitcoin wallet - if you leave this out you'll get an explanation how to create it",
               "default_value" : null
           }
           ],
@@ -1551,7 +1551,7 @@
       },
       {
          "method_name" : "wallet_login_start",
-         "description" : "Initiates the login procedure by providing a PTS Login URL",
+         "description" : "Initiates the login procedure by providing a LarkX Login URL",
          "return_type" : "string",
          "parameters"  : [
             {

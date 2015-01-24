@@ -1,7 +1,7 @@
-PTS Coding Standards
+LarkX Coding Standards
 --------------------
 
-PTS C++ application that follow conventions similar to boost or the standard template library.
+LarkX C++ application that follow conventions similar to boost or the standard template library.
 
   1) All text should be lowercase with the exception of MACROS and pre-processor defines.
 

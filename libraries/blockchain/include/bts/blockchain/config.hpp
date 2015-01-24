@@ -19,16 +19,16 @@
  *
  *  Changing these parameters will result in a hard fork.
  */
-#define BTS_ADDRESS_PREFIX                                  "PTS"
-#define BTS_BLOCKCHAIN_SYMBOL                               "PTS"
-#define BTS_BLOCKCHAIN_NAME                                 "PTS"
-#define BTS_BLOCKCHAIN_DESCRIPTION                          "PTS P2P Currency"
-#define BTS_BLOCKCHAIN_PRECISION                            (uint64_t(1000000))
+#define BTS_ADDRESS_PREFIX                                  "XCL"
+#define BTS_BLOCKCHAIN_SYMBOL                               "XCL"
+#define BTS_BLOCKCHAIN_NAME                                 "LarkX"
+#define BTS_BLOCKCHAIN_DESCRIPTION                          "LarkX P2P Currency"
+#define BTS_BLOCKCHAIN_PRECISION                            (uint64_t(100000))
 #define BTS_BLOCKCHAIN_MAX_TRANSACTION_EXPIRATION_SEC       (60*60*24*2)
 #define BTS_BLOCKCHAIN_MIN_YIELD_PERIOD_SEC                 (60*60*24) // 24 hours
 
-#define BTS_BLOCKCHAIN_MIN_BURN_FEE                         BTS_BLOCKCHAIN_PRECISION // 1 PTS
-#define BTS_BLOCKCHAIN_DEFAULT_RELAY_FEE                    (BTS_BLOCKCHAIN_PRECISION * 5) // 5 PTS
+#define BTS_BLOCKCHAIN_MIN_BURN_FEE                         BTS_BLOCKCHAIN_PRECISION * 10 // 10 XCL
+#define BTS_BLOCKCHAIN_DEFAULT_RELAY_FEE                    (BTS_BLOCKCHAIN_PRECISION * 5) // 5 XCL
 #define BTS_BLOCKCHAIN_MINIMUM_SHORT_ORDER_SIZE             (BTS_BLOCKCHAIN_PRECISION*10000000)
 //#define BTS_BLOCKCHAIN_MAX_SHORT_PERIOD_SEC                 (30*24*60*60) // 30 days * 24 hours * 60 minutes * 60 seconds = 1 month
 #define BTS_BLOCKCHAIN_MAX_SHORT_PERIOD_SEC                 (2*60*60) // 2 hours for test network
@@ -43,7 +43,7 @@
 
 #define BTS_BLOCKCHAIN_ENABLE_NEGATIVE_VOTES                false
 
-#define BTS_MAX_DELEGATE_PAY_PER_BLOCK                      int64_t( 50 * BTS_BLOCKCHAIN_PRECISION ) // 50 PTS
+#define BTS_MAX_DELEGATE_PAY_PER_BLOCK                      int64_t( 1 * BTS_BLOCKCHAIN_PRECISION ) // 1 XCL
 
 /**
  * To prevent a delegate from producing blocks on split network,
@@ -89,7 +89,7 @@
  * Initial shares read from the genesis block are scaled to this number. It is divided
  * by 100 so that new shares may be issued without exceeding BTS_BLOCKCHAIN_MAX_SHARES
  */
-#define BTS_BLOCKCHAIN_INITIAL_SHARES                       (BTS_BLOCKCHAIN_MAX_SHARES) // 10^9 PTS with 6 decimals
+#define BTS_BLOCKCHAIN_INITIAL_SHARES                       (BTS_BLOCKCHAIN_MAX_SHARES / 100) // 10^8 XCL with 5 decimals
 
 /**
  *  The number of blocks expected per hour based upon the BTS_BLOCKCHAIN_BLOCK_INTERVAL_SEC
@@ -117,9 +117,9 @@
     This constant defines the number of blocks a delegate must produce before
     they are expected to break even on registration costs with their earned income.
 
- *   Currently set to 1 week of active block production to break even.
+ *   Currently set to 2 week of active block production to break even.
  */
-#define BTS_BLOCKCHAIN_DELEGATE_REGISTRATION_FEE            (BTS_BLOCKCHAIN_BLOCKS_PER_DAY * 7)
+#define BTS_BLOCKCHAIN_DELEGATE_REGISTRATION_FEE            (BTS_BLOCKCHAIN_BLOCKS_PER_DAY * 14)
 
 /**
     If you are going to create an asset, you expect that it will be used in transactions.  We would

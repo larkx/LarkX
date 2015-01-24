@@ -1,12 +1,12 @@
 #!/bin/bash -xe
-cd $WORKSPACE/PTS
+cd $WORKSPACE/LarkX
 git submodule init
 git submodule update
 mkdir $WORKSPACE/build
 cd $WORKSPACE/build
 export BITSHARES_ROOT=$WORKSPACE
-. ../PTS/setenv.sh
+. ../LarkX/setenv.sh
 cmake -DINCLUDE_QT_WALLET=OFF \
       -DCMAKE_TOOLCHAIN_FILE=$WORKSPACE/toolchain.invictus/toolchain.invictus.cmake \
-      ../PTS
+      ../LarkX
 make -j8

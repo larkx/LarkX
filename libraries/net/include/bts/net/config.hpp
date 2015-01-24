@@ -26,8 +26,8 @@
 
 #define BTS_NET_PEER_DISCONNECT_TIMEOUT                 20
 
-#define BTS_NET_TEST_P2P_PORT                           3700
-#define BTS_NET_DEFAULT_P2P_PORT                        3777
+#define BTS_NET_TEST_P2P_PORT                           4700
+#define BTS_NET_DEFAULT_P2P_PORT                        4777
 #define BTS_NET_DEFAULT_DESIRED_CONNECTIONS             8
 #define BTS_NET_DELEGATE_DESIRED_CONNECTIONS            20
 #define BTS_NET_DEFAULT_MAX_CONNECTIONS                 200

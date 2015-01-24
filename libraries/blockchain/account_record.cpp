@@ -69,7 +69,7 @@ namespace bts { namespace blockchain {
         "vu", "wales", "watch", "webcam", "website", "wed", "wf", "whoswho", "wien",
         "wiki", "williamhill", "wme", "works", "world", "ws", "wtc", "wtf",
         "xxx", "xyz", "yachts", "yandex", "ye", "yokohama", "youtube", "yt", "za", "zip", "zm", "zone", "zw",
-        "local", "localhost"
+        "local", "localhost, vk, vkontakte"
     };
 
     //account_type multisig_meta_info::type = multisig_account;

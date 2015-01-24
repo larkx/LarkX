@@ -28,7 +28,7 @@ int main( int argc, char** argv )
 {
    try 
    {
-      bts::client::client_ptr client = std::make_shared<bts::client::client>("pts_client");
+      bts::client::client_ptr client = std::make_shared<bts::client::client>("larkx_client");
       client->configure_from_command_line(argc,argv);
       client->start().wait();
    }

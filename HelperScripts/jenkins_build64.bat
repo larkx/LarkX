@@ -1,11 +1,11 @@
 echo Available processor count: %NUMBER_OF_PROCESSORS%
 echo Starting build # %BUILD_NUMBER%
-cd PTS
+cd LarkX
 git submodule init || exit /b 21
 git submodule update || exit /b 22
 
 cd %WORKSPACE%
-cd PTS/vendor
+cd LarkX/vendor
 if exist leveldb-win (
     pushd leveldb-win
     git reset --hard || exit /b 23
@@ -15,7 +15,7 @@ if exist leveldb-win (
 )
 
 cd %WORKSPACE%
-call PTS/setenv_x64.bat || exit /b 26
+call LarkX/setenv_x64.bat || exit /b 26
 
 call npm install grunt
 call npm install lineman -g --prefix=%NPM_INSTALL_PREFIX%
@@ -27,6 +27,6 @@ if exist build (
 )
 mkdir build
 cd build
-cmake -DINCLUDE_QT_WALLET=TRUE -DINCLUDE_CRASHRPT=TRUE -G "Visual Studio 12 Win64" ../PTS || exit /b 28
-msbuild.exe /M:%NUMBER_OF_PROCESSORS% /p:Configuration=RelWithDebInfo /p:Platform=x64 /target:BitSharesX:rebuild /v:diag PTS.sln || exit /b 30
-msbuild.exe /M:%NUMBER_OF_PROCESSORS% /p:Configuration=RelWithDebInfo /p:Platform=x64 /target:pts_client:rebuild /v:diag PTS.sln || exit /b 30
+cmake -DINCLUDE_QT_WALLET=TRUE -DINCLUDE_CRASHRPT=TRUE -G "Visual Studio 12 Win64" ../LarkX || exit /b 28
+msbuild.exe /M:%NUMBER_OF_PROCESSORS% /p:Configuration=RelWithDebInfo /p:Platform=x64 /target:BitSharesX:rebuild /v:diag larkx.sln || exit /b 30
+msbuild.exe /M:%NUMBER_OF_PROCESSORS% /p:Configuration=RelWithDebInfo /p:Platform=x64 /target:larkx_client:rebuild /v:diag larkx.sln || exit /b 30

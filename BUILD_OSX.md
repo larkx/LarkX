@@ -1,4 +1,4 @@
-Building PTS on OS X 10.9
+Building LarkX on OS X 10.9
 =========================
 
 0) Install X Code by following these instructions https://guide.macports.org/chunked/installing.xcode.html
@@ -46,21 +46,21 @@ Building PTS on OS X 10.9
     make
     sudo make install
 
-7) Build PTS client with CMake
+7) Build LarkX client with CMake
 
     git clone https://github.com/PTS-DPOS/PTS.git
-    cd PTS
+    cd LarkX
     git submodule init
     git submodule update
     cmake -DCMAKE_PREFIX_PATH=/usr/local/ssl .
-    make pts_client
+    make larkx_client
 
 8) To build the Desktop Client
 
     TODO: describe Install Node
 
-    git clone https://github.com/PTS-DPOS/PTS.git
-    cd PTS
+    git clone https://github.com/larkx/LarkX.git
+    cd LarkX
     git submodule init
     git submodule update
     cd programs/web_wallet/

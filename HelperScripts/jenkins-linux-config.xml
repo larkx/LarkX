@@ -2,7 +2,7 @@
 <project>
   <actions/>
   <description></description>
-  <displayName>PTS client for Linux</displayName>
+  <displayName>LarkX client for Linux</displayName>
   <keepDependencies>false</keepDependencies>
   <properties/>
   <scm class="hudson.scm.NullSCM"/>
@@ -19,9 +19,9 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>rm -rf PTS build
-git clone https://github.com/pmconrad/PTS.git
-$WORKSPACE/PTS/HelperScripts/jenkins_build.sh
+      <command>rm -rf LarkX build
+git clone https://github.com/larkx/LarkX.git
+$WORKSPACE/LarkX/HelperScripts/jenkins_build.sh
 </command>
     </hudson.tasks.Shell>
   </builders>

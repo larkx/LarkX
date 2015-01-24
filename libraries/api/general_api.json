@@ -46,7 +46,7 @@
       },
       {
         "method_name": "validate_address",
-        "description": "Return information about given PTS address",
+        "description": "Return information about given LarkX address",
         "return_type": "json_object",
         "parameters" :
           [

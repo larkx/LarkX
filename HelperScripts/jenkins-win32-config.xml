@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>PTS client for Windows 32-bit&#xd;
+  <description>LarkX client for Windows 32-bit&#xd;
 </description>
-  <displayName>PTS client for Windows 32-bit</displayName>
+  <displayName>LarkX client for Windows 32-bit</displayName>
   <keepDependencies>false</keepDependencies>
   <properties/>
   <scm class="hudson.scm.NullSCM"/>
@@ -18,14 +18,14 @@
     </hudson.triggers.TimerTrigger>
   </triggers>
   <concurrentBuild>false</concurrentBuild>
-  <customWorkspace>c:\jenkins\workspace\PTS_win32</customWorkspace>
+  <customWorkspace>c:\jenkins\workspace\LarkX_win32</customWorkspace>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>if exist PTS (
-  rmdir /Q /S PTS || exit /b 10
+      <command>if exist LarkX (
+  rmdir /Q /S LarkX || exit /b 10
 )
-git clone https://github.com/pmconrad/PTS.git || exit /b 11
-call PTS\HelperScripts\jenkins_build32.bat || exit /b 12
+git clone https://github.com/larkx/LarkX.git || exit /b 11
+call LarkX\HelperScripts\jenkins_build32.bat || exit /b 12
 </command>
     </hudson.tasks.BatchFile>
   </builders>

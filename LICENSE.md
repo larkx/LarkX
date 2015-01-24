@@ -18,7 +18,7 @@ follows, with the additional BSD / MIT licenses listed at the end of this file:
 
 ================================================================================
 
-Copyright (C) 2014 The PTS Developers
+Copyright (C) 2015 The LarkX Team
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as

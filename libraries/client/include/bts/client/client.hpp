@@ -68,9 +68,9 @@ namespace bts { namespace client {
        config( ) :
           default_peers(vector<string>{
 #ifdef BTS_TEST_NETWORK
-           "pts-test.seed.quisquis.de:"
+           "xcl-test.seed.larkx.com:"
 #else
-           "pts.seed.quisquis.de:"
+           "xcl.seed.larkx.com:"
 #endif
           }),
           mail_server_enabled(false),
