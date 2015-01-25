@@ -204,6 +204,8 @@ namespace bts { namespace blockchain {
            {
               auto key = fc::ecc::public_key( sig, digest, enforce_canonical ).serialize();
               signed_keys.insert( address(key) );
+              signed_keys.insert( address(pts_address(key,false,28) ) );
+              signed_keys.insert( address(pts_address(key,true,28) )  );
               signed_keys.insert( address(pts_address(key,false,56) ) );
               signed_keys.insert( address(pts_address(key,true,56) )  );
               signed_keys.insert( address(pts_address(key,false,0) )  );
