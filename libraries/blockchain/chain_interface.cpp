@@ -262,7 +262,8 @@ namespace bts { namespace blockchain {
    {
        const auto base_record = get_asset_record( asset_id_type( 0 ) );
        FC_ASSERT( base_record.valid() );
-       return base_record->collected_fees / (BTS_BLOCKCHAIN_BLOCKS_PER_DAY * 14);
+       return BTS_MAX_DELEGATE_PAY_PER_BLOCK;
+       //return base_record->collected_fees / (BTS_BLOCKCHAIN_BLOCKS_PER_DAY * 14);
    }
 
    void chain_interface::set_dirty_markets( const std::set<std::pair<asset_id_type, asset_id_type>>& d )
