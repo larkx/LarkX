@@ -673,6 +673,7 @@ namespace bts { namespace net { namespace detail {
 
       // methods implementing node's public interface
       void set_node_delegate(node_delegate* del, fc::thread* thread_for_delegate_calls);
+	uint16_t load_configuration_simple(const fc::path& configuration_directory);
       void load_configuration( const fc::path& configuration_directory );
       void listen_to_p2p_network();
       void connect_to_p2p_network();
@@ -3734,6 +3735,58 @@ namespace bts { namespace net { namespace detail {
         _chain_id = del->get_chain_id();
     }
 
+	uint16_t node_impl::load_configuration_simple(const fc::path& configuration_directory)
+	{
+		VERIFY_CORRECT_THREAD();
+		_node_configuration_directory = configuration_directory;
+		fc::path configuration_file_name(_node_configuration_directory / NODE_CONFIGURATION_FILENAME);
+		bool node_configuration_loaded = false;
+		if (fc::exists(configuration_file_name))
+		{
+			try
+			{
+				_node_configuration = fc::json::from_file(configuration_file_name).as<detail::node_configuration>();
+				ilog("Loaded configuration from file ${filename}", ("filename", configuration_file_name));
+
+				if (_node_configuration.private_key == fc::ecc::private_key())
+					_node_configuration.private_key = fc::ecc::private_key::generate();
+
+				node_configuration_loaded = true;
+			}
+			catch (fc::parse_error_exception& parse_error)
+			{
+				elog("malformed node configuration file ${filename}: ${error}",
+					("filename", configuration_file_name)("error", parse_error.to_detail_string()));
+			}
+			catch (fc::exception& except)
+			{
+				elog("unexpected exception while reading configuration file ${filename}: ${error}",
+					("filename", configuration_file_name)("error", except.to_detail_string()));
+			}
+		}
+
+		if (!node_configuration_loaded)
+		{
+			_node_configuration = detail::node_configuration();
+
+#ifdef BTS_TEST_NETWORK
+			uint32_t port = BTS_NET_TEST_P2P_PORT + BTS_TEST_NETWORK_VERSION;
+#else
+			uint32_t port = BTS_NET_DEFAULT_P2P_PORT;
+#endif
+			_node_configuration.listen_endpoint.set_port(port);
+			_node_configuration.accept_incoming_connections = true;
+			_node_configuration.wait_if_endpoint_is_busy = false;
+
+			ilog("generating new private key for this node");
+			_node_configuration.private_key = fc::ecc::private_key::generate();
+		}
+
+		_node_public_key = _node_configuration.private_key.get_public_key().serialize();
+
+		return _node_configuration.listen_endpoint.port();
+	}
+
     void node_impl::load_configuration( const fc::path& configuration_directory )
     {
       VERIFY_CORRECT_THREAD();
@@ -4474,6 +4527,11 @@ namespace bts { namespace net { namespace detail {
   {
     fc::thread* delegate_thread = &fc::thread::current();
     INVOKE_IN_IMPL(set_node_delegate, del, delegate_thread);
+  }
+
+  uint16_t node::load_configuration_simple(const fc::path& configuration_directory)
+  {
+	INVOKE_IN_IMPL(load_configuration_simple, configuration_directory);
   }
 
   void node::load_configuration( const fc::path& configuration_directory )
