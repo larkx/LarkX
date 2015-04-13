@@ -1,0 +1,293 @@
+
+.market-selector {
+	margin-top: 10px;
+}
+
+.market .panel {
+	border: none;
+	margin-bottom: 20px;
+}
+
+.markets-list {
+	list-style-type: none;
+	padding-left: 0;
+}
+
+.no-account-selected-note {
+	margin: 40px auto;
+	font-size: 36px;
+	color: #888;
+	text-align: center;
+}
+
+.account-selector {
+	margin: 10px 4px 0 0;
+	text-align: right;
+}
+
+.balance {
+	margin-top: 2px;
+}
+
+.account-selector .title {
+	font-size: 18px;
+	position: relative;
+	top: 4px;
+}
+
+.no-lr-padding {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.no-lr-margin {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+span.cell {
+	line-height: 34px;
+}
+
+.market-table {
+	width: 100%;
+}
+
+.market-table td {
+	font-size: 12px;
+	text-align: left !important;
+}
+
+.market-table th {
+	text-align: left !important;
+}
+
+.market-table button.btn-xs {
+	display: table-cell;
+	min-width: 5em;
+}
+
+.market-table button.btn-xs {
+	margin: 0.1em 0;
+}
+
+.fixed-height-table {
+	max-height: 320px;
+	overflow-y: auto;
+	overflow-x: auto;
+}
+
+.fixed-height-table-tall {
+	max-height: 640px;
+	overflow-y: auto;
+	overflow-x: auto;
+}
+
+.market-table tr.canceled td {
+	background-color: #f4d7d6 !important;
+}
+
+.market-table tr.unconfirmed td {
+	background-color: #FFF6E8 !important;
+}
+
+.market-table tr.unconfirmed:not(.warning) td {
+	border-top: none;
+}
+
+.market-table tr.pending td {
+	background-color: #e4f4d4 !important;
+}
+
+.stats {
+	overflow: visible;
+}
+
+.market-stats .stat {
+	text-align: left;
+	font-size: 10px;
+	overflow: hidden;
+	padding: 5px 10px;
+}
+.market-stats .stat .value {
+	font-size: 12px;
+	color: #888;
+	letter-spacing: normal;
+}
+
+.header .stat {
+	margin-top: 8px;
+}
+
+.orders-row .panel-heading {
+	padding-right: 0;
+}
+
+.orders-row .panel-body {
+	padding-right: 0;
+}
+
+.orders-row .panel {
+	padding-right: 0;
+}
+
+.tab-buy.active > a {
+	border-top: 2px solid #2ca02c !important;
+	color: #2ca02c !important;
+}
+
+.tab-buy > a:hover {
+	color: #2ca02c !important;
+}
+
+.tab-sell.active > a {
+	border-top: 2px solid #ff7f0e !important;
+	color: #ff7f0e !important;
+}
+
+.tab-sell > a:hover {
+	color: #ff7f0e !important;
+}
+
+.tab-short > a:hover {
+	color: #7cb5ec !important;
+}
+
+/*.market-table tr.bid_order {*/
+	/*color: #2ca02c;*/
+/*}*/
+
+/*.market-table tr.ask_order {*/
+	/*color: #ff7f0e;*/
+/*}*/
+
+/*.market-table tr.short_order {*/
+	/*color: #7cb5ec;*/
+/*}*/
+
+tr.short_wall td {
+	background-color: #E4F0FB !important;
+}
+
+.order-form .input-group-addon {
+	width: 8em;
+}
+
+.buy-orders-title {
+	color: #2ca02c;
+}
+
+.sell-orders-title {
+	color: #ff7f0e;
+}
+
+.short-orders-title {
+	color: #7cb5ec;
+}
+
+.margin-orders-title {
+	color: #7cb5ec;
+}
+
+.market-header-button {
+	text-shadow: none;
+	font-size: 14px;
+	color: #666;
+}
+
+.market-header-button:hover, .market-header-button:focus {
+	text-decoration: none;
+}
+
+.simple-mode-short-stub {
+	height: 240px;
+}
+
+.tab-short {
+	display: none !important;
+}
+
+.shorts-available .tab-short {
+	display: block !important;
+}
+
+/* market thumbnail */
+.market-thumbnail {
+	border: 1px solid #eee;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+}
+
+.market-thumbnail:hover {
+	border: 1px solid #01bbf4;
+}
+
+.market-thumbnail h6 {
+	padding-left: 1em;
+	color: #01bbf4;
+}
+
+.market-thumbnail ul {
+	padding-left: 1em;
+	list-style-type: none;
+}
+
+.sparkchart {
+	margin-right: 1em;
+}
+
+/* ui-grid */
+
+.market-grid {
+	border: none;
+	color: #222;
+	overflow-x: hidden;
+	border-top: 1px solid #d4d4d4;
+}
+
+.market-grid .ui-grid-native-scrollbar.horizontal {
+	display: none;
+}
+
+.ui-grid-top-panel {
+	border-bottom: none;
+}
+
+.ui-grid-cell {
+	border-right: none;
+	border-top: 1px solid #e8e8e8;
+}
+
+.ui-grid-cell-contents {
+		padding: 2px 5px 0 5px;
+}
+
+.ui-grid-vertical-bar {
+	display: none;
+}
+
+.ui-grid-top-panel {
+	font-weight: normal;
+	color: #aaa;
+	text-transform: uppercase;
+	background: none;
+}
+
+.ui-grid-top-panel .ui-grid-cell-contents {
+	white-space: normal;
+	overflow: visible;
+	font-size: 12px;
+}
+
+.market-grid .ui-grid-cell.short_wall {
+	background-color: #E4F0FB;
+	font-weight: bold;
+}
+
+.market-grid .ui-grid-row:hover .ui-grid-cell {
+	background-color: #eef8ff;
+}
+
+.market-grid .ui-grid-native-scrollbar.vertical {
+	right: 6px;
+}

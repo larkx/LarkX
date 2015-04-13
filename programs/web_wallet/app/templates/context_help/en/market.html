@@ -1,0 +1,17 @@
+<div ng-controller="MarketHelpController">
+  <h1>Market Rules Summary</h1>
+  <p>Short orders can only get filled under these conditions:</p>
+  <ol>
+    <li>There is someone willing to buy BitUSD at the price feed</li>
+    <li>AND Your short order is the highest interest rate order</li>
+    <li>AND Your price limit is lower than the feed (XCL per USD) or you didn't specify a price limit.</li>
+    <li>AND You have enough collateral to provide 2x backing at the trade price and quantity</li>
+    <li>OR Your price limit is higher than the feed (XCL per USD) and someone is willing to buy at your price limit.
+    </li>
+  </ol>
+  <p>Short orders are forced to cover after 30 days by taking the best offers at the time. No fee is charged.</p>
+  <p>Short orders are forced to cover when 75% of their collateral is required to cover, leaving the short with 25% of
+     the collateral minus a 5% fee.</p>
+  <p>The 5% fee is assessed as a percent of the collateral left over after covering.</p>
+</div>
+
