@@ -150,16 +150,16 @@ void ClientWrapper::initialize(INotifier* notifier)
       if(!_client->get_wallet()->is_enabled())
           main_thread->async([&]{ Q_EMIT error(tr("Wallet is disabled in your configuration file. Please enable the wallet and relaunch the application.")); });
 
+	  // load config for p2p node.. creates cli
+	  const bts::client::config& loadedCfg = _client->configure(data_dir.toStdWString());
+	  _cfg = loadedCfg;
       // setup  RPC / HTTP services
       main_thread->async( [&]{ Q_EMIT status_update(tr("Loading...")); });
       _client->get_rpc_server()->set_http_file_callback([this](const fc::path& filename, const fc::http::server::response& r) {
           get_htdocs_file(filename, r);
-      });
-      _client->get_rpc_server()->configure_http( _cfg.rpc );
-      _actual_httpd_endpoint = _client->get_rpc_server()->get_httpd_endpoint();
-
-      // load config for p2p node.. creates cli
-      const bts::client::config& loadedCfg = _client->configure( data_dir.toStdWString() );
+      });	  
+	  _client->get_rpc_server()->configure_http(_cfg.rpc);
+      _actual_httpd_endpoint = _client->get_rpc_server()->get_httpd_endpoint();      
 
 	  auto currNode = new bts::net::node("");
 	  uint16_t port = currNode->load_configuration_simple(data_dir.toStdWString());
